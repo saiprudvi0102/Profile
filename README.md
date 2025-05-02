@@ -1,6 +1,4 @@
-# Updated version of the provided GitHub README content with improved formatting and completed experience section
 
-updated_portfolio_readme = """
 # 📱 Saiprudvi Ela – Android App Developer | Backend Enthusiast  
 
 🎯 Passionate about building performant Android apps with clean architecture and seamless user experience.  
@@ -62,6 +60,12 @@ Image shadow removal using biologically inspired neural networks and OpenCV.
 📍 Remote | 📅 May 2021 – Oct 2021  
 - Optimized SQL queries and maintained client-side MySQL databases  
 - Resolved technical issues collaboratively within a remote development team
+
+## 🧠 Certifications
+- AWS Certified Developer – Associate  
+- Supervised Machine Learning (Regression)  
+- Introduction to Generative AI  
+- Large Language Models
 
 ---
 
