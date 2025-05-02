@@ -17,8 +17,6 @@
 ---
 
 ## 🚀 Featured App – StyleStitch 👗  
-[![StyleStitch on Play Store](https://play.google.com/intl/en/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.project.BucketListTech)
-
 A sleek Android app for organizing and sharing fashion styles.  
 🔹 Built with Kotlin, Jetpack Libraries, MVVM  
 🔹 Integrated Firebase for real-time data, notifications, and analytics  
@@ -65,9 +63,6 @@ Image shadow removal using biologically inspired neural networks and OpenCV.
 📱 Building and experimenting with Android apps  
 
 ---
-
-## 📊 GitHub Stats  
-![Saiprudvi's GitHub stats](https://github-readme-stats.vercel.app/api?username=saiprudvi0102&show_icons=true&theme=radical)
 
 ---
 
