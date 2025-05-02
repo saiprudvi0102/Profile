@@ -78,11 +78,4 @@ Image shadow removal using biologically inspired neural networks and OpenCV.
 ---
 
 Thanks for stopping by! Feel free to connect or check out my apps on the [Play Store](https://play.google.com/store/apps/details?id=com.project.BucketListTech).
-"""
 
-# Save the updated README to a file
-final_readme_path = "/mnt/data/Saiprudvi_Final_GitHub_Portfolio_README.md"
-with open(final_readme_path, "w") as file:
-    file.write(updated_portfolio_readme)
-
-final_readme_path
