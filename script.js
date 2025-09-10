@@ -12,6 +12,17 @@ document.querySelectorAll('.typing').forEach(el => { const full = el.dataset.tex
 // Reveal on scroll
 const observer = new IntersectionObserver(entries => { entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target);} }); }, { threshold:0.15 });
 document.querySelectorAll('.project-card, .reveal, .tl-item').forEach(el=>observer.observe(el));
+// Keyboard toggle for project-card expansion
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.setAttribute('tabindex', card.getAttribute('tabindex') || '0');
+  card.addEventListener('keydown', e=>{
+    if(e.key==='Enter' || e.key===' '){
+      e.preventDefault();
+      card.classList.toggle('expanded');
+    }
+    if(e.key==='Escape' && card.classList.contains('expanded')){ card.classList.remove('expanded'); }
+  });
+});
 // Contact form
 window.contactSubmit = function(e){ e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`); window.location.href=`mailto:saiprudvi0102@gmail.com?subject=Portfolio Contact&body=${body}`; const status=document.getElementById('formStatus'); if(status) status.textContent='Opening mail client...'; };
 // Smooth anchor fallback
