@@ -18,11 +18,51 @@ document.querySelectorAll('.project-card').forEach(card=>{
   card.addEventListener('keydown', e=>{
     if(e.key==='Enter' || e.key===' '){
       e.preventDefault();
-      card.classList.toggle('expanded');
+      openProjectModal(card);
     }
     if(e.key==='Escape' && card.classList.contains('expanded')){ card.classList.remove('expanded'); }
   });
+  card.addEventListener('click', e=>{
+    // Avoid triggering when clicking links inside
+    if(!card.closest('.project-modal')) openProjectModal(card);
+  });
 });
+// Modal logic
+const modalOverlay=document.getElementById('modalOverlay');
+const modal=document.getElementById('projectModal');
+const closeBtn=document.getElementById('modalClose');
+function openProjectModal(card){
+  if(!modal) return;
+  const img=card.querySelector('img');
+  const title=card.querySelector('h3');
+  const desc=card.querySelector('p');
+  const tags=[...card.querySelectorAll('.tags span')].map(s=>s.textContent.trim());
+  const extra=card.querySelector('.card-extra');
+  document.getElementById('modalImage').src=img ? img.src : '';
+  document.getElementById('modalTitle').textContent=title?title.textContent:'';
+  document.getElementById('modalDesc').textContent=desc?desc.textContent:'';
+  const tagRoot=document.getElementById('modalTags'); tagRoot.innerHTML='';
+  tags.forEach(t=>{ const span=document.createElement('span'); span.textContent=t; tagRoot.appendChild(span); });
+  const extraRoot=document.getElementById('modalExtra'); extraRoot.innerHTML='';
+  if(extra){
+    const clone=extra.cloneNode(true); clone.classList.remove('card-extra'); extraRoot.appendChild(clone); }
+  modalOverlay.classList.add('active');
+  modal.classList.add('active');
+  document.body.classList.add('no-scroll');
+  modal.setAttribute('aria-hidden','false');
+  modalOverlay.setAttribute('aria-hidden','false');
+  closeBtn.focus();
+}
+function closeProjectModal(){
+  modalOverlay.classList.remove('active');
+  modal.classList.remove('active');
+  document.body.classList.remove('no-scroll');
+  modal.setAttribute('aria-hidden','true');
+  modalOverlay.setAttribute('aria-hidden','true');
+}
+if(closeBtn){ closeBtn.addEventListener('click',closeProjectModal); }
+if(modalOverlay){ modalOverlay.addEventListener('click',closeProjectModal); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('active')) closeProjectModal(); });
 // Contact form
 window.contactSubmit = function(e){ e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`); window.location.href=`mailto:saiprudvi0102@gmail.com?subject=Portfolio Contact&body=${body}`; const status=document.getElementById('formStatus'); if(status) status.textContent='Opening mail client...'; };
 // Smooth anchor fallback

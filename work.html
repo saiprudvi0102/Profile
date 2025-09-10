@@ -40,6 +40,19 @@
   </div>
 </section>
 <footer class="site-footer"><p>&copy; <span id="year"></span> Saiprudvi Ela</p></footer>
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
+<div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <header>
+    <img id="modalImage" alt="Project cover" loading="lazy" />
+    <button class="close-btn" id="modalClose" aria-label="Close project">×</button>
+  </header>
+  <div class="modal-body">
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc" class="lead" style="font-size:.85rem; line-height:1.5; max-width:760px;"></p>
+    <div class="meta-tags" id="modalTags"></div>
+    <div id="modalExtra"></div>
+  </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
