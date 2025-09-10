@@ -12,6 +12,7 @@
 }
 html { scroll-behavior:smooth; }
 body { font-family:'Inter',system-ui,-apple-system,sans-serif; background:var(--bg) url('assets/tech-pattern.svg') center/600px repeat; color:var(--text); }
+body.page { background:linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 50%, var(--bg-alt2) 100%); }
 img { display:block; width:100%; height:auto; }
 h1,h2,h3 { line-height:1.15; margin:0 0 .6em; font-weight:600; letter-spacing:.5px; }
 p { line-height:1.55; margin:0 0 1em; }
@@ -55,6 +56,8 @@ a:hover, a:focus { color:var(--link-hover); }
 .icon-btn:hover::before { opacity:.15; }
 .icon-btn:hover { transform:translateY(-2px); border-color:var(--accent-solid); box-shadow:var(--glow); }
 .icon-btn svg { position:relative; z-index:1; }
+.icon-btn.tech-icon { background:rgba(139,92,246,.1); border-color:rgba(139,92,246,.3); }
+.icon-btn.tech-icon:hover { background:rgba(139,92,246,.2); border-color:var(--accent-solid); }
 .cta-row { display:flex; gap:.9rem; justify-content:flex-end; }
 .btn { --btn-bg:var(--bg-alt2); display:inline-flex; align-items:center; gap:.5rem; background:var(--btn-bg); color:#fff; padding:.75rem 1.2rem; border-radius:12px; font-size:.85rem; font-weight:500; border:1px solid #272f3b; letter-spacing:.5px; cursor:pointer; position:relative; overflow:hidden; transition:.35s var(--ease); }
 .btn::before { content:""; position:absolute; inset:0; background:var(--accent); opacity:0; transition:.3s; }
@@ -81,6 +84,18 @@ a:hover, a:focus { color:var(--link-hover); }
 .projects-grid.dense { --min:240px; }
 .project-card { background:#121a23; border:1px solid #1f2833; border-radius:18px; overflow:hidden; display:flex; flex-direction:column; position:relative; transform:translateY(12px) scale(.97); opacity:0; transition:.7s var(--ease); }
 .project-card.visible { transform:translateY(0) scale(1); opacity:1; }
+
+/* Mobile Card Design */
+.mobile-card .card-media { position:relative; }
+.mobile-frame { position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:120px; height:220px; background:linear-gradient(145deg, #2a2a2a, #1a1a1a); border-radius:25px; border:3px solid #333; box-shadow:0 8px 20px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; }
+.mobile-frame.ios { border-radius:30px; background:linear-gradient(145deg, #3a3a3a, #2a2a2a); border-color:#444; }
+.mobile-frame.android { border-radius:20px; background:linear-gradient(145deg, #1e3a2e, #0f1f17); border-color:#2d5a3d; }
+.mobile-screen { width:100px; height:180px; background:linear-gradient(145deg, #0a0a0a, #1a1a1a); border-radius:15px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; border:1px solid #333; }
+.mobile-frame.ios .mobile-screen { border-radius:20px; background:linear-gradient(145deg, #000, #111); }
+.mobile-frame.android .mobile-screen { border-radius:12px; background:linear-gradient(145deg, #001a0a, #002015); }
+.mobile-screen .app-icon { font-size:24px; filter:drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
+.mobile-screen span { color:#fff; font-size:10px; font-weight:600; letter-spacing:.5px; text-shadow:0 1px 2px rgba(0,0,0,.5); }
+
 .card-media img { aspect-ratio:16/10; object-fit:cover; transition:1.2s transform; }
 .project-card:hover img { transform:scale(1.08); }
 .card-body { padding:1.1rem 1.05rem 1.3rem; display:flex; flex-direction:column; gap:.6rem; }
