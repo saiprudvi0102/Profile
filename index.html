@@ -1,153 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saiprudvi Ela - Android App Developer | Backend Enthusiast</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<meta charset="UTF-8" />
+<title>Saiprudvi Ela | Portfolio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Portfolio of Saiprudvi Ela – Mobile & Cloud Engineer (Android, AWS, Firebase, Embedded, ML tooling)." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
 </head>
 <body>
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>📱 Saiprudvi Ela</h1>
-                <h2>Android App Developer | Backend Enthusiast</h2>
-                <p>🎯 Passionate about building performant Android apps with clean architecture and seamless user experience</p>
-                <div class="location">📍 Based in Melbourne, FL | 💼 Ex-Associate Software Engineer @ Sigma Software Solutions</div>
-                <div class="contact-links">
-                    <a href="mailto:elasaiprudhvi123@gmail.com" class="btn"><i class="fas fa-envelope"></i> Email</a>
-                    <a href="https://linkedin.com/in/prudvi0102" class="btn" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/saiprudvi0102" class="btn" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                </div>
+<header class="site-header">
+    <div class="logo">SE</div>
+    <nav class="nav" id="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="work.html">Work</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+        <div class="hero-text">
+            <h1 class="hero-name"><span class="hi">Hi, I'm</span><br><span class="name typing" data-text="Saiprudvi&nbsp;Ela"></span></h1>
+            <p class="tagline">Mobile & Cloud Engineer crafting scalable Android, cross‑platform, and embedded solutions.</p>
+            <div class="social">
+                <a href="https://www.linkedin.com/in/prudvi-ela" target="_blank" aria-label="LinkedIn" class="icon-btn"><i class="i-linkedin"></i></a>
+                <a href="https://github.com/saiprudvi0102" target="_blank" aria-label="GitHub" class="icon-btn"><i class="i-github"></i></a>
+                <a href="mailto:saiprudvi0102@gmail.com" aria-label="Email" class="icon-btn"><i class="i-mail"></i></a>
+            </div>
+            <div class="cta-row">
+                <a href="work.html" class="btn primary">View Work</a>
+                <a href="resume.html" class="btn ghost">Resume</a>
+                <a href="contact.html" class="btn subtle">Contact</a>
             </div>
         </div>
-    </header>
-
-    <main class="container">
-        <section class="tech-stack">
-            <h2>🛠️ Tech Stack</h2>
-            <div class="tech-grid">
-                <div class="tech-category">
-                    <h3>Languages</h3>
-                    <p>Kotlin, Java, Python, SQL</p>
-                </div>
-                <div class="tech-category">
-                    <h3>Android Development</h3>
-                    <p>Android Studio, Jetpack Compose, MVVM, MVP, XML, Firebase, Retrofit, Room</p>
-                </div>
-                <div class="tech-category">
-                    <h3>Backend & Tools</h3>
-                    <p>Firebase, Node.js, REST APIs, MySQL, MongoDB, Firebase Cloud Functions, AWS Lambda</p>
-                </div>
-                <div class="tech-category">
-                    <h3>Dev Tools</h3>
-                    <p>Git, GitHub, Postman, JIRA, CI/CD, Agile, Modular Code</p>
-                </div>
-                <div class="tech-category">
-                    <h3>Other</h3>
-                    <p>OpenCV, TensorFlow, Vivado, PYNQ Z2</p>
-                </div>
+        <div class="hero-art">
+            <div class="glass-card stack">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60" alt="Code workspace">
+                <div class="overlay-label">Android • AWS • Firebase</div>
             </div>
-        </section>
-
-        <section class="featured-app">
-            <h2>🚀 Featured App – StyleStitch 👗</h2>
-            <div class="app-description">
-                <p>A sleek Android app for organizing and sharing fashion styles.</p>
-                <ul>
-                    <li>🔹 Built with Kotlin, Jetpack Libraries, MVVM</li>
-                    <li>🔹 Integrated Firebase for real-time data, notifications, and analytics</li>
-                    <li>🔹 Reduced latency and enhanced UI responsiveness by 25%</li>
-                    <li>🔹 Modular, clean architecture with cloud function integration</li>
-                </ul>
-                <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" class="btn btn-primary" target="_blank">
-                    <i class="fab fa-google-play"></i> View on Play Store
-                </a>
+            <div class="floating-badges">
+                <span>AWS</span><span>Firebase</span><span>MVVM</span><span>Jetpack</span><span>LLM</span>
             </div>
-        </section>
-
-        <section class="projects">
-            <h2>📂 Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>🔧 Finance Risk Analysis (GPU)</h3>
-                    <p>Accelerated financial computation using CUDA and GPU parallelism for large-scale data.</p>
-                    <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" class="project-link" target="_blank">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>🤖 MobileLLM125M</h3>
-                    <p>Fine-tuned a lightweight large language model for mobile-friendly zero-shot tasks.</p>
-                    <a href="https://github.com/saiprudvi0102/MobileLLM125M" class="project-link" target="_blank">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>📡 IoT Anomaly Detection (FPGA)</h3>
-                    <p>FPGA-based real-time anomaly detection in IoT data streams.</p>
-                    <a href="https://github.com/saiprudvi0102/AnomalyDetection" class="project-link" target="_blank">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>🌅 PCNN Shadow Removal</h3>
-                    <p>Image shadow removal using biologically inspired neural networks and OpenCV.</p>
-                    <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" class="project-link" target="_blank">View Project</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="experience">
-            <h2>👨‍💻 Experience</h2>
-            <div class="experience-item">
-                <h3>💼 Associate Software Engineer – Sigma Software Solutions</h3>
-                <div class="job-details">📍 Pune, India | 📅 Feb 2022 – Jul 2023</div>
-                <ul>
-                    <li>Developed full-stack Android and web applications using Kotlin, Java, Firebase, and REST APIs</li>
-                    <li>Improved app performance by 30% and user satisfaction by 25%</li>
-                    <li>Implemented scalable backend logic using Node.js and Firebase Cloud Functions</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h3>💼 Android Developer (Freelance) – StyleStitch App</h3>
-                <div class="job-details">📍 Warangal, India | 📅 Mar 2022 – Apr 2023</div>
-                <ul>
-                    <li>Designed, developed, and launched a fashion-based Android app using Kotlin and Firebase</li>
-                    <li>Integrated authentication, analytics, and payment solutions (Razorpay)</li>
-                    <li>Boosted local business sales by 20% through increased app engagement</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h3>💼 SQL Support Intern – Badra IT Services</h3>
-                <div class="job-details">📍 Remote | 📅 May 2021 – Oct 2021</div>
-                <ul>
-                    <li>Optimized SQL queries and maintained client-side MySQL databases</li>
-                    <li>Resolved technical issues collaboratively within a remote development team</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="certifications">
-            <h2>🧠 Certifications</h2>
-            <ul class="cert-list">
-                <li>AWS Certified Developer – Associate</li>
-                <li>Supervised Machine Learning (Regression)</li>
-                <li>Introduction to Generative AI</li>
-                <li>Large Language Models</li>
-            </ul>
-        </section>
-
-        <section class="interests">
-            <h2>🎯 Interests</h2>
-            <div class="interests-grid">
-                <div class="interest-item">📖 Reading tech & business articles</div>
-                <div class="interest-item">📈 Stock market investing & peer advising</div>
-                <div class="interest-item">🎨 Paper artistry and hand sketching</div>
-                <div class="interest-item">📱 Building and experimenting with Android apps</div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>Thanks for stopping by! Feel free to connect or check out my apps on the <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank">Play Store</a>.</p>
         </div>
-    </footer>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+</section>
+
+<section class="section" id="about">
+    <h2 class="section-title">What I Do</h2>
+    <p class="lead max-640">
+        I build performant mobile and cloud-backed applications: Android (Java/Kotlin), cross‑platform (Flutter),
+        backend integrations (AWS + Firebase), and hardware-assisted ML prototypes (FPGA). I focus on clean architecture,
+        realtime sync, secure auth, and scalable deployment.
+    </p>
+    <div class="pill-row">
+        <span class="pill">Android</span><span class="pill">Kotlin</span><span class="pill">Firebase</span>
+        <span class="pill">AWS Lambda</span><span class="pill">S3</span><span class="pill">Docker</span>
+        <span class="pill">GPU Acceleration</span><span class="pill">Edge ML</span>
+    </div>
+</section>
+
+<section class="section alt" id="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="projects-grid">
+        <article class="project-card reveal">
+            <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=800&q=60" alt="Dormigo App">
+            </div>
+            <div class="card-body">
+                <h3>Dormigo Super App</h3>
+                <p>Unified student platform: rides, accommodation, expense sharing, community services with Firebase + scalable architecture.</p>
+                <div class="tags"><span>Flutter</span><span>Firebase</span><span>Realtime</span></div>
+            </div>
+        </article>
+        <article class="project-card reveal">
+            <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1487611459768-bd414656ea10?auto=format&fit=crop&w=800&q=60" alt="StyleStitch">
+            </div>
+            <div class="card-body">
+                <h3>StyleStitch</h3>
+                <p>E‑commerce Android app with auth, guest checkout, referral, and AWS S3 media handling.</p>
+                <div class="tags"><span>Android</span><span>AWS S3</span><span>Auth</span></div>
+            </div>
+        </article>
+        <article class="project-card reveal">
+            <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=60" alt="FPGA anomaly detection">
+            </div>
+            <div class="card-body">
+                <h3>IoT Anomaly Detection (FPGA)</h3>
+                <p>Hardware-accelerated real-time anomaly detection with PYNQ Z2 + AXI bus & embedded ML.</p>
+                <div class="tags"><span>FPGA</span><span>Embedded</span><span>ML</span></div>
+            </div>
+        </article>
+        <article class="project-card reveal">
+            <div class="card-media">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=60" alt="MobileLLM">
+            </div>
+            <div class="card-body">
+                <h3>MobileLLM Fine-Tuning</h3>
+                <p>Optimized LLM inference with multi‑GPU training, FastAPI backend, Dockerized scalable deployment.</p>
+                <div class="tags"><span>LLM</span><span>GPU</span><span>Docker</span></div>
+            </div>
+        </article>
+    </div>
+    <div class="center mt">
+        <a href="work.html#projects" class="btn ghost">See All Work</a>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <p>&copy; <span id="year"></span> Saiprudvi Ela. Built with semantic HTML, CSS animations, and light JS.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
