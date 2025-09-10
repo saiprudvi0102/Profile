@@ -1,95 +1,87 @@
 saiprudvi ela
-+1 (321) 367-4952 | saiprudvi0102@gmail.com | LinkedIn | GitHub
++1 (321) 367-4952 | ellasaiprudhvi123@gmail.com | LinkedIn | GitHub | Portfolio
+OBJECTIVE
+Innovative Mobile App Developer with 5+ years of experience designing and deploying cross-platform and native
+Android applications. Skilled in Flutter, Kotlin, Java, Firebase, and AWS, with expertise in scalable cloud architecture,
+CI/CD pipelines, and AI/ML integration. Passionate about building human-centered, data-driven digital products that
+enhance customer experience, drive user engagement, and deliver measurable business impact.
 EDUCATION
 Florida Institute of Technology Master's, Computer Engineering
-August 2023 - May 2025
-Teegala Krishna Reddy Engineering College Bachelor's, Computer Science
-July 2019 - July 2022
-Government Polytechnic Warangal Certification, Electrical Engineering
-June 2016 - May 2019
+Aug 2023 - May 2025
 PROFESSIONAL EXPERIENCE
 DormUnity Inc Melbourne, FL, USA
-App Developer June 2025 - Present
-» Led the design and development of Dormigo, a scalable cross-platform super app (iOS, Android, Web)
-simplifying student life by connecting peers for rides, accommodations, shared shopping, and essential local
-services.
-» Key Contributions:
-» Developed core modules in Flutter with Firebase backend integration for real-time data sync, authentication, and
-storage.
-» Built and managed features including:
-» Ride sharing – location-based ride requests/offers with chat and notification.
-» Accommodation listings – map-based room/apartment search with student/employer filters.
-» Expense splitting – group expense tracking like Splitwise (add friends, settle up, view balances).
-» Grocery order assistance – item selection from local stores with delivery by peers.
-» Community services – job board, events, referral system, and profile management.
-» Ensured compliance with privacy policies, account deletion, and platform requirements.
-» Designed monetization strategies: service fees, featured listings, in-app ads, and affiliate partnerships.
-» Preparing for launch on Play Store, App Store, and Web under Dormunity Inc.
-Freelance Melbourne, FL, USA
-StyleStitch – Fashion Shopping App (Published on Google Play) June 2025 - Present
-» Developed and published an e-commerce app for a local clothing and embroidery business.
-» Features include secure login/signup, guest checkout, referral system.
-» Integrated Firebase Authentication, Firestore, and AWS S3 for backend and media handling.
-Florida Institute of Technology Melbourne, FL, USA
-Student Dining & Events Assistant December 2023 - May 2025
-» Assisted with campus dining operations and event support, ensuring efficient service and a positive student
-experience.
-Sigma software solutions Pune, MH, India
-Software Engineer February 2022 - August 2023
-» Developed and deployed Android applications using Java, Kotlin, XML, and Android Studio, following MVVM
+App Developer Jun 2025 - Present
+• Built and deployed cross-platform mobile app using Flutter, enabling students to connect through ridesharing,
+property listings, and campus social features.
+• Developed modular, reusable widgets with responsive layouts, smooth animations, and state management using
+Provider/Bloc for scalable architecture.
+• Integrated RESTful APIs and Firebase services (Auth, Firestore, Cloud Storage, Push Notifications) for secure,
+real-time data flow and user engagement.
+• Optimized app performance by reducing load times, improving caching, and implementing offline-first
+capabilities.
+• Configured CI/CD pipelines (GitHub Actions + Firebase App Distribution) to streamline testing, deployment,
+and app updates across iOS and Android.
+• Collaborated with product and design teams to deliver premium, user-friendly UI/UX aligned with brand identity.
+StyleStitch Hyderabad, TG, India
+Co-Founder & App Developer Jun 2024 - Apr 2025
+• Co-founded and led the development of StyleStitch, a fashion-tech Android app delivering personalized outfit
+recommendations and a curated shopping experience.
+• Defined product vision, feature roadmap, and user experience strategy, aligning design decisions with business
+and customer needs.
+• Designed modern Material Design UI/UX flows, wireframes, and interactive prototypes to ensure intuitive
+navigation and premium user engagement.
+• Collaborated with engineers to implement native Android features, RESTful APIs, and Firebase services (Auth,
+Firestore, Cloud Storage) for seamless functionality.
+• Managed end-to-end product lifecycle from ideation to launch on Google Play Store, incorporating analytics and
+user feedback for continuous improvements.
+Sigma software solutions Software Engineer Pune, MH, India
+Feb 2022 - Aug 2023
+• Developed and deployed Android applications using Java, Kotlin, XML, and Android Studio, following MVVM
 architecture to ensure clean code and maintainability.
-» Integrated Firebase services (Authentication, Realtime Database, Cloud Messaging) to implement real-time data
+• Integrated Firebase services (Authentication, Realtime Database, Cloud Messaging) to implement real-time data
 sync and secure user management.
-» Utilized AWS (EC2, Lambda, S3) for backend deployment, improving scalability, performance, and app uptime
+• Utilized AWS (EC2, Lambda, S3) for backend deployment, improving scalability, performance, and app uptime
 to 99.9%.
-» Optimized app performance by refactoring code and implementing background processing, leading to a 25%
+• Optimized app performance by refactoring code and implementing background processing, leading to a 25%
 reduction in load time and 30% boost in user engagement.
 Oregono Technologies Bangalore, KA, India
-Android Developer April 2021 - July 2021
-» Developed Android applications onsite using Java, Kotlin, XML, and Android Studio, with a focus on clean UI
-design and responsive layouts.
-» Implemented core app functionalities such as user authentication, real-time data handling, and notifications using
+Android Developer Apr 2021 - Jul 2021
+• Developed Android applications with a focus on clean UI design and responsive layouts.
+• Implemented core app functionalities such as user authentication, real-time data handling, and notifications using
 Firebase.
-» Integrated AWS services to support backend tasks, enhance app performance, and enable scalable cloud
+• Integrated AWS services to support backend tasks, enhance app performance, and enable scalable cloud
 interactions.
-» Strengthened skills in mobile app architecture (MVVM), third-party API integration, and agile development
+• Strengthened skills in mobile app architecture (MVVM), third-party API integration, and agile development
 through practical, hands-on training.
-Mobile Application Developer May 2020 - December 2020
-» Designed and developed a fully functional shopping application using Java, XML, and Firebase during onsite
-training.
-» Implemented key features including user authentication, product catalog, and shopping cart with real-time
+Mobile Application Developer May 2020 - Dec 2020
+• Designed and developed a fully functional shopping application during onsite training.
+• Implemented key features including user authentication, product catalog, and shopping cart with real-time
 database support.
-» Gained practical experience in Android Studio, UI/UX design, and mobile app architecture using Firebase
+• Gained practical experience in Android Studio, UI/UX design, and mobile app architecture using Firebase
 Authentication and Realtime Database.
-» Strengthened skills in mobile app development, debugging, and cloud integration through hands-on,
+• Strengthened skills in mobile app development, debugging, and cloud integration through hands-on,
 project-based learning during the COVID-19 period.
-TSNPDCL (132/33 kV) Substation Intern » Assisted in testing and validating PLC and SCADA systems for power control.
-» Used C/C++ to write and debug embedded test scripts for IEDs and sensors.
-» Performed real-time system checks and logged data for fault analysis.
-Ragunathpally, TG, India
-January 2019 - May 2019
+TSNPDCL (132/33 kV) Ragunathpally, TG, India
+Substation Intern Nov 2018 - Jun 2019
+• Assisted in testing, validating, and commissioning PLC and SCADA systems for power monitoring and control.
+• Developed and debugged embedded test scripts using C/C++ for IEDs, sensors, and other field devices.
+• Performed real-time system diagnostics, monitored data logs, and analyzed faults for operational reliability.
+• Collaborated with engineers to enhance automation workflows, improve system response times, and ensure
+compliance with electrical safety standards.
 SKILLS
-Mobile Development: Java, Kotlin, Android Studio, Jetpack Components, XML UI Design, Room Database, MVVM
-Architecture, Firebase (Auth, Firestore, FCM), SQL, Dart
-AWS Cloud Services: AWS Amplify, AWS Lambda, Amazon API Gateway, Amazon Cognito, Amazon S3,
-DynamoDB, AWS SNS, AWS CloudWatch
-Tools & Technologies: Git, Gradle, Postman, GitHub Actions, JIRA, Agile/Scrum
-Testing & Optimization: JUnit, Espresso, UI/Unit Testing, App Performance Optimization, Crash Reporting
-PROJECTS
-Enhanced Anomaly Detection in IoT Using FPGA
-» Real-Time Anomaly Detection | Embedded Machine Learning | Hardware-Accelerated Inference | FPGA
-Development (PYNQ Z2) | AXI Bus Communication
-MobileLLM: Fine-Tuning and Evaluation for Zero-Shot Reasoning Tasks
-» Multi-GPU Training (A100) | Model Fine-Tuning | HellaSwag Dataset | FastAPI | Docker | Scalable Inference |
-Batch Processing | MobileLLM Deployment
-Women Safety System Using GPS and GSM
-» GPS Integration | GSM Communication | Microcontroller Programming | Real-Time Location Alerts | SMS
-Notification Systems | Embedded System Design | Laser-Based Safety Mechanism
-Enhancing Financial Risk Analysis through GPU-Accelerated Computing
-» CUDA Programming | GPU Computing | Financial Risk Analysis | Hybrid CPU-GPU Integration |
-High-Performance Computing | Scalability Optimization
+Mobile Development: Flutter, Dart, Java, Kotlin, Android Studio, Jetpack Components, XML UI Design, Room
+Database,, MVVM Architecture, Provider/Bloc, Responsive UI/UX, App Performance Optimization
+Cloud & Backend: Firebase (Auth, Firestore, Realtime DB, Cloud Messaging, Cloud Storage), AWS (Amplify,
+Lambda, API Gateway, Cognito, S3, DynamoDB, SNS, CloudWatch),, Google Cloud (Firestore, Functions, App
+Distribution)
+AI/ML & Data Science: TensorFlow Lite, Python, Data Analysis, Recommendation Systems,, LLM Workflows,
+Generative AI Integration, Data Visualization
+Tools & Collaboration: Git, GitHub Actions, Gradle, Postman, JIRA, Agile/Scrum, CI/CD, Crash Reporting,,
+Unit/UI Testing (JUnit, Espresso)
+Design & Prototyping: Figma, Material Design Guidelines, Wireframing, Prototyping, Inclusive UX,,
+User-Centered Design, Usability Testing
 CERTIFICATIONS
-» AWS Certified Developer – Associate
-» Introduction to Large Language Models
-» Supervised Machine Learning: Regression
-» Introduction to Generative AI
+• AWS Certified Developer – Associate
+• Introduction to Large Language Models
+• Supervised Machine Learning: Regression
+• Introduction to Generative AI
