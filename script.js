@@ -66,9 +66,9 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.
 // Contact form
 window.contactSubmit = function(e){ e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`); window.location.href=`mailto:saiprudvi0102@gmail.com?subject=Portfolio Contact&body=${body}`; const status=document.getElementById('formStatus'); if(status) status.textContent='Opening mail client...'; };
 // Resume PDF existence check (simple HEAD via fetch)
-const resumeLink=document.querySelector('a[href="Saiprudvi_Resume.pdf"]');
+const resumeLink=document.querySelector('a[href="saiprudviela_Resume.pdf"]');
 if(resumeLink){
-  fetch('Saiprudvi_Resume.pdf',{method:'HEAD'}).then(r=>{ if(!r.ok){ resumeLink.textContent='PDF Not Found'; resumeLink.classList.add('subtle'); resumeLink.removeAttribute('download'); } }).catch(()=>{ resumeLink.textContent='PDF Not Found'; });
+  fetch('saiprudviela_Resume.pdf',{method:'HEAD'}).then(r=>{ if(!r.ok){ resumeLink.textContent='PDF Not Found'; resumeLink.classList.add('subtle'); resumeLink.removeAttribute('download'); } }).catch(()=>{ resumeLink.textContent='PDF Not Found'; });
 }
 // Smooth anchor fallback
 document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href').slice(1); const t=document.getElementById(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'});} }); });
