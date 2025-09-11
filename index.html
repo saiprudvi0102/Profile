@@ -5,10 +5,41 @@
 <title>Saiprudvi Ela | Portfolio</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Portfolio of Saiprudvi Ela – Mobile & Cloud Engineer (Android, AWS, Firebase, Embedded, ML tooling)." />
+<meta name="keywords" content="Saiprudvi Ela, Mobile Developer, Android Developer, Flutter Developer, AWS, Firebase, Software Engineer, Portfolio" />
+<meta name="author" content="Saiprudvi Ela" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://saiprudvi0102.github.io/Profile/" />
+<meta property="og:title" content="Saiprudvi Ela | Mobile & Cloud Engineer" />
+<meta property="og:description" content="Portfolio of Saiprudvi Ela – Mobile & Cloud Engineer specializing in Android, Flutter, AWS, and scalable app development." />
+<meta property="og:image" content="https://saiprudvi0102.github.io/Profile/assets/portfolio-preview.jpg" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://saiprudvi0102.github.io/Profile/" />
+<meta property="twitter:title" content="Saiprudvi Ela | Mobile & Cloud Engineer" />
+<meta property="twitter:description" content="Portfolio showcasing mobile app development, cloud architecture, and innovative tech solutions." />
+<meta property="twitter:image" content="https://saiprudvi0102.github.io/Profile/assets/portfolio-preview.jpg" />
+
+<!-- Favicon and App Icons -->
+<link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
+
+<!-- Google Analytics (replace GA_MEASUREMENT_ID with your actual ID) -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+-->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css" />
-<link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
 </head>
 <body>
 <header class="site-header">
@@ -189,6 +220,13 @@
     <p>&copy; <span id="year"></span> Saiprudvi Ela. Built with semantic HTML, CSS animations, and light JS.</p>
 </footer>
 
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+    </svg>
+</button>
+
 <!-- Modal root -->
 <div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
 <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -203,6 +241,35 @@
         <div id="modalExtra"></div>
     </div>
 </div>
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Saiprudvi Ela",
+  "jobTitle": "Mobile & Cloud Engineer",
+  "description": "Mobile & Cloud Engineer specializing in Android, Flutter, AWS, and scalable app development",
+  "url": "https://saiprudvi0102.github.io/Profile/",
+  "email": "saiprudvi0102@gmail.com",
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Engineering College"
+  },
+  "knowsAbout": [
+    "Android Development",
+    "Flutter Development", 
+    "AWS Cloud Services",
+    "Firebase",
+    "Mobile Architecture",
+    "Software Engineering"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/prudvi-ela",
+    "https://github.com/saiprudvi0102"
+  ]
+}
+</script>
 
 <script src="script.js"></script>
 </body>

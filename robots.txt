@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://saiprudvi0102.github.io/Profile/sitemap.xml
+
+# Disallow certain files
+Disallow: /assets/
+Disallow: /*.pdf$
