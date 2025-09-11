@@ -41,179 +41,47 @@
   </div>
 </section>
 
-<section class="section" id="dormigo-showcase">
+<section class="section dormigo-clickable" id="dormigo-showcase" onclick="window.location.href='dormigo-details.html'" style="cursor:pointer;">
   <h2 class="section-title">🏫 Dormigo Super App (DormUnity)</h2>
   <div class="dormigo-container">
     <div class="dormigo-intro">
-      <div class="dormigo-header">
-        <div class="app-logo">
-          <div class="logo-circle">
-            <span>🏫</span>
-          </div>
-          <div class="app-info">
-            <h3>Dormigo - Campus Life Hub</h3>
-            <p class="app-subtitle">Your all-in-one student companion</p>
-            <div class="app-stats">
-              <span class="stat">📱 Flutter</span>
-              <span class="stat">🔥 Firebase</span>
-              <span class="stat">☁️ Real-time</span>
-            </div>
-          </div>
+      <div class="app-logo">
+        <div class="logo-circle">
+          <span>🏫</span>
         </div>
-        <button class="expand-btn" onclick="toggleDormigoDetails()" id="dormigoToggle">
-          <span>📋 View Details</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7 10l5 5 5-5z"/>
-          </svg>
-        </button>
+        <div class="app-info">
+          <h3>Dormigo - Campus Life Hub</h3>
+          <p class="app-subtitle">Your all-in-one student companion</p>
+        </div>
       </div>
       
       <div class="dormigo-summary">
-        <div class="dormigo-desc-flex">
-          <div class="dormigo-desc-text">
-            <p>A comprehensive Flutter-based campus super app that revolutionizes student life by integrating ridesharing, accommodation management, expense tracking, and social networking into one seamless platform. Built with modern architecture patterns and real-time synchronization.</p>
-            <ul>
-              <li>🚗 Ridesharing, 🏠 Accommodation, 💰 Expense tracking, 👥 Social networking</li>
-              <li>📱 Mobile-first, real-time, secure, and scalable</li>
-            </ul>
-          </div>
-          <div class="dormigo-desc-imgs">
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Survey" class="desc-img" loading="lazy">
-            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde16?auto=format&fit=crop&w=400&q=80" alt="Testing" class="desc-img" loading="lazy">
-          </div>
-        </div>
+        <p>A comprehensive Flutter-based campus super app that revolutionizes student life by integrating ridesharing, accommodation management, and social networking into one seamless platform. Built with modern architecture patterns and real-time synchronization.</p>
       </div>
     </div>
 
     <div class="dormigo-screenshots">
       <div class="screenshot-row-scroll">
         <div class="screenshot-item reveal">
-          <img src="assets/ss1.png" alt="Dormigo Login Screen" loading="lazy">
-          <div class="screenshot-label">🔐 Login & Auth</div>
+          <img src="assets/ss1.png" alt="Dormigo Screenshot 1" loading="lazy">
         </div>
         <div class="screenshot-item reveal">
-          <img src="assets/ss2.png" alt="Dormigo Dashboard" loading="lazy">
-          <div class="screenshot-label">🏠 Dashboard</div>
+          <img src="assets/ss2.png" alt="Dormigo Screenshot 2" loading="lazy">
         </div>
         <div class="screenshot-item reveal">
-          <img src="assets/ss3.png" alt="Dormigo Ridesharing" loading="lazy">
-          <div class="screenshot-label">🚗 Ridesharing</div>
+          <img src="assets/ss3.png" alt="Dormigo Screenshot 3" loading="lazy">
         </div>
         <div class="screenshot-item reveal">
-          <img src="assets/ss4.png" alt="Dormigo Accommodation" loading="lazy">
-          <div class="screenshot-label">🏠 Accommodation</div>
+          <img src="assets/ss4.png" alt="Dormigo Screenshot 4" loading="lazy">
         </div>
         <div class="screenshot-item reveal">
-          <img src="assets/ss5.png" alt="Dormigo Social Features" loading="lazy">
-          <div class="screenshot-label">👥 Social Hub</div>
+          <img src="assets/ss5.png" alt="Dormigo Screenshot 5" loading="lazy">
         </div>
         <div class="screenshot-item reveal">
-          <img src="assets/ss6.png" alt="Dormigo Expense Tracking" loading="lazy">
-          <div class="screenshot-label">💰 Expenses</div>
+          <img src="assets/ss6.png" alt="Dormigo Screenshot 6" loading="lazy">
         </div>
         <div class="screenshot-item reveal">
-          <img src="assets/ss7.png" alt="Dormigo GitHub Integration" loading="lazy">
-          <div class="screenshot-label">🌐 GitHub Integration</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="dormigo-details" id="dormigoDetails">
-      <div class="details-grid">
-        <div class="detail-section">
-          <div class="section-header">
-            <div class="section-icon">🔍</div>
-            <h4>User Research & Surveys</h4>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li>📊 Conducted surveys with 200+ college students across 5 universities</li>
-              <li>🎯 Identified key pain points: fragmented services, lack of student-specific solutions</li>
-              <li>📈 85% of students expressed need for integrated campus platform</li>
-              <li>🔍 User interviews revealed preference for mobile-first approach</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="section-header">
-            <div class="section-icon">🏗️</div>
-            <h4>Technical Architecture</h4>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li>📱 Flutter framework with Provider/BLoC state management</li>
-              <li>🔥 Firebase suite: Auth, Firestore, Storage, Cloud Messaging</li>
-              <li>⚡ Real-time data synchronization across all user sessions</li>
-              <li>🔄 Modular architecture with feature-based organization</li>
-              <li>🛡️ Robust error handling and offline-first approach</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="section-header">
-            <div class="section-icon">🧪</div>
-            <h4>Testing & Quality Assurance</h4>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li>✅ Unit tests covering 85+ core business logic functions</li>
-              <li>🔧 Widget testing for all critical user interaction flows</li>
-              <li>📱 Integration testing across iOS and Android platforms</li>
-              <li>👥 Beta testing with 50+ student volunteers</li>
-              <li>🚀 CI/CD pipeline with automated testing via GitHub Actions</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="section-header">
-            <div class="section-icon">📊</div>
-            <h4>Performance & Analytics</h4>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li>⚡ App startup time: <500ms on average devices</li>
-              <li>💾 Efficient image caching reducing data usage by 40%</li>
-              <li>📈 Firebase Analytics tracking user engagement patterns</li>
-              <li>🔄 Real-time sync latency: <200ms for critical operations</li>
-              <li>🎯 90% user retention rate after first week of usage</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="section-header">
-            <div class="section-icon">🚀</div>
-            <h4>Deployment & DevOps</h4>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li>🔄 GitHub Actions CI/CD with automated build and testing</li>
-              <li>📦 Staged deployment: Dev → Beta → Production environments</li>
-              <li>🛡️ Firebase Security Rules for data protection</li>
-              <li>📊 Crashlytics integration for real-time error monitoring</li>
-              <li>🔧 Fastlane automation for app store deployments</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="detail-section">
-          <div class="section-header">
-            <div class="section-icon">✨</div>
-            <h4>Key Features Delivered</h4>
-          </div>
-          <div class="section-content">
-            <ul>
-              <li>🚗 Smart ridesharing with real-time driver tracking</li>
-              <li>🏠 Accommodation marketplace with verified listings</li>
-              <li>💰 Group expense splitting with automatic calculations</li>
-              <li>👥 Campus social network with event discovery</li>
-              <li>📱 Push notifications for ride updates and messages</li>
-              <li>🎨 Material Design UI with custom campus themes</li>
-            </ul>
-          </div>
+          <img src="assets/ss7.png" alt="Dormigo Screenshot 7" loading="lazy">
         </div>
       </div>
     </div>

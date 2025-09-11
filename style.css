@@ -32,13 +32,6 @@
   border-radius: 14px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.10);
 }
-.screenshot-label {
-  text-align: center;
-  margin-top: 8px;
-  font-size: 1rem;
-  color: var(--accent-solid);
-  font-weight: 600;
-}
 @keyframes scroll-in {
   from { opacity: 0; transform: translateX(60px); }
   to { opacity: 1; transform: none; }
@@ -147,7 +140,7 @@ a:hover, a:focus { color:var(--link-hover); }
 .btn.subtle:hover { background:#242d3a; }
 .glass-card { position:relative; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:22px; padding:.8rem; backdrop-filter:blur(12px); box-shadow:var(--shadow); overflow:hidden; transition:.3s var(--ease); }
 .glass-card:hover { transform:translateY(-4px); box-shadow:var(--shadow), var(--glow); }
-.glass-card img { border-radius:16px; aspect-ratio:4/3; object-fit:cover; }
+.glass-card img { border-radius:16px; width:100%; height:200px; object-fit:cover; }
 .overlay-label { position:absolute; bottom:12px; left:16px; background:rgba(139,92,246,.8); padding:.4rem .7rem; font-size:.7rem; border-radius:8px; letter-spacing:.5px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.2); }
 .floating-badges { position:absolute; top:-12px; right:-12px; width:230px; display:flex; flex-wrap:wrap; gap:.6rem; transform:rotate(6deg); }
 .floating-badges span { font-size:.65rem; background:rgba(139,92,246,.15); padding:.45rem .6rem; border-radius:10px; border:1px solid rgba(139,92,246,.3); backdrop-filter:blur(4px); color:#c9a9ff; font-weight:500; }

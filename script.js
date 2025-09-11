@@ -73,33 +73,6 @@ if(resumeLink){
 // Smooth anchor fallback
 document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href').slice(1); const t=document.getElementById(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'});} }); });
 
-// Dormigo Details Toggle
-function toggleDormigoDetails() {
-  const details = document.getElementById('dormigoDetails');
-  const toggleBtn = document.getElementById('dormigoToggle');
-  
-  if (details && toggleBtn) {
-    details.classList.toggle('expanded');
-    toggleBtn.classList.toggle('expanded');
-    
-    const isExpanded = details.classList.contains('expanded');
-    const btnText = toggleBtn.querySelector('span');
-    if (btnText) {
-      btnText.textContent = isExpanded ? '📋 Hide Details' : '📋 View Details';
-    }
-    
-    // Smooth scroll to section if expanding
-    if (isExpanded) {
-      setTimeout(() => {
-        const dormigoSection = document.getElementById('dormigo-showcase');
-        if (dormigoSection) {
-          dormigoSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-      }, 300);
-    }
-  }
-}
-
 // Screenshot Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
   const screenshotItems = document.querySelectorAll('.screenshot-item');
