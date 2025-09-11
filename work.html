@@ -33,13 +33,190 @@
 <section class="section alt" id="projects">
   <h2 class="section-title">Projects</h2>
   <div class="projects-grid dense">
-  <article class="project-card reveal mobile-card" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="IoT FPGA Anomaly Detection" loading="lazy"><div class="mobile-frame android"><div class="mobile-screen"><div class="app-icon">⚡</div><span>IoT Alert</span></div></div></div><div class="card-body"><h3>⚡ IoT FPGA Anomaly Detection</h3><p>Microsecond network anomaly alerts on PYNQ Z2 via hardware ANN, AXI DMA + BRAM pipeline, Python ↔ VHDL control over IoT‑23 (18 feature classes).</p><div class="tags"><span>💾 FPGA</span><span>🔌 Edge</span><span>🧠 ANN</span></div><div class="card-extra"><strong>Key Design</strong><ul><li>AXI DMA ingestion</li><li>BRAM buffering</li><li>LED alert ISR</li></ul></div></div></article>
-  <article class="project-card reveal mobile-card" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="MobileLLM Deployment" loading="lazy"><div class="mobile-frame"><div class="mobile-screen"><div class="app-icon">🤖</div><span>MobileLLM</span></div></div></div><div class="card-body"><h3>🤖 MobileLLM Deployment</h3><p>Multi‑GPU fine‑tuning & quantized inference (FastAPI + streaming) with Docker orchestration; 62.8% eval accuracy, perplexity 7.91.</p><div class="tags"><span>🧠 LLM</span><span>🎮 GPU</span><span>⚡ FastAPI</span></div><div class="card-extra"><strong>Pipeline</strong><ul><li>PEFT / quantization</li><li>Streaming SSE API</li><li>Eval harness CI</li></ul></div></div></article>
-  <article class="project-card reveal mobile-card" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="PCNN Shadow Removal" loading="lazy"><div class="mobile-frame ios"><div class="mobile-screen"><div class="app-icon">🖼️</div><span>PCNN AI</span></div></div></div><div class="card-body"><h3>🖼️ PCNN Shadow Removal</h3><p>Pulse Coupled Neural Network segmentation for shadow detection/removal (94.2% SDA, IQI 0.89) with adaptive threshold decay & dynamic linking.</p><div class="tags"><span>🧠 PCNN</span><span>🔥 TensorFlow</span><span>👁️ CV</span></div><div class="card-extra"><strong>Metrics</strong><ul><li>SDA 94.2%</li><li>IQI 0.89</li><li>GPU prototype</li></ul></div></div></article>
-  <article class="project-card reveal mobile-card" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Women Safety System" loading="lazy"><div class="mobile-frame android"><div class="mobile-screen"><div class="app-icon">🚨</div><span>SafeGuard</span></div></div></div><div class="card-body"><h3>🚨 Women Safety System</h3><p>GPS + GSM microcontroller alerts, SMS notifications, laser-based safety feature.</p><div class="tags"><span>🔌 Embedded</span><span>📍 GPS</span><span>📡 GSM</span></div></div></article>
-  <article class="project-card reveal mobile-card" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="GPU Risk Analysis" loading="lazy"><div class="mobile-frame"><div class="mobile-screen"><div class="app-icon">📊</div><span>FinRisk</span></div></div></div><div class="card-body"><h3>📊 GPU Risk Analysis</h3><p>PyCUDA covariance + VaR engine producing up to 1.57× speedup at 1M day scale; adaptive block sizing & synthetic generator for stress tests.</p><div class="tags"><span>⚡ CUDA</span><span>🎮 GPU</span><span>💰 Finance</span></div><div class="card-extra"><strong>Benchmarks</strong><ul><li>1M day dataset</li><li>Adaptive grid launch</li><li>VaR & covariance</li></ul></div></div></article>
+  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="IoT FPGA Anomaly Detection" loading="lazy"></div><div class="card-body"><h3>⚡ IoT FPGA Anomaly Detection</h3><p>Microsecond network anomaly alerts on PYNQ Z2 via hardware ANN, AXI DMA + BRAM pipeline, Python ↔ VHDL control over IoT‑23 (18 feature classes).</p><div class="tags"><span>💾 FPGA</span><span>🔌 Edge</span><span>🧠 ANN</span></div><div class="card-extra"><strong>Key Design</strong><ul><li>AXI DMA ingestion</li><li>BRAM buffering</li><li>LED alert ISR</li></ul></div></div></article>
+  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="MobileLLM Deployment" loading="lazy"></div><div class="card-body"><h3>🤖 MobileLLM Deployment</h3><p>Multi‑GPU fine‑tuning & quantized inference (FastAPI + streaming) with Docker orchestration; 62.8% eval accuracy, perplexity 7.91.</p><div class="tags"><span>🧠 LLM</span><span>🎮 GPU</span><span>⚡ FastAPI</span></div><div class="card-extra"><strong>Pipeline</strong><ul><li>PEFT / quantization</li><li>Streaming SSE API</li><li>Eval harness CI</li></ul></div></div></article>
+  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="PCNN Shadow Removal" loading="lazy"></div><div class="card-body"><h3>🖼️ PCNN Shadow Removal</h3><p>Pulse Coupled Neural Network segmentation for shadow detection/removal (94.2% SDA, IQI 0.89) with adaptive threshold decay & dynamic linking.</p><div class="tags"><span>🧠 PCNN</span><span>🔥 TensorFlow</span><span>👁️ CV</span></div><div class="card-extra"><strong>Metrics</strong><ul><li>SDA 94.2%</li><li>IQI 0.89</li><li>GPU prototype</li></ul></div></div></article>
+  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Women Safety System" loading="lazy"></div><div class="card-body"><h3>🚨 Women Safety System</h3><p>GPS + GSM microcontroller alerts, SMS notifications, laser-based safety feature.</p><div class="tags"><span>🔌 Embedded</span><span>📍 GPS</span><span>📡 GSM</span></div></div></article>
+  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="GPU Risk Analysis" loading="lazy"></div><div class="card-body"><h3>📊 GPU Risk Analysis</h3><p>PyCUDA covariance + VaR engine producing up to 1.57× speedup at 1M day scale; adaptive block sizing & synthetic generator for stress tests.</p><div class="tags"><span>⚡ CUDA</span><span>🎮 GPU</span><span>💰 Finance</span></div><div class="card-extra"><strong>Benchmarks</strong><ul><li>1M day dataset</li><li>Adaptive grid launch</li><li>VaR & covariance</li></ul></div></div></article>
   </div>
 </section>
+
+<section class="section" id="dormigo-showcase">
+  <h2 class="section-title">🏫 Dormigo Super App (DormUnity)</h2>
+  <div class="dormigo-container">
+    <div class="dormigo-intro">
+      <div class="dormigo-header">
+        <div class="app-logo">
+          <div class="logo-circle">
+            <span>🏫</span>
+          </div>
+          <div class="app-info">
+            <h3>Dormigo - Campus Life Hub</h3>
+            <p class="app-subtitle">Your all-in-one student companion</p>
+            <div class="app-stats">
+              <span class="stat">📱 Flutter</span>
+              <span class="stat">🔥 Firebase</span>
+              <span class="stat">☁️ Real-time</span>
+            </div>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleDormigoDetails()" id="dormigoToggle">
+          <span>📋 View Details</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 10l5 5 5-5z"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="dormigo-summary">
+        <p>A comprehensive Flutter-based campus super app that revolutionizes student life by integrating ridesharing, accommodation management, expense tracking, and social networking into one seamless platform. Built with modern architecture patterns and real-time synchronization.</p>
+      </div>
+    </div>
+
+    <div class="dormigo-screenshots">
+      <div class="screenshot-grid">
+        <div class="screenshot-item reveal">
+          <img src="assets/ss1.png" alt="Dormigo Login Screen" loading="lazy">
+          <div class="screenshot-label">🔐 Login & Auth</div>
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss2.png" alt="Dormigo Dashboard" loading="lazy">
+          <div class="screenshot-label">🏠 Dashboard</div>
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss3.png" alt="Dormigo Ridesharing" loading="lazy">
+          <div class="screenshot-label">🚗 Ridesharing</div>
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss4.png" alt="Dormigo Accommodation" loading="lazy">
+          <div class="screenshot-label">🏠 Accommodation</div>
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss5.png" alt="Dormigo Social Features" loading="lazy">
+          <div class="screenshot-label">👥 Social Hub</div>
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss6.png" alt="Dormigo Expense Tracking" loading="lazy">
+          <div class="screenshot-label">💰 Expenses</div>
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss7.png" alt="Dormigo GitHub Integration" loading="lazy">
+          <div class="screenshot-label">🌐 GitHub Integration</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dormigo-details" id="dormigoDetails">
+      <div class="details-grid">
+        <div class="detail-section">
+          <div class="section-header">
+            <div class="section-icon">🔍</div>
+            <h4>User Research & Surveys</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>📊 Conducted surveys with 200+ college students across 5 universities</li>
+              <li>🎯 Identified key pain points: fragmented services, lack of student-specific solutions</li>
+              <li>📈 85% of students expressed need for integrated campus platform</li>
+              <li>🔍 User interviews revealed preference for mobile-first approach</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="section-header">
+            <div class="section-icon">🏗️</div>
+            <h4>Technical Architecture</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>📱 Flutter framework with Provider/BLoC state management</li>
+              <li>🔥 Firebase suite: Auth, Firestore, Storage, Cloud Messaging</li>
+              <li>⚡ Real-time data synchronization across all user sessions</li>
+              <li>🔄 Modular architecture with feature-based organization</li>
+              <li>🛡️ Robust error handling and offline-first approach</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="section-header">
+            <div class="section-icon">🧪</div>
+            <h4>Testing & Quality Assurance</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>✅ Unit tests covering 85+ core business logic functions</li>
+              <li>🔧 Widget testing for all critical user interaction flows</li>
+              <li>📱 Integration testing across iOS and Android platforms</li>
+              <li>👥 Beta testing with 50+ student volunteers</li>
+              <li>🚀 CI/CD pipeline with automated testing via GitHub Actions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="section-header">
+            <div class="section-icon">📊</div>
+            <h4>Performance & Analytics</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>⚡ App startup time: <500ms on average devices</li>
+              <li>💾 Efficient image caching reducing data usage by 40%</li>
+              <li>📈 Firebase Analytics tracking user engagement patterns</li>
+              <li>🔄 Real-time sync latency: <200ms for critical operations</li>
+              <li>🎯 90% user retention rate after first week of usage</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="section-header">
+            <div class="section-icon">🚀</div>
+            <h4>Deployment & DevOps</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>🔄 GitHub Actions CI/CD with automated build and testing</li>
+              <li>📦 Staged deployment: Dev → Beta → Production environments</li>
+              <li>🛡️ Firebase Security Rules for data protection</li>
+              <li>📊 Crashlytics integration for real-time error monitoring</li>
+              <li>🔧 Fastlane automation for app store deployments</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <div class="section-header">
+            <div class="section-icon">✨</div>
+            <h4>Key Features Delivered</h4>
+          </div>
+          <div class="section-content">
+            <ul>
+              <li>🚗 Smart ridesharing with real-time driver tracking</li>
+              <li>🏠 Accommodation marketplace with verified listings</li>
+              <li>💰 Group expense splitting with automatic calculations</li>
+              <li>👥 Campus social network with event discovery</li>
+              <li>📱 Push notifications for ride updates and messages</li>
+              <li>🎨 Material Design UI with custom campus themes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshot Modal -->
+<div id="screenshotOverlay" class="modal-overlay">
+  <div id="screenshotModal" class="screenshot-modal">
+    <button id="screenshotClose" class="modal-close">&times;</button>
+    <img id="screenshotImage" src="" alt="Screenshot">
+    <div id="screenshotCaption" class="screenshot-caption"></div>
+  </div>
+</div>
+
 <footer class="site-footer"><p>&copy; <span id="year"></span> Saiprudvi Ela</p></footer>
 <div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
 <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">

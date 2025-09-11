@@ -72,3 +72,99 @@ if(resumeLink){
 }
 // Smooth anchor fallback
 document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href').slice(1); const t=document.getElementById(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'});} }); });
+
+// Dormigo Details Toggle
+function toggleDormigoDetails() {
+  const details = document.getElementById('dormigoDetails');
+  const toggleBtn = document.getElementById('dormigoToggle');
+  
+  if (details && toggleBtn) {
+    details.classList.toggle('expanded');
+    toggleBtn.classList.toggle('expanded');
+    
+    const isExpanded = details.classList.contains('expanded');
+    const btnText = toggleBtn.querySelector('span');
+    if (btnText) {
+      btnText.textContent = isExpanded ? '📋 Hide Details' : '📋 View Details';
+    }
+    
+    // Smooth scroll to section if expanding
+    if (isExpanded) {
+      setTimeout(() => {
+        const dormigoSection = document.getElementById('dormigo-showcase');
+        if (dormigoSection) {
+          dormigoSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 300);
+    }
+  }
+}
+
+// Screenshot Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const screenshotItems = document.querySelectorAll('.screenshot-item');
+  const screenshotOverlay = document.getElementById('screenshotOverlay');
+  const screenshotModal = document.getElementById('screenshotModal');
+  const screenshotImage = document.getElementById('screenshotImage');
+  const screenshotCaption = document.getElementById('screenshotCaption');
+  const screenshotClose = document.getElementById('screenshotClose');
+
+  function openScreenshotModal(item) {
+    if (!screenshotOverlay) return;
+    
+    const img = item.querySelector('img');
+    const label = item.querySelector('.screenshot-label');
+    
+    if (img) {
+      screenshotImage.src = img.src;
+      screenshotImage.alt = img.alt;
+      screenshotCaption.textContent = label ? label.textContent : img.alt;
+      
+      screenshotOverlay.classList.add('active');
+      screenshotModal.classList.add('active');
+      document.body.classList.add('no-scroll');
+    }
+  }
+
+  function closeScreenshotModal() {
+    if (screenshotOverlay) {
+      screenshotOverlay.classList.remove('active');
+      screenshotModal.classList.remove('active');
+      document.body.classList.remove('no-scroll');
+    }
+  }
+
+  // Add click listeners to screenshot items
+  screenshotItems.forEach(item => {
+    item.addEventListener('click', () => openScreenshotModal(item));
+    
+    // Add keyboard support
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openScreenshotModal(item);
+      }
+    });
+  });
+
+  // Close modal listeners
+  if (screenshotClose) {
+    screenshotClose.addEventListener('click', closeScreenshotModal);
+  }
+  
+  if (screenshotOverlay) {
+    screenshotOverlay.addEventListener('click', (e) => {
+      if (e.target === screenshotOverlay) {
+        closeScreenshotModal();
+      }
+    });
+  }
+
+  // Escape key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && screenshotOverlay && screenshotOverlay.classList.contains('active')) {
+      closeScreenshotModal();
+    }
+  });
+});
