@@ -138,7 +138,10 @@ a:hover, a:focus { color:var(--link-hover); }
 .btn.ghost:hover { background:var(--bg-alt2); border-color:var(--accent-solid); }
 .btn.subtle { background:#1b2430; }
 .btn.subtle:hover { background:#242d3a; }
-.glass-card { position:relative; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:22px; padding:.8rem; backdrop-filter:blur(12px); box-shadow:var(--shadow); overflow:hidden; transition:.3s var(--ease); }
+.glass-card { position:relative; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:.7rem; backdrop-filter:blur(10px); box-shadow: var(--shadow); overflow:hidden; }
+.work-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+.work-gallery img { border-radius:12px; width:100%; height:120px; object-fit:cover; transition: transform 0.3s ease; }
+.work-gallery img:hover { transform: scale(1.05); }
 .glass-card:hover { transform:translateY(-4px); box-shadow:var(--shadow), var(--glow); }
 .glass-card img { border-radius:16px; width:100%; height:200px; object-fit:cover; }
 .overlay-label { position:absolute; bottom:12px; left:16px; background:rgba(139,92,246,.8); padding:.4rem .7rem; font-size:.7rem; border-radius:8px; letter-spacing:.5px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.2); }
@@ -273,11 +276,19 @@ a:hover, a:focus { color:var(--link-hover); }
 .i-github::before { content:"{"; font-family:'JetBrains Mono',monospace; font-size:1rem; }
 .i-mail::before { content:"@"; font-weight:600; }
 
-/* Dormigo Super App Section */
+/* Dormigo clickable container */
 .dormigo-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+  transition: all 0.3s ease;
+}
+
+.dormigo-container:hover {
+  transform: translateY(-4px);
+  background: rgba(138, 43, 226, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(138, 43, 226, 0.15);
 }
 
 .dormigo-intro {
