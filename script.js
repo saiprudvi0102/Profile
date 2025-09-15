@@ -80,9 +80,13 @@ if(modalOverlay){ modalOverlay.addEventListener('click',closeProjectModal); }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('active')) closeProjectModal(); });
 // Contact form
 window.contactSubmit = function(e){ e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`); window.location.href=`mailto:saiprudvi0102@gmail.com?subject=Portfolio Contact&body=${body}`; const status=document.getElementById('formStatus'); if(status) status.textContent='Opening mail client...'; };
-// Resume PDF download with fallback
-const resumeLink=document.querySelector('a[href="saiprudviela_Resume.pdf"]');
+// Resume PDF download with fallback (handles spaces in filename)
+const resumeLink=document.getElementById('resumePdfLink');
 if(resumeLink){
+  const pdfPath = 'saiprudvi ela_Resume.pdf';
+  const encodedPdfPath = encodeURI(pdfPath);
+  // ensure href uses encoded path for web
+  resumeLink.href = encodedPdfPath;
   // For GitHub Pages, we'll check if file exists and provide better feedback
   resumeLink.addEventListener('click', function(e) {
     // Track download attempt
@@ -91,7 +95,7 @@ if(resumeLink){
   });
   
   // Simple existence check - if fails, provide alternative
-  fetch('saiprudviela_Resume.pdf',{method:'HEAD'})
+  fetch(encodedPdfPath,{method:'HEAD'})
     .then(r=>{ 
       if(!r.ok){ 
         resumeLink.textContent='View Resume Online'; 
