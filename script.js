@@ -203,3 +203,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Premium header scroll effect across all pages
+(function(){
+  const onScroll = () => {
+    if (typeof document !== 'undefined') {
+      document.body.classList.toggle('scrolled', window.scrollY > 8);
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
