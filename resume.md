@@ -1,84 +1,41 @@
-saiprudvi ela
-+1 (321) 367-4952 | ellasaiprudhvi123@gmail.com | LinkedIn | GitHub | Portfolio
-OBJECTIVE
-Innovative Mobile App Developer with 4+ years of experience designing and deploying cross-platform and native
-Android applications. Skilled in Flutter, Kotlin, Java, Firebase, and AWS, with expertise in scalable cloud architecture,
-CI/CD pipelines, and AI/ML integration. Passionate about building human-centered, data-driven digital products that
-enhance customer experience, drive user engagement, and deliver measurable business impact.
-EDUCATION
-Florida Institute of Technology Master's, Computer Engineering
-Aug 2023 - May 2025
-CERTIFICATIONS
-• AWS Certified Developer – Associate
-• Introduction to Large Language Models
-• Supervised Machine Learning: Regression
-• Introduction to Generative AI
-PROFESSIONAL EXPERIENCE
-DormUnity Inc Melbourne, FL, USA
-App Developer Jun 2025 - Present
-• Built and deployed cross-platform mobile app using Flutter, enabling students to connect through ridesharing,
-property listings, and campus social features.
-• Developed modular, reusable widgets with responsive layouts, smooth animations, and state management using
-Provider/Bloc for scalable architecture.
-• Integrated RESTful APIs and Firebase services (Auth, Firestore, Cloud Storage, Push Notifications) for secure,
-real-time data flow and user engagement.
-• Optimized app performance by reducing load times, improving caching, and implementing offline-first
-capabilities.
-• Configured CI/CD pipelines (GitHub Actions + Firebase App Distribution) to streamline testing, deployment,
-and app updates across iOS and Android.
-Sigma software solutions Software Engineer Pune, MH, India
-Feb 2022 - Aug 2023
-• Developed and deployed Android applications using Java, Kotlin, XML, and Android Studio, following MVVM
-architecture to ensure clean code and maintainability.
-• Integrated Firebase services (Authentication, Realtime Database, Cloud Messaging) to implement real-time data
-sync and secure user management.
-• Utilized AWS (EC2, Lambda, S3) for backend deployment, improving scalability, performance, and app uptime
-to 99.9%.
-• Optimized app performance by refactoring code and implementing background processing, leading to a 25%
-reduction in load time and 30% boost in user engagement.
-Teegala Krishna Reddy Engineering College Research Fellow / Intern Hyderabad, TG, India
-Dec 2021 - Jun 2022
-• Under the guidance of M. Sravani (Assistant Professor)
-• Contributing to research on “GPS & GPS-Based Women Safety & Alerting System”, focusing on system design,
-implementation, and technical documentation.
-• Assisting in writing and editing a research paper for publication.
-• Contributing a chapter on “Internet of Things (IoT)”, covering applications, architectures, and use cases related
-to safety systems.
-Oregono Technologies Bangalore, KA, India
-Android Developer Apr 2021 - Jul 2021
-• Developed Android applications onsite using Java, Kotlin, XML, and Android Studio, with a focus on clean UI
-design and responsive layouts.
-• Implemented core app functionalities such as user authentication, real-time data handling, and notifications using
-Firebase.
-• Integrated AWS services to support backend tasks, enhance app performance, and enable scalable cloud
-interactions.
-• Strengthened skills in mobile app architecture (MVVM), third-party API integration, and agile development
-through practical, hands-on training.
-Mobile Application Developer May 2020 - Dec 2020
-• Designed and developed a fully functional shopping application using Java, XML, and Firebase during onsite
-training.
-• Implemented key features including user authentication, product catalog, and shopping cart with real-time
-database support.
-• Gained practical experience in Android Studio, UI/UX design, and mobile app architecture using Firebase
-Authentication and Realtime Database.
-• Strengthened skills in mobile app development, debugging, and cloud integration through hands-on,
-project-based learning during the COVID-19 period.
-TSNPDCL (132/33 kV) Warangal, TG, India
-Substation Intern Jul 2018 - Jun 2019
-• Assisted in testing, validating, and commissioning PLC and SCADA systems for power monitoring and control.
-• Developed and debugged embedded test scripts using C/C++ for IEDs, sensors, and other field devices.
-• Performed real-time system diagnostics, monitored data logs, and analyzed faults for operational reliability.
-• Collaborated with engineers to enhance automation workflows, improve system response times, and ensure
-compliance with electrical safety standards.
+Saiprudvi Ela
++1 (321) 367-4952 | saiprudviela@gmail.com  | LinkedIn | GitHub | Portfolio
+
+SUMMARY
+Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud. Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions across healthcare and enterprise domains.
+
 SKILLS
-Mobile Development: Flutter, Dart, Java, Kotlin, Android Studio, Jetpack Components, XML UI Design, Room
-Database,, MVVM Architecture, Provider/Bloc, Responsive UI/UX, App Performance Optimization
-Cloud & Backend: Firebase (Auth, Firestore, Realtime DB, Cloud Messaging, Cloud Storage), AWS (Amplify,
-Lambda, API Gateway, Cognito, S3, DynamoDB, SNS, CloudWatch),, Google Cloud (Firestore, Functions, App
-Distribution)
-AI/ML & Data Science: TensorFlow Lite, Python, Data Analysis, Recommendation Systems,, LLM Workflows,
-Generative AI Integration, Data Visualization
-Tools & Collaboration: Git, GitHub Actions, Gradle, Postman, JIRA, Agile/Scrum, CI/CD, Crash Reporting,,
-Unit/UI Testing (JUnit, Espresso), Cursor, GitHub Copilot
-Design & Prototyping: Figma, Material Design Guidelines, Wireframing, Prototyping, Inclusive UX,,
-User-Centered Design, Usability Testing
+•	Programming Languages: Java, Python, JavaScript, SQL, C++, Dart, Kotlin, HTML5, CSS
+•	Backend & Cloud: Spring Boot, FastAPI, Flask, Node.js, Express.js, PEGA, RESTful APIs, JWT Authentication, Firebase (Auth, Firestore, Realtime DB, Messaging, Cloud Storage), AWS (Amplify, Lambda, API Gateway, Cognito, S3, DynamoDB, SNS, CloudWatch), Google Cloud (Firestore, Functions, App Distribution)
+•	Frontend & Mobile Development: React.js, Flutter, Android Studio, Jetpack Components, XML UI, Room Database, Component-Based Architecture, Responsive Design, Provider/Bloc, MVVM Architecture, Material Design
+•	Databases: PostgreSQL, MySQL, SQL Server, MongoDB, DynamoDB
+•	DevOps & Monitoring: Docker, Kubernetes, Terraform, CI/CD Pipelines (GitHub Actions, Gradle), Git, JIRA, Splunk, AppDynamics, Grafana, Crash Reporting
+•	AI & Machine Learning: Generative AI, Large Language Models (LLMs), Prompt Engineering, OpenAI APIs, LangChain, Hugging Face Transformers, TensorFlow, TensorFlow Lite, Scikit-learn, NLP (NER, Text Summarization, Sentiment Analysis), Recommendation Systems, Model Deployment, Data Analysis & Visualization
+•	Tools & Platforms: IntelliJ, VS Code, Postman, Figma, Wireframing, Prototyping, GitHub Copilot, Cursor
+•	Methodologies & Core Competencies: Agile/Scrum, SDLC, Design Patterns, HIPAA Compliance, OOP, Debugging, Performance Optimization, Problem Solving, Team Collaboration, Time Management
+
+PROFESSIONAL EXPERIENCE
+Software Developer | Tempus 	Oct 2024 – Present | USA
+•	Developed secure, high-throughput backend services using FastAPI and integrated them with LLMs via OpenAI GPT-4 and LangChain, enabling oncology researchers to auto-summarize 2TB+ of unstructured patient notes in under 10 seconds per request.
+•	Built a GenAI-enabled clinical documentation assistant, deployed on GCP using Kubernetes and Docker, which reduced manual reporting time by ~4 hours per oncologist weekly through prompt-engineered summarization and keyword extraction.
+•	Designed and implemented Java-based orchestration logic to interface with AI pipelines, providing queue-based job handling for LLM inference tasks and ensuring consistent delivery under high concurrency.
+•	Collaborated with data engineering teams to create tokenized RESTful APIs in Java 17 and Spring Boot, enforcing JWT authentication, rate limiting, and input sanitization for HIPAA-compliant data access.
+•	Led the refactoring and modularization of existing Java microservices, improving unit test coverage from 62% to 91%, reducing code complexity, and cutting deployment-related bugs by 45% over two release cycles.
+
+Software Development Associate – Client: T-Mobile | Deloitte 	May 2020 – Aug 2023 | India
+•	Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, processing 120K+ daily transactions across telecom systems.
+•	Engineered backend modules for asynchronous processing with JMS and Java Mail API, enabling real-time alerts and batch notifications, improving incident response by 38%.
+•	Developed internal web applications with Java-based APIs, ReactJS, HTML5, and Bootstrap, reducing ticket resolution time by 25% for support teams.
+•	Automated cloud operations with custom Java agents, streamlining AWS S3 cleanups and system health checks, cutting manual intervention by 60+ hours/month.
+•	Optimized multi-table joins and transactional queries via Spring Data JPA custom finder methods, reducing database response times by 30% on high-traffic endpoints.
+
+EDUCATION
+Florida Institute of Technology 	Aug 2023 - May 2025
+Master's, Computer Engineering
+
+CERTIFICATIONS
+•	AWS Certified Developer – Associate 
+•	Introduction to Large Language Models 
+•	Supervised Machine Learning: Regression 
+•	Introduction to Generative AI
+<img width="569" height="850" alt="image" src="https://github.com/user-attachments/assets/2893be93-1ea1-47b3-80b0-9d526d6f94b4" />
