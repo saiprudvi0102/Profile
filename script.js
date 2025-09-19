@@ -395,12 +395,12 @@ class ProjectDetailManager {
         const relativeCardLeft = cardRect.left - sectionRect.left;
         const relativeCardTop = cardRect.top - sectionRect.top;
         
-        // Calculate final centered position within projects section
-        const modalWidth = Math.min(sectionRect.width - 40, 900); // Max width with padding
-        const modalHeight = Math.min(sectionRect.height - 40, 700); // Max height with padding
+        // Full-screen modal within projects section (with small padding)
+        const modalWidth = sectionRect.width - 20; // Full width minus small padding
+        const modalHeight = sectionRect.height - 20; // Full height minus small padding
         
-        const finalLeft = (sectionRect.width - modalWidth) / 2;
-        const finalTop = Math.max(20, (sectionRect.height - modalHeight) / 2);
+        const finalLeft = 10; // Small left padding
+        const finalTop = 10; // Small top padding
         
         // Start modal at card position
         modalContent.style.position = 'absolute';
@@ -416,9 +416,9 @@ class ProjectDetailManager {
         // Force reflow
         void modalContent.offsetWidth;
         
-        // Animate to full-screen centered position
-        modalContent.style.transition = 'all 500ms cubic-bezier(.22,.61,.36,1)';
-        overlay.style.transition = 'background 500ms ease';
+        // Animate to full-screen position
+        modalContent.style.transition = 'all 600ms cubic-bezier(.22,.61,.36,1)';
+        overlay.style.transition = 'background 600ms ease';
         
         requestAnimationFrame(() => {
             modalContent.style.left = `${finalLeft}px`;
@@ -427,14 +427,14 @@ class ProjectDetailManager {
             modalContent.style.height = `${modalHeight}px`;
             modalContent.style.maxHeight = `${modalHeight}px`;
             modalContent.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,.72)';
+            overlay.style.background = 'rgba(0,0,0,.8)'; // Slightly darker for better contrast
         });
         
         // Clean up transitions
         setTimeout(() => {
             modalContent.style.transition = '';
             overlay.style.transition = '';
-        }, 550);
+        }, 650);
     }
 
 
