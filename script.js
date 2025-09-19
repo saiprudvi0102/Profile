@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
     // Initialize project detail manager (singleton)
     window.__projectDetailManager = new ProjectDetailManager();
-    console.log('[Modal] ProjectDetailManager initialized:', window.__projectDetailManager);
+    console.log('[Modal] Project system ready');
     
     // Add a global test function
     window.testModal = function() {
@@ -311,13 +311,11 @@ class ProjectDetailManager {
     }
 
     bindEvents() {
-        console.log('[Modal] Binding events - setting up click listeners');
+    // Bind core click listeners for cards
         // Handle project card clicks
         document.addEventListener('click', (e) => {
-            console.log('[Modal] Click detected on:', e.target);
             const playBtn = e.target.closest('.play-btn');
             if (playBtn) {
-                console.log('[Modal] Play button clicked');
                 e.preventDefault();
                 const card = playBtn.closest('.netflix-card');
                 const projectId = card ? card.dataset.project : null;
@@ -329,14 +327,11 @@ class ProjectDetailManager {
             // Handle poster/card clicks (anywhere on card except buttons)
             const netflixCard = e.target.closest('.netflix-card');
             if (netflixCard && !e.target.closest('.play-btn') && !e.target.closest('.project-modal')) {
-                console.log('[Modal] Card clicked - projectId:', netflixCard.dataset.project);
                 e.preventDefault();
                 const projectId = netflixCard.dataset.project;
                 if (projectId) {
-                    console.log('[Modal] Calling showProjectDetail for card click');
                     this.showProjectDetail(projectId, netflixCard);
                 } else {
-                    console.log('[Modal] No project ID found on card');
                 }
             }
 
@@ -412,9 +407,7 @@ class ProjectDetailManager {
         
         // Append directly to body for true popup overlay
         document.body.appendChild(modal);
-        console.log('[Modal] Created and appended modal to body');
-        console.log('[Modal] Modal in DOM:', document.body.contains(modal));
-        console.log('[Modal] Body children count:', document.body.children.length);
+    // Modal scaffold appended
         
         this.modal = modal;
         this.bindNavigation();
@@ -456,10 +449,63 @@ class ProjectDetailManager {
         this.bindCopyAndHelp();
     }
 
+    // Simplified fullscreen modal version (bypass animations & complex fallbacks)
     showProjectDetail(projectId, cardElement) {
-        console.log('[Modal] showProjectDetail called', { projectId, hasCard: !!cardElement });
+        // Minimal: fetch project data; if missing abort silently
+        const project = this.getProjectData(projectId);
+        if(!project){ return; }
+        // Create (or reuse) a very simple modal container
+        if(!this._simpleModal){
+            const m = document.createElement('div');
+            m.className = 'simple-project-modal';
+            m.innerHTML = '<div class="spm-overlay" role="dialog" aria-modal="true"><div class="spm-content"><button class="spm-close" aria-label="Close">×</button><div class="spm-body"></div></div></div>';
+            document.body.appendChild(m);
+            this._simpleModal = m;
+            m.addEventListener('click', (e)=>{ if(e.target.classList.contains('spm-overlay') || e.target.classList.contains('spm-close')) this.closeSimpleModal(); });
+            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && this._simpleModal?.classList.contains('active')) this.closeSimpleModal(); });
+        }
+        this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        const body = this._simpleModal.querySelector('.spm-body');
+        body.innerHTML = this.simpleProjectHTML(project);
+        // Activate
+        this._simpleModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.currentProjectId = projectId;
+        // Update hash (simple deep link)
+        const expectedHash = `project-${projectId}`;
+        if(location.hash !== `#${expectedHash}`) location.hash = expectedHash;
+        // Focus first header or close
+        const focusTarget = this._simpleModal.querySelector('h2, .spm-close');
+        if(focusTarget) focusTarget.focus({preventScroll:true});
+    }
+
+    closeSimpleModal(){
+        if(!this._simpleModal) return;
+        this._simpleModal.classList.remove('active');
+        document.body.style.overflow='';
+        if(this.lastFocusedElement) this.lastFocusedElement.focus({preventScroll:true});
+        if(location.hash.startsWith('#project-')) history.replaceState(null,'',location.pathname+location.search);
+    }
+
+    simpleProjectHTML(project){
+        return `
+            <article class="spm-article">
+                <header class="spm-header">
+                    <h2>${project.title}</h2>
+                    <p class="spm-sub">${project.subtitle||''}</p>
+                </header>
+                ${project.image ? `<div class="spm-hero"><img src="${project.image}" alt="${project.title}"></div>` : ''}
+                <section class="spm-section"><p>${project.longDescription || project.description || ''}</p></section>
+                ${project.technologies && project.technologies.length ? `<section class="spm-section"><h3>Tech</h3><ul class="spm-tags">${project.technologies.slice(0,12).map(t=>`<li>${t.name}</li>`).join('')}</ul></section>`:''}
+                ${(project.github||project.demo)?`<section class="spm-section spm-links">${project.github?`<a href="${project.github}" target="_blank" rel="noopener" class="spm-link">GitHub ↗</a>`:''}${project.demo?`<a href="${project.demo}" target="_blank" rel="noopener" class="spm-link">Live Demo ↗</a>`:''}</section>`:''}
+            </article>`;
+    }
+
+    /* Original complex implementation (kept for reference, now unused) */
+    legacyShowProjectDetail(projectId, cardElement) {
+    // Legacy show (unused)
         if(!this.modal){
-            console.warn('[Modal] Modal element missing, recreating');
+            // recreate legacy modal
             this.createDetailModal();
         }
         const project = this.getProjectData(projectId);
@@ -467,7 +513,7 @@ class ProjectDetailManager {
         // If no mapped project data, attempt fallback build from cardElement
         if (!project) {
             if (!cardElement){
-                console.warn('[Modal] No project data and no cardElement - aborting');
+                // abort legacy path
                 return; // no way to build content
             }
             const title = cardElement.querySelector('.netflix-card-title')?.textContent?.trim() || 'Project';
@@ -495,19 +541,16 @@ class ProjectDetailManager {
             this.currentCardElement = cardElement;
             const modalBody = this.modal.querySelector('.project-modal-body');
             modalBody.innerHTML = this.generateProjectDetailHTML(fallbackProject);
-            console.log('[Modal] Fallback project rendered');
             this.positionModalNearCard(cardElement);
             this.currentProjectId = null;
             this.modal.classList.add('active');
             this.modal.setAttribute('aria-hidden','false');
-            console.log('[Modal] Fallback modal activated');
             const focusable = this.getFocusableElements();
             if(focusable.length){ focusable[0].focus({preventScroll:true}); }
             this.enableFocusTrap();
             this.announce(`Opened project ${title}`);
             return;
         }
-        console.log('[Modal] Found project data, proceeding render');
 
         // Prevent body scrolling for true popup behavior
         document.body.style.overflow = 'hidden';
@@ -548,10 +591,10 @@ class ProjectDetailManager {
         // Only update hash if it's different to avoid triggering hashchange
         const expectedHash = `project-${projectId}`;
         if (location.hash !== `#${expectedHash}`) {
-            console.log('[Modal] Updating hash to', expectedHash);
+            // update hash
             location.hash = expectedHash; // guarded only for known projects
         } else {
-            console.log('[Modal] Hash already correct');
+            // hash already correct
         }
     this.preloadAdjacent(projectId);
     this.updateNavButtonStates();
@@ -563,22 +606,7 @@ class ProjectDetailManager {
     this.initLazySections();
         
     this.modal.classList.add('active');
-    console.log('[Modal] Modal activated');
-    console.log('[Modal] Modal element:', this.modal);
-    console.log('[Modal] Modal classList:', this.modal.classList.toString());
-    console.log('[Modal] Modal style.display:', this.modal.style.display);
-    console.log('[Modal] Modal computed styles:', {
-        display: window.getComputedStyle(this.modal).display,
-        visibility: window.getComputedStyle(this.modal).visibility,
-        opacity: window.getComputedStyle(this.modal).opacity,
-        zIndex: window.getComputedStyle(this.modal).zIndex,
-        position: window.getComputedStyle(this.modal).position,
-        top: window.getComputedStyle(this.modal).top,
-        left: window.getComputedStyle(this.modal).left,
-        width: window.getComputedStyle(this.modal).width,
-        height: window.getComputedStyle(this.modal).height
-    });
-    console.log('[Modal] Is modal in DOM?', document.body.contains(this.modal));
+    // modal activated
     
     // Force display if CSS didn't apply
     if (window.getComputedStyle(this.modal).display === 'none') {
