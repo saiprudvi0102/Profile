@@ -145,12 +145,16 @@ class NetflixHoverManager {
         this.hoverTimeout = null;
         // expose globally for coordination
         window.__netflixHoverManager = this;
-        this.init();
+          this.init();
     }
 
     init() {
-        this.createPreviewContainer();
-        this.bindHoverEvents();
+          // Disable hover previews on touch devices (prevents interaction conflicts)
+          const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+          if (!isTouch) {
+              this.createPreviewContainer();
+              this.bindHoverEvents();
+          }
     }
 
     createPreviewContainer() {
@@ -331,6 +335,10 @@ class ProjectDetailManager {
     // Bind core click listeners for cards
         // Handle project card clicks
         document.addEventListener('click', (e) => {
+            // Ignore synthetic click right after a handled touch
+            if (this._lastTouchOpenAt && Date.now() - this._lastTouchOpenAt < 350) {
+                return;
+            }
             const playBtn = e.target.closest('.play-btn');
             if (playBtn) {
                 e.preventDefault();
@@ -366,6 +374,23 @@ class ProjectDetailManager {
                 this.closeModal();
             }
         });
+
+        // Mobile: tap anywhere on a card opens details (robust on touch devices)
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (isTouch) {
+            document.addEventListener('touchend', (e) => {
+                const card = e.target.closest('.netflix-card[data-project]');
+                if (card) {
+                    const projectId = card.dataset.project;
+                    if (projectId) {
+                        // Prevent accidental double-activation with click
+                        e.preventDefault();
+                        this._lastTouchOpenAt = Date.now();
+                        this.showProjectDetail(projectId, card);
+                    }
+                }
+            }, { passive: false });
+        }
 
         // Handle keyboard navigation
         document.addEventListener('keydown', (e) => {
