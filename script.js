@@ -11,6 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
   // Initialize project detail manager
   new ProjectDetailManager();
   
+  // Initialize Netflix hover previews
+  new NetflixHoverManager();
+  
   // Initialize certification viewers
   initializeCertificationViewers();
 });
@@ -338,6 +341,150 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 })();
+
+// Netflix-style Hover Preview Manager
+class NetflixHoverManager {
+    constructor() {
+        this.activePreview = null;
+        this.hoverTimeout = null;
+        this.init();
+    }
+
+    init() {
+        this.createPreviewContainer();
+        this.bindHoverEvents();
+    }
+
+    createPreviewContainer() {
+        const container = document.createElement('div');
+        container.className = 'netflix-preview-container';
+        container.innerHTML = `
+            <div class="netflix-preview-card">
+                <div class="preview-image-container">
+                    <img class="preview-image" src="" alt="">
+                    <div class="preview-overlay">
+                        <button class="preview-play-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="preview-content">
+                    <h3 class="preview-title"></h3>
+                    <p class="preview-description"></p>
+                    <div class="preview-tags"></div>
+                    <div class="preview-metrics"></div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(container);
+        this.previewContainer = container;
+        this.previewCard = container.querySelector('.netflix-preview-card');
+    }
+
+    bindHoverEvents() {
+        document.addEventListener('mouseenter', (e) => {
+            const card = e.target.closest('.netflix-card[data-project]');
+            if (card) {
+                this.showPreview(card);
+            }
+        }, true);
+
+        document.addEventListener('mouseleave', (e) => {
+            const card = e.target.closest('.netflix-card[data-project]');
+            if (card) {
+                this.hidePreview();
+            }
+        }, true);
+
+        // Hide preview when clicking anywhere
+        document.addEventListener('click', () => {
+            this.hidePreview();
+        });
+    }
+
+    showPreview(card) {
+        if (this.hoverTimeout) {
+            clearTimeout(this.hoverTimeout);
+        }
+
+        this.hoverTimeout = setTimeout(() => {
+            const projectId = card.dataset.project;
+            const projectData = this.getProjectData(projectId);
+            
+            if (projectData) {
+                this.updatePreviewContent(projectData);
+                this.positionPreview(card);
+                this.previewContainer.classList.add('active');
+                this.activePreview = card;
+            }
+        }, 500); // 500ms delay like Netflix
+    }
+
+    hidePreview() {
+        if (this.hoverTimeout) {
+            clearTimeout(this.hoverTimeout);
+        }
+        
+        this.previewContainer.classList.remove('active');
+        this.activePreview = null;
+    }
+
+    positionPreview(card) {
+        const cardRect = card.getBoundingClientRect();
+        const preview = this.previewCard;
+        
+        // Calculate position
+        let left = cardRect.left + (cardRect.width / 2) - 200; // Center horizontally, 400px total width
+        let top = cardRect.bottom + 10;
+        
+        // Adjust for screen boundaries
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        if (left < 20) left = 20;
+        if (left + 400 > viewportWidth - 20) left = viewportWidth - 420;
+        
+        if (top + 300 > viewportHeight - 20) {
+            top = cardRect.top - 310; // Show above the card
+        }
+        
+        preview.style.left = `${left}px`;
+        preview.style.top = `${top}px`;
+    }
+
+    updatePreviewContent(project) {
+        const preview = this.previewCard;
+        
+        preview.querySelector('.preview-image').src = project.image;
+        preview.querySelector('.preview-title').textContent = project.title;
+        preview.querySelector('.preview-description').textContent = project.description;
+        
+        // Update tags
+        const tagsContainer = preview.querySelector('.preview-tags');
+        const technologies = project.technologies.slice(0, 3); // Show first 3 technologies
+        tagsContainer.innerHTML = technologies.map(tech => 
+            `<span class="preview-tag">${tech.name}</span>`
+        ).join('');
+        
+        // Update metrics
+        const metricsContainer = preview.querySelector('.preview-metrics');
+        const topMetrics = project.metrics.slice(0, 2); // Show first 2 metrics
+        metricsContainer.innerHTML = topMetrics.map(metric =>
+            `<div class="preview-metric">
+                <span class="metric-icon">${metric.icon}</span>
+                <span class="metric-text">${metric.label}: ${metric.value}</span>
+            </div>`
+        ).join('');
+    }
+
+    getProjectData(projectId) {
+        // This will use the same data source as ProjectDetailManager
+        const manager = new ProjectDetailManager();
+        return manager.getProjectData(projectId);
+    }
+}
 
 // Project Detail System
 class ProjectDetailManager {
