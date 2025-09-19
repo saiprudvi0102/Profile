@@ -468,32 +468,8 @@ class ProjectDetailManager {
 
     // Simplified fullscreen modal version (bypass animations & complex fallbacks)
     showProjectDetail(projectId, cardElement) {
-        // Minimal: fetch project data; if missing abort silently
-        const project = this.getProjectData(projectId);
-        if(!project){ return; }
-        // Create (or reuse) a very simple modal container
-        if(!this._simpleModal){
-            const m = document.createElement('div');
-            m.className = 'simple-project-modal';
-            m.innerHTML = '<div class="spm-overlay" role="dialog" aria-modal="true"><div class="spm-content"><button class="spm-close" aria-label="Close">×</button><div class="spm-body"></div></div></div>';
-            document.body.appendChild(m);
-            this._simpleModal = m;
-            m.addEventListener('click', (e)=>{ if(e.target.classList.contains('spm-overlay') || e.target.classList.contains('spm-close')) this.closeSimpleModal(); });
-            document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && this._simpleModal?.classList.contains('active')) this.closeSimpleModal(); });
-        }
-        this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-        const body = this._simpleModal.querySelector('.spm-body');
-        body.innerHTML = this.simpleProjectHTML(project);
-        // Activate
-        this._simpleModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        this.currentProjectId = projectId;
-        // Update hash (simple deep link)
-        const expectedHash = `project-${projectId}`;
-        if(location.hash !== `#${expectedHash}`) location.hash = expectedHash;
-        // Focus first header or close
-        const focusTarget = this._simpleModal.querySelector('h2, .spm-close');
-        if(focusTarget) focusTarget.focus({preventScroll:true});
+        // Use the advanced full-screen modal implementation
+        return this.legacyShowProjectDetail(projectId, cardElement);
     }
 
     closeSimpleModal(){
