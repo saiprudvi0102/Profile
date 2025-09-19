@@ -354,13 +354,8 @@ class ProjectDetailManager {
                 </div>
             </div>`;
         
-        // Append to projects section instead of body
-        const projectsSection = document.getElementById('projects');
-        if (projectsSection) {
-            projectsSection.appendChild(modal);
-        } else {
-            document.body.appendChild(modal); // fallback
-        }
+        // Append directly to body for true popup overlay
+        document.body.appendChild(modal);
         
         this.modal = modal;
         this.bindNavigation();
@@ -406,6 +401,10 @@ class ProjectDetailManager {
         const project = this.getProjectData(projectId);
         if (!project) return;
 
+        // Prevent body scrolling for true popup behavior
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+
         this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         this.currentCardElement = cardElement; // Store reference for close animation
 
@@ -429,7 +428,7 @@ class ProjectDetailManager {
             modalBody.innerHTML = this.generateProjectDetailHTML(project);
         }
         
-        // Position modal near clicked card
+        // Position modal as popup overlay
         this.positionModalNearCard(cardElement);
     this.currentProjectId = projectId;
     location.hash = `project-${projectId}`;
@@ -480,7 +479,10 @@ class ProjectDetailManager {
         
         this.modal.classList.add('active');
         this.modal.setAttribute('aria-hidden','false');
+        
+        // Prevent body scrolling for true popup behavior
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
         
         // Focus management
         const focusable = this.getFocusableElements();
@@ -502,43 +504,39 @@ class ProjectDetailManager {
         // Store originating card for focus return
         this.originatingCard = cardElement;
         
-        // True full-screen positioning - fixed to viewport
-        const modalWidth = window.innerWidth;
-        const modalHeight = window.innerHeight;
-        
-        // Start modal at card position (absolute coordinates)
+        // Reset any previous positioning
         modalContent.style.position = 'fixed';
-        modalContent.style.left = `${cardRect.left}px`;
-        modalContent.style.top = `${cardRect.top}px`;
         modalContent.style.width = `${cardRect.width}px`;
         modalContent.style.height = `${cardRect.height}px`;
+        modalContent.style.left = `${cardRect.left}px`;
+        modalContent.style.top = `${cardRect.top}px`;
         modalContent.style.transform = 'scale(1)';
         modalContent.style.opacity = '0';
-        modalContent.style.zIndex = '9999';
+        modalContent.style.borderRadius = '8px';
+        
+        // Initialize overlay
         overlay.style.background = 'rgba(0,0,0,0)';
-        overlay.style.position = 'fixed';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.right = '0';
-        overlay.style.bottom = '0';
-        overlay.style.zIndex = '9998';
+        
+        // Show modal
+        this.modal.classList.add('active');
+        this.modal.setAttribute('aria-hidden', 'false');
         
         // Force reflow
         void modalContent.offsetWidth;
         
-        // Animate to full-screen position
-        const animationDuration = 600;
+        // Animate to full-screen popup
+        const animationDuration = 500;
         modalContent.style.transition = `all ${animationDuration}ms cubic-bezier(.22,.61,.36,1)`;
         overlay.style.transition = `background ${animationDuration}ms ease`;
         
         requestAnimationFrame(() => {
             modalContent.style.left = '0px';
             modalContent.style.top = '0px';
-            modalContent.style.width = `${modalWidth}px`;
-            modalContent.style.height = `${modalHeight}px`;
-            modalContent.style.maxHeight = `${modalHeight}px`;
+            modalContent.style.width = '100vw';
+            modalContent.style.height = '100vh';
+            modalContent.style.borderRadius = '0px';
             modalContent.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,0.9)';
+            overlay.style.background = 'rgba(0,0,0,0.95)';
         });
         
         // Clean up transitions
@@ -656,7 +654,10 @@ class ProjectDetailManager {
     closeModal() {
         if (this.modal) {
             this.modal.classList.remove('active');
+            
+            // Restore body scrolling
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
             
             // Animate close (shrink back to card position)
             const content = this.modal.querySelector('.project-modal-content');
