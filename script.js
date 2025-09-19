@@ -290,15 +290,15 @@ class ProjectDetailManager {
     }
 
     createDetailModal() {
-        // Global fixed overlay (centered Netflix-style)
+        // Local overlay positioned near clicked card
         const modal = document.createElement('div');
-        modal.className = 'project-modal global';
+        modal.className = 'project-modal local';
         modal.setAttribute('aria-hidden','true');
         modal.setAttribute('role','dialog');
         modal.setAttribute('aria-modal','true');
         modal.setAttribute('aria-label','Project details');
         modal.innerHTML = `
-            <div class="project-modal-overlay global-overlay">
+            <div class="project-modal-overlay local-overlay">
                 <div class="project-modal-shell">
                     <div class="project-modal-content">
                         <div class="project-nav-bar" style="position:absolute; top:12px; left:12px; display:flex; gap:.5rem; z-index:5;">
@@ -306,7 +306,6 @@ class ProjectDetailManager {
                             <button class="project-nav-btn next" aria-label="Next project" title="Next (→)">▶</button>
                             <span class="project-progress" aria-live="off" style="padding:.35rem .6rem; font-size:.7rem; letter-spacing:.06em; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:999px;">1 / 1</span>
                             <button class="project-copy-link" aria-label="Copy shareable link" title="Copy link" style="font-size:.75rem; padding:.35rem .6rem; border-radius:6px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08);">🔗</button>
-                            <button class="project-help-btn" aria-label="Help / shortcuts" title="Help (?)" style="font-size:.75rem; padding:.35rem .6rem; border-radius:6px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08);">?</button>
                         </div>
                         <button class="close-project-modal" aria-label="Close">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -314,19 +313,6 @@ class ProjectDetailManager {
                             </svg>
                         </button>
                         <div class="project-modal-body"></div>
-                        <div class="project-help-overlay" hidden style="position:absolute; inset:0; backdrop-filter:blur(6px); background:rgba(0,0,0,.6); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; padding:2rem; text-align:left;">
-                            <div style="max-width:640px; width:100%; color:#fff; font-size:.9rem; line-height:1.5;">
-                                <h2 style="margin-top:0; font-size:1.4rem;">Navigation & Shortcuts</h2>
-                                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:.6rem;">
-                                    <li><strong>← / →</strong> Previous / Next project</li>
-                                    <li><strong>Esc</strong> Close modal</li>
-                                    <li><strong>Swipe</strong> Navigate on touch devices</li>
-                                    <li><strong>?</strong> Toggle this help</li>
-                                    <li><strong>🔗</strong> Copy deep link</li>
-                                </ul>
-                                <button class="project-help-close" style="margin-top:1.4rem; background:var(--accent); border:none; padding:.65rem 1.1rem; border-radius:8px; font-weight:600; cursor:pointer;">Got it</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>`;
@@ -362,8 +348,8 @@ class ProjectDetailManager {
             modalBody.innerHTML = this.generateProjectDetailHTML(project);
         }
         
-    // Prepare animation from card => center
-    this.animateFromCard(cardElement);
+        // Position modal near clicked card
+        this.positionModalNearCard(cardElement);
     this.currentProjectId = projectId;
     location.hash = `project-${projectId}`;
     this.preloadAdjacent(projectId);
@@ -383,53 +369,63 @@ class ProjectDetailManager {
         this.enableFocusTrap();
     }
 
-    animateFromCard(cardElement){
-        if(!cardElement) return;
+    positionModalNearCard(cardElement) {
+        if (!cardElement) return;
+        
         const cardRect = cardElement.getBoundingClientRect();
-        const modalShell = this.modal.querySelector('.project-modal-shell');
-        const content = this.modal.querySelector('.project-modal-content');
-
-        // Desired final size
+        const modalContent = this.modal.querySelector('.project-modal-content');
+        const overlay = this.modal.querySelector('.project-modal-overlay');
+        
+        // Set modal to be positioned near the card
         const viewportW = window.innerWidth;
         const viewportH = window.innerHeight;
-        const finalWidth = Math.min(960, viewportW - 80);
-        const finalHeight = Math.min(640, viewportH - 120);
-        content.style.width = finalWidth + 'px';
-        content.style.maxHeight = finalHeight + 'px';
-
-        // Compute scale & translate from card to center
-        const finalLeft = (viewportW - finalWidth)/2;
-        const finalTop = (viewportH - finalHeight)/2;
-
-        const scaleX = cardRect.width / finalWidth;
-        const scaleY = cardRect.height / finalHeight;
-        const translateX = (cardRect.left + cardRect.width/2) - (finalLeft + finalWidth/2);
-        const translateY = (cardRect.top + cardRect.height/2) - (finalTop + finalHeight/2);
-
-        // Set initial transform
-        content.style.transformOrigin = 'center center';
-        content.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
-        content.style.opacity = '0';
-
-        // Force reflow
-        void content.offsetWidth;
-
-        // Animate to final
-        const duration = 420;
-        content.style.transition = `transform ${duration}ms cubic-bezier(.22,.61,.36,1), opacity ${duration*0.6}ms ease`;
-        requestAnimationFrame(()=>{
-            content.style.transform = 'translate(0,0) scale(1,1)';
-            content.style.opacity = '1';
-        });
-
-        // Fade in background
-        const overlay = this.modal.querySelector('.project-modal-overlay');
+        const modalWidth = Math.min(800, viewportW - 40);
+        const modalHeight = Math.min(600, viewportH - 40);
+        
+        // Calculate position near the card but centered on page
+        let left = (viewportW - modalWidth) / 2;
+        let top = Math.max(20, (viewportH - modalHeight) / 2);
+        
+        // Ensure modal doesn't go off screen
+        if (left < 20) left = 20;
+        if (top < 20) top = 20;
+        if (left + modalWidth > viewportW - 20) left = viewportW - modalWidth - 20;
+        if (top + modalHeight > viewportH - 20) top = viewportH - modalHeight - 20;
+        
+        modalContent.style.position = 'fixed';
+        modalContent.style.left = left + 'px';
+        modalContent.style.top = top + 'px';
+        modalContent.style.width = modalWidth + 'px';
+        modalContent.style.maxHeight = modalHeight + 'px';
+        modalContent.style.zIndex = '1201';
+        
+        // Animate from card position to final position
+        const initialScale = Math.min(cardRect.width / modalWidth, cardRect.height / modalHeight, 0.3);
+        const initialX = cardRect.left + cardRect.width/2 - (left + modalWidth/2);
+        const initialY = cardRect.top + cardRect.height/2 - (top + modalHeight/2);
+        
+        modalContent.style.transform = `translate(${initialX}px, ${initialY}px) scale(${initialScale})`;
+        modalContent.style.opacity = '0';
         overlay.style.background = 'rgba(0,0,0,0)';
-        overlay.style.transition = `background ${duration}ms ease`;
-        requestAnimationFrame(()=>{ overlay.style.background = 'rgba(0,0,0,.72)'; });
-
-        // Clean up transition after complete
-        setTimeout(()=>{ content.style.transition=''; overlay.style.transition=''; }, duration + 50);
+        
+        // Force reflow
+        void modalContent.offsetWidth;
+        
+        // Animate to final position
+        modalContent.style.transition = 'transform 400ms cubic-bezier(.22,.61,.36,1), opacity 350ms ease';
+        overlay.style.transition = 'background 400ms ease';
+        
+        requestAnimationFrame(() => {
+            modalContent.style.transform = 'translate(0, 0) scale(1)';
+            modalContent.style.opacity = '1';
+            overlay.style.background = 'rgba(0,0,0,.72)';
+        });
+        
+        // Clean up transitions
+        setTimeout(() => {
+            modalContent.style.transition = '';
+            overlay.style.transition = '';
+        }, 450);
     }
 
 
@@ -438,16 +434,16 @@ class ProjectDetailManager {
             this.modal.classList.remove('active');
             document.body.style.overflow = '';
             
-            // Animate close (shrink to center fade)
+            // Animate close (shrink and fade)
             const content = this.modal.querySelector('.project-modal-content');
             const overlay = this.modal.querySelector('.project-modal-overlay');
             if(content){
-                content.style.transition = 'transform 320ms cubic-bezier(.4,.14,.3,1), opacity 240ms linear';
-                content.style.transform = 'scale(.85)';
+                content.style.transition = 'transform 300ms cubic-bezier(.4,.14,.3,1), opacity 250ms ease';
+                content.style.transform = 'scale(.9)';
                 content.style.opacity = '0';
             }
             if(overlay){
-                overlay.style.transition = 'background 260ms ease';
+                overlay.style.transition = 'background 280ms ease';
                 overlay.style.background = 'rgba(0,0,0,0)';
             }
             setTimeout(()=>{
@@ -455,10 +451,14 @@ class ProjectDetailManager {
                     content.style.transition='';
                     content.style.transform='';
                     content.style.opacity='';
+                    content.style.position='';
+                    content.style.left='';
+                    content.style.top='';
                     content.style.width='';
                     content.style.maxHeight='';
+                    content.style.zIndex='';
                 }
-            },360);
+            },320);
 
             // Restore focus
             if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
@@ -501,19 +501,12 @@ class ProjectDetailManager {
     attachScrollParallax(){ const body = this.modal.querySelector('.project-modal-body'); const content = this.modal.querySelector('.project-modal-content'); if(!body||!content) return; const handler=()=>{ const y=body.scrollTop; content.classList.toggle('scrolling', y>0); content.style.setProperty('--scroll', y); }; body.removeEventListener('scroll', this._parallaxHandler||(()=>{})); this._parallaxHandler=handler; body.addEventListener('scroll', handler, {passive:true}); }
     bindCopyAndHelp(){
         const copyBtn = this.modal.querySelector('.project-copy-link');
-        const helpBtn = this.modal.querySelector('.project-help-btn');
-        const helpOverlay = this.modal.querySelector('.project-help-overlay');
-        const helpClose = this.modal.querySelector('.project-help-close');
         if(copyBtn){
             copyBtn.addEventListener('click', ()=>{
                 const url = location.origin + location.pathname + `#project-${this.currentProjectId}`;
                 navigator.clipboard.writeText(url).then(()=>{ copyBtn.textContent='✅'; setTimeout(()=>{ copyBtn.textContent='🔗'; },1200); this.announce('Link copied'); });
             });
         }
-        const toggleHelp = ()=>{ if(!helpOverlay) return; const hidden = helpOverlay.hasAttribute('hidden'); if(hidden){ helpOverlay.removeAttribute('hidden'); this.announce('Help opened'); } else { helpOverlay.setAttribute('hidden',''); this.announce('Help closed'); } };
-        if(helpBtn) helpBtn.addEventListener('click', toggleHelp);
-        if(helpClose) helpClose.addEventListener('click', toggleHelp);
-        document.addEventListener('keydown', (e)=>{ if(!this.modal.classList.contains('active')) return; if(e.key==='?'){ e.preventDefault(); toggleHelp(); } });
     }
     announce(msg){ if(this.liveRegion){ this.liveRegion.textContent=''; requestAnimationFrame(()=>{ this.liveRegion.textContent=msg; }); } }
     initLazySections(){
