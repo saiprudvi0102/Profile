@@ -345,7 +345,9 @@ class ProjectDetailManager {
                 const card = playBtn.closest('.netflix-card');
                 const projectId = card ? card.dataset.project : null;
                 if (projectId && card) {
-                    this.showProjectDetail(projectId, card);
+                    // Route via hash for consistent open behavior
+                    location.hash = `project-${projectId}`;
+                    return;
                 }
             }
 
@@ -355,8 +357,8 @@ class ProjectDetailManager {
                 e.preventDefault();
                 const projectId = netflixCard.dataset.project;
                 if (projectId) {
-                    this.showProjectDetail(projectId, netflixCard);
-                } else {
+                    location.hash = `project-${projectId}`;
+                    return;
                 }
             }
 
@@ -386,7 +388,9 @@ class ProjectDetailManager {
                         // Prevent accidental double-activation with click
                         e.preventDefault();
                         this._lastTouchOpenAt = Date.now();
-                        this.showProjectDetail(projectId, card);
+                        // Use hash to open via hashchange path (robust)
+                        location.hash = `project-${projectId}`;
+                        return;
                     }
                 }
             }, { passive: false });

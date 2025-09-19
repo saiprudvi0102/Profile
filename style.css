@@ -2365,6 +2365,23 @@ body.loaded {
     flex: 1;
 }
 
+/* Light theme: preview popover readability */
+[data-theme="light"] .netflix-preview-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,245,245,0.98));
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+[data-theme="light"] .preview-overlay {
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(0,0,0,0.06));
+}
+[data-theme="light"] .preview-content { color: #0f172a; }
+[data-theme="light"] .preview-title { color: #0f172a; }
+[data-theme="light"] .preview-description { color: #334155; }
+[data-theme="light"] .preview-tag { background: #eef2f7; color: #0f172a; border-color: #d0d8e0; }
+[data-theme="light"] .preview-metric { color: #64748b; }
+[data-theme="light"] .preview-play-btn { background: #ef4444; color: #ffffff; }
+[data-theme="light"] .preview-play-btn:hover { background: #dc2626; }
+
 /* Enhanced Netflix Card Hover States */
 .netflix-card {
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
