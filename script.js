@@ -408,7 +408,45 @@ class ProjectDetailManager {
 
     showProjectDetail(projectId, cardElement) {
         const project = this.getProjectData(projectId);
-        if (!project) return;
+
+        // If no mapped project data, attempt fallback build from cardElement
+        if (!project) {
+            if (!cardElement) return; // no way to build content
+            const title = cardElement.querySelector('.netflix-card-title')?.textContent?.trim() || 'Project';
+            const desc = cardElement.querySelector('.netflix-card-description')?.textContent?.trim() || '';
+            const tags = Array.from(cardElement.querySelectorAll('.netflix-card-tags .netflix-tag')).map(t=>t.textContent.trim());
+            const imgEl = cardElement.querySelector('img');
+            const image = imgEl ? imgEl.getAttribute('src') : '';
+            const fallbackProject = {
+                title,
+                subtitle: 'Project Overview',
+                image,
+                description: desc,
+                longDescription: desc,
+                metrics: [],
+                technologies: tags.map(tag => ({ name: tag, category: 'Tag' })),
+                features: [],
+                architecture: { title: 'Architecture', description: 'Auto-generated from card content.', components: [] },
+                github: null,
+                demo: null
+            };
+            // Continue rendering using fallback but do NOT set hash (no deep link) and no analytics
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+            this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+            this.currentCardElement = cardElement;
+            const modalBody = this.modal.querySelector('.project-modal-body');
+            modalBody.innerHTML = this.generateProjectDetailHTML(fallbackProject);
+            this.positionModalNearCard(cardElement);
+            this.currentProjectId = null;
+            this.modal.classList.add('active');
+            this.modal.setAttribute('aria-hidden','false');
+            const focusable = this.getFocusableElements();
+            if(focusable.length){ focusable[0].focus({preventScroll:true}); }
+            this.enableFocusTrap();
+            this.announce(`Opened project ${title}`);
+            return;
+        }
 
         // Prevent body scrolling for true popup behavior
         document.body.style.overflow = 'hidden';
@@ -449,7 +487,7 @@ class ProjectDetailManager {
         // Only update hash if it's different to avoid triggering hashchange
         const expectedHash = `project-${projectId}`;
         if (location.hash !== `#${expectedHash}`) {
-            location.hash = expectedHash;
+            location.hash = expectedHash; // guarded only for known projects
         }
     this.preloadAdjacent(projectId);
     this.updateNavButtonStates();
@@ -1193,6 +1231,134 @@ class ProjectDetailManager {
                     ]
                 },
                 github: 'https://github.com/saiprudvi0102/Profile',
+                demo: null
+            }
+            ,
+            'mobile-architecture': {
+                title: '📲 Mobile Architecture Patterns',
+                subtitle: 'Clean Architecture & State Management',
+                image: 'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80',
+                description: 'Advanced mobile development patterns including Provider/BLoC state management, clean modular architecture, and performance optimization.',
+                longDescription: 'This collection demonstrates advanced mobile architectural strategies: layered clean architecture (domain, data, presentation), Provider & BLoC state management comparisons, repository abstraction, dependency injection, and performance instrumentation. Includes lazy feature loading, strategic widget rebuild minimization, and offline-first data sync patterns.',
+                metrics: [
+                    { label: 'Cold Start Reduction', value: '−28%', icon: '⚡' },
+                    { label: 'Rebuild Savings', value: '−42% widgets', icon: '🧩' },
+                    { label: 'Test Coverage', value: '82%', icon: '🧪' },
+                    { label: 'Architecture Layers', value: '3-tier', icon: '🏗️' }
+                ],
+                technologies: [
+                    { name: 'Flutter', category: 'Framework' },
+                    { name: 'Provider', category: 'State' },
+                    { name: 'BLoC', category: 'State' },
+                    { name: 'Isolates', category: 'Concurrency' },
+                    { name: 'SQLite', category: 'Storage' },
+                    { name: 'DIO', category: 'Networking' }
+                ],
+                features: [
+                    'Clean architecture layering',
+                    'Repository & use-case pattern',
+                    'Provider vs BLoC implementations',
+                    'Offline-first sync & caching',
+                    'Structured error handling',
+                    'Performance profiling instrumentation'
+                ],
+                architecture: {
+                    title: 'Clean Architecture Overview',
+                    description: 'Separation of concerns via domain/use-case, data repositories, and presentation state layers with dependency inversion.',
+                    components: [
+                        'Domain layer use-cases',
+                        'Repository abstractions',
+                        'Data providers (REST / cache)',
+                        'BLoC state transformers',
+                        'Provider context trees',
+                        'Isolate-based heavy task offloading'
+                    ]
+                },
+                github: null,
+                demo: null
+            },
+            'performance-analytics': {
+                title: '📈 Performance Analytics Suite',
+                subtitle: 'GPU vs CPU Benchmarking Harness',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+                description: 'Comprehensive benchmarking suite for GPU vs CPU analysis with adaptive grid sizing, instrumentation, and visualization.',
+                longDescription: 'Framework for comparative performance analysis across heterogeneous compute backends. Provides adaptive workload generation, statistical stabilization (warm-up + multiple sample runs), memory bandwidth sampling, and exportable metric dashboards. Focus areas: matrix ops, transform kernels, reduction strategies, and cache behavior exploration.',
+                metrics: [
+                    { label: 'Benchmarks Implemented', value: '25+', icon: '🧪' },
+                    { label: 'Max Observed Speedup', value: '37×', icon: '🚀' },
+                    { label: 'Sampling Variance', value: '<5%', icon: '📊' },
+                    { label: 'Report Formats', value: 'CSV/HTML', icon: '📄' }
+                ],
+                technologies: [
+                    { name: 'CUDA', category: 'GPU' },
+                    { name: 'NumPy', category: 'CPU Compute' },
+                    { name: 'Pandas', category: 'Data' },
+                    { name: 'Matplotlib', category: 'Visualization' },
+                    { name: 'Python', category: 'Language' },
+                    { name: 'Jupyter', category: 'Environment' }
+                ],
+                features: [
+                    'Adaptive workload scaling',
+                    'GPU vs CPU comparative timing',
+                    'Warm & steady-state sampling',
+                    'Outlier rejection & smoothing',
+                    'Memory & cache probe hooks',
+                    'Automated report generation'
+                ],
+                architecture: {
+                    title: 'Benchmark Harness Architecture',
+                    description: 'Modular runners with pluggable kernels and instrumentation pipeline.',
+                    components: [
+                        'Kernel abstraction layer',
+                        'Timing & stats aggregator',
+                        'Adaptive parameter tuner',
+                        'Result persistence layer',
+                        'Visualization/report generator'
+                    ]
+                },
+                github: null,
+                demo: null
+            },
+            'cloud-infrastructure': {
+                title: '☁️ Cloud Infrastructure Blueprint',
+                subtitle: 'Scalable Multi-Cloud Deployment Stack',
+                image: 'https://images.unsplash.com/photo-1509966756634-9c23dd6e6815?auto=format&fit=crop&w=1200&q=80',
+                description: 'Scalable cloud infrastructure design using AWS/GCP, Kubernetes orchestration, CI/CD automation, and observability.',
+                longDescription: 'Blueprint architecture implementing multi-cloud ready infrastructure: production-grade Kubernetes clusters, GitOps-driven deployments, secure secret management, autoscaling policies, multi-stage CI/CD, blue/green rollout strategy, and full-spectrum observability (metrics, logs, traces). Emphasis on reliability, portability, and operational ergonomics.',
+                metrics: [
+                    { label: 'Deployment Frequency', value: '20+/day', icon: '🔄' },
+                    { label: 'MTTR Reduction', value: '−55%', icon: '⏱️' },
+                    { label: 'Uptime Target', value: '99.95%', icon: '✅' },
+                    { label: 'Cost Optimization', value: '−23%', icon: '💰' }
+                ],
+                technologies: [
+                    { name: 'Kubernetes', category: 'Orchestration' },
+                    { name: 'AWS/GCP', category: 'Cloud Platforms' },
+                    { name: 'Terraform', category: 'IaC' },
+                    { name: 'GitHub Actions', category: 'CI/CD' },
+                    { name: 'Prometheus/Grafana', category: 'Observability' },
+                    { name: 'Helm', category: 'Packaging' }
+                ],
+                features: [
+                    'GitOps deployment flow',
+                    'Blue/green & canary rollout',
+                    'Autoscaling policies',
+                    'Centralized logging & tracing',
+                    'Multi-stage environments',
+                    'Security & secret management'
+                ],
+                architecture: {
+                    title: 'Infrastructure Architecture',
+                    description: 'Declarative provisioning, container orchestration, and observability stack.',
+                    components: [
+                        'Terraform infrastructure modules',
+                        'K8s cluster & workloads',
+                        'Ingress & service mesh',
+                        'CI/CD pipeline stages',
+                        'Monitoring & alerting stack'
+                    ]
+                },
+                github: null,
                 demo: null
             }
         };
