@@ -316,7 +316,15 @@ class ProjectDetailManager {
                     </div>
                 </div>
             </div>`;
-        document.body.appendChild(modal);
+        
+        // Append to projects section instead of body
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+            projectsSection.appendChild(modal);
+        } else {
+            document.body.appendChild(modal); // fallback
+        }
+        
         this.modal = modal;
         this.bindNavigation();
         this.bindCopyAndHelp();
@@ -376,11 +384,21 @@ class ProjectDetailManager {
         const cardRect = cardElement.getBoundingClientRect();
         const modalContent = this.modal.querySelector('.project-modal-content');
         const overlay = this.modal.querySelector('.project-modal-overlay');
+        const projectsSection = document.getElementById('projects');
         
-        // Position modal directly over the card
-        modalContent.style.position = 'fixed';
-        modalContent.style.left = `${cardRect.left}px`;
-        modalContent.style.top = `${cardRect.top}px`;
+        if (!projectsSection || !modalContent) return;
+        
+        // Get projects section position for relative positioning
+        const sectionRect = projectsSection.getBoundingClientRect();
+        
+        // Calculate card position relative to projects section
+        const relativeCardLeft = cardRect.left - sectionRect.left;
+        const relativeCardTop = cardRect.top - sectionRect.top;
+        
+        // Position modal content directly over the card (relative to projects section)
+        modalContent.style.position = 'absolute';
+        modalContent.style.left = `${relativeCardLeft}px`;
+        modalContent.style.top = `${relativeCardTop}px`;
         modalContent.style.width = `${cardRect.width}px`;
         modalContent.style.height = `${cardRect.height}px`;
         modalContent.style.transform = 'scale(1)';
@@ -397,20 +415,20 @@ class ProjectDetailManager {
         
         requestAnimationFrame(() => {
             // Calculate expanded size while staying over the card
-            const expandedWidth = Math.min(Math.max(cardRect.width * 1.8, 350), window.innerWidth - 40);
-            const expandedHeight = Math.min(Math.max(cardRect.height * 2.5, 450), window.innerHeight - 40);
+            const expandedWidth = Math.min(Math.max(cardRect.width * 1.8, 350), sectionRect.width - 40);
+            const expandedHeight = Math.min(Math.max(cardRect.height * 2.5, 450), sectionRect.height - 40);
             
             // Adjust position to keep it centered over the original card
             const offsetX = (expandedWidth - cardRect.width) / 2;
             const offsetY = (expandedHeight - cardRect.height) / 2;
             
-            // Calculate final position, keeping it over the card but ensuring it stays in viewport
-            let finalLeft = cardRect.left - offsetX;
-            let finalTop = cardRect.top - offsetY;
+            // Calculate final position, keeping it over the card but ensuring it stays in section bounds
+            let finalLeft = relativeCardLeft - offsetX;
+            let finalTop = relativeCardTop - offsetY;
             
-            // Clamp to viewport with padding
-            finalLeft = Math.max(20, Math.min(finalLeft, window.innerWidth - expandedWidth - 20));
-            finalTop = Math.max(20, Math.min(finalTop, window.innerHeight - expandedHeight - 20));
+            // Clamp to section bounds with padding
+            finalLeft = Math.max(20, Math.min(finalLeft, sectionRect.width - expandedWidth - 20));
+            finalTop = Math.max(20, Math.min(finalTop, sectionRect.height - expandedHeight - 20));
             
             modalContent.style.left = `${finalLeft}px`;
             modalContent.style.top = `${finalTop}px`;
@@ -440,13 +458,21 @@ class ProjectDetailManager {
             
             if(content && this.currentCardElement){
                 const cardRect = this.currentCardElement.getBoundingClientRect();
-                content.style.transition = 'all 350ms cubic-bezier(.4,.14,.3,1)';
-                content.style.left = `${cardRect.left}px`;
-                content.style.top = `${cardRect.top}px`;
-                content.style.width = `${cardRect.width}px`;
-                content.style.height = `${cardRect.height}px`;
-                content.style.opacity = '0';
-                content.style.transform = 'scale(0.8)';
+                const projectsSection = document.getElementById('projects');
+                
+                if (projectsSection) {
+                    const sectionRect = projectsSection.getBoundingClientRect();
+                    const relativeCardLeft = cardRect.left - sectionRect.left;
+                    const relativeCardTop = cardRect.top - sectionRect.top;
+                    
+                    content.style.transition = 'all 350ms cubic-bezier(.4,.14,.3,1)';
+                    content.style.left = `${relativeCardLeft}px`;
+                    content.style.top = `${relativeCardTop}px`;
+                    content.style.width = `${cardRect.width}px`;
+                    content.style.height = `${cardRect.height}px`;
+                    content.style.opacity = '0';
+                    content.style.transform = 'scale(0.8)';
+                }
             } else if(content) {
                 content.style.transition = 'transform 300ms cubic-bezier(.4,.14,.3,1), opacity 250ms ease';
                 content.style.transform = 'scale(.8)';

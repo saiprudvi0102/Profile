@@ -189,8 +189,9 @@
 [data-theme="light"] .tagline { color:#2f3b47; }
 [data-theme="light"] .metric-card { background:rgba(0,0,0,.02); }
 
-/* Modal accessibility base */
-.project-modal.local { position:fixed; inset:0; z-index:1200; display:none; }
+/* Modal accessibility base - positioned within projects section */
+#projects { position: relative; } /* Ensure projects section can contain positioned modal */
+.project-modal.local { position:absolute; inset:0; z-index:1200; display:none; }
 .project-modal.local.active { display:block; }
 .project-modal-overlay.local-overlay { position:absolute; inset:0; background:rgba(0,0,0,.72); }
 .project-modal-shell { position:relative; width:100%; height:100%; display:flex; align-items:flex-start; justify-content:center; padding:2rem; }
