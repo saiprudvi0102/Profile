@@ -19,8 +19,9 @@
     <a href="contact.html">Contact</a>
   </nav>
 </header>
-<section class="page-hero small">
-  <h1 class="right-headline">Experience & Impact</h1>
+<section class="page-hero small" style="background: linear-gradient(135deg, var(--netflix-black) 0%, var(--netflix-dark) 100%), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1920&q=80') center/cover; position: relative; overflow: hidden;">
+  <div style="position: absolute; inset: 0; background: linear-gradient(45deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);"></div>
+  <h1 class="right-headline" style="position: relative; z-index: 2; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);">💼 Experience & Impact</h1>
 </section>
 <section class="section" id="experience">
   <h2 class="section-title">Professional Experience</h2>
@@ -30,13 +31,204 @@
   </div>
 </section>
 <section class="section alt" id="projects">
-  <h2 class="section-title">Projects</h2>
-  <div class="projects-grid dense">
-  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="IoT FPGA Anomaly Detection" loading="lazy"></div><div class="card-body"><h3>⚡ IoT FPGA Anomaly Detection</h3><p>Microsecond network anomaly alerts on PYNQ Z2 via hardware ANN, AXI DMA + BRAM pipeline, Python ↔ VHDL control over IoT‑23 (18 feature classes).</p><div class="tags"><span>💾 FPGA</span><span>🔌 Edge</span><span>🧠 ANN</span></div><div class="card-extra"><strong>Key Design</strong><ul><li>AXI DMA ingestion</li><li>BRAM buffering</li><li>LED alert ISR</li></ul></div></div></article>
-  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="MobileLLM Deployment" loading="lazy"></div><div class="card-body"><h3>🤖 MobileLLM Deployment</h3><p>Multi‑GPU fine‑tuning & quantized inference (FastAPI + streaming) with Docker orchestration; 62.8% eval accuracy, perplexity 7.91.</p><div class="tags"><span>🧠 LLM</span><span>🎮 GPU</span><span>⚡ FastAPI</span></div><div class="card-extra"><strong>Pipeline</strong><ul><li>PEFT / quantization</li><li>Streaming SSE API</li><li>Eval harness CI</li></ul></div></div></article>
-  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="PCNN Shadow Removal" loading="lazy"></div><div class="card-body"><h3>🖼️ PCNN Shadow Removal</h3><p>Pulse Coupled Neural Network segmentation for shadow detection/removal (94.2% SDA, IQI 0.89) with adaptive threshold decay & dynamic linking.</p><div class="tags"><span>🧠 PCNN</span><span>🔥 TensorFlow</span><span>👁️ CV</span></div><div class="card-extra"><strong>Metrics</strong><ul><li>SDA 94.2%</li><li>IQI 0.89</li><li>GPU prototype</li></ul></div></div></article>
-  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Women Safety System" loading="lazy"></div><div class="card-body"><h3>🚨 Women Safety System</h3><p>GPS + GSM microcontroller alerts, SMS notifications, laser-based safety feature.</p><div class="tags"><span>🔌 Embedded</span><span>📍 GPS</span><span>📡 GSM</span></div></div></article>
-  <article class="project-card reveal" tabindex="0"><div class="card-media"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="GPU Risk Analysis" loading="lazy"></div><div class="card-body"><h3>📊 GPU Risk Analysis</h3><p>PyCUDA covariance + VaR engine producing up to 1.57× speedup at 1M day scale; adaptive block sizing & synthetic generator for stress tests.</p><div class="tags"><span>⚡ CUDA</span><span>🎮 GPU</span><span>💰 Finance</span></div><div class="card-extra"><strong>Benchmarks</strong><ul><li>1M day dataset</li><li>Adaptive grid launch</li><li>VaR & covariance</li></ul></div></div></article>
+  <h2 class="section-title">Complete Projects Portfolio</h2>
+  
+  <!-- Core Engineering Projects Carousel -->
+  <div class="netflix-carousel">
+    <div class="carousel-header">
+      <h3 class="carousel-title">⚡ Core Engineering Projects</h3>
+      <div class="carousel-controls">
+        <button class="carousel-btn" data-carousel="core" data-direction="prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="carousel-btn" data-carousel="core" data-direction="next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-track" data-track="core">
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="IoT FPGA Anomaly Detection" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">⚡ IoT FPGA Anomaly Detection</h4>
+            <p class="netflix-card-description">Microsecond network anomaly alerts on PYNQ Z2 via hardware ANN, AXI DMA + BRAM pipeline, Python ↔ VHDL control over IoT‑23 (18 feature classes).</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">💾 FPGA</span>
+              <span class="netflix-tag">🔌 Edge</span>
+              <span class="netflix-tag">🧠 ANN</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Technical Details
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="MobileLLM Deployment" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🤖 MobileLLM Deployment</h4>
+            <p class="netflix-card-description">Multi‑GPU fine‑tuning & quantized inference (FastAPI + streaming) with Docker orchestration; 62.8% eval accuracy, perplexity 7.91.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🧠 LLM</span>
+              <span class="netflix-tag">🎮 GPU</span>
+              <span class="netflix-tag">⚡ FastAPI</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Performance Metrics
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="PCNN Shadow Removal" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🖼️ PCNN Shadow Removal</h4>
+            <p class="netflix-card-description">Pulse Coupled Neural Network segmentation for shadow detection/removal (94.2% SDA, IQI 0.89) with adaptive threshold decay & dynamic linking.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🧠 PCNN</span>
+              <span class="netflix-tag">🔥 TensorFlow</span>
+              <span class="netflix-tag">👁️ CV</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Research Paper
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="GPU Risk Analysis" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">📊 GPU Risk Analysis</h4>
+            <p class="netflix-card-description">PyCUDA covariance + VaR engine producing up to 1.57× speedup at 1M day scale; adaptive block sizing & synthetic generator for stress tests.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">⚡ CUDA</span>
+              <span class="netflix-tag">🎮 GPU</span>
+              <span class="netflix-tag">💰 Finance</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Benchmarks
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specialized Solutions Carousel -->
+  <div class="netflix-carousel">
+    <div class="carousel-header">
+      <h3 class="carousel-title">🛠️ Specialized Solutions</h3>
+      <div class="carousel-controls">
+        <button class="carousel-btn" data-carousel="specialized" data-direction="prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="carousel-btn" data-carousel="specialized" data-direction="next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-track" data-track="specialized">
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Women Safety System" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🚨 Women Safety System</h4>
+            <p class="netflix-card-description">GPS + GSM microcontroller alerts, SMS notifications, laser-based safety feature with real-time location tracking and emergency response.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🔌 Embedded</span>
+              <span class="netflix-tag">📍 GPS</span>
+              <span class="netflix-tag">📡 GSM</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Safety Features
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" alt="Telecom Microservices" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">⚙️ Telecom Microservices</h4>
+            <p class="netflix-card-description">High-throughput Spring Boot microservices processing 120K+ daily transactions with JWT authentication, PostgreSQL optimization, and comprehensive observability.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">☕ Java</span>
+              <span class="netflix-tag">� Spring</span>
+              <span class="netflix-tag">📊 PostgreSQL</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Architecture
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="netflix-card">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="GenAI Documentation Assistant" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🧠 GenAI Documentation Assistant</h4>
+            <p class="netflix-card-description">LangChain-powered documentation assistant saving ~4h weekly per oncologist through automated patient note summarization and medical record processing.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🧩 LangChain</span>
+              <span class="netflix-tag">🏥 Healthcare</span>
+              <span class="netflix-tag">📝 NLP</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                AI Pipeline
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

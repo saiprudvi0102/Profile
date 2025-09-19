@@ -275,122 +275,315 @@
 <section class="section alt" id="projects">
     <h2 class="section-title">Featured Projects</h2>
     
-    <!-- Backend & AI Engineering -->
-    <div style="margin-bottom:3rem;">
-        <h3 style="font-size:1.1rem; color:#8b5cf6; margin-bottom:1.5rem; text-align:center;">🧠 Backend & AI Engineering</h3>
-        <div class="projects-grid">
-            <article class="project-card reveal">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI and machine learning" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3>🤖 MobileLLM Fine-Tuning</h3>
-                    <p>Multi‑GPU fine‑tuning & quantized inference pipeline (FastAPI + Docker) achieving 62.8% eval accuracy & perplexity 7.91; batch scheduler + streaming responses & CI for reproducible experiments.</p>
-                    <div class="tags"><span>🧠 LLM</span><span>🎮 GPU</span><span>� Docker</span></div>
-                    <div class="card-extra">
-                        <strong>Stack</strong>
-                        <ul>
-                            <li>Parameter‑efficient tuning</li>
-                            <li>Streaming SSE responses</li>
-                            <li>Automated eval harness</li>
-                        </ul>
+    <!-- Backend & AI Engineering Carousel -->
+    <div class="netflix-carousel">
+        <div class="carousel-header">
+            <h3 class="carousel-title">🧠 Backend & AI Engineering</h3>
+            <div class="carousel-controls">
+                <button class="carousel-btn" data-carousel="backend" data-direction="prev" aria-label="Previous">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="carousel-btn" data-carousel="backend" data-direction="next" aria-label="Next">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" data-track="backend">
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI and machine learning" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">🤖 MobileLLM Fine-Tuning</h4>
+                        <p class="netflix-card-description">Multi‑GPU fine‑tuning & quantized inference pipeline (FastAPI + Docker) achieving 62.8% eval accuracy & perplexity 7.91; batch scheduler + streaming responses & CI for reproducible experiments.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">🧠 LLM</span>
+                            <span class="netflix-tag">🎮 GPU</span>
+                            <span class="netflix-tag">🐳 Docker</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </article>
-            <article class="project-card reveal">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="Financial analytics and data" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3>� GPU Financial Risk Analysis</h3>
-                    <p>CUDA PyCUDA engine for covariance & VaR scaling to 1M+ days, delivering up to 1.57× speedup vs CPU; adaptive grid sizing + synthetic data generator for stress benchmarking.</p>
-                    <div class="tags"><span>⚡ CUDA</span><span>� Risk</span><span>� Analytics</span></div>
-                    <div class="card-extra">
-                        <strong>Perf</strong>
-                        <ul>
-                            <li>Adaptive block/grid launch</li>
-                            <li>1M day synthetic datasets</li>
-                            <li>CPU vs GPU benchmark suite</li>
-                        </ul>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="Financial analytics and data" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">📊 GPU Financial Risk Analysis</h4>
+                        <p class="netflix-card-description">CUDA PyCUDA engine for covariance & VaR scaling to 1M+ days, delivering up to 1.57× speedup vs CPU; adaptive grid sizing + synthetic data generator for stress benchmarking.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">⚡ CUDA</span>
+                            <span class="netflix-tag">📈 Risk</span>
+                            <span class="netflix-tag">📊 Analytics</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </article>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" alt="Microservices architecture" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">⚙️ Telecom Microservices</h4>
+                        <p class="netflix-card-description">High-throughput Spring Boot microservices processing 120K+ daily transactions with JWT authentication, PostgreSQL optimization, and comprehensive observability.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">☕ Java</span>
+                            <span class="netflix-tag">🍃 Spring</span>
+                            <span class="netflix-tag">📊 PostgreSQL</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="GenAI and LLM development" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">🧠 GenAI Documentation Assistant</h4>
+                        <p class="netflix-card-description">LangChain-powered documentation assistant saving ~4h weekly per oncologist through automated patient note summarization and medical record processing.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">🧩 LangChain</span>
+                            <span class="netflix-tag">🏥 Healthcare</span>
+                            <span class="netflix-tag">📝 NLP</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Mobile & Platform Development -->
-    <div style="margin-bottom:3rem;">
-        <h3 style="font-size:1.1rem; color:#10b981; margin-bottom:1.5rem; text-align:center;">📱 Mobile & Platform Development</h3>
-        <div class="projects-grid">
-            <article class="project-card reveal">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Campus student life app" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3>🏫 DormUnity Campus Platform</h3>
-                    <p>Comprehensive Flutter campus super app featuring ridesharing, accommodation listings, expense sharing & social features. Built with Firebase suite (Auth, Firestore, Storage, FCM) and modular architecture with CI/CD automation.</p>
-                    <div class="tags"><span>� Flutter</span><span>� Firebase</span><span>🔄 CI/CD</span></div>
-                    <div class="store-badges" style="margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-                        <a class="store-badge android" href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener">Google Play</a>
-                        <span class="store-badge ios" aria-disabled="true">App Store – Coming Soon</span>
+    <!-- Mobile & Platform Development Carousel -->
+    <div class="netflix-carousel">
+        <div class="carousel-header">
+            <h3 class="carousel-title">📱 Mobile & Platform Development</h3>
+            <div class="carousel-controls">
+                <button class="carousel-btn" data-carousel="mobile" data-direction="prev" aria-label="Previous">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="carousel-btn" data-carousel="mobile" data-direction="next" aria-label="Next">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-track" data-track="mobile">
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Campus student life app" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">🏫 DormUnity Campus Platform</h4>
+                        <p class="netflix-card-description">Comprehensive Flutter campus super app featuring ridesharing, accommodation listings, expense sharing & social features. Built with Firebase suite and modular architecture.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">📱 Flutter</span>
+                            <span class="netflix-tag">🔥 Firebase</span>
+                            <span class="netflix-tag">🔄 CI/CD</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                Google Play
+                            </button>
+                        </div>
                     </div>
-                    <div class="card-extra">
-                        <strong>Key Features</strong>
-                        <ul>
-                            <li>Provider/BLoC modular state management</li>
-                            <li>GitHub Actions CI/CD pipeline</li>
-                            <li>Real-time data synchronization</li>
-                            <li>Push notification system</li>
-                            <li>Performance-optimized architecture</li>
-                        </ul>
+                </div>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" alt="Cross-platform development" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">🔄 Cross-Platform Framework</h4>
+                        <p class="netflix-card-description">Reusable Flutter component library with shared business logic, custom widgets, and platform-specific optimizations for Android and iOS applications.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">📱 Flutter</span>
+                            <span class="netflix-tag">🎨 Widgets</span>
+                            <span class="netflix-tag">📦 Library</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </article>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80" alt="Mobile app development" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">📲 Mobile Architecture Patterns</h4>
+                        <p class="netflix-card-description">Advanced mobile development patterns including Provider/BLoC state management, clean architecture, and performance optimization techniques.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">🏗️ Architecture</span>
+                            <span class="netflix-tag">⚡ Performance</span>
+                            <span class="netflix-tag">🎯 BLoC</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Systems & Research -->
-    <div>
-        <h3 style="font-size:1.1rem; color:#f59e0b; margin-bottom:1.5rem; text-align:center;">⚡ Systems & Research</h3>
-        <div class="projects-grid">
-            <article class="project-card reveal">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="Image processing and AI" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3>🖼️ PCNN Shadow Removal</h3>
-                    <p>Pulse Coupled Neural Network approach for image shadow detection/removal achieving 94.2% SDA & IQI 0.89 with dynamic linking + adaptive thresholding (GPU‑accelerated TensorFlow prototype).</p>
-                    <div class="tags"><span>🧠 PCNN</span><span>🔥 TensorFlow</span><span>�️ CV</span></div>
-                    <div class="card-extra">
-                        <strong>Pipeline</strong>
-                        <ul>
-                            <li>Adaptive threshold decay</li>
-                            <li>Dynamic linking field tuning</li>
-                            <li>Comparative GMM baseline</li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
-            <article class="project-card reveal">
-                <div class="card-media">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="FPGA and embedded systems" loading="lazy">
-                </div>
-                <div class="card-body">
-                    <h3>⚡ IoT Anomaly Detection (FPGA)</h3>
-                    <p>Real‑time network anomaly detection on PYNQ Z2: AXI DMA + BRAM pipeline, hardware ANN inference, microsecond alert LEDs; leverages IoT‑23 dataset (18 feature vectors) with Python ↔ VHDL control.</p>
-                    <div class="tags"><span>💾 FPGA</span><span>� Embedded</span><span>🧠 ML</span></div>
-                    <div class="card-extra">
-                        <strong>Hardware</strong>
-                        <ul>
-                            <li>AXI DMA stream ingest</li>
-                            <li>BRAM feature windowing</li>
-                            <li>LED interrupt alerts</li>
-                        </ul>
-                    </div>
-                </div>
-            </article>
+    <!-- Systems & Research Carousel -->
+    <div class="netflix-carousel">
+        <div class="carousel-header">
+            <h3 class="carousel-title">⚡ Systems & Research</h3>
+            <div class="carousel-controls">
+                <button class="carousel-btn" data-carousel="systems" data-direction="prev" aria-label="Previous">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
+                <button class="carousel-btn" data-carousel="systems" data-direction="next" aria-label="Next">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
-    <div class="center mt">
+        <div class="carousel-container">
+            <div class="carousel-track" data-track="systems">
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="Image processing and AI" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">🖼️ PCNN Shadow Removal</h4>
+                        <p class="netflix-card-description">Pulse Coupled Neural Network approach for image shadow detection/removal achieving 94.2% SDA & IQI 0.89 with dynamic linking + adaptive thresholding.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">🧠 PCNN</span>
+                            <span class="netflix-tag">🔥 TensorFlow</span>
+                            <span class="netflix-tag">👁️ CV</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="FPGA and embedded systems" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">⚡ IoT Anomaly Detection (FPGA)</h4>
+                        <p class="netflix-card-description">Real‑time network anomaly detection on PYNQ Z2: AXI DMA + BRAM pipeline, hardware ANN inference, microsecond alert LEDs with IoT‑23 dataset.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">💾 FPGA</span>
+                            <span class="netflix-tag">🔌 Embedded</span>
+                            <span class="netflix-tag">🧠 ML</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data analysis and visualization" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">📈 Performance Analytics</h4>
+                        <p class="netflix-card-description">Comprehensive benchmarking suite for GPU vs CPU performance analysis with adaptive grid sizing and synthetic data generation for stress testing.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">� Analytics</span>
+                            <span class="netflix-tag">⚡ Performance</span>
+                            <span class="netflix-tag">📈 Benchmarks</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="netflix-card">
+                    <img src="https://images.unsplash.com/photo-1509966756634-9c23dd6e6815?auto=format&fit=crop&w=800&q=80" alt="Cloud computing architecture" loading="lazy" class="netflix-card-image">
+                    <div class="card-overlay"></div>
+                    <div class="netflix-card-content">
+                        <h4 class="netflix-card-title">☁️ Cloud Infrastructure</h4>
+                        <p class="netflix-card-description">Scalable cloud infrastructure design using AWS and GCP services with Kubernetes orchestration, CI/CD pipelines, and monitoring solutions.</p>
+                        <div class="netflix-card-tags">
+                            <span class="netflix-tag">☁️ AWS</span>
+                            <span class="netflix-tag">☸️ K8s</span>
+                            <span class="netflix-tag">🔄 DevOps</span>
+                        </div>
+                        <div class="netflix-card-footer">
+                            <button class="play-btn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="center mt" style="margin-top: var(--spacing-xxl);">
         <a href="work.html#projects" class="btn ghost">🎬 Browse All Projects</a>
     </div>
 </section>
