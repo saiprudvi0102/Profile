@@ -7,6 +7,12 @@ window.addEventListener('DOMContentLoaded', () => {
   
   // Initialize header scroll effects
   initializeHeaderEffects();
+  
+  // Initialize project detail manager
+  new ProjectDetailManager();
+  
+  // Initialize certification viewers
+  initializeCertificationViewers();
 });
 
 // Netflix-style carousel functionality
@@ -351,7 +357,7 @@ class ProjectDetailManager {
             if (playBtn) {
                 e.preventDefault();
                 const card = playBtn.closest('.netflix-card');
-                const projectId = card.dataset.project;
+                const projectId = card ? card.dataset.project : null;
                 if (projectId) {
                     this.showProjectDetail(projectId);
                 }
@@ -858,11 +864,12 @@ class ProjectDetailManager {
     }
 }
 
-// Initialize project detail manager
-document.addEventListener('DOMContentLoaded', () => {
-    new ProjectDetailManager();
-    initializeCertificationViewers();
-});
+function openProjectDetail(projectId) {
+    closeCertificationModal();
+    // Trigger project detail modal
+    const projectDetailManager = new ProjectDetailManager();
+    projectDetailManager.showProjectDetail(projectId);
+}
 
 // Certification detail functionality
 function initializeCertificationViewers() {
@@ -972,7 +979,7 @@ function getCertificationData(certId) {
             title: 'AWS Certified Developer – Associate',
             organization: 'Amazon Web Services',
             date: '2024',
-            logo: 'https://cdn.simpleicons.org/amazonaws/ffffff',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
             gradient: 'background: linear-gradient(135deg, #232F3E, #0b1220); color: white;',
             description: 'Validates technical expertise in developing and maintaining applications on the AWS platform. Demonstrates proficiency in core AWS services, architecture best practices, and security implementation.',
             skills: [
@@ -992,7 +999,7 @@ function getCertificationData(certId) {
             title: 'Introduction to Generative AI',
             organization: 'Google Cloud',
             date: '2024',
-            logo: 'https://cdn.simpleicons.org/googlecloud/ffffff',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
             gradient: 'background: linear-gradient(135deg, #1a73e8, #1557b0); color: white;',
             description: 'Comprehensive introduction to Generative AI concepts, applications, and Google Cloud AI/ML services. Covers fundamental principles of large language models, responsible AI, and practical implementation strategies.',
             skills: [
@@ -1012,7 +1019,7 @@ function getCertificationData(certId) {
             title: 'Introduction to Large Language Models',
             organization: 'DeepLearning.AI',
             date: '2024',
-            logo: 'https://cdn.simpleicons.org/deeplearningai/00FFFF',
+            logo: 'https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/fH_-tQ1HEeWlNg6f0QnStw_a2e6b43e93e14c98864b3bbcdd6bcff1_deeplearning.ai-logo-white.png',
             gradient: 'background: linear-gradient(135deg, #0b1220, #111827); color: white;',
             description: 'In-depth exploration of Large Language Models, covering architecture, training methodologies, fine-tuning techniques, and practical applications. Focus on understanding transformer architectures and prompt engineering.',
             skills: [
@@ -1032,7 +1039,7 @@ function getCertificationData(certId) {
             title: 'Supervised Machine Learning: Regression',
             organization: 'Coursera | Andrew Ng',
             date: '2023',
-            logo: 'https://cdn.simpleicons.org/coursera/ffffff',
+            logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Coursera_logo.svg',
             gradient: 'background: linear-gradient(135deg, #2a73cc, #1c56a5); color: white;',
             description: 'Comprehensive course on supervised machine learning with focus on regression algorithms. Covers linear regression, logistic regression, regularization techniques, and practical implementation using Python and scikit-learn.',
             skills: [
@@ -1051,12 +1058,5 @@ function getCertificationData(certId) {
     };
     
     return certifications[certId];
-}
-
-function openProjectDetail(projectId) {
-    closeCertificationModal();
-    // Trigger project detail modal
-    const projectDetailManager = new ProjectDetailManager();
-    projectDetailManager.openModal(projectId);
 }
 
