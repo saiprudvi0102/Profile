@@ -20,6 +20,15 @@ window.addEventListener('DOMContentLoaded', () => {
     // Certification viewers removed (simplified section)
 });
 
+// Lightweight analytics hook (no external dependency). Replace console.log with real endpoint if needed.
+function analyticsTrack(event, data={}) {
+    try {
+        // Example stub: push to dataLayer if exists, else console.
+        if(window.dataLayer){ window.dataLayer.push({event, ...data}); }
+        else { console.log('[analytics]', event, data); }
+    } catch(e) { /* swallow */ }
+}
+
 // Netflix-style carousel functionality
 function initializeCarousels() {
   const carousels = document.querySelectorAll('[data-track]');
@@ -239,14 +248,11 @@ class ProjectDetailManager {
         this.projectOrder = this.computeProjectOrder();
         this.currentProjectId = null;
         this.swipeData = null;
+        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // Hash change handling
         window.addEventListener('hashchange', () => this.handleHashChange());
-        window.addEventListener('load', () => {
-            const hashId = location.hash.replace('#project-','');
-            if(hashId && this.getProjectData(hashId)) {
-                const card = document.querySelector(`.netflix-card[data-project="${hashId}"]`);
-                this.showProjectDetail(hashId, card);
-            }
-        });
+        
         // Live region for announcements
         const live = document.createElement('div');
         live.className = 'sr-only';
@@ -259,6 +265,9 @@ class ProjectDetailManager {
     init() {
         this.bindEvents();
         this.createDetailModal();
+        
+        // Check for initial hash after modal is created
+        this.handleHashChange();
     }
 
     bindEvents() {
@@ -428,14 +437,25 @@ class ProjectDetailManager {
             modalBody.innerHTML = this.generateProjectDetailHTML(project);
         }
         
-        // Position modal as popup overlay
-        this.positionModalNearCard(cardElement);
-    this.currentProjectId = projectId;
-    location.hash = `project-${projectId}`;
+        // Position modal as popup overlay (handle case where cardElement is null)
+        if (cardElement) {
+            this.positionModalNearCard(cardElement);
+        } else {
+            // Direct URL access - show modal without card animation
+            this.showModalDirectly();
+        }
+        this.currentProjectId = projectId;
+        
+        // Only update hash if it's different to avoid triggering hashchange
+        const expectedHash = `project-${projectId}`;
+        if (location.hash !== `#${expectedHash}`) {
+            location.hash = expectedHash;
+        }
     this.preloadAdjacent(projectId);
     this.updateNavButtonStates();
     this.attachScrollParallax();
     this.announce(`Opened project ${project.title}`);
+    analyticsTrack('project_modal_open', { projectId, title: project.title });
     this.updateProgress();
     this.bindCopyAndHelp();
     this.initLazySections();
@@ -504,46 +524,56 @@ class ProjectDetailManager {
         // Store originating card for focus return
         this.originatingCard = cardElement;
         
-        // Reset any previous positioning
-        modalContent.style.position = 'fixed';
-        modalContent.style.width = `${cardRect.width}px`;
-        modalContent.style.height = `${cardRect.height}px`;
-        modalContent.style.left = `${cardRect.left}px`;
-        modalContent.style.top = `${cardRect.top}px`;
-        modalContent.style.transform = 'scale(1)';
-        modalContent.style.opacity = '0';
-        modalContent.style.borderRadius = '8px';
+        // Start animation from card position (using CSS custom properties for animation)
+        this.modal.style.setProperty('--start-left', `${cardRect.left}px`);
+        this.modal.style.setProperty('--start-top', `${cardRect.top}px`);
+        this.modal.style.setProperty('--start-width', `${cardRect.width}px`);
+        this.modal.style.setProperty('--start-height', `${cardRect.height}px`);
         
-        // Initialize overlay
-        overlay.style.background = 'rgba(0,0,0,0)';
+        // Add animation class unless reduced motion preferred
+        if(!this.prefersReducedMotion){
+            this.modal.classList.add('animating-in');
+        }
         
         // Show modal
         this.modal.classList.add('active');
         this.modal.setAttribute('aria-hidden', 'false');
         
-        // Force reflow
-        void modalContent.offsetWidth;
+        // Remove animation class after animation completes
+        if(!this.prefersReducedMotion){
+            setTimeout(() => {
+                this.modal.classList.remove('animating-in');
+            }, 600);
+        }
+    }
+
+    showModalDirectly() {
+        // Show modal directly without card animation (for direct URL access)
+        this.modal.classList.add('active');
+        this.modal.setAttribute('aria-hidden', 'false');
         
-        // Animate to full-screen popup
-        const animationDuration = 500;
-        modalContent.style.transition = `all ${animationDuration}ms cubic-bezier(.22,.61,.36,1)`;
-        overlay.style.transition = `background ${animationDuration}ms ease`;
+        const modalContent = this.modal.querySelector('.project-modal-content');
+        const overlay = this.modal.querySelector('.project-modal-overlay');
         
-        requestAnimationFrame(() => {
-            modalContent.style.left = '0px';
-            modalContent.style.top = '0px';
+        if (modalContent && overlay) {
+            // Start with modal already at full size
             modalContent.style.width = '100vw';
             modalContent.style.height = '100vh';
+            modalContent.style.left = '0px';
+            modalContent.style.top = '0px';
             modalContent.style.borderRadius = '0px';
-            modalContent.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,0.95)';
-        });
-        
-        // Clean up transitions
-        setTimeout(() => {
-            modalContent.style.transition = '';
-            overlay.style.transition = '';
-        }, animationDuration + 50);
+            modalContent.style.opacity = '0';
+            
+            overlay.style.background = 'rgba(0,0,0,0)';
+            
+            // Fade in
+            requestAnimationFrame(() => {
+                modalContent.style.transition = 'opacity 0.3s ease';
+                overlay.style.transition = 'background 0.3s ease';
+                modalContent.style.opacity = '1';
+                overlay.style.background = 'rgba(0,0,0,0.95)';
+            });
+        }
     }
 
     positionModalInCertifications(cardElement) {
@@ -653,54 +683,38 @@ class ProjectDetailManager {
 
     closeModal() {
         if (this.modal) {
-            this.modal.classList.remove('active');
-            
             // Restore body scrolling
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
             
-            // Animate close (shrink back to card position)
-            const content = this.modal.querySelector('.project-modal-content');
-            const overlay = this.modal.querySelector('.project-modal-overlay');
-            
-            // Use the stored originating card for animation and focus return
-            const targetCard = this.originatingCard || this.currentCardElement;
-            
-            if(content && targetCard){
-                const cardRect = targetCard.getBoundingClientRect();
-                
-                content.style.transition = 'all 400ms cubic-bezier(.4,.14,.3,1)';
-                content.style.left = `${cardRect.left}px`;
-                content.style.top = `${cardRect.top}px`;
-                content.style.width = `${cardRect.width}px`;
-                content.style.height = `${cardRect.height}px`;
-                content.style.opacity = '0';
-                content.style.transform = 'scale(0.9)';
-            } else if(content) {
-                content.style.transition = 'transform 350ms cubic-bezier(.4,.14,.3,1), opacity 300ms ease';
-                content.style.transform = 'scale(.85)';
-                content.style.opacity = '0';
-            }
-            
-            if(overlay){
-                overlay.style.transition = 'background 400ms ease';
-                overlay.style.background = 'rgba(0,0,0,0)';
-            }
-            
-            setTimeout(()=>{
-                if(content){
-                    content.style.transition='';
-                    content.style.transform='';
-                    content.style.opacity='';
-                    content.style.position='';
-                    content.style.left='';
-                    content.style.top='';
-                    content.style.width='';
-                    content.style.height='';
-                    content.style.maxHeight='';
-                    content.style.zIndex='';
+            const hasGeometry = this.modal.style.getPropertyValue('--start-width');
+            if(!this.prefersReducedMotion && hasGeometry){
+                this.modal.classList.add('animating-out');
+                setTimeout(() => {
+                    this.modal.classList.remove('active');
+                    this.modal.classList.remove('animating-out');
+                    this.modal.setAttribute('aria-hidden','true');
+                }, 400);
+            } else {
+                // Simple fade
+                const content = this.modal.querySelector('.project-modal-content');
+                const overlay = this.modal.querySelector('.project-modal-overlay');
+                if(content && overlay){
+                    content.style.transition='opacity .25s ease';
+                    overlay.style.transition='background .25s ease';
+                    content.style.opacity='0';
+                    overlay.style.background='rgba(0,0,0,0)';
+                    setTimeout(()=>{
+                        this.modal.classList.remove('active');
+                        this.modal.setAttribute('aria-hidden','true');
+                        content.style.opacity='';
+                        overlay.style.background='';
+                    },250);
+                } else {
+                    this.modal.classList.remove('active');
+                    this.modal.setAttribute('aria-hidden','true');
                 }
-            },450);
+            }
 
             // Return focus to originating card
             if(this.originatingCard && typeof this.originatingCard.focus === 'function') {
@@ -710,10 +724,10 @@ class ProjectDetailManager {
             }
             
             this.disableFocusTrap();
-            this.modal.setAttribute('aria-hidden','true');
             if(location.hash === `#project-${this.currentProjectId}`){
                 history.replaceState('', document.title, location.pathname + location.search);
             }
+            analyticsTrack('project_modal_close', { projectId: this.currentProjectId });
             this.currentProjectId = null;
             this.originatingCard = null; // Clear reference
         }
@@ -743,7 +757,34 @@ class ProjectDetailManager {
     updateNavButtonStates(){ const prev = this.modal.querySelector('.project-nav-btn.prev'); const next = this.modal.querySelector('.project-nav-btn.next'); if(!prev||!next) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prev.disabled = idx<=0; next.disabled = idx>=this.projectOrder.length-1; }
     updateProgress(){ const prog = this.modal.querySelector('.project-progress'); if(!prog || !this.currentProjectId) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prog.textContent = `${idx+1} / ${this.projectOrder.length}`; }
     preloadAdjacent(id){ const idx = this.projectOrder.indexOf(id); [-1,1].forEach(d=>{ const t = this.projectOrder[idx+d]; if(t){ const data=this.getProjectData(t); if(data && data.image){ const img=new Image(); img.src=data.image; } } }); }
-    handleHashChange(){ const wanted = location.hash.replace('#project-',''); if(!wanted){ if(this.modal.classList.contains('active')) this.closeModal(); return; } if(wanted===this.currentProjectId) return; if(!this.getProjectData(wanted)) return; const card=document.querySelector(`.netflix-card[data-project="${wanted}"]`); this.showProjectDetail(wanted, card); }
+    handleHashChange() { 
+        const wanted = location.hash.replace('#project-', ''); 
+        
+        // If no hash or not a project hash, close modal if open
+        if (!wanted) { 
+            if (this.modal && this.modal.classList.contains('active')) {
+                this.closeModal(); 
+            }
+            return; 
+        } 
+        
+        // If already showing this project, do nothing
+        if (wanted === this.currentProjectId) {
+            return; 
+        }
+        
+        // Check if project data exists
+        const projectData = this.getProjectData(wanted);
+        if (!projectData) {
+            return; 
+        }
+        
+        // Find the card element
+        const card = document.querySelector(`.netflix-card[data-project="${wanted}"]`); 
+        
+        // Show the project detail
+        this.showProjectDetail(wanted, card); 
+    }
     attachScrollParallax(){ const body = this.modal.querySelector('.project-modal-body'); const content = this.modal.querySelector('.project-modal-content'); if(!body||!content) return; const handler=()=>{ const y=body.scrollTop; content.classList.toggle('scrolling', y>0); content.style.setProperty('--scroll', y); }; body.removeEventListener('scroll', this._parallaxHandler||(()=>{})); this._parallaxHandler=handler; body.addEventListener('scroll', handler, {passive:true}); }
     bindCopyAndHelp(){
         const copyBtn = this.modal.querySelector('.project-copy-link');

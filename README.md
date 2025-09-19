@@ -85,3 +85,51 @@ CERTIFICATIONS
 • Introduction to Large Language Models
 • Supervised Machine Learning: Regression
 • Introduction to Generative AI
+
+---
+Portfolio Site Additions (2025)
+
+1. Full-Screen Project Popup Modal
+	- Clicking any project card now opens an animated, edge‑to‑edge overlay (true viewport fixed) with keyboard navigation (←/→), focus trap, ESC to close, and share‑link copy.
+	- Supports deep linking via URLs like `#project-mobilellm` (paste into a new tab to open directly).
+	- Accessible: role="dialog", aria-modal, focus restoration, live region announcements.
+
+2. Light / Dark Theme System
+	- Theme toggle persists preference (localStorage, attribute `data-theme`).
+	- Light mode introduces soft elevated cards, subtle borders, neutral grays, improved contrast, gradient headings.
+	- All cards, sections, metrics, certification tiles, and modal content use CSS custom properties for consistent theming.
+
+3. Performance & UX Enhancements
+	- Hover preview manager (Netflix-style delayed preview) decoupled from modal logic.
+	- Lazy reveal animations inside modal (IntersectionObserver) for long content sections.
+	- Image preloading for adjacent projects to smooth navigation.
+
+4. Implementation Notes
+	- Legacy inline/static modal markup removed from `index.html`; modal DOM is injected dynamically by `ProjectDetailManager` in `script.js`.
+	- Old global `.project-modal` rules deprecated in favor of `.project-modal.local` full-screen system; legacy selectors neutralized to avoid cascade conflicts.
+	- CSS custom properties drive geometry animation (start card bounds → fullscreen) via `--start-left/top/width/height`.
+
+5. Extending
+	- To add a new project: add a `.netflix-card[data-project="id"]` in HTML and define its metadata in `getProjectData()` inside `script.js`.
+	- Shareable URL automatically becomes `#project-id`.
+
+For questions or improvements: open an issue or contact via LinkedIn.
+
+2025 Enhancements (Extended)
+6. Reduced Motion Accessibility
+	- Respects user OS setting `prefers-reduced-motion: reduce`; disables expansion / shrink keyframes and uses instant or simple fade transitions.
+	- JS guard (`prefersReducedMotion`) prevents adding animation classes; close flow falls back to lightweight fade.
+
+7. Lightweight Analytics Hooks
+	- `analyticsTrack(event, data)` stub added in `script.js` (logs to console or pushes to `dataLayer` if present).
+	- Fires `project_modal_open` and `project_modal_close` with metadata (projectId, title) for easy future instrumentation.
+
+8. Dedicated Work Page (`work.html`)
+	- Consolidated project listing & carousels with the same full-screen modal behavior (no duplicate static modal markup).
+	- Ensures consistent theming + accessibility (card focus, Enter activation, deep linking with hashes).
+
+9. Consistent Close Animations
+	- If no originating geometry or reduced motion preferred, modal uses a fast opacity fade instead of shrink animation.
+
+10. Theming Parity
+	- Work page includes the persistent theme toggle script; localStorage setting shared across all pages.

@@ -52,7 +52,7 @@
     </div>
     <div class="carousel-container">
       <div class="carousel-track" data-track="core">
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="iot-fpga">
           <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="IoT FPGA Anomaly Detection" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -75,7 +75,7 @@
           </div>
         </div>
         
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="mobilellm">
           <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="MobileLLM Deployment" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -98,7 +98,7 @@
           </div>
         </div>
         
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="financial-risk">
           <img src="https://images.unsplash.com/photo-1560472355-a9a6ea4a3c00?auto=format&fit=crop&w=800&q=80" alt="GPU Financial Risk Analysis" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -121,7 +121,7 @@
           </div>
         </div>
         
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="pcnn-shadow">
           <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="PCNN Shadow Removal" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -144,7 +144,7 @@
           </div>
         </div>
         
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="financial-risk">
           <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="GPU Risk Analysis" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -188,7 +188,7 @@
     </div>
     <div class="carousel-container">
       <div class="carousel-track" data-track="specialized">
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="dormunity">
           <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Women Safety System" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -210,7 +210,7 @@
           </div>
         </div>
         
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="stylestitch">
           <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" alt="Telecom Microservices" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -232,7 +232,7 @@
           </div>
         </div>
         
-        <div class="netflix-card">
+  <div class="netflix-card" data-project="genai-clinical">
           <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="GenAI Documentation Assistant" loading="lazy" class="netflix-card-image">
           <div class="card-overlay"></div>
           <div class="netflix-card-content">
@@ -320,19 +320,19 @@
 </div>
 
 <footer class="site-footer"><p>&copy; <span id="year"></span> Saiprudvi Ela</p></footer>
-<div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
-<div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <header>
-    <img id="modalImage" alt="Project cover" loading="lazy" />
-    <button class="close-btn" id="modalClose" aria-label="Close project">×</button>
-  </header>
-  <div class="modal-body">
-    <h2 id="modalTitle"></h2>
-    <p id="modalDesc" class="lead" style="font-size:.85rem; line-height:1.5; max-width:760px;"></p>
-    <div class="meta-tags" id="modalTags"></div>
-    <div id="modalExtra"></div>
-  </div>
-</div>
+<!-- Legacy static modal removed: dynamic full-screen modal is injected by ProjectDetailManager -->
+<script>
+// Ensure theme toggle parity with index page
+(function(){
+  const STORAGE_KEY='pref-theme';
+  const btn=document.getElementById('themeToggle');
+  if(btn){
+    const apply=(m)=>{ document.documentElement.setAttribute('data-theme',m); btn.dataset.mode=m; };
+    const saved=localStorage.getItem(STORAGE_KEY); if(saved) apply(saved);
+    btn.addEventListener('click',()=>{ const next=btn.dataset.mode==='light'?'dark':'light'; apply(next); localStorage.setItem(STORAGE_KEY,next); });
+  }
+})();
+</script>
 <script src="script.js"></script>
 </body>
 </html>

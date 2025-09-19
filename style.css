@@ -146,6 +146,46 @@
 [data-theme="light"] .nav a.active { background:rgba(0,0,0,.08); color:var(--text); }
 [data-theme="light"] .logo { background:var(--accent); -webkit-background-clip:text; background-clip:text; color:transparent; }
 [data-theme="light"] .netflix-card { background:#ffffff; border:1px solid #dfe6ed; }
+[data-theme="light"] .netflix-card:hover { box-shadow:0 6px 28px -6px rgba(0,0,0,.15); border-color:#c9d4dd; }
+[data-theme="light"] .section { background:linear-gradient(180deg,#ffffff 0%, #f1f5f9 140%); box-shadow:0 2px 8px rgba(0,0,0,.04), 0 1px 2px rgba(0,0,0,.08); border:1px solid #e2e8f0; border-radius:28px; }
+[data-theme="light"] .section.alt { background:linear-gradient(180deg,#f8fafc 0%, #eef3f8 140%); }
+[data-theme="light"] .carousel-header h3, [data-theme="light"] .section-title { background:linear-gradient(90deg,#0f172a,#334155); -webkit-background-clip:text; background-clip:text; color:transparent; }
+[data-theme="light"] .netflix-card-title { color:#1e293b; }
+[data-theme="light"] .netflix-card .card-overlay { background:linear-gradient(180deg,rgba(255,255,255,0) 0%, rgba(0,0,0,.05) 55%, rgba(0,0,0,.12) 100%); }
+[data-theme="light"] .netflix-card-tags .netflix-tag { background:#eff4f8; color:#334155; border:1px solid #d2dbe3; }
+[data-theme="light"] .netflix-card-tags .netflix-tag:hover { background:#e2eaf0; }
+[data-theme="light"] .metric-card { border:1px solid #e2e8f0; box-shadow:0 4px 16px -6px rgba(0,0,0,.08); }
+[data-theme="light"] .cert-item { background:#ffffff; box-shadow:0 4px 18px -8px rgba(0,0,0,.12); }
+[data-theme="light"] .cert-item:hover { box-shadow:0 8px 32px -10px rgba(0,0,0,.18); }
+[data-theme="light"] .hero { background:linear-gradient(140deg,#ffffff 0%, #f0f5fa 80%); }
+[data-theme="light"] .hero-bg { opacity:.15; }
+[data-theme="light"] .hero .tagline { color:#475569; }
+[data-theme="light"] .btn.primary { box-shadow:0 4px 16px -6px rgba(229,9,20,.35); }
+[data-theme="light"] .btn.ghost { background:#ffffff; border:1px solid #d8e0e7; color:#1e293b; }
+[data-theme="light"] .btn.ghost:hover { background:#f1f5f9; }
+[data-theme="light"] .btn.subtle { box-shadow:0 2px 8px rgba(0,0,0,.06); }
+[data-theme="light"] .project-modal.local .project-modal-content { background:linear-gradient(145deg,#ffffff,#f4f7fa); color:#1e293b; }
+[data-theme="light"] .project-modal.local .project-modal-overlay.local-overlay { background:rgba(0,0,0,.4); }
+[data-theme="light"] .project-modal.local.animating-in .project-modal-overlay { background:rgba(0,0,0,0) !important; }
+[data-theme="light"] .project-modal.local.animating-out .project-modal-overlay { background:rgba(0,0,0,0) !important; }
+[data-theme="light"] .close-project-modal { background:rgba(255,255,255,.9) !important; border:2px solid #cbd5e1 !important; }
+[data-theme="light"] .close-project-modal:hover { background:#ef4444 !important; color:#fff; border-color:#ef4444 !important; }
+[data-theme="light"] .project-modal-body::-webkit-scrollbar-thumb { background:linear-gradient(#e50914,#ef4444); }
+[data-theme="light"] .project-detail .project-section, [data-theme="light"] .project-detail .project-metrics, [data-theme="light"] .project-detail .project-tech, [data-theme="light"] .project-detail .project-features, [data-theme="light"] .project-detail .project-architecture { background:#ffffff; border:1px solid #e2e8f0; box-shadow:0 2px 10px -4px rgba(0,0,0,.06); }
+[data-theme="light"] .project-detail .project-title { color:#0f172a; }
+[data-theme="light"] .project-detail .project-subtitle { color:#334155; }
+[data-theme="light"] .project-detail .project-description { color:#475569; }
+[data-theme="light"] .project-detail .architecture-description { color:#475569; }
+[data-theme="light"] .project-detail .component-item { background:#f1f5f9; border:1px solid #d8e0e7; }
+[data-theme="light"] .project-detail .feature-item { background:#f1f5f9; border:1px solid #d8e0e7; }
+
+/* Remove legacy non-local modal styling to avoid conflicts (kept for fallback but neutralized) */
+.project-modal:not(.local) { position:static !important; width:auto !important; height:auto !important; opacity:0 !important; pointer-events:none !important; }
+.project-modal:not(.local) .project-modal-content { display:none !important; }
+
+/* Smooth body load fade for theme switch cleanliness */
+body { transition: background .5s ease, color .5s ease; }
+body.loaded { opacity:1; }
 [data-theme="light"] .netflix-card-description { color:var(--text-dim); }
 [data-theme="light"] .project-modal { background:rgba(255,255,255,0.6); }
 [data-theme="light"] .project-modal-content { background:#fff; }
@@ -174,6 +214,10 @@
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition:none !important; }
   .netflix-preview-container, .project-modal-content { animation:none !important; }
+  .project-modal.local.animating-in .project-modal-content,
+  .project-modal.local.animating-out .project-modal-content { animation:none !important; }
+  .project-modal.local.animating-in .project-modal-overlay,
+  .project-modal.local.animating-out .project-modal-overlay { animation:none !important; }
 }
 
 /* Focus styles (accessible) */
@@ -222,6 +266,12 @@
     background: rgba(0,0,0,0.95) !important; 
     z-index: 999998 !important;
     pointer-events: all;
+    transition: opacity 0.3s ease;
+}
+
+.project-modal.local.animating-in .project-modal-overlay {
+    background: rgba(0,0,0,0) !important;
+    animation: fadeInOverlay 0.5s ease forwards;
 }
 
 .project-modal-shell { 
@@ -253,6 +303,83 @@
     height: 100vh !important;
     max-width: none !important;
     max-height: none !important;
+}
+
+/* Animation for modal entrance */
+.project-modal.local.animating-in .project-modal-content {
+    width: var(--start-width) !important;
+    height: var(--start-height) !important;
+    left: var(--start-left) !important;
+    top: var(--start-top) !important;
+    border-radius: 8px !important;
+    opacity: 0;
+    animation: expandToFullscreen 0.6s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+@keyframes expandToFullscreen {
+    from {
+        width: var(--start-width);
+        height: var(--start-height);
+        left: var(--start-left);
+        top: var(--start-top);
+        border-radius: 8px;
+        opacity: 0;
+    }
+    to {
+        width: 100vw;
+        height: 100vh;
+        left: 0px;
+        top: 0px;
+        border-radius: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInOverlay {
+    from {
+        background: rgba(0,0,0,0);
+    }
+    to {
+        background: rgba(0,0,0,0.95);
+    }
+}
+
+/* Animation for modal exit */
+.project-modal.local.animating-out .project-modal-content {
+    animation: shrinkFromFullscreen 0.4s cubic-bezier(.4,.14,.3,1) forwards;
+}
+
+.project-modal.local.animating-out .project-modal-overlay {
+    animation: fadeOutOverlay 0.4s ease forwards;
+}
+
+@keyframes shrinkFromFullscreen {
+    from {
+        width: 100vw;
+        height: 100vh;
+        left: 0px;
+        top: 0px;
+        border-radius: 0px;
+        opacity: 1;
+    }
+    to {
+        width: var(--start-width);
+        height: var(--start-height);
+        left: var(--start-left);
+        top: var(--start-top);
+        border-radius: 8px;
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes fadeOutOverlay {
+    from {
+        background: rgba(0,0,0,0.95);
+    }
+    to {
+        background: rgba(0,0,0,0);
+    }
 }
 
 /* Enhanced close button for popup */
@@ -1982,69 +2109,7 @@ body.loaded {
 /* Print */
 @media print { .site-header, .resume-actions, .site-footer, .scroll-to-top { display:none !important; } body { background:#fff; color:#222; } .resume-grid { gap:1.5rem; } a { color:#111; } }
 
-/* Project Detail Modal Styles - Netflix Style */
-.project-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 10000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  overflow-y: auto;
-}
-
-.project-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.project-modal-overlay {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-}
-
-.project-modal-content {
-  background: var(--bg-solid);
-  border-radius: 16px;
-  max-width: 1000px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 
-    0 25px 50px -12px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-  animation: slideUpFadeIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-/* Dynamic positioning support */
-.project-modal-content.positioned {
-  position: fixed;
-  max-width: none;
-  width: auto;
-  margin: 0;
-  animation: none;
-}
-
-@keyframes slideUpFadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.7) translateY(100px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
+/* (Legacy .project-modal styles removed in favor of new .project-modal.local full-screen system) */
 
 .project-modal.active .project-modal-content {
   transform: scale(1) translateY(0);
