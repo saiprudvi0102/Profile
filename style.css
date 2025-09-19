@@ -2195,9 +2195,17 @@ body.loaded {
 }
 
 .netflix-preview-container.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  /* keep the container non-interactive so underlying cards still receive clicks */
+  pointer-events: none;
+}
+
+/* Only the preview card itself should capture clicks */
+.netflix-preview-container.active .netflix-preview-card,
+.netflix-preview-container.active .preview-overlay,
+.netflix-preview-container.active .preview-play-btn {
+  pointer-events: auto;
 }
 
 .netflix-preview-card {

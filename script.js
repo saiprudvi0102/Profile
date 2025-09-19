@@ -143,6 +143,8 @@ class NetflixHoverManager {
     constructor() {
         this.activePreview = null;
         this.hoverTimeout = null;
+        // expose globally for coordination
+        window.__netflixHoverManager = this;
         this.init();
     }
 
@@ -176,6 +178,21 @@ class NetflixHoverManager {
         document.body.appendChild(container);
         this.previewContainer = container;
         this.previewCard = container.querySelector('.netflix-preview-card');
+
+        // Clicking the preview should open the full details modal
+        this.previewContainer.addEventListener('click', (e) => {
+            const openTarget = e.target.closest('.preview-play-btn') || e.target.closest('.netflix-preview-card');
+            if (openTarget && this.activePreview) {
+                e.preventDefault();
+                e.stopPropagation();
+                const projectId = this.activePreview.dataset.project;
+                const mgr = window.__projectDetailManager;
+                if (mgr && projectId) {
+                    mgr.showProjectDetail(projectId, this.activePreview);
+                }
+                this.hidePreview();
+            }
+        }, true);
     }
 
     bindHoverEvents() {
