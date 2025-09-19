@@ -365,6 +365,9 @@ class ProjectDetailManager {
         
         // Append directly to body for true popup overlay
         document.body.appendChild(modal);
+        console.log('[Modal] Created and appended modal to body');
+        console.log('[Modal] Modal in DOM:', document.body.contains(modal));
+        console.log('[Modal] Body children count:', document.body.children.length);
         
         this.modal = modal;
         this.bindNavigation();
@@ -514,6 +517,35 @@ class ProjectDetailManager {
         
     this.modal.classList.add('active');
     console.log('[Modal] Modal activated');
+    console.log('[Modal] Modal element:', this.modal);
+    console.log('[Modal] Modal classList:', this.modal.classList.toString());
+    console.log('[Modal] Modal style.display:', this.modal.style.display);
+    console.log('[Modal] Modal computed styles:', {
+        display: window.getComputedStyle(this.modal).display,
+        visibility: window.getComputedStyle(this.modal).visibility,
+        opacity: window.getComputedStyle(this.modal).opacity,
+        zIndex: window.getComputedStyle(this.modal).zIndex,
+        position: window.getComputedStyle(this.modal).position,
+        top: window.getComputedStyle(this.modal).top,
+        left: window.getComputedStyle(this.modal).left,
+        width: window.getComputedStyle(this.modal).width,
+        height: window.getComputedStyle(this.modal).height
+    });
+    console.log('[Modal] Is modal in DOM?', document.body.contains(this.modal));
+    
+    // Force display if CSS didn't apply
+    if (window.getComputedStyle(this.modal).display === 'none') {
+        console.log('[Modal] WARNING: Modal still hidden, forcing display block');
+        this.modal.style.display = 'block !important';
+        this.modal.style.position = 'fixed';
+        this.modal.style.top = '0';
+        this.modal.style.left = '0';
+        this.modal.style.width = '100vw';
+        this.modal.style.height = '100vh';
+        this.modal.style.zIndex = '999999';
+        this.modal.style.pointerEvents = 'all';
+    }
+    
         this.modal.setAttribute('aria-hidden','false');
 
         // Focus first interactive element inside modal for accessibility
