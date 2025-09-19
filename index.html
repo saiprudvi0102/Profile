@@ -226,128 +226,50 @@
 
 <!-- Certifications (Home) -->
 <section class="section" id="certifications">
-    <h2 class="section-title">Professional Certifications</h2>
-    
-    <!-- Cloud & Development Certifications Carousel -->
-    <div class="netflix-carousel">
-        <div class="carousel-header">
-            <h3 class="carousel-title">☁️ Cloud & Development</h3>
-            <div class="carousel-controls">
-                <button class="carousel-btn" data-carousel="cloud-certs" data-direction="prev" aria-label="Previous">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button class="carousel-btn" data-carousel="cloud-certs" data-direction="next" aria-label="Next">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-track" data-track="cloud-certs">
-                <div class="netflix-card" data-certification="aws-developer">
-                    <div class="cert-card-content" style="background:linear-gradient(135deg,#232F3E,#0b1220);color:#fff;">
-                        <img class="cert-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" loading="lazy" />
-                        <div class="cert-details">
-                            <h4>AWS Certified Developer – Associate</h4>
-                            <p>Amazon Web Services</p>
-                            <div class="cert-skills">
-                                <span>Lambda</span>
-                                <span>S3</span>
-                                <span>API Gateway</span>
-                                <span>DynamoDB</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-overlay">
-                        <button class="cert-view-btn">View Details</button>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-certification="gcp-ai">
-                    <div class="cert-card-content" style="background:linear-gradient(135deg,#1a73e8,#1557b0);color:#fff;">
-                        <img class="cert-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" alt="Google Cloud" loading="lazy" />
-                        <div class="cert-details">
-                            <h4>Introduction to Generative AI</h4>
-                            <p>Google Cloud</p>
-                            <div class="cert-skills">
-                                <span>Generative AI</span>
-                                <span>Diffusion Models</span>
-                                <span>Use Cases</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-overlay">
-                        <button class="cert-view-btn">View Details</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <h2 class="section-title">Professional Certifications</h2>
+  <div class="certifications-grid">
+    <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#232F3E,#0b1220);">
+      <div class="cert-badge">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" loading="lazy" />
+      </div>
+      <h3 class="cert-name">AWS Certified Developer – Associate</h3>
+      <p class="cert-org">Amazon Web Services</p>
+      <div class="cert-tags">
+        <span>Lambda</span><span>S3</span><span>API Gateway</span><span>DynamoDB</span>
+      </div>
     </div>
-
-    <!-- AI & Machine Learning Certifications Carousel -->
-    <div class="netflix-carousel">
-        <div class="carousel-header">
-            <h3 class="carousel-title">🤖 AI & Machine Learning</h3>
-            <div class="carousel-controls">
-                <button class="carousel-btn" data-carousel="ai-certs" data-direction="prev" aria-label="Previous">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button class="carousel-btn" data-carousel="ai-certs" data-direction="next" aria-label="Next">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-track" data-track="ai-certs">
-                <div class="netflix-card" data-certification="deeplearning-llm">
-                    <div class="cert-card-content" style="background:linear-gradient(135deg,#0b1220,#111827);color:#fff;">
-                        <img class="cert-logo" src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/fH_-tQ1HEeWlNg6f0QnStw_a2e6b43e93e14c98864b3bbcdd6bcff1_deeplearning.ai-logo-white.png" alt="DeepLearning.AI" loading="lazy" />
-                        <div class="cert-details">
-                            <h4>Introduction to Large Language Models</h4>
-                            <p>DeepLearning.AI</p>
-                            <div class="cert-skills">
-                                <span>LLMs</span>
-                                <span>Prompting</span>
-                                <span>Embeddings</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-overlay">
-                        <button class="cert-view-btn">View Details</button>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-certification="coursera-ml">
-                    <div class="cert-card-content" style="background:linear-gradient(135deg,#2a73cc,#1c56a5);color:#fff;">
-                        <img class="cert-logo" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Coursera_logo.svg" alt="Coursera" loading="lazy" />
-                        <div class="cert-details">
-                            <h4>Supervised Machine Learning: Regression</h4>
-                            <p>Coursera | Andrew Ng</p>
-                            <div class="cert-skills">
-                                <span>Regression</span>
-                                <span>Evaluation</span>
-                                <span>Regularization</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-overlay">
-                        <button class="cert-view-btn">View Details</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#1a73e8,#1557b0);">
+      <div class="cert-badge">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" alt="Google Cloud" loading="lazy" />
+      </div>
+      <h3 class="cert-name">Introduction to Generative AI</h3>
+      <p class="cert-org">Google Cloud</p>
+      <div class="cert-tags">
+        <span>Generative AI</span><span>Diffusion</span><span>Use Cases</span>
+      </div>
     </div>
-    
-    <div class="center mt">
-        <a href="#" class="btn subtle" aria-disabled="true" tabindex="-1">More credentials coming…</a>
+    <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#0b1220,#111827);">
+      <div class="cert-badge">
+        <img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/fH_-tQ1HEeWlNg6f0QnStw_a2e6b43e93e14c98864b3bbcdd6bcff1_deeplearning.ai-logo-white.png" alt="DeepLearning.AI" loading="lazy" />
+      </div>
+      <h3 class="cert-name">Intro to Large Language Models</h3>
+      <p class="cert-org">DeepLearning.AI</p>
+      <div class="cert-tags">
+        <span>LLMs</span><span>Prompting</span><span>Embeddings</span>
+      </div>
     </div>
+    <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#2a73cc,#1c56a5);">
+      <div class="cert-badge">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Coursera_logo.svg" alt="Coursera" loading="lazy" />
+      </div>
+      <h3 class="cert-name">Supervised ML: Regression</h3>
+      <p class="cert-org">Coursera | Andrew Ng</p>
+      <div class="cert-tags">
+        <span>Regression</span><span>Evaluation</span><span>Regularization</span>
+      </div>
+    </div>
+  </div>
+  <div class="center mt small-note">More credentials coming…</div>
 </section>
 
 <section class="section alt" id="projects">

@@ -8,14 +8,13 @@ window.addEventListener('DOMContentLoaded', () => {
   // Initialize header scroll effects
   initializeHeaderEffects();
   
-  // Initialize project detail manager
-  new ProjectDetailManager();
+    // Initialize project detail manager (singleton)
+    window.__projectDetailManager = new ProjectDetailManager();
   
-  // Initialize Netflix hover previews
-  new NetflixHoverManager();
+    // Initialize Netflix hover previews
+    new NetflixHoverManager();
   
-  // Initialize certification viewers
-  initializeCertificationViewers();
+    // Certification viewers removed (simplified section)
 });
 
 // Netflix-style carousel functionality
@@ -33,315 +32,60 @@ function initializeCarousels() {
     const cardWidth = 320 + 16; // card width + gap
     const maxIndex = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
     
-    function updateCarousel() {
-      const translateX = -currentIndex * cardWidth;
-      track.style.transform = `translateX(${translateX}px)`;
-      
-      // Update button states
-      if (prevBtn) prevBtn.disabled = currentIndex === 0;
-      if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
-    }
-    
-    function nextSlide() {
-      if (currentIndex < maxIndex) {
-        currentIndex++;
-        updateCarousel();
-      }
-    }
-    
-    function prevSlide() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      }
-    }
-    
-    // Add button event listeners
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    
-    // Touch/swipe support for mobile
-    let startX = 0;
-    let isDragging = false;
-    
-    track.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-    });
-    
-    track.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-    });
-    
-    track.addEventListener('touchend', (e) => {
-      if (!isDragging) return;
-      
-      const endX = e.changedTouches[0].clientX;
-      const diffX = startX - endX;
-      
-      if (Math.abs(diffX) > 50) { // Minimum swipe distance
-        if (diffX > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
+        function updateCarousel() {
+            const translateX = -currentIndex * cardWidth;
+            track.style.transform = `translateX(${translateX}px)`;
+            // Disable/enable buttons
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
         }
-      }
-      
-      isDragging = false;
+
+        updateCarousel();
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = Math.max(0, currentIndex - 1);
+                updateCarousel();
+            });
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = Math.min(maxIndex, currentIndex + 1);
+                updateCarousel();
+            });
+        }
+    
+        window.addEventListener('resize', () => {
+            const newMax = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
+            if (currentIndex > newMax) currentIndex = newMax;
+            updateCarousel();
+        });
     });
-    
-    // Initialize carousel
-    updateCarousel();
-    
-    // Update on window resize
-    window.addEventListener('resize', () => {
-      const newMaxIndex = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
-      if (currentIndex > newMaxIndex) {
-        currentIndex = newMaxIndex;
-      }
-      updateCarousel();
-    });
-  });
 }
-
-// Netflix-style header scroll effects
-function initializeHeaderEffects() {
-  const header = document.querySelector('.site-header');
-  let lastScrollY = window.scrollY;
-  
-  window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    
-    if (currentScrollY > 100) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-    
-    // Hide header on scroll down, show on scroll up
-    if (currentScrollY > lastScrollY && currentScrollY > 200) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-    
-    lastScrollY = currentScrollY;
-  });
-}
-
-// Performance optimization - lazy load images that aren't already lazy
-document.addEventListener('DOMContentLoaded', () => {
-  const images = document.querySelectorAll('img:not([loading])');
-  images.forEach(img => {
-    if (!img.hasAttribute('loading')) {
-      img.setAttribute('loading', 'lazy');
-    }
-  });
-});
-
-// Mobile menu toggle
-const nav = document.getElementById('nav');
-const navToggle = document.getElementById('navToggle');
-if (navToggle) {
-  navToggle.addEventListener('click', () => { nav.classList.toggle('open'); navToggle.classList.toggle('open'); });
-  document.addEventListener('click', e => { if (!nav.contains(e.target) && e.target !== navToggle) nav.classList.remove('open'); });
-}
-// Year
-const yearEl = document.getElementById('year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
-// Typing effect
-document.querySelectorAll('.typing').forEach(el => { const full = el.dataset.text || el.textContent.trim(); el.textContent=''; let i=0; const speed=70; const type=()=>{ if(i<full.length){ el.innerHTML=full.slice(0,i+1); i++; requestAnimationFrame(()=>setTimeout(type,speed)); } else { el.classList.remove('typing'); } }; setTimeout(type,400); });
-// Reveal on scroll
-const observer = new IntersectionObserver(entries => { entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target);} }); }, { threshold:0.15 });
-document.querySelectorAll('.project-card, .reveal, .tl-item').forEach(el=>observer.observe(el));
-// Keyboard toggle for project-card expansion
-document.querySelectorAll('.project-card').forEach(card=>{
-  card.setAttribute('tabindex', card.getAttribute('tabindex') || '0');
-  card.addEventListener('keydown', e=>{
-    if(e.key==='Enter' || e.key===' '){
-      e.preventDefault();
-      openProjectModal(card);
-    }
-    if(e.key==='Escape' && card.classList.contains('expanded')){ card.classList.remove('expanded'); }
-  });
-  card.addEventListener('click', e=>{
-    // Avoid triggering when clicking links inside
-    if(!card.closest('.project-modal')) openProjectModal(card);
-  });
-});
-// Modal logic
-const modalOverlay=document.getElementById('modalOverlay');
-const modal=document.getElementById('projectModal');
-const closeBtn=document.getElementById('modalClose');
-function openProjectModal(card){
-  if(!modal) return;
-  const img=card.querySelector('img');
-  const title=card.querySelector('h3');
-  const desc=card.querySelector('p');
-  const tags=[...card.querySelectorAll('.tags span')].map(s=>s.textContent.trim());
-  const extra=card.querySelector('.card-extra');
-  document.getElementById('modalImage').src=img ? img.src : '';
-  document.getElementById('modalTitle').textContent=title?title.textContent:'';
-  document.getElementById('modalDesc').textContent=desc?desc.textContent:'';
-  const tagRoot=document.getElementById('modalTags'); tagRoot.innerHTML='';
-  tags.forEach(t=>{ const span=document.createElement('span'); span.textContent=t; tagRoot.appendChild(span); });
-  const extraRoot=document.getElementById('modalExtra'); extraRoot.innerHTML='';
-  if(extra){
-    const clone=extra.cloneNode(true); clone.classList.remove('card-extra'); extraRoot.appendChild(clone); }
-  modalOverlay.classList.add('active');
-  modal.classList.add('active');
-  document.body.classList.add('no-scroll');
-  modal.setAttribute('aria-hidden','false');
-  modalOverlay.setAttribute('aria-hidden','false');
-  closeBtn.focus();
-}
-function closeProjectModal(){
-  modalOverlay.classList.remove('active');
-  modal.classList.remove('active');
-  document.body.classList.remove('no-scroll');
-  modal.setAttribute('aria-hidden','true');
-  modalOverlay.setAttribute('aria-hidden','true');
-}
-if(closeBtn){ closeBtn.addEventListener('click',closeProjectModal); }
-if(modalOverlay){ modalOverlay.addEventListener('click',closeProjectModal); }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape' && modal.classList.contains('active')) closeProjectModal(); });
+// Legacy modal close handlers removed; now encapsulated in ProjectDetailManager class
 // Contact form
 window.contactSubmit = function(e){ e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`); window.location.href=`mailto:saiprudvi0102@gmail.com?subject=Portfolio Contact&body=${body}`; const status=document.getElementById('formStatus'); if(status) status.textContent='Opening mail client...'; };
 // Resume PDF download with fallback (handles spaces in filename)
 const resumeLink=document.getElementById('resumePdfLink');
 if(resumeLink){
-  const pdfPath = 'saiprudvi ela_Resume.pdf';
-  const encodedPdfPath = encodeURI(pdfPath);
-  // ensure href uses encoded path for web
-  resumeLink.href = encodedPdfPath;
-  // For GitHub Pages, we'll check if file exists and provide better feedback
-  resumeLink.addEventListener('click', function(e) {
-    // Track download attempt
-    console.log('Resume download attempted');
-    // Optional: Add analytics tracking here
-  });
-  
-  // Simple existence check - if fails, provide alternative
-  fetch(encodedPdfPath,{method:'HEAD'})
-    .then(r=>{ 
-      if(!r.ok){ 
-        resumeLink.textContent='View Resume Online'; 
-        resumeLink.href = 'resume.html';
-        resumeLink.removeAttribute('download');
-        resumeLink.title = 'PDF not available - view online version';
-      } 
-    })
-    .catch(()=>{ 
-      resumeLink.textContent='View Resume Online'; 
-      resumeLink.href = 'resume.html';
-      resumeLink.removeAttribute('download');
-      resumeLink.title = 'View resume in web format';
+    const pdfPath = 'saiprudvi ela_Resume.pdf';
+    const encodedPdfPath = encodeURI(pdfPath);
+    resumeLink.href = encodedPdfPath; // set encoded path
+    resumeLink.addEventListener('click', function(){
+        console.log('Resume download attempted');
     });
-}
-// Smooth anchor fallback
-document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',e=>{ const id=a.getAttribute('href').slice(1); const t=document.getElementById(id); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'});} }); });
-
-// Scroll to top button functionality
-const scrollToTopBtn = document.getElementById('scrollToTop');
-if (scrollToTopBtn) {
-  // Show/hide scroll to top button based on scroll position
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      scrollToTopBtn.classList.add('visible');
-    } else {
-      scrollToTopBtn.classList.remove('visible');
-    }
-  });
-
-  // Scroll to top when clicked
-  scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
+    // (Optional) could add a HEAD request check here if needed
 }
 
-// Screenshot Modal functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const screenshotItems = document.querySelectorAll('.screenshot-item');
-  const screenshotOverlay = document.getElementById('screenshotOverlay');
-  const screenshotModal = document.getElementById('screenshotModal');
-  const screenshotImage = document.getElementById('screenshotImage');
-  const screenshotCaption = document.getElementById('screenshotCaption');
-  const screenshotClose = document.getElementById('screenshotClose');
-
-  function openScreenshotModal(item) {
-    if (!screenshotOverlay) return;
-    
-    const img = item.querySelector('img');
-    const label = item.querySelector('.screenshot-label');
-    
-    if (img) {
-      screenshotImage.src = img.src;
-      screenshotImage.alt = img.alt;
-      screenshotCaption.textContent = label ? label.textContent : img.alt;
-      
-      screenshotOverlay.classList.add('active');
-      screenshotModal.classList.add('active');
-      document.body.classList.add('no-scroll');
-    }
-  }
-
-  function closeScreenshotModal() {
-    if (screenshotOverlay) {
-      screenshotOverlay.classList.remove('active');
-      screenshotModal.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-    }
-  }
-
-  // Add click listeners to screenshot items
-  screenshotItems.forEach(item => {
-    item.addEventListener('click', () => openScreenshotModal(item));
-    
-    // Add keyboard support
-    item.setAttribute('tabindex', '0');
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openScreenshotModal(item);
-      }
+// Provide stub for header effects if original implementation was removed
+function initializeHeaderEffects(){
+    // Basic sticky header / scroll fade placeholder (safe no-op if styles absent)
+    const header = document.querySelector('header');
+    if(!header) return;
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled');
     });
-  });
-
-  // Close modal listeners
-  if (screenshotClose) {
-    screenshotClose.addEventListener('click', closeScreenshotModal);
-  }
-  
-  if (screenshotOverlay) {
-    screenshotOverlay.addEventListener('click', (e) => {
-      if (e.target === screenshotOverlay) {
-        closeScreenshotModal();
-      }
-    });
-  }
-
-  // Escape key to close
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && screenshotOverlay && screenshotOverlay.classList.contains('active')) {
-      closeScreenshotModal();
-    }
-  });
-});
-
-// Premium header scroll effect across all pages
-(function(){
-  const onScroll = () => {
-    if (typeof document !== 'undefined') {
-      document.body.classList.toggle('scrolled', window.scrollY > 8);
-    }
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-
+}
 // Netflix-style Hover Preview Manager
 class NetflixHoverManager {
     constructor() {
@@ -363,7 +107,7 @@ class NetflixHoverManager {
                 <div class="preview-image-container">
                     <img class="preview-image" src="" alt="">
                     <div class="preview-overlay">
-                        <button class="preview-play-btn">
+                        <button class="preview-play-btn" type="button" aria-label="Preview">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
@@ -376,8 +120,7 @@ class NetflixHoverManager {
                     <div class="preview-tags"></div>
                     <div class="preview-metrics"></div>
                 </div>
-            </div>
-        `;
+            </div>`;
         document.body.appendChild(container);
         this.previewContainer = container;
         this.previewCard = container.querySelector('.netflix-preview-card');
@@ -480,9 +223,8 @@ class NetflixHoverManager {
     }
 
     getProjectData(projectId) {
-        // This will use the same data source as ProjectDetailManager
-        const manager = new ProjectDetailManager();
-        return manager.getProjectData(projectId);
+        // Avoid creating infinite recursion; rely on global singleton pattern
+        return window.__projectDetailManager ? window.__projectDetailManager.getProjectData(projectId) : null;
     }
 }
 
@@ -510,16 +252,7 @@ class ProjectDetailManager {
                 }
             }
 
-            // Handle certification card clicks
-            const certViewBtn = e.target.closest('.cert-view-btn');
-            if (certViewBtn) {
-                e.preventDefault();
-                const card = certViewBtn.closest('.netflix-card');
-                const certId = card ? card.dataset.certification : null;
-                if (certId && card) {
-                    this.showCertificationDetail(certId, card);
-                }
-            }
+            // Certification cards no longer open modals (simplified section)
 
             // Handle modal close
             if (e.target.classList.contains('project-modal-overlay') || 
@@ -652,19 +385,6 @@ class ProjectDetailManager {
         }, 500);
     }
 
-    showCertificationDetail(certId, cardElement) {
-        const certification = this.getCertificationData(certId);
-        if (!certification) return;
-
-        const modalBody = this.modal.querySelector('.project-modal-body');
-        modalBody.innerHTML = this.generateCertificationDetailHTML(certification);
-        
-        // Position modal relative to the clicked card
-        this.positionModalRelativeToCard(cardElement);
-        
-        this.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
 
     closeModal() {
         if (this.modal) {
@@ -688,101 +408,6 @@ class ProjectDetailManager {
         }
     }
 
-    getCertificationData(certId) {
-        const certifications = {
-            'aws-developer': {
-                title: 'AWS Certified Developer – Associate',
-                provider: 'Amazon Web Services',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
-                description: 'Validates technical expertise in developing and maintaining AWS cloud applications.',
-                background: 'linear-gradient(135deg, #232F3E, #0b1220)',
-                skills: ['Lambda', 'S3', 'API Gateway', 'DynamoDB', 'CloudFormation', 'Elastic Beanstalk'],
-                competencies: [
-                    'Developing and debugging cloud applications',
-                    'Using AWS SDKs and CLI',
-                    'Writing code for serverless applications',
-                    'Understanding of core AWS services'
-                ],
-                validationDetails: {
-                    examCode: 'DVA-C02',
-                    duration: '130 minutes',
-                    format: 'Multiple choice and multiple response',
-                    passingScore: '720/1000'
-                }
-            },
-            'gcp-ai': {
-                title: 'Introduction to Generative AI',
-                provider: 'Google Cloud',
-                logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
-                description: 'Foundational course covering generative AI concepts and applications.',
-                background: 'linear-gradient(135deg, #1a73e8, #1557b0)',
-                skills: ['Generative AI', 'Diffusion Models', 'Use Cases', 'AI Ethics'],
-                competencies: [
-                    'Understanding generative AI fundamentals',
-                    'Knowledge of diffusion models',
-                    'Practical AI applications',
-                    'Ethical AI considerations'
-                ],
-                validationDetails: {
-                    courseType: 'Self-paced learning',
-                    duration: '45 minutes',
-                    format: 'Interactive modules',
-                    completion: 'Badge earned'
-                }
-            }
-        };
-
-        return certifications[certId];
-    }
-
-    generateCertificationDetailHTML(certification) {
-        return `
-            <div class="certification-detail">
-                <div class="cert-hero" style="background: ${certification.background}">
-                    <div class="cert-hero-content">
-                        <img class="cert-hero-logo" src="${certification.logo}" alt="${certification.provider}" />
-                        <div class="cert-hero-text">
-                            <h1 class="cert-title">${certification.title}</h1>
-                            <p class="cert-provider">${certification.provider}</p>
-                            <p class="cert-description">${certification.description}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cert-content">
-                    <div class="cert-section">
-                        <h3>🎯 Key Skills & Technologies</h3>
-                        <div class="cert-skills-grid">
-                            ${certification.skills.map(skill => 
-                                `<div class="cert-skill-tag">${skill}</div>`
-                            ).join('')}
-                        </div>
-                    </div>
-
-                    <div class="cert-section">
-                        <h3>📋 Core Competencies</h3>
-                        <ul class="cert-competencies">
-                            ${certification.competencies.map(comp => 
-                                `<li class="cert-competency">${comp}</li>`
-                            ).join('')}
-                        </ul>
-                    </div>
-
-                    <div class="cert-section">
-                        <h3>✅ Validation Details</h3>
-                        <div class="cert-validation-grid">
-                            ${Object.entries(certification.validationDetails).map(([key, value]) => 
-                                `<div class="cert-validation-item">
-                                    <span class="validation-label">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</span>
-                                    <span class="validation-value">${value}</span>
-                                </div>`
-                            ).join('')}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
 
     getProjectData(projectId) {
         const projects = {
@@ -1230,199 +855,5 @@ class ProjectDetailManager {
     }
 }
 
-function openProjectDetail(projectId) {
-    closeCertificationModal();
-    // Trigger project detail modal
-    const projectDetailManager = new ProjectDetailManager();
-    projectDetailManager.showProjectDetail(projectId);
-}
-
-// Certification detail functionality
-function initializeCertificationViewers() {
-    const certViewBtns = document.querySelectorAll('.cert-view-btn');
-    
-    certViewBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            const certCard = btn.closest('[data-certification]');
-            const certId = certCard.dataset.certification;
-            showCertificationDetail(certId);
-        });
-    });
-}
-
-function showCertificationDetail(certId) {
-    const certData = getCertificationData(certId);
-    if (!certData) return;
-    
-    // Create modal HTML
-    const modalHTML = `
-        <div class="project-modal active" id="certModal">
-            <div class="modal-overlay" onclick="closeCertificationModal()"></div>
-            <div class="modal-content">
-                <button class="modal-close" onclick="closeCertificationModal()" aria-label="Close">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </button>
-                
-                <div class="modal-header">
-                    <div class="cert-header-content" style="${certData.gradient}">
-                        <img src="${certData.logo}" alt="${certData.organization}" class="cert-modal-logo" />
-                        <div class="cert-header-text">
-                            <h1 class="modal-title">${certData.title}</h1>
-                            <p class="modal-subtitle">${certData.organization}</p>
-                            <div class="cert-badge">
-                                <span class="cert-status">✓ Certified</span>
-                                <span class="cert-date">${certData.date}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-body">
-                    <div class="cert-description">
-                        <h3>About This Certification</h3>
-                        <p>${certData.description}</p>
-                    </div>
-                    
-                    <div class="cert-skills-section">
-                        <h3>Skills & Technologies</h3>
-                        <div class="skills-grid">
-                            ${certData.skills.map(skill => `
-                                <div class="skill-badge">
-                                    <span class="skill-icon">${skill.icon}</span>
-                                    <span class="skill-name">${skill.name}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    
-                    ${certData.projects ? `
-                        <div class="cert-projects">
-                            <h3>Related Projects</h3>
-                            <div class="project-links">
-                                ${certData.projects.map(project => `
-                                    <a href="#" class="project-link" onclick="openProjectDetail('${project.id}')">
-                                        <span class="project-icon">${project.icon}</span>
-                                        <span class="project-name">${project.name}</span>
-                                    </a>
-                                `).join('')}
-                            </div>
-                        </div>
-                    ` : ''}
-                    
-                    ${certData.credentialUrl ? `
-                        <div class="cert-actions">
-                            <a href="${certData.credentialUrl}" target="_blank" class="credential-btn">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
-                                </svg>
-                                View Credential
-                            </a>
-                        </div>
-                    ` : ''}
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    document.body.style.overflow = 'hidden';
-}
-
-function closeCertificationModal() {
-    const modal = document.getElementById('certModal');
-    if (modal) {
-        modal.remove();
-        document.body.style.overflow = '';
-    }
-}
-
-function getCertificationData(certId) {
-    const certifications = {
-        'aws-developer': {
-            title: 'AWS Certified Developer – Associate',
-            organization: 'Amazon Web Services',
-            date: '2024',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
-            gradient: 'background: linear-gradient(135deg, #232F3E, #0b1220); color: white;',
-            description: 'Validates technical expertise in developing and maintaining applications on the AWS platform. Demonstrates proficiency in core AWS services, architecture best practices, and security implementation.',
-            skills: [
-                { name: 'AWS Lambda', icon: '⚡' },
-                { name: 'Amazon S3', icon: '🗄️' },
-                { name: 'API Gateway', icon: '🌐' },
-                { name: 'DynamoDB', icon: '📊' },
-                { name: 'CloudFormation', icon: '🏗️' },
-                { name: 'IAM', icon: '🔐' }
-            ],
-            projects: [
-                { id: 'mobilellm', name: 'MobileLLM Deployment', icon: '🚀' }
-            ],
-            credentialUrl: null
-        },
-        'gcp-ai': {
-            title: 'Introduction to Generative AI',
-            organization: 'Google Cloud',
-            date: '2024',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
-            gradient: 'background: linear-gradient(135deg, #1a73e8, #1557b0); color: white;',
-            description: 'Comprehensive introduction to Generative AI concepts, applications, and Google Cloud AI/ML services. Covers fundamental principles of large language models, responsible AI, and practical implementation strategies.',
-            skills: [
-                { name: 'Generative AI', icon: '🤖' },
-                { name: 'Large Language Models', icon: '🧠' },
-                { name: 'Vertex AI', icon: '☁️' },
-                { name: 'PaLM API', icon: '🔗' },
-                { name: 'Responsible AI', icon: '⚖️' },
-                { name: 'AI Ethics', icon: '🎯' }
-            ],
-            projects: [
-                { id: 'mobilellm', name: 'MobileLLM Project', icon: '🤖' }
-            ],
-            credentialUrl: null
-        },
-        'deeplearning-llm': {
-            title: 'Introduction to Large Language Models',
-            organization: 'DeepLearning.AI',
-            date: '2024',
-            logo: 'https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/fH_-tQ1HEeWlNg6f0QnStw_a2e6b43e93e14c98864b3bbcdd6bcff1_deeplearning.ai-logo-white.png',
-            gradient: 'background: linear-gradient(135deg, #0b1220, #111827); color: white;',
-            description: 'In-depth exploration of Large Language Models, covering architecture, training methodologies, fine-tuning techniques, and practical applications. Focus on understanding transformer architectures and prompt engineering.',
-            skills: [
-                { name: 'Transformer Architecture', icon: '🏗️' },
-                { name: 'Prompt Engineering', icon: '✏️' },
-                { name: 'Fine-tuning', icon: '🔧' },
-                { name: 'Embeddings', icon: '🧮' },
-                { name: 'Model Evaluation', icon: '📈' },
-                { name: 'LLM Applications', icon: '🎯' }
-            ],
-            projects: [
-                { id: 'mobilellm', name: 'MobileLLM125M', icon: '🚀' }
-            ],
-            credentialUrl: null
-        },
-        'coursera-ml': {
-            title: 'Supervised Machine Learning: Regression',
-            organization: 'Coursera | Andrew Ng',
-            date: '2023',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Coursera_logo.svg',
-            gradient: 'background: linear-gradient(135deg, #2a73cc, #1c56a5); color: white;',
-            description: 'Comprehensive course on supervised machine learning with focus on regression algorithms. Covers linear regression, logistic regression, regularization techniques, and practical implementation using Python and scikit-learn.',
-            skills: [
-                { name: 'Linear Regression', icon: '📈' },
-                { name: 'Logistic Regression', icon: '📊' },
-                { name: 'Regularization', icon: '🎛️' },
-                { name: 'Feature Engineering', icon: '🔧' },
-                { name: 'Model Evaluation', icon: '✅' },
-                { name: 'Python/Scikit-learn', icon: '🐍' }
-            ],
-            projects: [
-                { id: 'financial-risk', name: 'Financial Risk Analysis', icon: '📈' }
-            ],
-            credentialUrl: null
-        }
-    };
-    
-    return certifications[certId];
-}
+// Removed certification modal functionality & data (simplified static grid now used)
 
