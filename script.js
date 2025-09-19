@@ -505,8 +505,19 @@ class ProjectDetailManager {
                 e.preventDefault();
                 const card = playBtn.closest('.netflix-card');
                 const projectId = card ? card.dataset.project : null;
-                if (projectId) {
-                    this.showProjectDetail(projectId);
+                if (projectId && card) {
+                    this.showProjectDetail(projectId, card);
+                }
+            }
+
+            // Handle certification card clicks
+            const certViewBtn = e.target.closest('.cert-view-btn');
+            if (certViewBtn) {
+                e.preventDefault();
+                const card = certViewBtn.closest('.netflix-card');
+                const certId = card ? card.dataset.certification : null;
+                if (certId && card) {
+                    this.showCertificationDetail(certId, card);
                 }
             }
 
@@ -547,12 +558,109 @@ class ProjectDetailManager {
         this.modal = modal;
     }
 
-    showProjectDetail(projectId) {
+    showProjectDetail(projectId, cardElement) {
         const project = this.getProjectData(projectId);
         if (!project) return;
 
         const modalBody = this.modal.querySelector('.project-modal-body');
         modalBody.innerHTML = this.generateProjectDetailHTML(project);
+        
+        // Position modal relative to the clicked card
+        this.positionModalRelativeToCard(cardElement);
+        
+        this.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    positionModalRelativeToCard(cardElement) {
+        if (!cardElement) return;
+        
+        const cardRect = cardElement.getBoundingClientRect();
+        const modalContent = this.modal.querySelector('.project-modal-content');
+        
+        // Add positioned class for custom positioning
+        modalContent.classList.add('positioned');
+        
+        // Reset any previous positioning
+        modalContent.style.position = 'fixed';
+        modalContent.style.transform = 'none';
+        modalContent.style.animation = 'none';
+        
+        // Calculate optimal position
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const modalWidth = Math.min(viewportWidth * 0.9, 900); // Max 900px or 90% viewport
+        const modalHeight = Math.min(viewportHeight * 0.9, 700); // Max 700px or 90% viewport
+        
+        // Try to position near the card but ensure it's fully visible
+        let left = cardRect.left + (cardRect.width / 2) - (modalWidth / 2);
+        let top = cardRect.bottom + 20;
+        
+        // Adjust horizontal position if needed
+        if (left < 20) left = 20;
+        if (left + modalWidth > viewportWidth - 20) left = viewportWidth - modalWidth - 20;
+        
+        // Adjust vertical position if needed
+        if (top + modalHeight > viewportHeight - 20) {
+            top = cardRect.top - modalHeight - 20;
+            // If still doesn't fit, center vertically
+            if (top < 20) {
+                top = (viewportHeight - modalHeight) / 2;
+            }
+        }
+        
+        // Apply positioning
+        modalContent.style.left = `${left}px`;
+        modalContent.style.top = `${top}px`;
+        modalContent.style.width = `${modalWidth}px`;
+        modalContent.style.maxHeight = `${modalHeight}px`;
+        modalContent.style.margin = '0';
+        
+        // Add custom animation from the card position
+        const initialLeft = cardRect.left + (cardRect.width / 2) - (modalWidth / 2);
+        const initialTop = cardRect.top + (cardRect.height / 2) - (modalHeight / 2);
+        
+        modalContent.style.transformOrigin = 'center center';
+        modalContent.style.animation = `modalSlideFromCard 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards`;
+        
+        // Create dynamic keyframes for this specific animation
+        const animationName = `modalSlideFromCard_${Date.now()}`;
+        const keyframes = `
+            @keyframes ${animationName} {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.3) translate(${initialLeft - left}px, ${initialTop - top}px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1) translate(0, 0);
+                }
+            }
+        `;
+        
+        // Inject the keyframes
+        const style = document.createElement('style');
+        style.textContent = keyframes;
+        document.head.appendChild(style);
+        modalContent.style.animation = `${animationName} 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards`;
+        
+        // Clean up the style after animation
+        setTimeout(() => {
+            if (style.parentNode) {
+                style.parentNode.removeChild(style);
+            }
+        }, 500);
+    }
+
+    showCertificationDetail(certId, cardElement) {
+        const certification = this.getCertificationData(certId);
+        if (!certification) return;
+
+        const modalBody = this.modal.querySelector('.project-modal-body');
+        modalBody.innerHTML = this.generateCertificationDetailHTML(certification);
+        
+        // Position modal relative to the clicked card
+        this.positionModalRelativeToCard(cardElement);
         
         this.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -562,7 +670,118 @@ class ProjectDetailManager {
         if (this.modal) {
             this.modal.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Reset modal positioning
+            const modalContent = this.modal.querySelector('.project-modal-content');
+            if (modalContent) {
+                modalContent.classList.remove('positioned');
+                modalContent.style.position = '';
+                modalContent.style.left = '';
+                modalContent.style.top = '';
+                modalContent.style.width = '';
+                modalContent.style.maxHeight = '';
+                modalContent.style.margin = '';
+                modalContent.style.animation = '';
+                modalContent.style.transform = '';
+                modalContent.style.transformOrigin = '';
+            }
         }
+    }
+
+    getCertificationData(certId) {
+        const certifications = {
+            'aws-developer': {
+                title: 'AWS Certified Developer – Associate',
+                provider: 'Amazon Web Services',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
+                description: 'Validates technical expertise in developing and maintaining AWS cloud applications.',
+                background: 'linear-gradient(135deg, #232F3E, #0b1220)',
+                skills: ['Lambda', 'S3', 'API Gateway', 'DynamoDB', 'CloudFormation', 'Elastic Beanstalk'],
+                competencies: [
+                    'Developing and debugging cloud applications',
+                    'Using AWS SDKs and CLI',
+                    'Writing code for serverless applications',
+                    'Understanding of core AWS services'
+                ],
+                validationDetails: {
+                    examCode: 'DVA-C02',
+                    duration: '130 minutes',
+                    format: 'Multiple choice and multiple response',
+                    passingScore: '720/1000'
+                }
+            },
+            'gcp-ai': {
+                title: 'Introduction to Generative AI',
+                provider: 'Google Cloud',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
+                description: 'Foundational course covering generative AI concepts and applications.',
+                background: 'linear-gradient(135deg, #1a73e8, #1557b0)',
+                skills: ['Generative AI', 'Diffusion Models', 'Use Cases', 'AI Ethics'],
+                competencies: [
+                    'Understanding generative AI fundamentals',
+                    'Knowledge of diffusion models',
+                    'Practical AI applications',
+                    'Ethical AI considerations'
+                ],
+                validationDetails: {
+                    courseType: 'Self-paced learning',
+                    duration: '45 minutes',
+                    format: 'Interactive modules',
+                    completion: 'Badge earned'
+                }
+            }
+        };
+
+        return certifications[certId];
+    }
+
+    generateCertificationDetailHTML(certification) {
+        return `
+            <div class="certification-detail">
+                <div class="cert-hero" style="background: ${certification.background}">
+                    <div class="cert-hero-content">
+                        <img class="cert-hero-logo" src="${certification.logo}" alt="${certification.provider}" />
+                        <div class="cert-hero-text">
+                            <h1 class="cert-title">${certification.title}</h1>
+                            <p class="cert-provider">${certification.provider}</p>
+                            <p class="cert-description">${certification.description}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-content">
+                    <div class="cert-section">
+                        <h3>🎯 Key Skills & Technologies</h3>
+                        <div class="cert-skills-grid">
+                            ${certification.skills.map(skill => 
+                                `<div class="cert-skill-tag">${skill}</div>`
+                            ).join('')}
+                        </div>
+                    </div>
+
+                    <div class="cert-section">
+                        <h3>📋 Core Competencies</h3>
+                        <ul class="cert-competencies">
+                            ${certification.competencies.map(comp => 
+                                `<li class="cert-competency">${comp}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="cert-section">
+                        <h3>✅ Validation Details</h3>
+                        <div class="cert-validation-grid">
+                            ${Object.entries(certification.validationDetails).map(([key, value]) => 
+                                `<div class="cert-validation-item">
+                                    <span class="validation-label">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</span>
+                                    <span class="validation-value">${value}</span>
+                                </div>`
+                            ).join('')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     getProjectData(projectId) {
