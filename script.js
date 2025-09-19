@@ -599,7 +599,23 @@ class ProjectDetailManager {
         const focusable = this.getFocusableElements();
         if(focusable.length){ focusable[0].focus({preventScroll:true}); }
         this.enableFocusTrap();
+
+        // Post-activation fallback checks (in case animation path suppressed display)
+        const ensureVisible = (attempt) => {
+            if(!this.modal) return;
+            const cs = window.getComputedStyle(this.modal);
+            if(cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) === 0){
+                console.warn(`[Modal] Visibility check attempt ${attempt} failed -> forcing direct show`);
+                this.showModalDirectly();
+                this.modal.classList.add('active');
+                this.modal.style.display = 'block';
+            }
+        };
+        setTimeout(()=>ensureVisible(1), 50);
+        setTimeout(()=>ensureVisible(2), 200);
+        setTimeout(()=>ensureVisible(3), 600);
     }
+    
 
     showCertificationDetail(cardElement) {
         if (!cardElement) return;
