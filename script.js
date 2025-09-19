@@ -232,6 +232,7 @@ class NetflixHoverManager {
 class ProjectDetailManager {
     constructor() {
         this.init();
+        this.lastFocusedElement = null;
     }
 
     init() {
@@ -271,29 +272,35 @@ class ProjectDetailManager {
     }
 
     createDetailModal() {
+        // Mount inside the projects section so overlay only covers project cards
+        const projectsSection = document.querySelector('#projects') || document.body;
         const modal = document.createElement('div');
-        modal.className = 'project-modal';
+        modal.className = 'project-modal local';
+        modal.setAttribute('aria-hidden','true');
+        modal.setAttribute('role','dialog');
+        modal.setAttribute('aria-modal','true');
+        modal.setAttribute('aria-label','Project details');
         modal.innerHTML = `
-            <div class="project-modal-overlay">
+            <div class="project-modal-overlay local-overlay">
                 <div class="project-modal-content">
                     <button class="close-project-modal" aria-label="Close">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                         </svg>
                     </button>
-                    <div class="project-modal-body">
-                        <!-- Content will be inserted here -->
-                    </div>
+                    <div class="project-modal-body"></div>
                 </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
+            </div>`;
+        projectsSection.appendChild(modal);
         this.modal = modal;
+        this.container = projectsSection;
     }
 
     showProjectDetail(projectId, cardElement) {
         const project = this.getProjectData(projectId);
         if (!project) return;
+
+        this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
         const modalBody = this.modal.querySelector('.project-modal-body');
         modalBody.innerHTML = this.generateProjectDetailHTML(project);
@@ -302,87 +309,62 @@ class ProjectDetailManager {
         this.positionModalRelativeToCard(cardElement);
         
         this.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        this.modal.setAttribute('aria-hidden','false');
+
+        // Focus first interactive element inside modal for accessibility
+        const focusable = this.getFocusableElements();
+        if(focusable.length){ focusable[0].focus({preventScroll:true}); }
+        this.enableFocusTrap();
     }
 
     positionModalRelativeToCard(cardElement) {
         if (!cardElement) return;
-        
+        const containerRect = this.container.getBoundingClientRect();
         const cardRect = cardElement.getBoundingClientRect();
         const modalContent = this.modal.querySelector('.project-modal-content');
-        
-        // Add positioned class for custom positioning
+
         modalContent.classList.add('positioned');
-        
-        // Reset any previous positioning
-        modalContent.style.position = 'fixed';
+        modalContent.style.position = 'absolute';
         modalContent.style.transform = 'none';
         modalContent.style.animation = 'none';
-        
-        // Calculate optimal position
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        const modalWidth = Math.min(viewportWidth * 0.9, 900); // Max 900px or 90% viewport
-        const modalHeight = Math.min(viewportHeight * 0.9, 700); // Max 700px or 90% viewport
-        
-        // Try to position near the card but ensure it's fully visible
-        let left = cardRect.left + (cardRect.width / 2) - (modalWidth / 2);
-        let top = cardRect.bottom + 20;
-        
-        // Adjust horizontal position if needed
-        if (left < 20) left = 20;
-        if (left + modalWidth > viewportWidth - 20) left = viewportWidth - modalWidth - 20;
-        
-        // Adjust vertical position if needed
-        if (top + modalHeight > viewportHeight - 20) {
-            top = cardRect.top - modalHeight - 20;
-            // If still doesn't fit, center vertically
-            if (top < 20) {
-                top = (viewportHeight - modalHeight) / 2;
-            }
+
+        const availableWidth = containerRect.width;
+        const maxWidth = Math.min(availableWidth - 40, 900);
+        const modalWidth = maxWidth;
+        const modalHeight = 600; // fixed max height inside section
+
+        // Coordinates relative to container
+        let left = (cardRect.left - containerRect.left) + (cardRect.width/2) - (modalWidth/2);
+        let top = (cardRect.bottom - containerRect.top) + 16;
+
+        // Bounds within container
+        if (left < 0) left = 0;
+        if (left + modalWidth > availableWidth) left = availableWidth - modalWidth;
+
+        const containerHeight = this.container.offsetHeight;
+        if (top + modalHeight > containerHeight) {
+            // If overflow, position above card
+            top = (cardRect.top - containerRect.top) - modalHeight - 16;
+            if (top < 0) top = Math.max(0, (containerHeight - modalHeight)/2);
         }
-        
-        // Apply positioning
-        modalContent.style.left = `${left}px`;
-        modalContent.style.top = `${top}px`;
-        modalContent.style.width = `${modalWidth}px`;
-        modalContent.style.maxHeight = `${modalHeight}px`;
+
+        // Apply
+        modalContent.style.width = modalWidth + 'px';
+        modalContent.style.left = left + 'px';
+        modalContent.style.top = top + 'px';
+        modalContent.style.maxHeight = modalHeight + 'px';
         modalContent.style.margin = '0';
-        
-        // Add custom animation from the card position
-        const initialLeft = cardRect.left + (cardRect.width / 2) - (modalWidth / 2);
-        const initialTop = cardRect.top + (cardRect.height / 2) - (modalHeight / 2);
-        
-        modalContent.style.transformOrigin = 'center center';
-        modalContent.style.animation = `modalSlideFromCard 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards`;
-        
-        // Create dynamic keyframes for this specific animation
-        const animationName = `modalSlideFromCard_${Date.now()}`;
-        const keyframes = `
-            @keyframes ${animationName} {
-                0% {
-                    opacity: 0;
-                    transform: scale(0.3) translate(${initialLeft - left}px, ${initialTop - top}px);
-                }
-                100% {
-                    opacity: 1;
-                    transform: scale(1) translate(0, 0);
-                }
-            }
-        `;
-        
-        // Inject the keyframes
-        const style = document.createElement('style');
-        style.textContent = keyframes;
-        document.head.appendChild(style);
-        modalContent.style.animation = `${animationName} 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards`;
-        
-        // Clean up the style after animation
-        setTimeout(() => {
-            if (style.parentNode) {
-                style.parentNode.removeChild(style);
-            }
-        }, 500);
+
+        // Animate from card center
+        const initialX = (cardRect.left - containerRect.left) + (cardRect.width/2) - (modalWidth/2);
+        const initialY = (cardRect.top - containerRect.top) + (cardRect.height/2) - (modalHeight/2);
+        const animationName = `modalLocalFromCard_${Date.now()}`;
+        const keyframes = `@keyframes ${animationName} {0%{opacity:0;transform:scale(.4) translate(${initialX-left}px,${initialY-top}px);}100%{opacity:1;transform:scale(1) translate(0,0);}}`;
+        const styleEl = document.createElement('style');
+        styleEl.textContent = keyframes;
+        document.head.appendChild(styleEl);
+        modalContent.style.animation = `${animationName} .38s cubic-bezier(0.165,0.84,0.44,1) forwards`;
+        setTimeout(()=>{ styleEl.remove(); },600);
     }
 
 
@@ -405,7 +387,46 @@ class ProjectDetailManager {
                 modalContent.style.transform = '';
                 modalContent.style.transformOrigin = '';
             }
+
+            // Restore focus
+            if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
+                this.lastFocusedElement.focus({preventScroll:true});
+            }
+            this.disableFocusTrap();
+            this.modal.setAttribute('aria-hidden','true');
         }
+    }
+
+    getFocusableElements(){
+        return Array.from(this.modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+            .filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
+    }
+
+    handleKeyDown = (e) => {
+        if(e.key === 'Tab'){
+            const focusable = this.getFocusableElements();
+            if(!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length -1];
+            if(e.shiftKey){
+                if(document.activeElement === first){
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if(document.activeElement === last){
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
+    }
+
+    enableFocusTrap(){
+        document.addEventListener('keydown', this.handleKeyDown, true);
+    }
+    disableFocusTrap(){
+        document.removeEventListener('keydown', this.handleKeyDown, true);
     }
 
 

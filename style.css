@@ -122,6 +122,82 @@
     --spacing-xl: 32px;
     --spacing-xxl: 48px;
 }
+/* Light theme overrides */
+[data-theme="light"] {
+  --bg:#f5f7fa;
+  --bg-alt:#ffffff;
+  --bg-alt2:#e8eef3;
+  --text:#1a1f29;
+  --text-dim:#4a5665;
+  --text-muted:#6b7785;
+  --netflix-black:#ffffff;
+  --netflix-gray:#f0f3f6;
+  --netflix-gray-light:#e4e9ef;
+  --netflix-gray-medium:#d5dde5;
+  --shadow:0 4px 16px rgba(0,0,0,.1);
+  --shadow-large:0 8px 32px rgba(0,0,0,.15);
+  --shadow-hover:0 12px 48px rgba(0,0,0,.18);
+  --glow:0 0 24px rgba(229,9,20,.25);
+}
+
+[data-theme="light"] body { background:linear-gradient(180deg,#f5f7fa 0%, #e8eef3 100%); color:var(--text); }
+[data-theme="light"] .site-header { background:rgba(255,255,255,.85); backdrop-filter:blur(10px); }
+[data-theme="light"] .nav a { color:var(--text-dim); }
+[data-theme="light"] .nav a.active { background:rgba(0,0,0,.08); color:var(--text); }
+[data-theme="light"] .logo { background:var(--accent); -webkit-background-clip:text; background-clip:text; color:transparent; }
+[data-theme="light"] .netflix-card { background:#ffffff; border:1px solid #dfe6ed; }
+[data-theme="light"] .netflix-card-description { color:var(--text-dim); }
+[data-theme="light"] .project-modal { background:rgba(255,255,255,0.6); }
+[data-theme="light"] .project-modal-content { background:#fff; }
+[data-theme="light"] .cert-item { border-color:rgba(0,0,0,.08); }
+[data-theme="light"] .cert-tags span { background:rgba(0,0,0,.08); color:#222; border-color:rgba(0,0,0,.12); }
+[data-theme="light"] .pill { background:#e4e9ef; border-color:#d0d8e0; color:#3a4654; }
+[data-theme="light"] .pill:hover { background:var(--netflix-red); color:#fff; }
+[data-theme="light"] .btn.subtle { background:#dfe6ed; color:#1a1f29; }
+[data-theme="light"] .btn.subtle:hover { background:#cfd8e0; }
+
+/* Theme toggle button */
+.theme-toggle { margin-left:1rem; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.2); border-radius:50%; background:rgba(255,255,255,.06); color:#fff; font-size:1rem; }
+.theme-toggle:hover { background:rgba(255,255,255,.15); }
+[data-theme="light"] .theme-toggle { background:#ffffff; border-color:#d0d8e0; color:#222; }
+[data-theme="light"] .theme-toggle:hover { background:#e8eef3; }
+
+/* Dual icon animation */
+.theme-toggle { position:relative; overflow:hidden; }
+.theme-toggle .theme-icon { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition: transform .5s cubic-bezier(.65,.05,.36,1), opacity .4s ease; font-size:1.1rem; }
+.theme-toggle .theme-icon-moon { transform:translateY(0); opacity:1; }
+.theme-toggle .theme-icon-sun { transform:translateY(120%); opacity:0; }
+[data-theme="light"] .theme-toggle .theme-icon-moon { transform:translateY(-120%); opacity:0; }
+[data-theme="light"] .theme-toggle .theme-icon-sun { transform:translateY(0); opacity:1; }
+
+/* Reduced motion respects user preference */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition:none !important; }
+  .netflix-preview-container, .project-modal-content { animation:none !important; }
+}
+
+/* Focus styles (accessible) */
+:focus-visible { outline:2px solid var(--accent, #e50914); outline-offset:3px; border-radius:4px; }
+.theme-toggle:focus-visible { outline:2px solid var(--accent); }
+
+/* Screen reader only utility */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* Contrast tuning for light theme */
+[data-theme="light"] .nav a { color:#2a3038; }
+[data-theme="light"] .nav a.active { background:#dbe2ea; color:#111; }
+[data-theme="light"] .tagline { color:#2f3b47; }
+[data-theme="light"] .metric-card { background:rgba(0,0,0,.02); }
+
+/* Modal accessibility base */
+.project-modal.local[aria-hidden="false"] .project-modal-content { outline:0; }
+.project-modal-content { will-change:transform, opacity; }
+
+/* Provide aspect ratio placeholder for card images */
+.netflix-card-image { aspect-ratio:16/9; object-fit:cover; width:100%; }
+
+/* Performance: avoid painting hidden sections until needed */
+section.section { content-visibility:auto; contain-intrinsic-size: 600px; }
 /* Base Netflix-style typography and layout */
 html { 
     scroll-behavior: smooth; 
@@ -1114,6 +1190,22 @@ body.loaded {
     .project-card:hover { transform:none; box-shadow:none; }
     .project-card .card-extra { display:none !important; }
 }
+  /* Additional mobile refinements */
+  @media (max-width:640px){
+    .hero-name{font-size:clamp(2.2rem,9vw,3rem);} 
+    .tagline{font-size:.95rem;}
+    .cta-row{gap:.6rem;}
+    .cta-row .btn{padding:.65rem 1rem;font-size:.75rem;border-radius:10px;}
+    .logo{font-size:1.25rem;}
+    .hide-mobile{display:none;}
+    .netflix-card{flex:0 0 240px;height:380px;}
+  }
+  @media (max-width:420px){
+    .hero-inner{padding:0 1rem;}
+    .hero-name{font-size:2rem;}
+    .cta-row .btn{flex:1;justify-content:center;}
+    .projects-grid{--min:200px;}
+  }
 /* Very small devices adjustments */
 @media (max-width:380px){
   .site-header { padding:.65rem .9rem; }
@@ -1904,11 +1996,7 @@ body.loaded {
     }
 }
 
-/* Certification Modal Styles */
-.certification-detail {
-    width: 100%;
-    color: #fff;
-}
+/* (Removed obsolete .certification-detail modal block; certification section now static grid) */
 
 /* New Certifications Grid */
 .certifications-grid {
@@ -1970,8 +2058,7 @@ body.loaded {
   .cert-tags span { font-size:.55rem; padding:3px 7px; }
 }
 
-/* Remove obsolete overlay/button styles (kept for safety but disabled) */
-.cert-overlay, .cert-view-btn { display:none !important; }
+/* Removed obsolete overlay/button styles (no longer needed for static grid) */
 
 .cert-hero {
     position: relative;
@@ -2622,205 +2709,7 @@ body.loaded {
   }
 }
 
-/* ================================
-   CERTIFICATION CAROUSEL STYLES
-   ================================ */
-
-/* Certification card content */
-.cert-card-content {
-    display: flex;
-    align-items: center;
-    padding: 24px;
-    height: 200px;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.cert-card-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: inherit;
-    filter: brightness(0.9);
-    z-index: -1;
-}
-
-.cert-logo {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-right: 24px;
-    flex-shrink: 0;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
-
-.cert-details {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.cert-details h4 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin: 0;
-    line-height: 1.3;
-    color: inherit;
-}
-
-.cert-details p {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    margin: 0;
-    font-weight: 500;
-}
-
-.cert-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.cert-skills span {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.2s ease;
-}
-
-.cert-skills span:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-/* Certification overlay */
-.cert-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.5) 50%,
-        rgba(0, 0, 0, 0.7) 100%
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.netflix-card:hover .cert-overlay {
-    opacity: 1;
-}
-
-.cert-view-btn {
-    background: linear-gradient(135deg, #e50914, #b6070e);
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
-    transform: translateY(20px);
-}
-
-.netflix-card:hover .cert-view-btn {
-    transform: translateY(0);
-    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
-}
-
-.cert-view-btn:hover {
-    background: linear-gradient(135deg, #f40612, #d6070f);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5);
-}
-
-/* Netflix card hover effects for certifications */
-.netflix-card[data-certification]:hover .cert-card-content {
-    transform: scale(1.02);
-    filter: brightness(1.1);
-}
-
-.netflix-card[data-certification]:hover .cert-logo {
-    transform: scale(1.1);
-    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
-}
-
-/* Responsive adjustments for certifications */
-@media (max-width: 768px) {
-    .cert-card-content {
-        height: 160px;
-        padding: 16px;
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-    
-    .cert-logo {
-        width: 60px;
-        height: 60px;
-        margin: 0 0 12px 0;
-    }
-    
-    .cert-details h4 {
-        font-size: 1rem;
-        line-height: 1.2;
-    }
-    
-    .cert-details p {
-        font-size: 0.85rem;
-    }
-    
-    .cert-skills {
-        justify-content: center;
-        margin-top: 8px;
-    }
-    
-    .cert-skills span {
-        font-size: 0.75rem;
-        padding: 4px 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .cert-card-content {
-        height: 140px;
-        padding: 12px;
-    }
-    
-    .cert-logo {
-        width: 48px;
-        height: 48px;
-    }
-    
-    .cert-details h4 {
-        font-size: 0.9rem;
-    }
-    
-    .cert-details p {
-        font-size: 0.8rem;
-    }
-}
+/* Removed legacy certification carousel & hover overlay styles */
 
 /* ================================
    CERTIFICATION MODAL STYLES
