@@ -306,13 +306,22 @@ body.loaded { opacity:1; }
     display: flex;
     flex-direction: column;
     width: 100vw !important;
-  height: 100dvh !important;
-    max-width: none !important;
-    max-height: none !important;
+    height: 100dvh !important;
+    max-width: 1400px !important; /* Set a max-width for larger screens */
+    max-height: 90dvh !important; /* Limit height on larger screens */
+    border-radius: 12px; /* Add border-radius for non-mobile */
   /* Account for safe areas on iOS */
   padding-top: max(0px, env(safe-area-inset-top));
   padding-bottom: max(0px, env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    .project-modal-content {
+        max-width: 100vw !important;
+        max-height: 100dvh !important;
+        border-radius: 0;
+    }
 }
 
 /* Animation for modal entrance */
@@ -413,13 +422,19 @@ body.loaded { opacity:1; }
 [data-theme="light"] .project-modal-content .close-project-modal {
   background: rgba(255,255,255,0.9) !important;
   border-color: rgba(15,23,42,.2) !important;
-  color: #0f172a;
+  color: #0f172a !important;
 }
 
 .project-modal-content .close-project-modal:hover { 
     background: rgba(229, 9, 20, 0.95) !important; 
     border-color: rgba(255,255,255,.7) !important;
     transform: scale(1.1); 
+}
+
+[data-theme="light"] .project-modal-content .close-project-modal:hover {
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
 }
 
 /* Ensure popup behavior for all devices */

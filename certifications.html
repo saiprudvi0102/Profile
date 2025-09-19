@@ -26,7 +26,8 @@
 }
 .cert-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(139,92,246,.20); }
 .cert-header { display:flex; align-items:center; gap: .75rem; }
-.cert-logo { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; color:#fff; font-weight:700; }
+.cert-logo { width:40px; height:40px; border-radius:10px; display:grid; place-items:center; color:#fff; font-weight:700; padding: 4px; }
+.cert-logo img { width: 100%; height: 100%; object-fit: contain; }
 .cert-aws { background: linear-gradient(180deg, #232F3E, #111827); }
 .cert-gcp { background: linear-gradient(180deg, #1a73e8, #1557b0); }
 .cert-coursera { background: linear-gradient(180deg, #2a73cc, #1c56a5); }
@@ -50,51 +51,54 @@
 <section class="page-hero small gradient"><h1 class="right-headline">Certifications</h1><p class="lead max-640">Industry-recognized credentials validating cloud, AI/ML, and mobile expertise.</p></section>
 <section class="section">
   <div class="brand-row">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" style="filter: invert(1)"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style="filter: invert(1)"/>
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Notion-logo.svg" alt="Notion" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Notion" style="filter: invert(1)"/>
   </div>
   <div class="cert-grid">
     <article class="cert-card reveal">
       <div class="ribbon">Verified</div>
       <div class="cert-header">
-        <div class="cert-logo cert-aws">aws</div>
+        <div class="cert-logo cert-aws"><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS Logo" style="filter: invert(1)"></div>
         <div class="cert-body">
           <h3>AWS Certified Developer – Associate</h3>
           <p>Amazon Web Services</p>
           <div class="badges"><span>Lambda</span><span>S3</span><span>API Gateway</span><span>DynamoDB</span><span>Amplify</span></div>
-          <div class="cta-row"><a class="btn subtle" href="#" aria-label="View credential">View Credential</a></div>
+          <div class="cta-row"><a class="btn subtle" href="https://www.credly.com/badges/91434a38-46c5-45f4-996a-e8753b95ac5b/public_url" target="_blank" rel="noopener" aria-label="View credential for AWS Certified Developer – Associate">View Credential</a></div>
         </div>
       </div>
     </article>
     <article class="cert-card reveal">
       <div class="cert-header">
-        <div class="cert-logo cert-deeplearn">AI</div>
+        <div class="cert-logo cert-deeplearn"><img src="https://www.deeplearning.ai/wp-content/uploads/2023/08/DeepLearning.AI-Logo-Square.png" alt="DeepLearning.AI Logo"></div>
         <div class="cert-body">
           <h3>Introduction to Large Language Models</h3>
           <p>DeepLearning.AI</p>
           <div class="badges"><span>LLMs</span><span>Prompting</span><span>Embeddings</span></div>
+           <div class="cta-row"><a class="btn subtle" href="https://www.coursera.org/account/accomplishments/certificate/V22EA82YJ55F" target="_blank" rel="noopener" aria-label="View credential for Introduction to Large Language Models">View Credential</a></div>
         </div>
       </div>
     </article>
     <article class="cert-card reveal">
       <div class="cert-header">
-        <div class="cert-logo cert-coursera">ML</div>
+        <div class="cert-logo cert-coursera"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Coursera_logo.svg" alt="Coursera Logo" style="filter: invert(1)"></div>
         <div class="cert-body">
           <h3>Supervised Machine Learning: Regression</h3>
           <p>Coursera | Andrew Ng</p>
           <div class="badges"><span>Regression</span><span>Evaluation</span><span>Regularization</span></div>
+           <div class="cta-row"><a class="btn subtle" href="https://www.coursera.org/account/accomplishments/certificate/VAF2292SM6XN" target="_blank" rel="noopener" aria-label="View credential for Supervised Machine Learning: Regression">View Credential</a></div>
         </div>
       </div>
     </article>
     <article class="cert-card reveal">
       <div class="cert-header">
-        <div class="cert-logo cert-gcp">G</div>
+        <div class="cert-logo cert-gcp"><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo"></div>
         <div class="cert-body">
           <h3>Introduction to Generative AI</h3>
           <p>Google Cloud</p>
           <div class="badges"><span>Generative AI</span><span>Diffusion</span><span>Use Cases</span></div>
+           <div class="cta-row"><a class="btn subtle" href="https://www.coursera.org/account/accomplishments/certificate/L9CS4VBC3V3P" target="_blank" rel="noopener" aria-label="View credential for Introduction to Generative AI">View Credential</a></div>
         </div>
       </div>
     </article>

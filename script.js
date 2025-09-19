@@ -495,10 +495,16 @@ class ProjectDetailManager {
         this.bindCopyAndHelp();
     }
 
-    // Simplified fullscreen modal version (bypass animations & complex fallbacks)
     showProjectDetail(projectId, cardElement) {
-        // Use the advanced full-screen modal implementation
-        return this.legacyShowProjectDetail(projectId, cardElement);
+        // Always route via hash for consistent, reliable opening.
+        // This avoids direct-call complexities and leverages the robust hashchange handler.
+        const expectedHash = `project-${projectId}`;
+        if (location.hash !== `#${expectedHash}`) {
+            location.hash = expectedHash;
+        } else {
+            // If the hash is already correct but the modal isn't open, force a re-evaluation.
+            this.handleHashChange();
+        }
     }
 
     closeSimpleModal(){
