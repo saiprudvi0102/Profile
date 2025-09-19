@@ -10,6 +10,20 @@ window.addEventListener('DOMContentLoaded', () => {
   
     // Initialize project detail manager (singleton)
     window.__projectDetailManager = new ProjectDetailManager();
+    console.log('[Modal] ProjectDetailManager initialized:', window.__projectDetailManager);
+    
+    // Add a global test function
+    window.testModal = function() {
+        console.log('[Test] Testing modal system...');
+        const card = document.querySelector('.netflix-card[data-project="financial-risk"]');
+        if (card) {
+            console.log('[Test] Found financial-risk card, triggering modal');
+            window.__projectDetailManager.showProjectDetail('financial-risk', card);
+        } else {
+            console.log('[Test] Could not find financial-risk card');
+        }
+    };
+    console.log('[Test] Added window.testModal() function - call this in console to test');
   
     // Initialize Netflix hover previews
     new NetflixHoverManager();
@@ -271,10 +285,13 @@ class ProjectDetailManager {
     }
 
     bindEvents() {
+        console.log('[Modal] Binding events - setting up click listeners');
         // Handle project card clicks
         document.addEventListener('click', (e) => {
+            console.log('[Modal] Click detected on:', e.target);
             const playBtn = e.target.closest('.play-btn');
             if (playBtn) {
+                console.log('[Modal] Play button clicked');
                 e.preventDefault();
                 const card = playBtn.closest('.netflix-card');
                 const projectId = card ? card.dataset.project : null;
@@ -286,10 +303,14 @@ class ProjectDetailManager {
             // Handle poster/card clicks (anywhere on card except buttons)
             const netflixCard = e.target.closest('.netflix-card');
             if (netflixCard && !e.target.closest('.play-btn') && !e.target.closest('.project-modal')) {
+                console.log('[Modal] Card clicked - projectId:', netflixCard.dataset.project);
                 e.preventDefault();
                 const projectId = netflixCard.dataset.project;
                 if (projectId) {
+                    console.log('[Modal] Calling showProjectDetail for card click');
                     this.showProjectDetail(projectId, netflixCard);
+                } else {
+                    console.log('[Modal] No project ID found on card');
                 }
             }
 
