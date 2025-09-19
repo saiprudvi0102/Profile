@@ -407,11 +407,19 @@ class ProjectDetailManager {
     }
 
     showProjectDetail(projectId, cardElement) {
+        console.log('[Modal] showProjectDetail called', { projectId, hasCard: !!cardElement });
+        if(!this.modal){
+            console.warn('[Modal] Modal element missing, recreating');
+            this.createDetailModal();
+        }
         const project = this.getProjectData(projectId);
 
         // If no mapped project data, attempt fallback build from cardElement
         if (!project) {
-            if (!cardElement) return; // no way to build content
+            if (!cardElement){
+                console.warn('[Modal] No project data and no cardElement - aborting');
+                return; // no way to build content
+            }
             const title = cardElement.querySelector('.netflix-card-title')?.textContent?.trim() || 'Project';
             const desc = cardElement.querySelector('.netflix-card-description')?.textContent?.trim() || '';
             const tags = Array.from(cardElement.querySelectorAll('.netflix-card-tags .netflix-tag')).map(t=>t.textContent.trim());
@@ -437,16 +445,19 @@ class ProjectDetailManager {
             this.currentCardElement = cardElement;
             const modalBody = this.modal.querySelector('.project-modal-body');
             modalBody.innerHTML = this.generateProjectDetailHTML(fallbackProject);
+            console.log('[Modal] Fallback project rendered');
             this.positionModalNearCard(cardElement);
             this.currentProjectId = null;
             this.modal.classList.add('active');
             this.modal.setAttribute('aria-hidden','false');
+            console.log('[Modal] Fallback modal activated');
             const focusable = this.getFocusableElements();
             if(focusable.length){ focusable[0].focus({preventScroll:true}); }
             this.enableFocusTrap();
             this.announce(`Opened project ${title}`);
             return;
         }
+        console.log('[Modal] Found project data, proceeding render');
 
         // Prevent body scrolling for true popup behavior
         document.body.style.overflow = 'hidden';
@@ -487,7 +498,10 @@ class ProjectDetailManager {
         // Only update hash if it's different to avoid triggering hashchange
         const expectedHash = `project-${projectId}`;
         if (location.hash !== `#${expectedHash}`) {
+            console.log('[Modal] Updating hash to', expectedHash);
             location.hash = expectedHash; // guarded only for known projects
+        } else {
+            console.log('[Modal] Hash already correct');
         }
     this.preloadAdjacent(projectId);
     this.updateNavButtonStates();
@@ -498,7 +512,8 @@ class ProjectDetailManager {
     this.bindCopyAndHelp();
     this.initLazySections();
         
-        this.modal.classList.add('active');
+    this.modal.classList.add('active');
+    console.log('[Modal] Modal activated');
         this.modal.setAttribute('aria-hidden','false');
 
         // Focus first interactive element inside modal for accessibility
