@@ -1,7 +1,125 @@
-// Page loading animation
+// Page loading animation with Netflix-style fade in
 window.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('loaded');
+  
+  // Initialize Netflix-style carousels
+  initializeCarousels();
+  
+  // Initialize header scroll effects
+  initializeHeaderEffects();
 });
+
+// Netflix-style carousel functionality
+function initializeCarousels() {
+  const carousels = document.querySelectorAll('[data-track]');
+  
+  carousels.forEach(track => {
+    const carouselName = track.dataset.track;
+    const container = track.parentElement;
+    const cards = track.querySelectorAll('.netflix-card');
+    const prevBtn = document.querySelector(`[data-carousel="${carouselName}"][data-direction="prev"]`);
+    const nextBtn = document.querySelector(`[data-carousel="${carouselName}"][data-direction="next"]`);
+    
+    let currentIndex = 0;
+    const cardWidth = 320 + 16; // card width + gap
+    const maxIndex = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
+    
+    function updateCarousel() {
+      const translateX = -currentIndex * cardWidth;
+      track.style.transform = `translateX(${translateX}px)`;
+      
+      // Update button states
+      if (prevBtn) prevBtn.disabled = currentIndex === 0;
+      if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+    }
+    
+    function nextSlide() {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    }
+    
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    }
+    
+    // Add button event listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    
+    // Touch/swipe support for mobile
+    let startX = 0;
+    let isDragging = false;
+    
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    });
+    
+    track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+    });
+    
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      
+      if (Math.abs(diffX) > 50) { // Minimum swipe distance
+        if (diffX > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      
+      isDragging = false;
+    });
+    
+    // Initialize carousel
+    updateCarousel();
+    
+    // Update on window resize
+    window.addEventListener('resize', () => {
+      const newMaxIndex = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
+      if (currentIndex > newMaxIndex) {
+        currentIndex = newMaxIndex;
+      }
+      updateCarousel();
+    });
+  });
+}
+
+// Netflix-style header scroll effects
+function initializeHeaderEffects() {
+  const header = document.querySelector('.site-header');
+  let lastScrollY = window.scrollY;
+  
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    if (currentScrollY > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    // Hide header on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > 200) {
+      header.style.transform = 'translateY(-100%)';
+    } else {
+      header.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollY = currentScrollY;
+  });
+}
 
 // Performance optimization - lazy load images that aren't already lazy
 document.addEventListener('DOMContentLoaded', () => {
