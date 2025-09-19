@@ -271,7 +271,12 @@ class ProjectDetailManager {
                 }
             }
 
-            // Certification cards no longer open modals (simplified section)
+            // Handle certification card clicks
+            const certCard = e.target.closest('.cert-item');
+            if (certCard && !e.target.closest('.project-modal')) {
+                e.preventDefault();
+                this.showCertificationDetail(certCard);
+            }
 
             // Handle modal close
             if (e.target.classList.contains('project-modal-overlay') || 
@@ -330,6 +335,41 @@ class ProjectDetailManager {
         this.bindCopyAndHelp();
     }
 
+    createCertificationModal() {
+        // Modal for certifications section
+        const modal = document.createElement('div');
+        modal.className = 'project-modal local';
+        modal.setAttribute('aria-hidden','true');
+        modal.setAttribute('role','dialog');
+        modal.setAttribute('aria-modal','true');
+        modal.setAttribute('aria-label','Certification details');
+        modal.innerHTML = `
+            <div class="project-modal-overlay local-overlay">
+                <div class="project-modal-shell">
+                    <div class="project-modal-content">
+                        <button class="close-project-modal" aria-label="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                        <div class="project-modal-body"></div>
+                    </div>
+                </div>
+            </div>`;
+        
+        // Append to certifications section
+        const certificationsSection = document.getElementById('certifications');
+        if (certificationsSection) {
+            certificationsSection.appendChild(modal);
+        } else {
+            document.body.appendChild(modal); // fallback
+        }
+        
+        this.modal = modal;
+        this.bindNavigation();
+        this.bindCopyAndHelp();
+    }
+
     showProjectDetail(projectId, cardElement) {
         const project = this.getProjectData(projectId);
         if (!project) return;
@@ -378,6 +418,46 @@ class ProjectDetailManager {
         this.enableFocusTrap();
     }
 
+    showCertificationDetail(cardElement) {
+        if (!cardElement) return;
+        
+        // Extract certification data from the card
+        const certName = cardElement.querySelector('.cert-name')?.textContent || 'Certification';
+        const certOrg = cardElement.querySelector('.cert-org')?.textContent || '';
+        const certBadge = cardElement.querySelector('.cert-badge img')?.src || '';
+        const certTags = Array.from(cardElement.querySelectorAll('.cert-tags span')).map(span => span.textContent);
+        
+        // If modal doesn't exist, create it in the certifications section
+        if (!this.modal) {
+            this.createCertificationModal();
+        }
+        
+        this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        this.currentCardElement = cardElement;
+        
+        const modalBody = this.modal.querySelector('.project-modal-body');
+        modalBody.innerHTML = this.generateCertificationDetailHTML({
+            name: certName,
+            organization: certOrg,
+            badge: certBadge,
+            tags: certTags
+        });
+        
+        // Position modal in certifications section
+        this.positionModalInCertifications(cardElement);
+        
+        this.modal.classList.add('active');
+        this.modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management
+        const focusable = this.getFocusableElements();
+        if(focusable.length){ focusable[0].focus({preventScroll:true}); }
+        this.enableFocusTrap();
+        
+        this.announce(`Opened certification ${certName}`);
+    }
+
     positionModalNearCard(cardElement) {
         if (!cardElement) return;
         
@@ -395,12 +475,24 @@ class ProjectDetailManager {
         const relativeCardLeft = cardRect.left - sectionRect.left;
         const relativeCardTop = cardRect.top - sectionRect.top;
         
-        // Full-screen modal within projects section (with small padding)
-        const modalWidth = sectionRect.width - 20; // Full width minus small padding
-        const modalHeight = sectionRect.height - 20; // Full height minus small padding
+        // Check if mobile device
+        const isMobile = window.innerWidth <= 768;
         
-        const finalLeft = 10; // Small left padding
-        const finalTop = 10; // Small top padding
+        // Full-screen modal covering entire viewport width but positioned within projects section
+        const modalWidth = window.innerWidth; // Full viewport width
+        let modalHeight, finalTop;
+        
+        if (isMobile) {
+            // On mobile, use more of the available height
+            modalHeight = Math.max(sectionRect.height - 5, window.innerHeight * 0.8);
+            finalTop = 2; // Minimal top padding on mobile
+        } else {
+            modalHeight = sectionRect.height - 10; // Full section height with minimal padding
+            finalTop = 5; // Small top padding on desktop
+        }
+        
+        // Position to cover full width (extend beyond section if needed)
+        const finalLeft = -sectionRect.left; // Offset to reach left edge of viewport
         
         // Start modal at card position
         modalContent.style.position = 'absolute';
@@ -417,8 +509,9 @@ class ProjectDetailManager {
         void modalContent.offsetWidth;
         
         // Animate to full-screen position
-        modalContent.style.transition = 'all 600ms cubic-bezier(.22,.61,.36,1)';
-        overlay.style.transition = 'background 600ms ease';
+        const animationDuration = isMobile ? 500 : 600; // Faster on mobile
+        modalContent.style.transition = `all ${animationDuration}ms cubic-bezier(.22,.61,.36,1)`;
+        overlay.style.transition = `background ${animationDuration}ms ease`;
         
         requestAnimationFrame(() => {
             modalContent.style.left = `${finalLeft}px`;
@@ -427,16 +520,120 @@ class ProjectDetailManager {
             modalContent.style.height = `${modalHeight}px`;
             modalContent.style.maxHeight = `${modalHeight}px`;
             modalContent.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,.8)'; // Slightly darker for better contrast
+            overlay.style.background = 'rgba(0,0,0,.85)'; // Darker for full-screen
         });
         
         // Clean up transitions
         setTimeout(() => {
             modalContent.style.transition = '';
             overlay.style.transition = '';
-        }, 650);
+        }, animationDuration + 50);
     }
 
+    positionModalInCertifications(cardElement) {
+        if (!cardElement) return;
+        
+        const cardRect = cardElement.getBoundingClientRect();
+        const modalContent = this.modal.querySelector('.project-modal-content');
+        const overlay = this.modal.querySelector('.project-modal-overlay');
+        const certificationsSection = document.getElementById('certifications');
+        
+        if (!certificationsSection || !modalContent) return;
+        
+        // Get certifications section position for relative positioning
+        const sectionRect = certificationsSection.getBoundingClientRect();
+        
+        // Calculate card position relative to certifications section
+        const relativeCardLeft = cardRect.left - sectionRect.left;
+        const relativeCardTop = cardRect.top - sectionRect.top;
+        
+        // Check if mobile device
+        const isMobile = window.innerWidth <= 768;
+        
+        // Full-screen modal covering entire viewport width but positioned within certifications section
+        const modalWidth = window.innerWidth;
+        let modalHeight, finalTop;
+        
+        if (isMobile) {
+            modalHeight = Math.max(sectionRect.height - 5, window.innerHeight * 0.8);
+            finalTop = 2;
+        } else {
+            modalHeight = sectionRect.height - 10;
+            finalTop = 5;
+        }
+        
+        const finalLeft = -sectionRect.left; // Offset to reach left edge of viewport
+        
+        // Start modal at card position
+        modalContent.style.position = 'absolute';
+        modalContent.style.left = `${relativeCardLeft}px`;
+        modalContent.style.top = `${relativeCardTop}px`;
+        modalContent.style.width = `${cardRect.width}px`;
+        modalContent.style.height = `${cardRect.height}px`;
+        modalContent.style.transform = 'scale(1)';
+        modalContent.style.opacity = '0';
+        modalContent.style.zIndex = '1201';
+        overlay.style.background = 'rgba(0,0,0,0)';
+        
+        // Force reflow
+        void modalContent.offsetWidth;
+        
+        // Animate to full-screen position
+        const animationDuration = isMobile ? 500 : 600;
+        modalContent.style.transition = `all ${animationDuration}ms cubic-bezier(.22,.61,.36,1)`;
+        overlay.style.transition = `background ${animationDuration}ms ease`;
+        
+        requestAnimationFrame(() => {
+            modalContent.style.left = `${finalLeft}px`;
+            modalContent.style.top = `${finalTop}px`;
+            modalContent.style.width = `${modalWidth}px`;
+            modalContent.style.height = `${modalHeight}px`;
+            modalContent.style.maxHeight = `${modalHeight}px`;
+            modalContent.style.opacity = '1';
+            overlay.style.background = 'rgba(0,0,0,.85)';
+        });
+        
+        // Clean up transitions
+        setTimeout(() => {
+            modalContent.style.transition = '';
+            overlay.style.transition = '';
+        }, animationDuration + 50);
+    }
+
+    generateCertificationDetailHTML(cert) {
+        return `
+        <div class="project-detail-page cert-detail-page">
+            <div class="detail-header" style="text-align: center; padding: 2rem 1rem;">
+                <div class="cert-badge-large" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; background: rgba(255,255,255,.1); border-radius: 24px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+                    ${cert.badge ? `<img src="${cert.badge}" alt="${cert.name}" style="width: 80px; height: 80px; object-fit: contain;">` : '🏆'}
+                </div>
+                <h1 style="margin: 0 0 0.5rem; font-size: 2rem; font-weight: 700; color: var(--text-primary);">${cert.name}</h1>
+                <p style="margin: 0 0 1rem; font-size: 1.1rem; color: var(--text-secondary); font-weight: 500;">${cert.organization}</p>
+                <div class="cert-tags-large" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
+                    ${cert.tags.map(tag => `<span style="padding: 0.5rem 1rem; background: rgba(255,255,255,.15); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: var(--text-primary);">${tag}</span>`).join('')}
+                </div>
+            </div>
+            
+            <div class="detail-content" style="padding: 0 2rem 2rem;">
+                <div class="detail-section">
+                    <h2 style="margin: 0 0 1rem; font-size: 1.5rem; color: var(--text-primary);">About This Certification</h2>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+                        This professional certification demonstrates expertise and proficiency in ${cert.name.toLowerCase()}. 
+                        The certification covers essential skills and knowledge areas including ${cert.tags.slice(0, 3).join(', ')}.
+                    </p>
+                    
+                    <div class="skills-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                        ${cert.tags.map(skill => `
+                            <div style="padding: 1rem; background: rgba(255,255,255,.05); border-radius: 12px; border: 1px solid rgba(255,255,255,.1);">
+                                <h3 style="margin: 0 0 0.5rem; font-size: 1rem; color: var(--text-primary);">${skill}</h3>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">Proficient in ${skill.toLowerCase()} concepts and applications</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    }
 
     closeModal() {
         if (this.modal) {

@@ -191,6 +191,7 @@
 
 /* Modal accessibility base - positioned within projects section */
 #projects { position: relative; } /* Ensure projects section can contain positioned modal */
+#certifications { position: relative; } /* Ensure certifications section can contain positioned modal */
 .project-modal.local { position:absolute; inset:0; z-index:1200; display:none; }
 .project-modal.local.active { display:block; }
 .project-modal-overlay.local-overlay { position:absolute; inset:0; background:rgba(0,0,0,.72); }
@@ -214,6 +215,55 @@
 [data-theme="light"] .project-modal-content .close-project-modal { background:rgba(0,0,0,.08); border-color:rgba(0,0,0,.15); }
 [data-theme="light"] .project-modal-content .close-project-modal:hover { background:rgba(0,0,0,.15); }
 
+/* Mobile responsiveness for modal */
+@media (max-width: 768px) {
+    .project-modal-content {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 20px 60px -10px rgba(0,0,0,.9);
+    }
+    
+    .project-modal-content .close-project-modal {
+        width: 50px;
+        height: 50px;
+        top: 10px;
+        right: 10px;
+        background: rgba(255,255,255,.15);
+    }
+    
+    .project-nav-bar {
+        flex-wrap: wrap;
+        gap: 0.25rem !important;
+    }
+    
+    .project-nav-btn {
+        min-width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .project-progress {
+        font-size: 0.6rem !important;
+        padding: 0.25rem 0.4rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-modal-content {
+        border-radius: 8px;
+    }
+    
+    .project-modal-content .close-project-modal {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .project-nav-bar {
+        left: 8px !important;
+        top: 8px !important;
+    }
+}
+
 /* Scroll inside modal content body */
 .project-modal-body { 
     flex: 1; 
@@ -222,6 +272,43 @@
     scrollbar-color: var(--netflix-gray-medium) transparent; 
     padding: 1rem;
     margin-top: 60px; /* Space for nav bar */
+}
+
+/* Mobile responsiveness for modal body */
+@media (max-width: 768px) {
+    .project-modal-body {
+        padding: 0.75rem;
+        margin-top: 70px; /* More space for larger mobile nav */
+        font-size: 14px;
+    }
+    
+    .project-modal-body h1 {
+        font-size: 1.5rem;
+    }
+    
+    .project-modal-body h2 {
+        font-size: 1.25rem;
+    }
+    
+    .project-modal-body p {
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-modal-body {
+        padding: 0.5rem;
+        margin-top: 65px;
+        font-size: 13px;
+    }
+    
+    .project-modal-body h1 {
+        font-size: 1.25rem;
+    }
+    
+    .project-modal-body h2 {
+        font-size: 1.1rem;
+    }
 }
 .project-modal-body::-webkit-scrollbar { width:10px; }
 .project-modal-body::-webkit-scrollbar-track { background:transparent; }
@@ -2064,24 +2151,42 @@ body.loaded {
   min-height: 230px;
   background: var(--cert-bg, linear-gradient(135deg,#1e1e1e,#121212));
   box-shadow: 0 4px 12px -4px rgba(0,0,0,0.5),0 12px 32px -8px rgba(0,0,0,0.4);
-  transition: transform .45s cubic-bezier(.165,.84,.44,1), box-shadow .45s cubic-bezier(.165,.84,.44,1);
+  transition: transform .45s cubic-bezier(.165,.84,.44,1), box-shadow .45s cubic-bezier(.165,.84,.44,1), filter .3s ease;
+  cursor: pointer;
+  user-select: none;
 }
 
-.cert-item::before, .cert-item::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  opacity:.12;
-  background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.35),transparent 60%);
-  mix-blend-mode:overlay;
-  pointer-events:none;
-}
-
-.cert-item::after { opacity:.07; filter:blur(8px); }
-
+/* Netflix-style hover effects for certifications */
 .cert-item:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 24px -6px rgba(0,0,0,0.55),0 22px 48px -12px rgba(0,0,0,0.5);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 32px -8px rgba(0,0,0,0.7),0 28px 64px -16px rgba(0,0,0,0.6);
+  filter: brightness(1.1) saturate(1.1);
+  z-index: 10;
+}
+
+.cert-item:active {
+  transform: translateY(-6px) scale(1.02);
+  transition: transform .15s ease;
+}
+
+/* Add Netflix-style overlay on hover */
+.cert-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.1) 0%,
+    transparent 50%,
+    rgba(0,0,0,0.2) 100%
+  );
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+
+.cert-item:hover::after {
+  opacity: 1;
 }
 
 .cert-badge { width:64px; height:64px; border-radius:16px; background:rgba(255,255,255,.1); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:10px; box-shadow:0 4px 12px -4px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08); }
