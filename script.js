@@ -13,6 +13,9 @@ window.addEventListener('DOMContentLoaded', () => {
   
     // Initialize Netflix hover previews
     new NetflixHoverManager();
+    
+    // Initialize accessibility features
+    initializeAccessibility();
   
     // Certification viewers removed (simplified section)
 });
@@ -271,6 +274,16 @@ class ProjectDetailManager {
                 }
             }
 
+            // Handle poster/card clicks (anywhere on card except buttons)
+            const netflixCard = e.target.closest('.netflix-card');
+            if (netflixCard && !e.target.closest('.play-btn') && !e.target.closest('.project-modal')) {
+                e.preventDefault();
+                const projectId = netflixCard.dataset.project;
+                if (projectId) {
+                    this.showProjectDetail(projectId, netflixCard);
+                }
+            }
+
             // Handle certification card clicks
             const certCard = e.target.closest('.cert-item');
             if (certCard && !e.target.closest('.project-modal')) {
@@ -286,10 +299,29 @@ class ProjectDetailManager {
             }
         });
 
-        // Close modal with Escape key
+        // Handle keyboard navigation
         document.addEventListener('keydown', (e) => {
+            // Close modal with Escape key
             if (e.key === 'Escape' && this.modal && this.modal.classList.contains('active')) {
+                e.preventDefault();
                 this.closeModal();
+            }
+            
+            // Open modal with Enter key when focused on a card
+            if (e.key === 'Enter' && document.activeElement) {
+                const focusedCard = document.activeElement.closest('.netflix-card');
+                const focusedCert = document.activeElement.closest('.cert-item');
+                
+                if (focusedCard) {
+                    e.preventDefault();
+                    const projectId = focusedCard.dataset.project;
+                    if (projectId) {
+                        this.showProjectDetail(projectId, focusedCard);
+                    }
+                } else if (focusedCert) {
+                    e.preventDefault();
+                    this.showCertificationDetail(focusedCert);
+                }
             }
         });
     }
@@ -464,63 +496,49 @@ class ProjectDetailManager {
         const cardRect = cardElement.getBoundingClientRect();
         const modalContent = this.modal.querySelector('.project-modal-content');
         const overlay = this.modal.querySelector('.project-modal-overlay');
-        const projectsSection = document.getElementById('projects');
         
-        if (!projectsSection || !modalContent) return;
+        if (!modalContent) return;
         
-        // Get projects section position for relative positioning
-        const sectionRect = projectsSection.getBoundingClientRect();
+        // Store originating card for focus return
+        this.originatingCard = cardElement;
         
-        // Calculate card position relative to projects section (for initial animation)
-        const relativeCardLeft = cardRect.left - sectionRect.left;
-        const relativeCardTop = cardRect.top - sectionRect.top;
+        // True full-screen positioning - fixed to viewport
+        const modalWidth = window.innerWidth;
+        const modalHeight = window.innerHeight;
         
-        // Check if mobile device
-        const isMobile = window.innerWidth <= 768;
-        
-        // Full-screen modal covering entire viewport width but positioned within projects section
-        const modalWidth = window.innerWidth; // Full viewport width
-        let modalHeight, finalTop;
-        
-        if (isMobile) {
-            // On mobile, use more of the available height
-            modalHeight = Math.max(sectionRect.height - 5, window.innerHeight * 0.8);
-            finalTop = 2; // Minimal top padding on mobile
-        } else {
-            modalHeight = sectionRect.height - 10; // Full section height with minimal padding
-            finalTop = 5; // Small top padding on desktop
-        }
-        
-        // Position to cover full width (extend beyond section if needed)
-        const finalLeft = -sectionRect.left; // Offset to reach left edge of viewport
-        
-        // Start modal at card position
-        modalContent.style.position = 'absolute';
-        modalContent.style.left = `${relativeCardLeft}px`;
-        modalContent.style.top = `${relativeCardTop}px`;
+        // Start modal at card position (absolute coordinates)
+        modalContent.style.position = 'fixed';
+        modalContent.style.left = `${cardRect.left}px`;
+        modalContent.style.top = `${cardRect.top}px`;
         modalContent.style.width = `${cardRect.width}px`;
         modalContent.style.height = `${cardRect.height}px`;
         modalContent.style.transform = 'scale(1)';
         modalContent.style.opacity = '0';
-        modalContent.style.zIndex = '1201';
+        modalContent.style.zIndex = '9999';
         overlay.style.background = 'rgba(0,0,0,0)';
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.right = '0';
+        overlay.style.bottom = '0';
+        overlay.style.zIndex = '9998';
         
         // Force reflow
         void modalContent.offsetWidth;
         
         // Animate to full-screen position
-        const animationDuration = isMobile ? 500 : 600; // Faster on mobile
+        const animationDuration = 600;
         modalContent.style.transition = `all ${animationDuration}ms cubic-bezier(.22,.61,.36,1)`;
         overlay.style.transition = `background ${animationDuration}ms ease`;
         
         requestAnimationFrame(() => {
-            modalContent.style.left = `${finalLeft}px`;
-            modalContent.style.top = `${finalTop}px`;
+            modalContent.style.left = '0px';
+            modalContent.style.top = '0px';
             modalContent.style.width = `${modalWidth}px`;
             modalContent.style.height = `${modalHeight}px`;
             modalContent.style.maxHeight = `${modalHeight}px`;
             modalContent.style.opacity = '1';
-            overlay.style.background = 'rgba(0,0,0,.85)'; // Darker for full-screen
+            overlay.style.background = 'rgba(0,0,0,0.9)';
         });
         
         // Clean up transitions
@@ -644,23 +662,19 @@ class ProjectDetailManager {
             const content = this.modal.querySelector('.project-modal-content');
             const overlay = this.modal.querySelector('.project-modal-overlay');
             
-            if(content && this.currentCardElement){
-                const cardRect = this.currentCardElement.getBoundingClientRect();
-                const projectsSection = document.getElementById('projects');
+            // Use the stored originating card for animation and focus return
+            const targetCard = this.originatingCard || this.currentCardElement;
+            
+            if(content && targetCard){
+                const cardRect = targetCard.getBoundingClientRect();
                 
-                if (projectsSection) {
-                    const sectionRect = projectsSection.getBoundingClientRect();
-                    const relativeCardLeft = cardRect.left - sectionRect.left;
-                    const relativeCardTop = cardRect.top - sectionRect.top;
-                    
-                    content.style.transition = 'all 400ms cubic-bezier(.4,.14,.3,1)';
-                    content.style.left = `${relativeCardLeft}px`;
-                    content.style.top = `${relativeCardTop}px`;
-                    content.style.width = `${cardRect.width}px`;
-                    content.style.height = `${cardRect.height}px`;
-                    content.style.opacity = '0';
-                    content.style.transform = 'scale(0.9)';
-                }
+                content.style.transition = 'all 400ms cubic-bezier(.4,.14,.3,1)';
+                content.style.left = `${cardRect.left}px`;
+                content.style.top = `${cardRect.top}px`;
+                content.style.width = `${cardRect.width}px`;
+                content.style.height = `${cardRect.height}px`;
+                content.style.opacity = '0';
+                content.style.transform = 'scale(0.9)';
             } else if(content) {
                 content.style.transition = 'transform 350ms cubic-bezier(.4,.14,.3,1), opacity 300ms ease';
                 content.style.transform = 'scale(.85)';
@@ -687,16 +701,20 @@ class ProjectDetailManager {
                 }
             },450);
 
-            // Restore focus
-            if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
+            // Return focus to originating card
+            if(this.originatingCard && typeof this.originatingCard.focus === 'function') {
+                this.originatingCard.focus({preventScroll:true});
+            } else if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
                 this.lastFocusedElement.focus({preventScroll:true});
             }
+            
             this.disableFocusTrap();
             this.modal.setAttribute('aria-hidden','true');
             if(location.hash === `#project-${this.currentProjectId}`){
                 history.replaceState('', document.title, location.pathname + location.search);
             }
             this.currentProjectId = null;
+            this.originatingCard = null; // Clear reference
         }
     }
 
@@ -1234,5 +1252,23 @@ class ProjectDetailManager {
     }
 }
 
+// Initialize accessibility features for cards
+function initializeAccessibility() {
+    // Make all Netflix cards focusable
+    const netflixCards = document.querySelectorAll('.netflix-card');
+    netflixCards.forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Open project ${card.querySelector('.netflix-card-title')?.textContent || 'details'}`);
+    });
+    
+    // Make certification cards focusable
+    const certCards = document.querySelectorAll('.cert-item');
+    certCards.forEach(card => {
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Open certification ${card.querySelector('h3')?.textContent || 'details'}`);
+    });
+}
 // Removed certification modal functionality & data (simplified static grid now used)
 
