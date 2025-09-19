@@ -23,7 +23,33 @@ window.addEventListener('DOMContentLoaded', () => {
             console.log('[Test] Could not find financial-risk card');
         }
     };
-    console.log('[Test] Added window.testModal() function - call this in console to test');
+    
+    window.testHash = function() {
+        console.log('[Test] Testing hash change...');
+        location.hash = '#project-telecom-microservices';
+    };
+    
+    window.forceModal = function() {
+        console.log('[Test] Force showing modal...');
+        const manager = window.__projectDetailManager;
+        if (manager && manager.modal) {
+            console.log('[Test] Forcing modal display');
+            manager.modal.style.display = 'block';
+            manager.modal.style.position = 'fixed';
+            manager.modal.style.top = '0';
+            manager.modal.style.left = '0';
+            manager.modal.style.width = '100vw';
+            manager.modal.style.height = '100vh';
+            manager.modal.style.zIndex = '999999';
+            manager.modal.style.background = 'rgba(0,0,0,0.8)';
+            manager.modal.classList.add('active');
+            console.log('[Test] Modal should now be visible');
+        } else {
+            console.log('[Test] No manager or modal found');
+        }
+    };
+    
+    console.log('[Test] Added window.testModal(), window.testHash(), and window.forceModal() functions');
   
     // Initialize Netflix hover previews
     new NetflixHoverManager();
@@ -864,10 +890,13 @@ class ProjectDetailManager {
     updateProgress(){ const prog = this.modal.querySelector('.project-progress'); if(!prog || !this.currentProjectId) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prog.textContent = `${idx+1} / ${this.projectOrder.length}`; }
     preloadAdjacent(id){ const idx = this.projectOrder.indexOf(id); [-1,1].forEach(d=>{ const t = this.projectOrder[idx+d]; if(t){ const data=this.getProjectData(t); if(data && data.image){ const img=new Image(); img.src=data.image; } } }); }
     handleHashChange() { 
+        console.log('[Hash] handleHashChange called, current hash:', location.hash);
         const wanted = location.hash.replace('#project-', ''); 
+        console.log('[Hash] Extracted project ID:', wanted);
         
         // If no hash or not a project hash, close modal if open
         if (!wanted) { 
+            console.log('[Hash] No project ID, closing modal if open');
             if (this.modal && this.modal.classList.contains('active')) {
                 this.closeModal(); 
             }
@@ -876,19 +905,24 @@ class ProjectDetailManager {
         
         // If already showing this project, do nothing
         if (wanted === this.currentProjectId) {
+            console.log('[Hash] Already showing this project:', wanted);
             return; 
         }
         
         // Check if project data exists
         const projectData = this.getProjectData(wanted);
+        console.log('[Hash] Project data found:', !!projectData);
         if (!projectData) {
+            console.log('[Hash] No project data for:', wanted);
             return; 
         }
         
         // Find the card element
         const card = document.querySelector(`.netflix-card[data-project="${wanted}"]`); 
+        console.log('[Hash] Card element found:', !!card);
         
         // Show the project detail
+        console.log('[Hash] Calling showProjectDetail for hash change');
         this.showProjectDetail(wanted, card); 
     }
     attachScrollParallax(){ const body = this.modal.querySelector('.project-modal-body'); const content = this.modal.querySelector('.project-modal-content'); if(!body||!content) return; const handler=()=>{ const y=body.scrollTop; content.classList.toggle('scrolling', y>0); content.style.setProperty('--scroll', y); }; body.removeEventListener('scroll', this._parallaxHandler||(()=>{})); this._parallaxHandler=handler; body.addEventListener('scroll', handler, {passive:true}); }
