@@ -190,11 +190,36 @@
 [data-theme="light"] .metric-card { background:rgba(0,0,0,.02); }
 
 /* Modal accessibility base */
-.project-modal.local[aria-hidden="false"] .project-modal-content { outline:0; }
-.project-modal-content { will-change:transform, opacity; }
+.project-modal.global { position:fixed; inset:0; z-index:1200; display:none; }
+.project-modal.global.active { display:block; }
+.project-modal-overlay.global-overlay { position:absolute; inset:0; background:rgba(0,0,0,.72); display:flex; align-items:center; justify-content:center; padding:2rem 2.5rem; }
+.project-modal-shell { position:relative; width:100%; display:flex; align-items:center; justify-content:center; }
+.project-modal-content { position:relative; background:linear-gradient(145deg,#181818,#0f0f0f); border:1px solid rgba(255,255,255,.08); border-radius:18px; box-shadow:0 20px 60px -10px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.05); overflow:hidden; will-change:transform, opacity; backdrop-filter:blur(8px); }
+.project-modal-content .close-project-modal { position:absolute; top:10px; right:10px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:50%; cursor:pointer; transition:background .25s, transform .25s; }
+.project-modal-content .close-project-modal:hover { background:rgba(255,255,255,.18); transform:rotate(90deg); }
+.project-modal.global[aria-hidden="false"] .project-modal-content { outline:0; }
+[data-theme="light"] .project-modal-content { background:linear-gradient(140deg,#ffffff,#f3f6f9); border-color:rgba(0,0,0,.08); box-shadow:0 18px 48px -12px rgba(0,0,0,.25), 0 0 0 1px rgba(0,0,0,.05); }
+[data-theme="light"] .project-modal-content .close-project-modal { background:rgba(0,0,0,.06); border-color:rgba(0,0,0,.15); }
+[data-theme="light"] .project-modal-content .close-project-modal:hover { background:rgba(0,0,0,.12); }
+
+/* Scroll inside modal content body */
+.project-modal-body { max-height:100%; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--netflix-gray-medium) transparent; }
+.project-modal-body::-webkit-scrollbar { width:10px; }
+.project-modal-body::-webkit-scrollbar-track { background:transparent; }
+.project-modal-body::-webkit-scrollbar-thumb { background:linear-gradient(var(--accent), var(--accent2)); border-radius:8px; }
 
 /* Provide aspect ratio placeholder for card images */
 .netflix-card-image { aspect-ratio:16/9; object-fit:cover; width:100%; }
+/* Card micro-interactions */
+.netflix-card { transition:transform .38s cubic-bezier(.22,.61,.36,1), box-shadow .35s ease, filter .35s ease; }
+.netflix-card:hover { transform:translateY(-6px) scale(1.035); box-shadow:0 12px 40px -10px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.07); filter:brightness(1.08); }
+@media (prefers-reduced-motion: reduce) { .netflix-card, .netflix-card:hover { transition:none; transform:none; box-shadow:none; filter:none; } }
+
+/* Parallax hero inside modal */
+.project-modal-content .project-hero { position:relative; overflow:hidden; }
+.project-modal-content .project-hero-image { width:100%; height:320px; object-fit:cover; transform:translateY(0); transition:transform .6s ease-out; }
+.project-modal-content.scrolling .project-hero-image { transform:translateY(calc(var(--scroll,0) * .25)); }
+@media (prefers-reduced-motion: reduce) { .project-modal-content .project-hero-image, .project-modal-content.scrolling .project-hero-image { transform:none !important; } }
 
 /* Performance: avoid painting hidden sections until needed */
 section.section { content-visibility:auto; contain-intrinsic-size: 600px; }

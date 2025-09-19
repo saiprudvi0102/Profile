@@ -233,6 +233,24 @@ class ProjectDetailManager {
     constructor() {
         this.init();
         this.lastFocusedElement = null;
+        this.projectOrder = this.computeProjectOrder();
+        this.currentProjectId = null;
+        this.swipeData = null;
+        window.addEventListener('hashchange', () => this.handleHashChange());
+        window.addEventListener('load', () => {
+            const hashId = location.hash.replace('#project-','');
+            if(hashId && this.getProjectData(hashId)) {
+                const card = document.querySelector(`.netflix-card[data-project="${hashId}"]`);
+                this.showProjectDetail(hashId, card);
+            }
+        });
+        // Live region for announcements
+        const live = document.createElement('div');
+        live.className = 'sr-only';
+        live.setAttribute('role','status');
+        live.setAttribute('aria-live','polite');
+        document.body.appendChild(live);
+        this.liveRegion = live;
     }
 
     init() {
@@ -272,28 +290,50 @@ class ProjectDetailManager {
     }
 
     createDetailModal() {
-        // Mount inside the projects section so overlay only covers project cards
-        const projectsSection = document.querySelector('#projects') || document.body;
+        // Global fixed overlay (centered Netflix-style)
         const modal = document.createElement('div');
-        modal.className = 'project-modal local';
+        modal.className = 'project-modal global';
         modal.setAttribute('aria-hidden','true');
         modal.setAttribute('role','dialog');
         modal.setAttribute('aria-modal','true');
         modal.setAttribute('aria-label','Project details');
         modal.innerHTML = `
-            <div class="project-modal-overlay local-overlay">
-                <div class="project-modal-content">
-                    <button class="close-project-modal" aria-label="Close">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                        </svg>
-                    </button>
-                    <div class="project-modal-body"></div>
+            <div class="project-modal-overlay global-overlay">
+                <div class="project-modal-shell">
+                    <div class="project-modal-content">
+                        <div class="project-nav-bar" style="position:absolute; top:12px; left:12px; display:flex; gap:.5rem; z-index:5;">
+                            <button class="project-nav-btn prev" aria-label="Previous project" title="Previous (←)">◀</button>
+                            <button class="project-nav-btn next" aria-label="Next project" title="Next (→)">▶</button>
+                            <span class="project-progress" aria-live="off" style="padding:.35rem .6rem; font-size:.7rem; letter-spacing:.06em; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:999px;">1 / 1</span>
+                            <button class="project-copy-link" aria-label="Copy shareable link" title="Copy link" style="font-size:.75rem; padding:.35rem .6rem; border-radius:6px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08);">🔗</button>
+                            <button class="project-help-btn" aria-label="Help / shortcuts" title="Help (?)" style="font-size:.75rem; padding:.35rem .6rem; border-radius:6px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08);">?</button>
+                        </div>
+                        <button class="close-project-modal" aria-label="Close">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                            </svg>
+                        </button>
+                        <div class="project-modal-body"></div>
+                        <div class="project-help-overlay" hidden style="position:absolute; inset:0; backdrop-filter:blur(6px); background:rgba(0,0,0,.6); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; padding:2rem; text-align:left;">
+                            <div style="max-width:640px; width:100%; color:#fff; font-size:.9rem; line-height:1.5;">
+                                <h2 style="margin-top:0; font-size:1.4rem;">Navigation & Shortcuts</h2>
+                                <ul style="list-style:none; padding:0; margin:0; display:grid; gap:.6rem;">
+                                    <li><strong>← / →</strong> Previous / Next project</li>
+                                    <li><strong>Esc</strong> Close modal</li>
+                                    <li><strong>Swipe</strong> Navigate on touch devices</li>
+                                    <li><strong>?</strong> Toggle this help</li>
+                                    <li><strong>🔗</strong> Copy deep link</li>
+                                </ul>
+                                <button class="project-help-close" style="margin-top:1.4rem; background:var(--accent); border:none; padding:.65rem 1.1rem; border-radius:8px; font-weight:600; cursor:pointer;">Got it</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>`;
-        projectsSection.appendChild(modal);
+        document.body.appendChild(modal);
         this.modal = modal;
-        this.container = projectsSection;
+        this.bindNavigation();
+        this.bindCopyAndHelp();
     }
 
     showProjectDetail(projectId, cardElement) {
@@ -303,10 +343,36 @@ class ProjectDetailManager {
         this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
         const modalBody = this.modal.querySelector('.project-modal-body');
-        modalBody.innerHTML = this.generateProjectDetailHTML(project);
+        // Crossfade if already open
+        if(this.modal.classList.contains('active')){
+            const oldContent = modalBody.firstElementChild;
+            const fadeOut = oldContent;
+            if(fadeOut){
+                fadeOut.style.transition='opacity 180ms ease';
+                fadeOut.style.opacity='0';
+                setTimeout(()=>{ if(fadeOut && fadeOut.parentNode) fadeOut.remove(); },190);
+            }
+            const tempWrapper = document.createElement('div');
+            tempWrapper.innerHTML = this.generateProjectDetailHTML(project);
+            const newNode = tempWrapper.firstElementChild;
+            newNode.style.opacity='0';
+            modalBody.appendChild(newNode);
+            requestAnimationFrame(()=>{ newNode.style.transition='opacity 260ms ease'; newNode.style.opacity='1'; });
+        } else {
+            modalBody.innerHTML = this.generateProjectDetailHTML(project);
+        }
         
-        // Position modal relative to the clicked card
-        this.positionModalRelativeToCard(cardElement);
+    // Prepare animation from card => center
+    this.animateFromCard(cardElement);
+    this.currentProjectId = projectId;
+    location.hash = `project-${projectId}`;
+    this.preloadAdjacent(projectId);
+    this.updateNavButtonStates();
+    this.attachScrollParallax();
+    this.announce(`Opened project ${project.title}`);
+    this.updateProgress();
+    this.bindCopyAndHelp();
+    this.initLazySections();
         
         this.modal.classList.add('active');
         this.modal.setAttribute('aria-hidden','false');
@@ -317,54 +383,53 @@ class ProjectDetailManager {
         this.enableFocusTrap();
     }
 
-    positionModalRelativeToCard(cardElement) {
-        if (!cardElement) return;
-        const containerRect = this.container.getBoundingClientRect();
+    animateFromCard(cardElement){
+        if(!cardElement) return;
         const cardRect = cardElement.getBoundingClientRect();
-        const modalContent = this.modal.querySelector('.project-modal-content');
+        const modalShell = this.modal.querySelector('.project-modal-shell');
+        const content = this.modal.querySelector('.project-modal-content');
 
-        modalContent.classList.add('positioned');
-        modalContent.style.position = 'absolute';
-        modalContent.style.transform = 'none';
-        modalContent.style.animation = 'none';
+        // Desired final size
+        const viewportW = window.innerWidth;
+        const viewportH = window.innerHeight;
+        const finalWidth = Math.min(960, viewportW - 80);
+        const finalHeight = Math.min(640, viewportH - 120);
+        content.style.width = finalWidth + 'px';
+        content.style.maxHeight = finalHeight + 'px';
 
-        const availableWidth = containerRect.width;
-        const maxWidth = Math.min(availableWidth - 40, 900);
-        const modalWidth = maxWidth;
-        const modalHeight = 600; // fixed max height inside section
+        // Compute scale & translate from card to center
+        const finalLeft = (viewportW - finalWidth)/2;
+        const finalTop = (viewportH - finalHeight)/2;
 
-        // Coordinates relative to container
-        let left = (cardRect.left - containerRect.left) + (cardRect.width/2) - (modalWidth/2);
-        let top = (cardRect.bottom - containerRect.top) + 16;
+        const scaleX = cardRect.width / finalWidth;
+        const scaleY = cardRect.height / finalHeight;
+        const translateX = (cardRect.left + cardRect.width/2) - (finalLeft + finalWidth/2);
+        const translateY = (cardRect.top + cardRect.height/2) - (finalTop + finalHeight/2);
 
-        // Bounds within container
-        if (left < 0) left = 0;
-        if (left + modalWidth > availableWidth) left = availableWidth - modalWidth;
+        // Set initial transform
+        content.style.transformOrigin = 'center center';
+        content.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+        content.style.opacity = '0';
 
-        const containerHeight = this.container.offsetHeight;
-        if (top + modalHeight > containerHeight) {
-            // If overflow, position above card
-            top = (cardRect.top - containerRect.top) - modalHeight - 16;
-            if (top < 0) top = Math.max(0, (containerHeight - modalHeight)/2);
-        }
+        // Force reflow
+        void content.offsetWidth;
 
-        // Apply
-        modalContent.style.width = modalWidth + 'px';
-        modalContent.style.left = left + 'px';
-        modalContent.style.top = top + 'px';
-        modalContent.style.maxHeight = modalHeight + 'px';
-        modalContent.style.margin = '0';
+        // Animate to final
+        const duration = 420;
+        content.style.transition = `transform ${duration}ms cubic-bezier(.22,.61,.36,1), opacity ${duration*0.6}ms ease`;
+        requestAnimationFrame(()=>{
+            content.style.transform = 'translate(0,0) scale(1,1)';
+            content.style.opacity = '1';
+        });
 
-        // Animate from card center
-        const initialX = (cardRect.left - containerRect.left) + (cardRect.width/2) - (modalWidth/2);
-        const initialY = (cardRect.top - containerRect.top) + (cardRect.height/2) - (modalHeight/2);
-        const animationName = `modalLocalFromCard_${Date.now()}`;
-        const keyframes = `@keyframes ${animationName} {0%{opacity:0;transform:scale(.4) translate(${initialX-left}px,${initialY-top}px);}100%{opacity:1;transform:scale(1) translate(0,0);}}`;
-        const styleEl = document.createElement('style');
-        styleEl.textContent = keyframes;
-        document.head.appendChild(styleEl);
-        modalContent.style.animation = `${animationName} .38s cubic-bezier(0.165,0.84,0.44,1) forwards`;
-        setTimeout(()=>{ styleEl.remove(); },600);
+        // Fade in background
+        const overlay = this.modal.querySelector('.project-modal-overlay');
+        overlay.style.background = 'rgba(0,0,0,0)';
+        overlay.style.transition = `background ${duration}ms ease`;
+        requestAnimationFrame(()=>{ overlay.style.background = 'rgba(0,0,0,.72)'; });
+
+        // Clean up transition after complete
+        setTimeout(()=>{ content.style.transition=''; overlay.style.transition=''; }, duration + 50);
     }
 
 
@@ -373,20 +438,27 @@ class ProjectDetailManager {
             this.modal.classList.remove('active');
             document.body.style.overflow = '';
             
-            // Reset modal positioning
-            const modalContent = this.modal.querySelector('.project-modal-content');
-            if (modalContent) {
-                modalContent.classList.remove('positioned');
-                modalContent.style.position = '';
-                modalContent.style.left = '';
-                modalContent.style.top = '';
-                modalContent.style.width = '';
-                modalContent.style.maxHeight = '';
-                modalContent.style.margin = '';
-                modalContent.style.animation = '';
-                modalContent.style.transform = '';
-                modalContent.style.transformOrigin = '';
+            // Animate close (shrink to center fade)
+            const content = this.modal.querySelector('.project-modal-content');
+            const overlay = this.modal.querySelector('.project-modal-overlay');
+            if(content){
+                content.style.transition = 'transform 320ms cubic-bezier(.4,.14,.3,1), opacity 240ms linear';
+                content.style.transform = 'scale(.85)';
+                content.style.opacity = '0';
             }
+            if(overlay){
+                overlay.style.transition = 'background 260ms ease';
+                overlay.style.background = 'rgba(0,0,0,0)';
+            }
+            setTimeout(()=>{
+                if(content){
+                    content.style.transition='';
+                    content.style.transform='';
+                    content.style.opacity='';
+                    content.style.width='';
+                    content.style.maxHeight='';
+                }
+            },360);
 
             // Restore focus
             if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
@@ -394,7 +466,73 @@ class ProjectDetailManager {
             }
             this.disableFocusTrap();
             this.modal.setAttribute('aria-hidden','true');
+            if(location.hash === `#project-${this.currentProjectId}`){
+                history.replaceState('', document.title, location.pathname + location.search);
+            }
+            this.currentProjectId = null;
         }
+    }
+
+    computeProjectOrder(){
+        return Array.from(document.querySelectorAll('.netflix-card[data-project]')).map(c=>c.dataset.project);
+    }
+    bindNavigation(){
+        const prev = this.modal.querySelector('.project-nav-btn.prev');
+        const next = this.modal.querySelector('.project-nav-btn.next');
+        if(prev) prev.addEventListener('click', ()=> this.navigate(-1));
+        if(next) next.addEventListener('click', ()=> this.navigate(1));
+        document.addEventListener('keydown', (e)=>{
+            if(!this.modal.classList.contains('active')) return;
+            if(e.key==='ArrowLeft'){ e.preventDefault(); this.navigate(-1); }
+            if(e.key==='ArrowRight'){ e.preventDefault(); this.navigate(1); }
+        });
+        const overlay = this.modal.querySelector('.project-modal-overlay');
+        if(overlay){
+            overlay.addEventListener('touchstart', (e)=>{ if(e.touches.length===1){ this.swipeData = {x:e.touches[0].clientX, t:Date.now()}; } }, {passive:true});
+            overlay.addEventListener('touchend', (e)=>{ if(!this.swipeData) return; const dx = e.changedTouches[0].clientX - this.swipeData.x; const dt = Date.now()-this.swipeData.t; if(Math.abs(dx)>60 && dt<500){ this.navigate(dx<0?1:-1); } this.swipeData=null; });
+        }
+    }
+    navigate(direction){
+        if(!this.currentProjectId) return; const order = this.projectOrder; const idx = order.indexOf(this.currentProjectId); if(idx===-1) return; const nextIdx = idx + direction; if(nextIdx<0 || nextIdx>=order.length) return; const nextId = order[nextIdx]; const card = document.querySelector(`.netflix-card[data-project="${nextId}"]`); this.showProjectDetail(nextId, card); }
+    updateNavButtonStates(){ const prev = this.modal.querySelector('.project-nav-btn.prev'); const next = this.modal.querySelector('.project-nav-btn.next'); if(!prev||!next) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prev.disabled = idx<=0; next.disabled = idx>=this.projectOrder.length-1; }
+    updateProgress(){ const prog = this.modal.querySelector('.project-progress'); if(!prog || !this.currentProjectId) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prog.textContent = `${idx+1} / ${this.projectOrder.length}`; }
+    preloadAdjacent(id){ const idx = this.projectOrder.indexOf(id); [-1,1].forEach(d=>{ const t = this.projectOrder[idx+d]; if(t){ const data=this.getProjectData(t); if(data && data.image){ const img=new Image(); img.src=data.image; } } }); }
+    handleHashChange(){ const wanted = location.hash.replace('#project-',''); if(!wanted){ if(this.modal.classList.contains('active')) this.closeModal(); return; } if(wanted===this.currentProjectId) return; if(!this.getProjectData(wanted)) return; const card=document.querySelector(`.netflix-card[data-project="${wanted}"]`); this.showProjectDetail(wanted, card); }
+    attachScrollParallax(){ const body = this.modal.querySelector('.project-modal-body'); const content = this.modal.querySelector('.project-modal-content'); if(!body||!content) return; const handler=()=>{ const y=body.scrollTop; content.classList.toggle('scrolling', y>0); content.style.setProperty('--scroll', y); }; body.removeEventListener('scroll', this._parallaxHandler||(()=>{})); this._parallaxHandler=handler; body.addEventListener('scroll', handler, {passive:true}); }
+    bindCopyAndHelp(){
+        const copyBtn = this.modal.querySelector('.project-copy-link');
+        const helpBtn = this.modal.querySelector('.project-help-btn');
+        const helpOverlay = this.modal.querySelector('.project-help-overlay');
+        const helpClose = this.modal.querySelector('.project-help-close');
+        if(copyBtn){
+            copyBtn.addEventListener('click', ()=>{
+                const url = location.origin + location.pathname + `#project-${this.currentProjectId}`;
+                navigator.clipboard.writeText(url).then(()=>{ copyBtn.textContent='✅'; setTimeout(()=>{ copyBtn.textContent='🔗'; },1200); this.announce('Link copied'); });
+            });
+        }
+        const toggleHelp = ()=>{ if(!helpOverlay) return; const hidden = helpOverlay.hasAttribute('hidden'); if(hidden){ helpOverlay.removeAttribute('hidden'); this.announce('Help opened'); } else { helpOverlay.setAttribute('hidden',''); this.announce('Help closed'); } };
+        if(helpBtn) helpBtn.addEventListener('click', toggleHelp);
+        if(helpClose) helpClose.addEventListener('click', toggleHelp);
+        document.addEventListener('keydown', (e)=>{ if(!this.modal.classList.contains('active')) return; if(e.key==='?'){ e.preventDefault(); toggleHelp(); } });
+    }
+    announce(msg){ if(this.liveRegion){ this.liveRegion.textContent=''; requestAnimationFrame(()=>{ this.liveRegion.textContent=msg; }); } }
+    initLazySections(){
+        const container = this.modal.querySelector('.project-modal-body');
+        if(!container || !('IntersectionObserver' in window)) return;
+        const selectors = '.project-section, .project-metrics, .project-tech, .project-features, .project-architecture';
+        const sections = container.querySelectorAll(selectors);
+        sections.forEach(sec => { sec.style.opacity='0'; sec.style.transform='translateY(28px)'; sec.style.transition='opacity .65s ease, transform .65s cubic-bezier(.22,.61,.36,1)'; });
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    entry.target.style.opacity='1';
+                    entry.target.style.transform='translateY(0)';
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { root: container, threshold: 0.18 });
+        sections.forEach(sec => io.observe(sec));
+        this._lazyIO = io;
     }
 
     getFocusableElements(){
