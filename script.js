@@ -457,42 +457,45 @@ class ProjectDetailManager {
                 demo: null
             },
             'financial-risk': {
-                title: '📈 GPU Financial Risk Analysis',
-                subtitle: 'CUDA-Accelerated Monte Carlo Simulation',
+                title: '📈 GPU-Accelerated Financial Risk Analysis',
+                subtitle: 'CUDA-Powered Monte Carlo Simulation & Portfolio Risk Assessment',
                 image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80',
-                description: 'Advanced financial risk assessment system using GPU-accelerated Monte Carlo simulations with PyCUDA, achieving significant performance improvements.',
-                longDescription: 'A comprehensive financial risk analysis platform that leverages CUDA parallel processing to perform Monte Carlo simulations for portfolio risk assessment. The system features adaptive grid sizing, synthetic financial data generation, and real-time risk metrics calculation.',
+                description: 'Advanced financial risk assessment system leveraging NVIDIA CUDA for parallel Monte Carlo simulations, demonstrating significant performance improvements in covariance matrix calculations and Value at Risk (VaR) computation.',
+                longDescription: 'This project explores GPU computing applications in financial analytics, focusing on accelerating covariance matrix computations for large financial datasets. The implementation compares traditional CPU-based methods with CUDA-powered GPU implementations, demonstrating how GPU acceleration becomes increasingly beneficial as dataset size grows. The system calculates Value at Risk (VaR) and provides comprehensive benchmarking across multiple dataset sizes.',
                 metrics: [
-                    { label: 'GPU Speedup', value: '1.57×', icon: '🚀' },
-                    { label: 'Simulation Runs', value: '1M+', icon: '🔄' },
-                    { label: 'Processing Time', value: '<2 sec', icon: '⏱️' },
-                    { label: 'Memory Efficiency', value: '85%', icon: '💾' }
+                    { label: 'GPU Performance Gain', value: '1.57× @ 1M days', icon: '🚀' },
+                    { label: 'Covariance Matrix Speed', value: '0.43s vs 0.75s CPU', icon: '⚡' },
+                    { label: 'Dataset Scale', value: '1M+ trading days', icon: '📊' },
+                    { label: 'Memory Optimization', value: 'CUDA Toolkit 11.0+', icon: '💾' }
                 ],
                 technologies: [
-                    { name: 'PyCUDA', category: 'GPU Computing' },
-                    { name: 'NumPy', category: 'Computation' },
-                    { name: 'Pandas', category: 'Data Processing' },
-                    { name: 'Matplotlib', category: 'Visualization' },
-                    { name: 'CUDA', category: 'Parallel Processing' },
-                    { name: 'Python', category: 'Core Language' }
+                    { name: 'NVIDIA CUDA', category: 'GPU Computing' },
+                    { name: 'PyCUDA', category: 'Python CUDA Bindings' },
+                    { name: 'NumPy', category: 'Numerical Computing' },
+                    { name: 'Matplotlib', category: 'Data Visualization' },
+                    { name: 'Python', category: 'Core Language' },
+                    { name: 'Jupyter Notebooks', category: 'Development Environment' }
                 ],
                 features: [
-                    'Monte Carlo simulation engine',
-                    'GPU parallel processing',
-                    'Adaptive grid sizing',
-                    'Synthetic data generation',
-                    'Real-time risk metrics',
-                    'Portfolio optimization'
+                    'Monte Carlo simulation engine with GPU acceleration',
+                    'Comparative CPU vs GPU performance benchmarking',
+                    'Value at Risk (VaR) calculation for portfolio assessment',
+                    'Covariance matrix computation optimization',
+                    'Scalability testing across multiple dataset sizes',
+                    'Financial risk metrics visualization and analysis',
+                    'Synthetic financial data generation for testing',
+                    'Memory-efficient CUDA kernel implementations'
                 ],
                 architecture: {
-                    title: 'GPU Architecture',
-                    description: 'CUDA kernel optimization with memory coalescing and thread block configuration.',
+                    title: 'GPU-Accelerated Financial Computing Architecture',
+                    description: 'CUDA-optimized parallel processing pipeline with comparative analysis framework for financial risk calculations.',
                     components: [
-                        'CUDA kernel implementations',
-                        'Memory management optimization',
-                        'Thread block configuration',
-                        'Data transfer optimization',
-                        'Benchmarking framework'
+                        'CUDA kernel implementations for parallel matrix operations',
+                        'PyCUDA Python bindings for GPU memory management',
+                        'Monte Carlo simulation framework with GPU acceleration',
+                        'Comparative benchmarking system (CPU vs GPU)',
+                        'Financial dataset generation and preprocessing pipeline',
+                        'Performance visualization and analysis tools'
                     ]
                 },
                 github: 'https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU',
@@ -500,83 +503,89 @@ class ProjectDetailManager {
             },
             'pcnn-shadow': {
                 title: '🖼️ PCNN Shadow Removal Research',
-                subtitle: 'Biologically-Inspired Neural Network',
+                subtitle: 'Biologically-Inspired Neural Network for Advanced Image Processing',
                 image: 'https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=1200&q=80',
-                description: 'Advanced computer vision research using Pulse Coupled Neural Networks for intelligent shadow detection and removal with high accuracy metrics.',
-                longDescription: 'Research project implementing biologically-inspired Pulse Coupled Neural Networks (PCNN) for shadow detection and removal in digital images. The system achieves state-of-the-art performance through adaptive threshold decay and dynamic linking mechanisms.',
+                description: 'Advanced computer vision research utilizing Pulse Coupled Neural Networks (PCNNs) for intelligent shadow detection and removal, achieving state-of-the-art performance with biologically-inspired algorithms.',
+                longDescription: 'This research project implements a novel approach to image shadow removal using Pulse Coupled Neural Networks (PCNNs), inspired by the visual cortex of small mammals. The system leverages dynamic connection strengths and adaptive thresholding to effectively detect and remove shadows while preserving image details and integrity. The modified PCNN algorithm demonstrates significant improvements over traditional shadow removal techniques through advanced segmentation and processing capabilities.',
                 metrics: [
                     { label: 'Shadow Detection Accuracy', value: '94.2%', icon: '🎯' },
                     { label: 'Image Quality Index', value: '0.89', icon: '🖼️' },
-                    { label: 'Processing Speed', value: '150ms', icon: '⚡' },
-                    { label: 'Research Citations', value: '25+', icon: '📄' }
+                    { label: 'Processing Speed', value: '1.2 seconds', icon: '⚡' },
+                    { label: 'Performance vs GMM', value: '+11.6% accuracy', icon: '�' }
                 ],
                 technologies: [
-                    { name: 'TensorFlow', category: 'Framework' },
+                    { name: 'TensorFlow', category: 'Neural Network Framework' },
                     { name: 'OpenCV', category: 'Computer Vision' },
-                    { name: 'NumPy', category: 'Computation' },
-                    { name: 'PCNN', category: 'Neural Network' },
+                    { name: 'NumPy', category: 'Numerical Computing' },
+                    { name: 'PCNN', category: 'Neural Network Architecture' },
                     { name: 'Python', category: 'Core Language' },
                     { name: 'Matplotlib', category: 'Visualization' }
                 ],
                 features: [
-                    'Pulse Coupled Neural Network implementation',
-                    'Adaptive threshold decay',
-                    'Dynamic linking mechanism',
-                    'Shadow segmentation algorithm',
-                    'Image quality enhancement',
-                    'Research publication ready'
+                    'Biologically-inspired Pulse Coupled Neural Network implementation',
+                    'Dynamic connection strength adaptation for improved accuracy',
+                    'Adaptive thresholding for varying shadow intensities',
+                    'Preservation of original image details in non-shadow regions',
+                    'Comparative analysis with traditional shadow removal techniques',
+                    'GPU acceleration for efficient processing',
+                    'Advanced segmentation algorithms for shadow detection',
+                    'Research-grade evaluation metrics and benchmarking'
                 ],
                 architecture: {
-                    title: 'PCNN Architecture',
-                    description: 'Biologically-inspired neural network with feeding and linking inputs for image segmentation.',
+                    title: 'PCNN Research Architecture',
+                    description: 'Biologically-inspired neural network with feeding and linking inputs, dynamic thresholding, and adaptive connection strengths for image segmentation.',
                     components: [
-                        'PCNN neuron implementation',
-                        'Adaptive threshold calculation',
-                        'Dynamic linking matrix',
-                        'Shadow detection algorithm',
-                        'Image reconstruction pipeline'
+                        'PCNN neuron implementation with feeding and linking fields',
+                        'Dynamic connection strength adaptation mechanism',
+                        'Adaptive threshold decay for varying shadow intensities',
+                        'Shadow segmentation and detection algorithms',
+                        'Image reconstruction and enhancement pipeline',
+                        'Comparative evaluation framework with traditional methods'
                     ]
                 },
                 github: 'https://github.com/saiprudvi0102/PCNN-Shadow-Removal',
                 demo: null
             },
             'iot-fpga': {
-                title: '⚡ IoT FPGA Anomaly Detection',
-                subtitle: 'Hardware-Accelerated Edge Computing',
+                title: '⚡ Enhanced IoT Anomaly Detection Using FPGA',
+                subtitle: 'Hardware-Accelerated Real-Time Security System',
                 image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
-                description: 'Real-time network anomaly detection system using FPGA hardware acceleration with microsecond response times for IoT security.',
-                longDescription: 'Edge computing solution for IoT network security using PYNQ Z2 FPGA board. The system implements hardware-accelerated artificial neural networks with AXI DMA pipeline for real-time anomaly detection in network traffic.',
+                description: 'Real-time anomaly detection system for IoT networks using FPGA hardware acceleration on PYNQ Z2 board, achieving microsecond detection speeds for network security applications.',
+                longDescription: 'This project implements a cutting-edge real-time anomaly detection system for IoT networks using FPGA hardware acceleration. The system utilizes a PYNQ Z2 FPGA board to detect potentially malicious network traffic patterns within microseconds, demonstrating the significant benefits of hardware acceleration for time-critical security applications. The implementation processes the IoT-23 dataset with over 325 million records, featuring a two-stage process of GPU-based neural network training and FPGA-accelerated inference.',
                 metrics: [
                     { label: 'Detection Speed', value: 'Microseconds', icon: '⚡' },
-                    { label: 'Dataset Size', value: '325M+ records', icon: '📊' },
-                    { label: 'Feature Classes', value: '18', icon: '🔧' },
-                    { label: 'Hardware Efficiency', value: '95%', icon: '💾' }
+                    { label: 'Dataset Scale', value: '325M+ records', icon: '📊' },
+                    { label: 'Feature Classes', value: '18 features', icon: '🔧' },
+                    { label: 'Hardware Platform', value: 'PYNQ Z2 FPGA', icon: '💾' }
                 ],
                 technologies: [
-                    { name: 'PYNQ Z2', category: 'Hardware' },
+                    { name: 'PYNQ Z2', category: 'FPGA Hardware' },
+                    { name: 'Vivado Design Suite', category: 'FPGA Development' },
                     { name: 'VHDL', category: 'Hardware Description' },
-                    { name: 'Python', category: 'Control Logic' },
-                    { name: 'AXI DMA', category: 'Data Pipeline' },
-                    { name: 'BRAM', category: 'Memory' },
-                    { name: 'IoT-23', category: 'Dataset' }
+                    { name: 'Python/PYNQ', category: 'Control Interface' },
+                    { name: 'IoT-23 Dataset', category: 'Security Dataset' },
+                    { name: 'AXI Interface', category: 'Data Pipeline' }
                 ],
                 features: [
-                    'Hardware ANN implementation',
-                    'AXI DMA pipeline optimization',
-                    'BRAM memory management',
-                    'Python-VHDL integration',
-                    'Real-time processing',
-                    'IoT network monitoring'
+                    'Real-time IoT network traffic anomaly detection',
+                    'Hardware-accelerated neural network inference on FPGA',
+                    'GPU-based neural network training pipeline',
+                    'Python/PYNQ interface for data processing and FPGA control',
+                    'Visual indicator system (LED) for immediate anomaly alerts',
+                    'Microsecond detection speeds with hardware acceleration',
+                    'IoT-23 dataset processing with 18 feature classification',
+                    'AXI-based interface for high-speed data transfer'
                 ],
                 architecture: {
-                    title: 'FPGA Architecture',
-                    description: 'Hardware-software co-design with AXI interfaces and optimized data flow.',
+                    title: 'FPGA Hardware-Software Co-Design Architecture',
+                    description: 'Two-stage system with GPU training and FPGA inference, featuring AXI interfaces and optimized data flow for real-time processing.',
                     components: [
-                        'Hardware ANN cores',
-                        'AXI DMA controllers',
-                        'BRAM memory interfaces',
-                        'Python control layer',
-                        'Real-time processing pipeline'
+                        'GPU-based neural network model development using IoT-23 dataset',
+                        'FPGA-accelerated inference engine with hardware-optimized implementation',
+                        'Input/output ports for clock, reset, data, and anomaly detection flags',
+                        'AXI-based interface for high-speed data transfer',
+                        'Python script integration for SD card data reading',
+                        'Visual indicator system with LED alerts for anomaly detection'
                     ]
                 },
                 github: 'https://github.com/saiprudvi0102/AnomalyDetection',
@@ -852,5 +861,202 @@ class ProjectDetailManager {
 // Initialize project detail manager
 document.addEventListener('DOMContentLoaded', () => {
     new ProjectDetailManager();
+    initializeCertificationViewers();
 });
+
+// Certification detail functionality
+function initializeCertificationViewers() {
+    const certViewBtns = document.querySelectorAll('.cert-view-btn');
+    
+    certViewBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const certCard = btn.closest('[data-certification]');
+            const certId = certCard.dataset.certification;
+            showCertificationDetail(certId);
+        });
+    });
+}
+
+function showCertificationDetail(certId) {
+    const certData = getCertificationData(certId);
+    if (!certData) return;
+    
+    // Create modal HTML
+    const modalHTML = `
+        <div class="project-modal active" id="certModal">
+            <div class="modal-overlay" onclick="closeCertificationModal()"></div>
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeCertificationModal()" aria-label="Close">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+                
+                <div class="modal-header">
+                    <div class="cert-header-content" style="${certData.gradient}">
+                        <img src="${certData.logo}" alt="${certData.organization}" class="cert-modal-logo" />
+                        <div class="cert-header-text">
+                            <h1 class="modal-title">${certData.title}</h1>
+                            <p class="modal-subtitle">${certData.organization}</p>
+                            <div class="cert-badge">
+                                <span class="cert-status">✓ Certified</span>
+                                <span class="cert-date">${certData.date}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="cert-description">
+                        <h3>About This Certification</h3>
+                        <p>${certData.description}</p>
+                    </div>
+                    
+                    <div class="cert-skills-section">
+                        <h3>Skills & Technologies</h3>
+                        <div class="skills-grid">
+                            ${certData.skills.map(skill => `
+                                <div class="skill-badge">
+                                    <span class="skill-icon">${skill.icon}</span>
+                                    <span class="skill-name">${skill.name}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    ${certData.projects ? `
+                        <div class="cert-projects">
+                            <h3>Related Projects</h3>
+                            <div class="project-links">
+                                ${certData.projects.map(project => `
+                                    <a href="#" class="project-link" onclick="openProjectDetail('${project.id}')">
+                                        <span class="project-icon">${project.icon}</span>
+                                        <span class="project-name">${project.name}</span>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    ${certData.credentialUrl ? `
+                        <div class="cert-actions">
+                            <a href="${certData.credentialUrl}" target="_blank" class="credential-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                                </svg>
+                                View Credential
+                            </a>
+                        </div>
+                    ` : ''}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCertificationModal() {
+    const modal = document.getElementById('certModal');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = '';
+    }
+}
+
+function getCertificationData(certId) {
+    const certifications = {
+        'aws-developer': {
+            title: 'AWS Certified Developer – Associate',
+            organization: 'Amazon Web Services',
+            date: '2024',
+            logo: 'https://cdn.simpleicons.org/amazonaws/ffffff',
+            gradient: 'background: linear-gradient(135deg, #232F3E, #0b1220); color: white;',
+            description: 'Validates technical expertise in developing and maintaining applications on the AWS platform. Demonstrates proficiency in core AWS services, architecture best practices, and security implementation.',
+            skills: [
+                { name: 'AWS Lambda', icon: '⚡' },
+                { name: 'Amazon S3', icon: '🗄️' },
+                { name: 'API Gateway', icon: '🌐' },
+                { name: 'DynamoDB', icon: '📊' },
+                { name: 'CloudFormation', icon: '🏗️' },
+                { name: 'IAM', icon: '🔐' }
+            ],
+            projects: [
+                { id: 'mobilellm', name: 'MobileLLM Deployment', icon: '🚀' }
+            ],
+            credentialUrl: null
+        },
+        'gcp-ai': {
+            title: 'Introduction to Generative AI',
+            organization: 'Google Cloud',
+            date: '2024',
+            logo: 'https://cdn.simpleicons.org/googlecloud/ffffff',
+            gradient: 'background: linear-gradient(135deg, #1a73e8, #1557b0); color: white;',
+            description: 'Comprehensive introduction to Generative AI concepts, applications, and Google Cloud AI/ML services. Covers fundamental principles of large language models, responsible AI, and practical implementation strategies.',
+            skills: [
+                { name: 'Generative AI', icon: '🤖' },
+                { name: 'Large Language Models', icon: '🧠' },
+                { name: 'Vertex AI', icon: '☁️' },
+                { name: 'PaLM API', icon: '🔗' },
+                { name: 'Responsible AI', icon: '⚖️' },
+                { name: 'AI Ethics', icon: '🎯' }
+            ],
+            projects: [
+                { id: 'mobilellm', name: 'MobileLLM Project', icon: '🤖' }
+            ],
+            credentialUrl: null
+        },
+        'deeplearning-llm': {
+            title: 'Introduction to Large Language Models',
+            organization: 'DeepLearning.AI',
+            date: '2024',
+            logo: 'https://cdn.simpleicons.org/deeplearningai/00FFFF',
+            gradient: 'background: linear-gradient(135deg, #0b1220, #111827); color: white;',
+            description: 'In-depth exploration of Large Language Models, covering architecture, training methodologies, fine-tuning techniques, and practical applications. Focus on understanding transformer architectures and prompt engineering.',
+            skills: [
+                { name: 'Transformer Architecture', icon: '🏗️' },
+                { name: 'Prompt Engineering', icon: '✏️' },
+                { name: 'Fine-tuning', icon: '🔧' },
+                { name: 'Embeddings', icon: '🧮' },
+                { name: 'Model Evaluation', icon: '📈' },
+                { name: 'LLM Applications', icon: '🎯' }
+            ],
+            projects: [
+                { id: 'mobilellm', name: 'MobileLLM125M', icon: '🚀' }
+            ],
+            credentialUrl: null
+        },
+        'coursera-ml': {
+            title: 'Supervised Machine Learning: Regression',
+            organization: 'Coursera | Andrew Ng',
+            date: '2023',
+            logo: 'https://cdn.simpleicons.org/coursera/ffffff',
+            gradient: 'background: linear-gradient(135deg, #2a73cc, #1c56a5); color: white;',
+            description: 'Comprehensive course on supervised machine learning with focus on regression algorithms. Covers linear regression, logistic regression, regularization techniques, and practical implementation using Python and scikit-learn.',
+            skills: [
+                { name: 'Linear Regression', icon: '📈' },
+                { name: 'Logistic Regression', icon: '📊' },
+                { name: 'Regularization', icon: '🎛️' },
+                { name: 'Feature Engineering', icon: '🔧' },
+                { name: 'Model Evaluation', icon: '✅' },
+                { name: 'Python/Scikit-learn', icon: '🐍' }
+            ],
+            projects: [
+                { id: 'financial-risk', name: 'Financial Risk Analysis', icon: '📈' }
+            ],
+            credentialUrl: null
+        }
+    };
+    
+    return certifications[certId];
+}
+
+function openProjectDetail(projectId) {
+    closeCertificationModal();
+    // Trigger project detail modal
+    const projectDetailManager = new ProjectDetailManager();
+    projectDetailManager.openModal(projectId);
+}
 
