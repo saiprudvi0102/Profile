@@ -1050,6 +1050,50 @@ a:hover, a:focus {
     transform: translateY(-1px);
 }
 
+/* Enhanced Carousel Netflix-style interactions */
+.carousel-container {
+    position: relative;
+    z-index: 1;
+}
+
+.carousel-track .netflix-card {
+    transition: all 0.3s var(--ease-out);
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.carousel-track .netflix-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        0 5px 15px rgba(229, 9, 20, 0.3);
+    filter: brightness(1.1) saturate(1.2);
+}
+
+.carousel-track .netflix-card:hover .play-btn {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.1);
+}
+
+/* Ensure carousel containers support modal overlays */
+.projects .netflix-grid,
+.projects .carousel-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced carousel card image effects */
+.carousel-track .netflix-card img {
+    transition: all 0.3s var(--ease-out);
+}
+
+.carousel-track .netflix-card:hover img {
+    filter: brightness(1.15) contrast(1.1);
+}
+
 /* Netflix-style page load animations */
 body {
     opacity: 0;
@@ -3102,5 +3146,18 @@ body.loaded {
     
     .project-link {
         padding: 10px 12px;
+    }
+    
+    /* Carousel modal mobile optimizations */
+    .carousel-track .netflix-card:hover {
+        transform: scale(1.03); /* Reduced scale for mobile */
+    }
+    
+    .carousel-container .project-modal {
+        position: fixed; /* Ensure full screen on mobile */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 }
