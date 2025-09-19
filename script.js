@@ -391,11 +391,18 @@ class ProjectDetailManager {
         // Get projects section position for relative positioning
         const sectionRect = projectsSection.getBoundingClientRect();
         
-        // Calculate card position relative to projects section
+        // Calculate card position relative to projects section (for initial animation)
         const relativeCardLeft = cardRect.left - sectionRect.left;
         const relativeCardTop = cardRect.top - sectionRect.top;
         
-        // Position modal content directly over the card (relative to projects section)
+        // Calculate final centered position within projects section
+        const modalWidth = Math.min(sectionRect.width - 40, 900); // Max width with padding
+        const modalHeight = Math.min(sectionRect.height - 40, 700); // Max height with padding
+        
+        const finalLeft = (sectionRect.width - modalWidth) / 2;
+        const finalTop = Math.max(20, (sectionRect.height - modalHeight) / 2);
+        
+        // Start modal at card position
         modalContent.style.position = 'absolute';
         modalContent.style.left = `${relativeCardLeft}px`;
         modalContent.style.top = `${relativeCardTop}px`;
@@ -409,32 +416,16 @@ class ProjectDetailManager {
         // Force reflow
         void modalContent.offsetWidth;
         
-        // Animate to expand over the card area
-        modalContent.style.transition = 'all 400ms cubic-bezier(.22,.61,.36,1)';
-        overlay.style.transition = 'background 400ms ease';
+        // Animate to full-screen centered position
+        modalContent.style.transition = 'all 500ms cubic-bezier(.22,.61,.36,1)';
+        overlay.style.transition = 'background 500ms ease';
         
         requestAnimationFrame(() => {
-            // Calculate expanded size while staying over the card
-            const expandedWidth = Math.min(Math.max(cardRect.width * 1.8, 350), sectionRect.width - 40);
-            const expandedHeight = Math.min(Math.max(cardRect.height * 2.5, 450), sectionRect.height - 40);
-            
-            // Adjust position to keep it centered over the original card
-            const offsetX = (expandedWidth - cardRect.width) / 2;
-            const offsetY = (expandedHeight - cardRect.height) / 2;
-            
-            // Calculate final position, keeping it over the card but ensuring it stays in section bounds
-            let finalLeft = relativeCardLeft - offsetX;
-            let finalTop = relativeCardTop - offsetY;
-            
-            // Clamp to section bounds with padding
-            finalLeft = Math.max(20, Math.min(finalLeft, sectionRect.width - expandedWidth - 20));
-            finalTop = Math.max(20, Math.min(finalTop, sectionRect.height - expandedHeight - 20));
-            
             modalContent.style.left = `${finalLeft}px`;
             modalContent.style.top = `${finalTop}px`;
-            modalContent.style.width = `${expandedWidth}px`;
-            modalContent.style.height = `${expandedHeight}px`;
-            modalContent.style.maxHeight = `${expandedHeight}px`;
+            modalContent.style.width = `${modalWidth}px`;
+            modalContent.style.height = `${modalHeight}px`;
+            modalContent.style.maxHeight = `${modalHeight}px`;
             modalContent.style.opacity = '1';
             overlay.style.background = 'rgba(0,0,0,.72)';
         });
@@ -443,7 +434,7 @@ class ProjectDetailManager {
         setTimeout(() => {
             modalContent.style.transition = '';
             overlay.style.transition = '';
-        }, 450);
+        }, 550);
     }
 
 
@@ -465,22 +456,22 @@ class ProjectDetailManager {
                     const relativeCardLeft = cardRect.left - sectionRect.left;
                     const relativeCardTop = cardRect.top - sectionRect.top;
                     
-                    content.style.transition = 'all 350ms cubic-bezier(.4,.14,.3,1)';
+                    content.style.transition = 'all 400ms cubic-bezier(.4,.14,.3,1)';
                     content.style.left = `${relativeCardLeft}px`;
                     content.style.top = `${relativeCardTop}px`;
                     content.style.width = `${cardRect.width}px`;
                     content.style.height = `${cardRect.height}px`;
                     content.style.opacity = '0';
-                    content.style.transform = 'scale(0.8)';
+                    content.style.transform = 'scale(0.9)';
                 }
             } else if(content) {
-                content.style.transition = 'transform 300ms cubic-bezier(.4,.14,.3,1), opacity 250ms ease';
-                content.style.transform = 'scale(.8)';
+                content.style.transition = 'transform 350ms cubic-bezier(.4,.14,.3,1), opacity 300ms ease';
+                content.style.transform = 'scale(.85)';
                 content.style.opacity = '0';
             }
             
             if(overlay){
-                overlay.style.transition = 'background 350ms ease';
+                overlay.style.transition = 'background 400ms ease';
                 overlay.style.background = 'rgba(0,0,0,0)';
             }
             
@@ -497,7 +488,7 @@ class ProjectDetailManager {
                     content.style.maxHeight='';
                     content.style.zIndex='';
                 }
-            },380);
+            },450);
 
             // Restore focus
             if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
