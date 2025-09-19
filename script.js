@@ -327,6 +327,7 @@ class ProjectDetailManager {
         if (!project) return;
 
         this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        this.currentCardElement = cardElement; // Store reference for close animation
 
         const modalBody = this.modal.querySelector('.project-modal-body');
         // Crossfade if already open
@@ -376,47 +377,46 @@ class ProjectDetailManager {
         const modalContent = this.modal.querySelector('.project-modal-content');
         const overlay = this.modal.querySelector('.project-modal-overlay');
         
-        // Set modal to be positioned near the card
-        const viewportW = window.innerWidth;
-        const viewportH = window.innerHeight;
-        const modalWidth = Math.min(800, viewportW - 40);
-        const modalHeight = Math.min(600, viewportH - 40);
-        
-        // Calculate position near the card but centered on page
-        let left = (viewportW - modalWidth) / 2;
-        let top = Math.max(20, (viewportH - modalHeight) / 2);
-        
-        // Ensure modal doesn't go off screen
-        if (left < 20) left = 20;
-        if (top < 20) top = 20;
-        if (left + modalWidth > viewportW - 20) left = viewportW - modalWidth - 20;
-        if (top + modalHeight > viewportH - 20) top = viewportH - modalHeight - 20;
-        
+        // Position modal directly over the card
         modalContent.style.position = 'fixed';
-        modalContent.style.left = left + 'px';
-        modalContent.style.top = top + 'px';
-        modalContent.style.width = modalWidth + 'px';
-        modalContent.style.maxHeight = modalHeight + 'px';
-        modalContent.style.zIndex = '1201';
-        
-        // Animate from card position to final position
-        const initialScale = Math.min(cardRect.width / modalWidth, cardRect.height / modalHeight, 0.3);
-        const initialX = cardRect.left + cardRect.width/2 - (left + modalWidth/2);
-        const initialY = cardRect.top + cardRect.height/2 - (top + modalHeight/2);
-        
-        modalContent.style.transform = `translate(${initialX}px, ${initialY}px) scale(${initialScale})`;
+        modalContent.style.left = `${cardRect.left}px`;
+        modalContent.style.top = `${cardRect.top}px`;
+        modalContent.style.width = `${cardRect.width}px`;
+        modalContent.style.height = `${cardRect.height}px`;
+        modalContent.style.transform = 'scale(1)';
         modalContent.style.opacity = '0';
+        modalContent.style.zIndex = '1201';
         overlay.style.background = 'rgba(0,0,0,0)';
         
         // Force reflow
         void modalContent.offsetWidth;
         
-        // Animate to final position
-        modalContent.style.transition = 'transform 400ms cubic-bezier(.22,.61,.36,1), opacity 350ms ease';
+        // Animate to expand over the card area
+        modalContent.style.transition = 'all 400ms cubic-bezier(.22,.61,.36,1)';
         overlay.style.transition = 'background 400ms ease';
         
         requestAnimationFrame(() => {
-            modalContent.style.transform = 'translate(0, 0) scale(1)';
+            // Calculate expanded size while staying over the card
+            const expandedWidth = Math.min(Math.max(cardRect.width * 1.8, 350), window.innerWidth - 40);
+            const expandedHeight = Math.min(Math.max(cardRect.height * 2.5, 450), window.innerHeight - 40);
+            
+            // Adjust position to keep it centered over the original card
+            const offsetX = (expandedWidth - cardRect.width) / 2;
+            const offsetY = (expandedHeight - cardRect.height) / 2;
+            
+            // Calculate final position, keeping it over the card but ensuring it stays in viewport
+            let finalLeft = cardRect.left - offsetX;
+            let finalTop = cardRect.top - offsetY;
+            
+            // Clamp to viewport with padding
+            finalLeft = Math.max(20, Math.min(finalLeft, window.innerWidth - expandedWidth - 20));
+            finalTop = Math.max(20, Math.min(finalTop, window.innerHeight - expandedHeight - 20));
+            
+            modalContent.style.left = `${finalLeft}px`;
+            modalContent.style.top = `${finalTop}px`;
+            modalContent.style.width = `${expandedWidth}px`;
+            modalContent.style.height = `${expandedHeight}px`;
+            modalContent.style.maxHeight = `${expandedHeight}px`;
             modalContent.style.opacity = '1';
             overlay.style.background = 'rgba(0,0,0,.72)';
         });
@@ -434,18 +434,30 @@ class ProjectDetailManager {
             this.modal.classList.remove('active');
             document.body.style.overflow = '';
             
-            // Animate close (shrink and fade)
+            // Animate close (shrink back to card position)
             const content = this.modal.querySelector('.project-modal-content');
             const overlay = this.modal.querySelector('.project-modal-overlay');
-            if(content){
+            
+            if(content && this.currentCardElement){
+                const cardRect = this.currentCardElement.getBoundingClientRect();
+                content.style.transition = 'all 350ms cubic-bezier(.4,.14,.3,1)';
+                content.style.left = `${cardRect.left}px`;
+                content.style.top = `${cardRect.top}px`;
+                content.style.width = `${cardRect.width}px`;
+                content.style.height = `${cardRect.height}px`;
+                content.style.opacity = '0';
+                content.style.transform = 'scale(0.8)';
+            } else if(content) {
                 content.style.transition = 'transform 300ms cubic-bezier(.4,.14,.3,1), opacity 250ms ease';
-                content.style.transform = 'scale(.9)';
+                content.style.transform = 'scale(.8)';
                 content.style.opacity = '0';
             }
+            
             if(overlay){
-                overlay.style.transition = 'background 280ms ease';
+                overlay.style.transition = 'background 350ms ease';
                 overlay.style.background = 'rgba(0,0,0,0)';
             }
+            
             setTimeout(()=>{
                 if(content){
                     content.style.transition='';
@@ -455,10 +467,11 @@ class ProjectDetailManager {
                     content.style.left='';
                     content.style.top='';
                     content.style.width='';
+                    content.style.height='';
                     content.style.maxHeight='';
                     content.style.zIndex='';
                 }
-            },320);
+            },380);
 
             // Restore focus
             if(this.lastFocusedElement && typeof this.lastFocusedElement.focus === 'function') {
