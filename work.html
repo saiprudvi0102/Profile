@@ -334,5 +334,78 @@
 })();
 </script>
 <script src="script.js"></script>
+<script>
+// Add dynamic project loading for work page
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for the project manager to initialize
+    setTimeout(() => {
+        if (window.__projectDetailManager) {
+            console.log('Project manager found, setting up work page');
+            
+            // Find the projects section and add a dynamic grid
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                // Create a dynamic projects grid
+                const dynamicGrid = document.createElement('div');
+                dynamicGrid.id = 'dynamic-projects-grid';
+                dynamicGrid.className = 'projects-grid';
+                dynamicGrid.style.cssText = `
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 1.5rem;
+                    padding: 2rem 0;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                `;
+                
+                // Get all projects
+                const projects = window.__projectDetailManager.getAllProjects();
+                if (projects) {
+                    dynamicGrid.innerHTML = Object.keys(projects).map(projectId => {
+                        const project = projects[projectId];
+                        return `
+                            <div class="netflix-card" data-project="${projectId}" tabindex="0" role="button" aria-label="View details for ${project.title}">
+                                <img src="${project.image}" alt="${project.title}" loading="lazy" class="netflix-card-image">
+                                <div class="card-overlay"></div>
+                                <div class="netflix-card-content">
+                                    <h4 class="netflix-card-title">${project.title}</h4>
+                                    <p class="netflix-card-description">${project.description}</p>
+                                    <div class="netflix-card-tags">
+                                        ${project.technologies.slice(0, 3).map(tech => `<span class="netflix-tag">${tech.name}</span>`).join('')}
+                                    </div>
+                                    <div class="netflix-card-footer">
+                                        <button class="play-btn">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    // Replace the existing carousel content with our dynamic grid
+                    const existingCarousels = projectsSection.querySelectorAll('.netflix-carousel');
+                    existingCarousels.forEach(carousel => carousel.style.display = 'none');
+                    
+                    // Insert the dynamic grid
+                    projectsSection.appendChild(dynamicGrid);
+                    
+                    // Initialize accessibility
+                    if (typeof initializeAccessibility === 'function') {
+                        initializeAccessibility();
+                    }
+                    
+                    console.log('Dynamic project grid created with', Object.keys(projects).length, 'projects');
+                } else {
+                    console.error('No projects data available');
+                }
+            }
+        } else {
+            console.error('ProjectDetailManager not initialized');
+        }
+    }, 200);
+});
+</script>
 </body>
 </html>

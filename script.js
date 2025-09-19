@@ -901,8 +901,18 @@ class ProjectDetailManager {
     }
 
 
+    getAllProjects() {
+        const projects = this.getProjectsData();
+        return projects;
+    }
+
     getProjectData(projectId) {
-        const projects = {
+        const projects = this.getProjectsData();
+        return projects[projectId];
+    }
+
+    getProjectsData() {
+        return {
             'mobilellm': {
                 title: '🤖 MobileLLM-125M Fine-Tuning & Deployment',
                 subtitle: 'Advanced Language Model Production System',
@@ -1377,8 +1387,6 @@ class ProjectDetailManager {
                 demo: null
             }
         };
-
-        return projects[projectId];
     }
 
     generateProjectDetailHTML(project) {
