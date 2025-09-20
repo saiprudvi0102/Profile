@@ -133,3 +133,26 @@ For questions or improvements: open an issue or contact via LinkedIn.
 
 10. Theming Parity
 	- Work page includes the persistent theme toggle script; localStorage setting shared across all pages.
+
+---
+
+Quick QA for Projects and Certifications (2025)
+
+- Open any page with project cards and click a card:
+	- Expect fullscreen modal with title, details, and navigation (Prev/Next) visible.
+	- Press Esc to close; focus returns to the card. Hash clears from URL.
+	- Copy link (🔗) then paste in a new tab: URL should include `#project-<id>` and auto-open to that project.
+
+- Open Certifications page and click a certification tile:
+	- Expect the same fullscreen modal without Prev/Next controls.
+	- URL should update to `#cert-<id>`; reload and it should auto-open.
+	- Press Esc to close; hash should clear.
+
+- Keyboard and accessibility:
+	- Tab to a card/tile and press Enter to open; Shift+Tab to navigate back after close.
+	- Arrow keys (←/→) navigate projects when project modal is open.
+
+- QR share:
+	- In a project modal, click QR; overlay appears; close it and ensure modal remains.
+
+If anything differs, check `main.js` console for warnings and ensure all pages load `main.js` (not `script.js`).
