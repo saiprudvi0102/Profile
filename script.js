@@ -357,6 +357,7 @@ class ProjectDetailManager {
                 e.preventDefault();
                 const projectId = netflixCard.dataset.project;
                 if (projectId) {
+                    console.log('[Click] Netflix card clicked, project ID:', projectId);
                     location.hash = `project-${projectId}`;
                     return;
                 }
