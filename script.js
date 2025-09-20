@@ -718,38 +718,26 @@ class ProjectDetailManager {
     }
 
     positionModalNearCard(cardElement) {
-        if (!cardElement) return;
-        
-        const cardRect = cardElement.getBoundingClientRect();
+        // Always open modal in fullscreen mode, covering the entire viewport
         const modalContent = this.modal.querySelector('.project-modal-content');
         const overlay = this.modal.querySelector('.project-modal-overlay');
-        
-        if (!modalContent) return;
-        
+        if (!modalContent || !overlay) return;
         // Store originating card for focus return
         this.originatingCard = cardElement;
-        
-        // Start animation from card position (using CSS custom properties for animation)
-        this.modal.style.setProperty('--start-left', `${cardRect.left}px`);
-        this.modal.style.setProperty('--start-top', `${cardRect.top}px`);
-        this.modal.style.setProperty('--start-width', `${cardRect.width}px`);
-        this.modal.style.setProperty('--start-height', `${cardRect.height}px`);
-        
-        // Add animation class unless reduced motion preferred
-        if(!this.prefersReducedMotion){
-            this.modal.classList.add('animating-in');
-        }
-        
-        // Show modal
+        // Set modal content to fullscreen
+        modalContent.style.position = 'fixed';
+        modalContent.style.left = '0px';
+        modalContent.style.top = '0px';
+        modalContent.style.width = '100vw';
+        modalContent.style.height = '100vh';
+        modalContent.style.maxWidth = '100vw';
+        modalContent.style.maxHeight = '100vh';
+        modalContent.style.borderRadius = '0px';
+        modalContent.style.opacity = '1';
+        modalContent.style.zIndex = '1201';
+        overlay.style.background = 'rgba(0,0,0,0.95)';
         this.modal.classList.add('active');
         this.modal.setAttribute('aria-hidden', 'false');
-        
-        // Remove animation class after animation completes
-        if(!this.prefersReducedMotion){
-            setTimeout(() => {
-                this.modal.classList.remove('animating-in');
-            }, 600);
-        }
     }
 
     showModalDirectly() {
