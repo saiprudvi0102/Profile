@@ -32,6 +32,7 @@
 .cert-gcp { background: linear-gradient(180deg, #1a73e8, #1557b0); }
 .cert-coursera { background: linear-gradient(180deg, #2a73cc, #1c56a5); }
 .cert-deeplearn { background: linear-gradient(180deg, #111827, #0b1220); }
+.cert-broadcom { background: linear-gradient(180deg, #ff6600, #cc5200); }
 .cert-body h3 { margin:.25rem 0 .35rem; font-size: 1.05rem; }
 .cert-body p { margin:0; color: var(--text-dim); font-size:.95rem; }
 .badges { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem; }
@@ -49,7 +50,7 @@
 <body class="page">
 <header class="site-header solid"><div class="logo">SE</div><nav class="nav"><a href="index.html">Home</a><a href="work.html">Work</a><a href="resume.html">Resume</a><a href="certifications.html" class="active">Certifications</a><a href="contact.html">Contact</a></nav></header>
 <section class="page-hero small gradient"><h1 class="right-headline">Certifications</h1><p class="lead max-640">Industry-recognized credentials validating cloud, AI/ML, and mobile expertise.</p></section>
-<section class="section">
+<section class="section" id="certifications">
   <div class="brand-row">
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" style="filter: invert(1)"/>
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style="filter: invert(1)"/>
@@ -57,48 +58,81 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg" alt="Notion" style="filter: invert(1)"/>
   </div>
   <div class="cert-grid">
-    <article class="cert-card reveal">
+    <article class="cert-card cert-item reveal">
       <div class="ribbon">Verified</div>
       <div class="cert-header">
-  <div class="cert-logo cert-aws"><img src="assets/ss1.png" alt="AWS Logo"></div>
+  <div class="cert-logo cert-aws cert-badge"><img src="assets/ss1.png" alt="AWS Logo"></div>
         <div class="cert-body">
-          <h3>AWS Certified Developer – Associate</h3>
-          <p>Amazon Web Services</p>
-          <div class="badges"><span>Lambda</span><span>S3</span><span>API Gateway</span><span>DynamoDB</span><span>Amplify</span></div>
+          <h3 class="cert-name">AWS Certified Developer – Associate</h3>
+          <p class="cert-org">Amazon Web Services</p>
+          <div class="badges cert-tags"><span>Lambda</span><span>S3</span><span>API Gateway</span><span>DynamoDB</span><span>Amplify</span></div>
           <div class="cta-row"><a class="btn subtle" href="https://www.credly.com/badges/91434a38-46c5-45f4-996a-e8753b95ac5b/public_url" target="_blank" rel="noopener" aria-label="View credential for AWS Certified Developer – Associate">View Credential</a></div>
         </div>
       </div>
     </article>
-    <article class="cert-card reveal">
+    <article class="cert-card cert-item reveal">
       <div class="cert-header">
-  <div class="cert-logo cert-deeplearn"><img src="assets/ss2.png" alt="DeepLearning.AI Logo"></div>
+  <div class="cert-logo cert-deeplearn cert-badge"><img src="assets/ss2.png" alt="Google Cloud Logo"></div>
         <div class="cert-body">
-          <h3>Introduction to Large Language Models</h3>
-          <p>DeepLearning.AI</p>
-          <div class="badges"><span>LLMs</span><span>Prompting</span><span>Embeddings</span></div>
+          <h3 class="cert-name">Introduction to Large Language Models</h3>
+          <p class="cert-org">Google Cloud</p>
+          <div class="badges cert-tags"><span>LLMs</span><span>Prompting</span><span>Embeddings</span></div>
            <div class="cta-row"><a class="btn subtle" href="https://www.coursera.org/account/accomplishments/certificate/V22EA82YJ55F" target="_blank" rel="noopener" aria-label="View credential for Introduction to Large Language Models">View Credential</a></div>
         </div>
       </div>
     </article>
-    <article class="cert-card reveal">
+    <article class="cert-card cert-item reveal">
       <div class="cert-header">
-  <div class="cert-logo cert-coursera"><img src="assets/ss3.png" alt="Coursera Logo"></div>
+  <div class="cert-logo cert-coursera cert-badge"><img src="assets/ss3.png" alt="IBM Logo"></div>
         <div class="cert-body">
-          <h3>Supervised Machine Learning: Regression</h3>
-          <p>Coursera | Andrew Ng</p>
-          <div class="badges"><span>Regression</span><span>Evaluation</span><span>Regularization</span></div>
+          <h3 class="cert-name">Supervised Machine Learning: Regression</h3>
+          <p class="cert-org">IBM</p>
+          <div class="badges cert-tags"><span>Regression</span><span>Evaluation</span><span>Regularization</span></div>
            <div class="cta-row"><a class="btn subtle" href="https://www.coursera.org/account/accomplishments/certificate/VAF2292SM6XN" target="_blank" rel="noopener" aria-label="View credential for Supervised Machine Learning: Regression">View Credential</a></div>
         </div>
       </div>
     </article>
-    <article class="cert-card reveal">
+    <article class="cert-card cert-item reveal">
       <div class="cert-header">
-  <div class="cert-logo cert-gcp"><img src="assets/ss4.png" alt="Google Cloud Logo"></div>
+  <div class="cert-logo cert-gcp cert-badge"><img src="assets/ss4.png" alt="Google Cloud Logo"></div>
         <div class="cert-body">
-          <h3>Introduction to Generative AI</h3>
-          <p>Google Cloud</p>
-          <div class="badges"><span>Generative AI</span><span>Diffusion</span><span>Use Cases</span></div>
+          <h3 class="cert-name">Introduction to Generative AI</h3>
+          <p class="cert-org">Google Cloud</p>
+          <div class="badges cert-tags"><span>Generative AI</span><span>Diffusion</span><span>Use Cases</span></div>
            <div class="cta-row"><a class="btn subtle" href="https://www.coursera.org/account/accomplishments/certificate/L9CS4VBC3V3P" target="_blank" rel="noopener" aria-label="View credential for Introduction to Generative AI">View Credential</a></div>
+        </div>
+      </div>
+    </article>
+    <article class="cert-card cert-item reveal">
+      <div class="cert-header">
+        <div class="cert-logo cert-broadcom cert-badge"><img src="assets/ss5.png" alt="Broadcom Logo"></div>
+        <div class="cert-body">
+          <h3 class="cert-name">Cloud and Virtualization</h3>
+          <p class="cert-org">Broadcom</p>
+          <div class="badges cert-tags"><span>Cloud</span><span>Virtualization</span><span>Infrastructure</span></div>
+           <div class="cta-row"><a class="btn subtle" href="#" target="_blank" rel="noopener" aria-label="View credential for Cloud and Virtualization">View Credential</a></div>
+        </div>
+      </div>
+    </article>
+    <article class="cert-card cert-item reveal">
+      <div class="cert-header">
+        <div class="cert-logo cert-broadcom cert-badge"><img src="assets/ss6.png" alt="Broadcom Logo"></div>
+        <div class="cert-body">
+          <h3 class="cert-name">Network Virtualization</h3>
+          <p class="cert-org">Broadcom</p>
+          <div class="badges cert-tags"><span>Networking</span><span>Virtualization</span><span>SDN</span></div>
+           <div class="cta-row"><a class="btn subtle" href="#" target="_blank" rel="noopener" aria-label="View credential for Network Virtualization">View Credential</a></div>
+        </div>
+      </div>
+    </article>
+    <article class="cert-card cert-item reveal">
+      <div class="cert-header">
+        <div class="cert-logo cert-broadcom cert-badge"><img src="assets/ss7.png" alt="Broadcom Logo"></div>
+        <div class="cert-body">
+          <h3 class="cert-name">Software Defined Storage</h3>
+          <p class="cert-org">Broadcom</p>
+          <div class="badges cert-tags"><span>Storage</span><span>SDS</span><span>Infrastructure</span></div>
+           <div class="cta-row"><a class="btn subtle" href="#" target="_blank" rel="noopener" aria-label="View credential for Software Defined Storage">View Credential</a></div>
         </div>
       </div>
     </article>
