@@ -722,9 +722,8 @@ class ProjectDetailManager {
         const modalContent = this.modal.querySelector('.project-modal-content');
         const overlay = this.modal.querySelector('.project-modal-overlay');
         if (!modalContent || !overlay) return;
-        // Store originating card for focus return
         this.originatingCard = cardElement;
-        // Set modal content to fullscreen
+        // Set modal content to fullscreen and visible
         modalContent.style.position = 'fixed';
         modalContent.style.left = '0px';
         modalContent.style.top = '0px';
@@ -734,10 +733,22 @@ class ProjectDetailManager {
         modalContent.style.maxHeight = '100vh';
         modalContent.style.borderRadius = '0px';
         modalContent.style.opacity = '1';
-        modalContent.style.zIndex = '1201';
+        modalContent.style.zIndex = '999999';
+        modalContent.style.display = 'block';
         overlay.style.background = 'rgba(0,0,0,0.95)';
         this.modal.classList.add('active');
+        this.modal.style.display = 'block';
+        this.modal.style.position = 'fixed';
+        this.modal.style.zIndex = '1000000';
         this.modal.setAttribute('aria-hidden', 'false');
+        // Fallback: forcibly show modal if hidden
+        setTimeout(() => {
+            if (window.getComputedStyle(this.modal).display === 'none' || window.getComputedStyle(modalContent).display === 'none') {
+                this.modal.style.display = 'block';
+                modalContent.style.display = 'block';
+                this.modal.classList.add('active');
+            }
+        }, 100);
     }
 
     showModalDirectly() {
