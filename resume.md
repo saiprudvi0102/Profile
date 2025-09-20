@@ -35,7 +35,10 @@ Master's, Computer Engineering
 
 CERTIFICATIONS
 •	AWS Certified Developer – Associate 
-•	Introduction to Large Language Models 
-•	Supervised Machine Learning: Regression 
-•	Introduction to Generative AI
+•	Introduction to Large Language Models - GoogleCloud
+•	Supervised Machine Learning: Regression - IBM
+•	Introduction to Generative AI- GoogleCloud
+. Cloud and Virtualization - Broadcom
+. Network Virtualization - Broadcom
+. Software Defined Storage -Broadcom
 <img width="569" height="850" alt="image" src="https://github.com/user-attachments/assets/2893be93-1ea1-47b3-80b0-9d526d6f94b4" />
