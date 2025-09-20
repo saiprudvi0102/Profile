@@ -1209,6 +1209,39 @@ a:hover, a:focus {
     height: 450px;
 }
 
+/* Mobile / small-screen fallback: enable native horizontal scroll instead of JS transform carousel */
+@media (max-width: 820px) {
+  .carousel-container {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 0 var(--spacing-md);
+    margin: 0; /* edge-to-edge feel */
+  }
+  .carousel-track {
+    flex-wrap: nowrap;
+    min-width: max-content; /* prevent cards from squishing */
+    scroll-padding: var(--spacing-md);
+  }
+  .carousel-track .netflix-card,
+  .netflix-card { /* ensure specificity */
+    flex: 0 0 clamp(240px, 70vw, 300px);
+    scroll-snap-align: start;
+    height: 400px;
+  }
+  .carousel-track .netflix-card:hover { /* neutralize hover lift on touch */
+    transform: none;
+    box-shadow: none;
+  }
+  /* Hide custom nav buttons on small screens if they rely on transform sliding */
+  .carousel-nav-button { display: none !important; }
+  /* Slim scrollbar or hide (still accessible for keyboard) */
+  .carousel-container::-webkit-scrollbar { height: 8px; }
+  .carousel-container::-webkit-scrollbar-track { background: transparent; }
+  .carousel-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+}
+
 .netflix-card:hover {
     transform: scale(1.05) translateY(-8px);
     box-shadow: var(--shadow-large);

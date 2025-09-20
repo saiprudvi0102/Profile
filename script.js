@@ -72,47 +72,71 @@ function analyticsTrack(event, data={}) {
 // Netflix-style carousel functionality
 function initializeCarousels() {
   const carousels = document.querySelectorAll('[data-track]');
-  
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
   carousels.forEach(track => {
     const carouselName = track.dataset.track;
     const container = track.parentElement;
     const cards = track.querySelectorAll('.netflix-card');
     const prevBtn = document.querySelector(`[data-carousel="${carouselName}"][data-direction="prev"]`);
     const nextBtn = document.querySelector(`[data-carousel="${carouselName}"][data-direction="next"]`);
-    
+
+    // Mobile / small-screen fallback: rely on native horizontal scroll
+    const useNativeScroll = isTouch || window.innerWidth <= 820;
+    if (useNativeScroll) {
+      // Remove any inline transform so natural scroll position is used
+      track.style.transform = 'none';
+      // Ensure container can scroll (CSS media query sets overflow-x:auto)
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      // Early return: no JS-driven carousel for this track
+      return;
+    }
+
     let currentIndex = 0;
     const cardWidth = 320 + 16; // card width + gap
     const maxIndex = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
-    
-        function updateCarousel() {
-            const translateX = -currentIndex * cardWidth;
-            track.style.transform = `translateX(${translateX}px)`;
-            // Disable/enable buttons
-            if (prevBtn) prevBtn.disabled = currentIndex === 0;
-            if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
-        }
 
+    function updateCarousel() {
+      const translateX = -currentIndex * cardWidth;
+      track.style.transform = `translateX(${translateX}px)`;
+      // Disable/enable buttons
+      if (prevBtn) prevBtn.disabled = currentIndex === 0;
+      if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+    }
+
+    updateCarousel();
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex = Math.max(0, currentIndex - 1);
         updateCarousel();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex = Math.min(maxIndex, currentIndex + 1);
+        updateCarousel();
+      });
+    }
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentIndex = Math.max(0, currentIndex - 1);
-                updateCarousel();
-            });
-        }
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                currentIndex = Math.min(maxIndex, currentIndex + 1);
-                updateCarousel();
-            });
-        }
-    
-        window.addEventListener('resize', () => {
-            const newMax = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
-            if (currentIndex > newMax) currentIndex = newMax;
-            updateCarousel();
-        });
+    window.addEventListener('resize', () => {
+      const currentlyNative = isTouch || window.innerWidth <= 820;
+      if (currentlyNative) {
+        // Switch to native mode if breakpoint crossed
+        track.style.transform = 'none';
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        return;
+      } else {
+        if (prevBtn) prevBtn.style.display = '';
+        if (nextBtn) nextBtn.style.display = '';
+      }
+      const newMax = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
+      if (currentIndex > newMax) currentIndex = newMax;
+      updateCarousel();
     });
+  });
 }
 // Legacy modal close handlers removed; now encapsulated in ProjectDetailManager class
 // Contact form
@@ -1660,5 +1684,4 @@ function initializeAccessibility() {
         card.setAttribute('aria-label', `Open certification ${card.querySelector('h3')?.textContent || 'details'}`);
     });
 }
-// Removed certification modal functionality & data (simplified static grid now used)
 
