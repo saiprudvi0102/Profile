@@ -1,379 +1,115 @@
-// Page loading animation with Netflix-style fade in
-window.addEventListener('DOMContentLoaded', () => {
-  document.body.classList.add('loaded');
-  
-  // Initialize Netflix-style carousels
-  initializeCarousels();
-  
-  // Initialize header scroll effects
-  initializeHeaderEffects();
-  
-    // Initialize project detail manager (singleton)
-    window.__projectDetailManager = new ProjectDetailManager();
-    console.log('[Modal] Project system ready');
-    
-    // Add a global test function
-    window.testModal = function() {
-        console.log('[Test] Testing modal system...');
-        const card = document.querySelector('.netflix-card[data-project="financial-risk"]');
-        if (card) {
-            console.log('[Test] Found financial-risk card, triggering modal');
-            window.__projectDetailManager.showProjectDetail('financial-risk', card);
-        } else {
-            console.log('[Test] Could not find financial-risk card');
-        }
-    };
-    
-    window.testHash = function() {
-        console.log('[Test] Testing hash change...');
-        location.hash = '#project-telecom-microservices';
-    };
-    
-    window.forceModal = function() {
-        console.log('[Test] Force showing modal...');
-        const manager = window.__projectDetailManager;
-        if (manager && manager.modal) {
-            console.log('[Test] Forcing modal display');
-            manager.modal.style.display = 'block';
-            manager.modal.style.position = 'fixed';
-            manager.modal.style.top = '0';
-            manager.modal.style.left = '0';
-            manager.modal.style.width = '100vw';
-            manager.modal.style.height = '100vh';
-            manager.modal.style.zIndex = '999999';
-            manager.modal.style.background = 'rgba(0,0,0,0.8)';
-            manager.modal.classList.add('active');
-            console.log('[Test] Modal should now be visible');
-        } else {
-            console.log('[Test] No manager or modal found');
-        }
-    };
-    
-    console.log('[Test] Added window.testModal(), window.testHash(), and window.forceModal() functions');
-  
-    // Initialize Netflix hover previews
-    new NetflixHoverManager();
-    
-    // Initialize accessibility features
-    initializeAccessibility();
-  
-    // Certification viewers removed (simplified section)
-});
+/*
+ * DEPRECATED: This file is no longer loaded. All active logic moved to main.js.
+ * Retain temporarily for reference; safe to delete after verifying main.js.
+ */
+console.warn('[DEPRECATED] script.js present but not used.');
+/* Rebuilt clean script.js replacing corrupted mixed versions */
 
-// Lightweight analytics hook (no external dependency). Replace console.log with real endpoint if needed.
-function analyticsTrack(event, data={}) {
-    try {
-        // Example stub: push to dataLayer if exists, else console.
-        if(window.dataLayer){ window.dataLayer.push({event, ...data}); }
-        else { console.log('[analytics]', event, data); }
-    } catch(e) { /* swallow */ }
+/**************** Toast Utility *****************/
+function showToast(message,{duration=2200}={}){
+  let host=document.querySelector('.toast-host');
+  if(!host){
+    host=document.createElement('div');
+    host.className='toast-host';
+    host.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:2000000;pointer-events:none;';
+    document.body.appendChild(host);
+  }
+  const el=document.createElement('div');
+  el.className='toast';
+  el.style.cssText='background:rgba(0,0,0,.8);color:#fff;padding:10px 16px;font-size:.8rem;border-radius:8px;box-shadow:0 4px 16px -4px rgba(0,0,0,.6);letter-spacing:.03em;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s cubic-bezier(.22,.61,.36,1);backdrop-filter:blur(6px);';
+  el.textContent=message;
+  host.appendChild(el);
+  requestAnimationFrame(()=>{ el.style.opacity='1'; el.style.transform='translateY(0)'; });
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(6px)'; setTimeout(()=>el.remove(),400); },duration);
 }
 
-// Netflix-style carousel functionality
-function initializeCarousels() {
-  const carousels = document.querySelectorAll('[data-track]');
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+/**************** Header Scroll Effect *****************/
+function initializeHeaderEffects(){
+  const header=document.querySelector('header');
+  if(!header) return;
+  window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>20));
+}
 
-  carousels.forEach(track => {
-    const carouselName = track.dataset.track;
-    const container = track.parentElement;
-    const cards = track.querySelectorAll('.netflix-card');
-    const prevBtn = document.querySelector(`[data-carousel="${carouselName}"][data-direction="prev"]`);
-    const nextBtn = document.querySelector(`[data-carousel="${carouselName}"][data-direction="next"]`);
-
-    // Mobile / small-screen fallback: rely on native horizontal scroll
-    const useNativeScroll = isTouch || window.innerWidth <= 820;
-    if (useNativeScroll) {
-      // Remove any inline transform so natural scroll position is used
-      track.style.transform = 'none';
-      // Ensure container can scroll (CSS media query sets overflow-x:auto)
-      if (prevBtn) prevBtn.style.display = 'none';
-      if (nextBtn) nextBtn.style.display = 'none';
-      // Early return: no JS-driven carousel for this track
+/**************** Carousel (desktop) + native scroll (mobile) *****************/
+function initializeCarousels(){
+  const tracks=document.querySelectorAll('[data-track]');
+  const isTouch='ontouchstart' in window||navigator.maxTouchPoints>0;
+  tracks.forEach(track=>{
+    const name=track.dataset.track;
+    const container=track.parentElement;
+    const cards=track.querySelectorAll('.netflix-card');
+    const prev=document.querySelector(`[data-carousel="${name}"][data-direction="prev"]`);
+    const next=document.querySelector(`[data-carousel="${name}"][data-direction="next"]`);
+    const useNative=isTouch||window.innerWidth<=820;
+    if(useNative){
+      track.style.transform='none';
+      prev&&(prev.style.display='none');
+      next&&(next.style.display='none');
       return;
     }
-
-    let currentIndex = 0;
-    const cardWidth = 320 + 16; // card width + gap
-    const maxIndex = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
-
-    function updateCarousel() {
-      const translateX = -currentIndex * cardWidth;
-      track.style.transform = `translateX(${translateX}px)`;
-      // Disable/enable buttons
-      if (prevBtn) prevBtn.disabled = currentIndex === 0;
-      if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
-    }
-
-    updateCarousel();
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateCarousel();
-      });
-    }
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        currentIndex = Math.min(maxIndex, currentIndex + 1);
-        updateCarousel();
-      });
-    }
-
-    window.addEventListener('resize', () => {
-      const currentlyNative = isTouch || window.innerWidth <= 820;
-      if (currentlyNative) {
-        // Switch to native mode if breakpoint crossed
-        track.style.transform = 'none';
-        if (prevBtn) prevBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'none';
-        return;
-      } else {
-        if (prevBtn) prevBtn.style.display = '';
-        if (nextBtn) nextBtn.style.display = '';
-      }
-      const newMax = Math.max(0, cards.length - Math.floor(container.offsetWidth / cardWidth));
-      if (currentIndex > newMax) currentIndex = newMax;
-      updateCarousel();
-    });
+    let current=0;const cardWidth=336; // 320 + 16 gap
+    const maxIndex=()=>Math.max(0,cards.length-Math.floor(container.offsetWidth/cardWidth));
+    let max=maxIndex();
+    function update(){ track.style.transform=`translateX(${-current*cardWidth}px)`; prev&&(prev.disabled=current===0); next&&(next.disabled=current>=max); }
+    update();
+    prev&&prev.addEventListener('click',()=>{ current=Math.max(0,current-1); update(); });
+    next&&next.addEventListener('click',()=>{ current=Math.min(max,current+1); update(); });
+    window.addEventListener('resize',()=>{ if(isTouch||window.innerWidth<=820){ track.style.transform='none'; prev&&(prev.style.display='none'); next&&(next.style.display='none'); return;} else { prev&&(prev.style.display=''); next&&(next.style.display=''); } max=maxIndex(); if(current>max) current=max; update(); });
   });
 }
-// Legacy modal close handlers removed; now encapsulated in ProjectDetailManager class
-// Contact form
-window.contactSubmit = function(e){ e.preventDefault(); const data = Object.fromEntries(new FormData(e.target).entries()); const body = encodeURIComponent(`${data.message}\n\nFrom: ${data.name} <${data.email}>`); window.location.href=`mailto:saiprudvi0102@gmail.com?subject=Portfolio Contact&body=${body}`; const status=document.getElementById('formStatus'); if(status) status.textContent='Opening mail client...'; };
-// Resume PDF download with fallback (handles spaces in filename)
-const resumeLink=document.getElementById('resumePdfLink');
-if(resumeLink){
-    const pdfPath = 'saiprudvi ela_Resume.pdf';
-    const encodedPdfPath = encodeURI(pdfPath);
-    resumeLink.href = encodedPdfPath; // set encoded path
-    resumeLink.addEventListener('click', function(){
-        console.log('Resume download attempted');
-    });
-    // (Optional) could add a HEAD request check here if needed
+
+/**************** Hover Preview (desktop only) *****************/
+class NetflixHoverManager{
+  constructor(){ this.isTouch='ontouchstart' in window||navigator.maxTouchPoints>0; if(!this.isTouch){ this.build(); this.bind(); } }
+  build(){ const c=document.createElement('div'); c.className='netflix-preview-container'; c.innerHTML=`<div class="netflix-preview-card"><div class="preview-image-container"><img class="preview-image" alt=""><div class="preview-overlay"><button class="preview-play-btn" aria-label="Open"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button></div></div><div class="preview-content"><h3 class="preview-title"></h3><p class="preview-description"></p></div></div>`; document.body.appendChild(c); this.container=c; }
+  bind(){ document.addEventListener('mouseenter',e=>{ const card=e.target.closest('.netflix-card[data-project]'); card&&this.queueShow(card); },true); document.addEventListener('mouseleave',e=>{ const card=e.target.closest('.netflix-card[data-project]'); card&&this.hide(); },true); this.container.addEventListener('click',()=>{ if(this.active && window.__projectDetailManager){ window.__projectDetailManager.showProjectDetail(this.active.dataset.project,this.active); this.hide(); } }); document.addEventListener('click',()=>this.hide()); }
+  queueShow(card){ clearTimeout(this.to); this.to=setTimeout(()=>this.show(card),400); }
+  show(card){ const data=window.__projectDetailManager?.getProjectData(card.dataset.project,card); if(!data) return; this.container.querySelector('.preview-image').src=data.image||''; this.container.querySelector('.preview-title').textContent=data.title||''; this.container.querySelector('.preview-description').textContent=data.description||''; const r=card.getBoundingClientRect(); const el=this.container.querySelector('.netflix-preview-card'); let left=r.left+r.width/2-200; left=Math.max(20,Math.min(left,window.innerWidth-420)); let top=r.bottom+10; if(top+260>window.innerHeight-20) top=r.top-270; el.style.left=left+'px'; el.style.top=top+'px'; this.container.classList.add('active'); this.active=card; }
+  hide(){ clearTimeout(this.to); this.container.classList.remove('active'); this.active=null; }
 }
 
-// Provide stub for header effects if original implementation was removed
-function initializeHeaderEffects(){
-    // Basic sticky header / scroll fade placeholder (safe no-op if styles absent)
-    const header = document.querySelector('header');
-    if(!header) return;
-    window.addEventListener('scroll', () => {
-        if(window.scrollY > 20) header.classList.add('scrolled'); else header.classList.remove('scrolled');
-    });
-}
-// Netflix-style Hover Preview Manager
-class NetflixHoverManager {
-    constructor() {
-        this.activePreview = null;
-        this.hoverTimeout = null;
-        // expose globally for coordination
-        window.__netflixHoverManager = this;
-          this.init();
-    }
-
-    init() {
-          // Disable hover previews on touch devices (prevents interaction conflicts)
-          const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-          if (!isTouch) {
-              this.createPreviewContainer();
-              this.bindHoverEvents();
-          }
-    }
-
-    createPreviewContainer() {
-        const container = document.createElement('div');
-        container.className = 'netflix-preview-container';
-        container.innerHTML = `
-            <div class="netflix-preview-card">
-                <div class="preview-image-container">
-                    <img class="preview-image" src="" alt="">
-                    <div class="preview-overlay">
-                        <button class="preview-play-btn" type="button" aria-label="Preview">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="preview-content">
-                    <h3 class="preview-title"></h3>
-                    <p class="preview-description"></p>
-                    <div class="preview-tags"></div>
-                    <div class="preview-metrics"></div>
-                </div>
-            </div>`;
-        document.body.appendChild(container);
-        this.previewContainer = container;
-        this.previewCard = container.querySelector('.netflix-preview-card');
-
-        // Clicking the preview should open the full details modal
-        this.previewContainer.addEventListener('click', (e) => {
-            const openTarget = e.target.closest('.preview-play-btn') || e.target.closest('.netflix-preview-card');
-            if (openTarget && this.activePreview) {
-                e.preventDefault();
-                e.stopPropagation();
-                const projectId = this.activePreview.dataset.project;
-                const mgr = window.__projectDetailManager;
-                if (mgr && projectId) {
-                    mgr.showProjectDetail(projectId, this.activePreview);
-                }
-                this.hidePreview();
-            }
-        }, true);
-    }
-
-    bindHoverEvents() {
-        document.addEventListener('mouseenter', (e) => {
-            const card = e.target.closest('.netflix-card[data-project]');
-            if (card) {
-                this.showPreview(card);
-            }
-        }, true);
-
-        document.addEventListener('mouseleave', (e) => {
-            const card = e.target.closest('.netflix-card[data-project]');
-            if (card) {
-                this.hidePreview();
-            }
-        }, true);
-
-        // Hide preview when clicking anywhere
-        document.addEventListener('click', () => {
-            this.hidePreview();
-        });
-    }
-
-    showPreview(card) {
-        if (this.hoverTimeout) {
-            clearTimeout(this.hoverTimeout);
-        }
-
-        this.hoverTimeout = setTimeout(() => {
-            const projectId = card.dataset.project;
-            const projectData = this.getProjectData(projectId);
-            
-            if (projectData) {
-                this.updatePreviewContent(projectData);
-                this.positionPreview(card);
-                this.previewContainer.classList.add('active');
-                this.activePreview = card;
-            }
-        }, 500); // 500ms delay like Netflix
-    }
-
-    hidePreview() {
-        if (this.hoverTimeout) {
-            clearTimeout(this.hoverTimeout);
-        }
-        
-        this.previewContainer.classList.remove('active');
-        this.activePreview = null;
-    }
-
-    positionPreview(card) {
-        const cardRect = card.getBoundingClientRect();
-        const preview = this.previewCard;
-        
-        // Calculate position
-        let left = cardRect.left + (cardRect.width / 2) - 200; // Center horizontally, 400px total width
-        let top = cardRect.bottom + 10;
-        
-        // Adjust for screen boundaries
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        
-        if (left < 20) left = 20;
-        if (left + 400 > viewportWidth - 20) left = viewportWidth - 420;
-        
-        if (top + 300 > viewportHeight - 20) {
-            top = cardRect.top - 310; // Show above the card
-        }
-        
-        preview.style.left = `${left}px`;
-        preview.style.top = `${top}px`;
-    }
-
-    updatePreviewContent(project) {
-        const preview = this.previewCard;
-        
-        preview.querySelector('.preview-image').src = project.image;
-        preview.querySelector('.preview-title').textContent = project.title;
-        preview.querySelector('.preview-description').textContent = project.description;
-        
-        // Update tags
-        const tagsContainer = preview.querySelector('.preview-tags');
-        const technologies = project.technologies.slice(0, 3); // Show first 3 technologies
-        tagsContainer.innerHTML = technologies.map(tech => 
-            `<span class="preview-tag">${tech.name}</span>`
-        ).join('');
-        
-        // Update metrics
-        const metricsContainer = preview.querySelector('.preview-metrics');
-        const topMetrics = project.metrics.slice(0, 2); // Show first 2 metrics
-        metricsContainer.innerHTML = topMetrics.map(metric =>
-            `<div class="preview-metric">
-                <span class="metric-icon">${metric.icon}</span>
-                <span class="metric-text">${metric.label}: ${metric.value}</span>
-            </div>`
-        ).join('');
-    }
-
-    getProjectData(projectId) {
-        // Avoid creating infinite recursion; rely on global singleton pattern
-        return window.__projectDetailManager ? window.__projectDetailManager.getProjectData(projectId) : null;
-    }
+/**************** Project Detail Modal *****************/
+class ProjectDetailManager{
+  constructor(){ this.current=null; this.lastFocus=null; this.projectOrder=this.computeOrder(); this.buildModal(); window.addEventListener('hashchange',()=>this.onHashChange()); this.live=document.createElement('div'); this.live.className='sr-only'; this.live.setAttribute('aria-live','polite'); document.body.appendChild(this.live); }
+  computeOrder(){ return Array.from(document.querySelectorAll('.netflix-card[data-project]')).map(c=>c.dataset.project); }
+  buildModal(){ const modal=document.createElement('div'); modal.className='project-modal'; modal.setAttribute('aria-hidden','true'); modal.innerHTML=`<div class="project-modal-overlay"><div class="project-modal-content"><div class="project-nav-bar" style="position:absolute;top:12px;left:12px;display:flex;gap:.5rem;z-index:5;"><button class="project-nav-btn prev" aria-label="Previous project">◀</button><button class="project-nav-btn next" aria-label="Next project">▶</button><span class="project-progress" style="padding:.35rem .6rem;font-size:.7rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:999px;">1 / 1</span><button class="project-copy" aria-label="Copy link" style="font-size:.75rem;padding:.35rem .6rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);">🔗</button></div><button class="project-close" aria-label="Close" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.1);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;">✕</button><div class="project-modal-body" tabindex="0" style="overflow:auto;height:100%;padding:4.5rem 1.5rem 2rem;"></div></div></div>`; document.body.appendChild(modal); this.modal=modal; this.bind(); }
+  bind(){ this.modal.addEventListener('click',e=>{ if(e.target.classList.contains('project-modal-overlay')|| e.target.closest('.project-close')) this.close(); }); document.addEventListener('keydown',e=>{ if(!this.isOpen()) return; if(e.key==='Escape'){ e.preventDefault(); this.close(); } if(e.key==='ArrowLeft'){ e.preventDefault(); this.navigate(-1); } if(e.key==='ArrowRight'){ e.preventDefault(); this.navigate(1); } }); this.modal.querySelector('.project-nav-btn.prev').addEventListener('click',()=>this.navigate(-1)); this.modal.querySelector('.project-nav-btn.next').addEventListener('click',()=>this.navigate(1)); this.modal.querySelector('.project-copy').addEventListener('click',()=>this.copyLink()); }
+  isOpen(){ return this.modal.classList.contains('active'); }
+  onHashChange(){ const id=location.hash.startsWith('#project-')?location.hash.slice(9):''; if(!id){ if(this.isOpen()) this.close(); return;} if(id===this.current) return; const card=document.querySelector(`.netflix-card[data-project="${id}"]`); this.open(id,card); }
+  showProjectDetail(id,card){ const hash=`project-${id}`; if(location.hash!==`#${hash}`){ location.hash=hash; } else { this.open(id,card); } }
+  open(id,card){ const data=this.getProjectData(id,card); if(!data) return; this.current=id; const body=this.modal.querySelector('.project-modal-body'); body.innerHTML=this.renderProject(data); this.modal.classList.add('active'); this.modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; this.updateProgress(); this.updateNavButtons(); this.ensureQrButton(); this.lastFocus=document.activeElement instanceof HTMLElement?document.activeElement:null; const first=body.querySelector('a,button,[tabindex="0"]'); first&&first.focus({preventScroll:true}); this.announce(`Opened project ${data.title}`); }
+  close(){ this.modal.classList.remove('active'); this.modal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if(this.lastFocus) this.lastFocus.focus({preventScroll:true}); if(location.hash.startsWith('#project-')) history.replaceState(null,'',location.pathname+location.search); this.current=null; }
+  navigate(dir){ if(!this.current) return; const idx=this.projectOrder.indexOf(this.current); const nextIdx=idx+dir; if(nextIdx<0||nextIdx>=this.projectOrder.length) return; const nextId=this.projectOrder[nextIdx]; const card=document.querySelector(`.netflix-card[data-project="${nextId}"]`); this.showProjectDetail(nextId,card); }
+  updateProgress(){ const prog=this.modal.querySelector('.project-progress'); if(!prog||!this.current) return; const idx=this.projectOrder.indexOf(this.current); prog.textContent=`${idx+1} / ${this.projectOrder.length}`; }
+  updateNavButtons(){ const prev=this.modal.querySelector('.project-nav-btn.prev'); const next=this.modal.querySelector('.project-nav-btn.next'); const idx=this.projectOrder.indexOf(this.current); prev.disabled=idx<=0; next.disabled=idx>=this.projectOrder.length-1; [prev,next].forEach(b=>b.style.opacity=b.disabled?'.35':'1'); }
+  copyLink(){ if(!this.current) return; const url=location.origin+location.pathname+`#project-${this.current}`; navigator.clipboard.writeText(url).then(()=>{ showToast('Link copied'); this.announce('Link copied'); }).catch(()=>showToast('Copy failed')); }
+  ensureQrButton(){ if(this.modal.querySelector('.project-qr')) return; const bar=this.modal.querySelector('.project-nav-bar'); const btn=document.createElement('button'); btn.type='button'; btn.className='project-qr'; btn.textContent='QR'; btn.setAttribute('aria-label','Show QR code'); btn.style.cssText='font-size:.7rem;padding:.35rem .55rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);'; btn.addEventListener('click',()=>this.showQr()); bar.appendChild(btn); }
+  showQr(){ if(!this.current) return; const share=encodeURIComponent(location.origin+location.pathname+`#project-${this.current}`); const qr=`https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${share}`; let overlay=document.querySelector('.qr-overlay'); if(!overlay){ overlay=document.createElement('div'); overlay.className='qr-overlay'; overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:2000001;'; overlay.innerHTML=`<div class="qr-box" style="background:#111;padding:1.2rem 1.4rem 1.4rem;border-radius:14px;position:relative;box-shadow:0 8px 32px -8px rgba(0,0,0,.7);text-align:center;max-width:280px;"><button class="qr-close" aria-label="Close" style="position:absolute;top:6px;right:6px;background:rgba(255,255,255,.12);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;">✕</button><h3 style="margin:0 0 .75rem;font-size:.9rem;letter-spacing:.05em;font-weight:600;">Share Project</h3><img class="qr-img" src="${qr}" alt="QR code" style="width:220px;height:220px;border-radius:8px;background:#000;object-fit:contain;"/><p style="margin:.7rem 0 0;font-size:.65rem;line-height:1.2;color:#aaa;">Scan on your phone<br><span style="color:#fff;">${this.current}</span></p></div>`; document.body.appendChild(overlay); overlay.addEventListener('click',e=>{ if(e.target===overlay) overlay.remove(); }); overlay.querySelector('.qr-close').addEventListener('click',()=>overlay.remove()); } else { overlay.querySelector('.qr-img').src=qr; const span=overlay.querySelector('span'); span&&(span.textContent=this.current); } showToast('QR code ready'); }
+  announce(msg){ if(this.live){ this.live.textContent=''; requestAnimationFrame(()=>{ this.live.textContent=msg; }); } }
+  getProjectData(id,card){ if(!this._data) this._data=this.staticData(); if(this._data[id]) return this._data[id]; if(card){ const title=card.querySelector('.netflix-card-title')?.textContent?.trim()||id; const desc=card.querySelector('.netflix-card-description')?.textContent?.trim()||''; return {title,subtitle:'Project',image:card.querySelector('img')?.src||'',description:desc,longDescription:desc,metrics:[],technologies:[],features:[],architecture:{title:'Architecture',description:'',components:[]},github:null,demo:null}; } return null; }
+  staticData(){ return { 'financial-risk': { title:'📈 GPU-Accelerated Financial Risk Analysis', subtitle:'CUDA Monte Carlo / VaR', image:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80', description:'GPU-accelerated risk simulation.', longDescription:'Advanced risk assessment with CUDA-parallel Monte Carlo simulations.', metrics:[{label:'Speedup',value:'1.57×',icon:'🚀'}], technologies:[{name:'CUDA'},{name:'PyCUDA'},{name:'NumPy'}], features:['Monte Carlo engine','VaR computation','Benchmarking'], architecture:{title:'System Architecture',description:'GPU kernel + analysis pipeline',components:['CUDA Kernels','Simulation Runner','Result Analyzer']}, github:'https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU', demo:null } }; }
+  renderProject(p){ return `<article class="project-detail" style="max-width:1100px;margin:0 auto;">${p.image?`<div style=\"position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:16px;margin:-1rem -1rem 1.25rem;background:#111;\"><img src="${p.image}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;"/></div>`:''}<h1 style="margin:.25rem 0 .35rem;font-size:clamp(1.6rem,3.2vw,2.4rem);line-height:1.1;">${p.title}</h1><p style="margin:0 0 1rem;color:var(--text-secondary);font-size:1rem;">${p.subtitle||''}</p><p style="margin:0 0 1.25rem;font-size:.95rem;line-height:1.5;">${p.longDescription||p.description||''}</p>${p.metrics?.length?`<section style=\"margin:0 0 1.75rem;\"><h2 style=\"font-size:1rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin:0 0 .75rem;opacity:.9;\">Key Metrics</h2><div style=\"display:grid;gap:.75rem;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));\">${p.metrics.map(m=>`<div style=\"padding:.85rem .9rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:12px;font-size:.75rem;letter-spacing:.05em;display:flex;flex-direction:column;gap:.35rem;\"><span style=\"font-size:1.1rem;\">${m.icon||''}</span><strong style=\"font-size:.9rem;\">${m.value}</strong><span style=\"opacity:.75;\">${m.label}</span></div>`).join('')}</div></section>`:''}${p.technologies?.length?`<section style=\"margin:0 0 1.75rem;\"><h2 style=\"font-size:1rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin:0 0 .75rem;opacity:.9;\">Technologies</h2><div style=\"display:flex;flex-wrap:wrap;gap:.5rem;\">${p.technologies.map(t=>`<span style=\"padding:.45rem .7rem;background:rgba(229,9,20,.15);color:var(--netflix-red,#e50914);font-size:.65rem;font-weight:500;letter-spacing:.05em;border:1px solid rgba(229,9,20,.35);border-radius:24px;\">${t.name}</span>`).join('')}</div></section>`:''}${p.features?.length?`<section style=\"margin:0 0 2rem;\"><h2 style=\"font-size:1rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin:0 0 .75rem;opacity:.9;\">Features</h2><ul style=\"padding:0;margin:0;list-style:none;display:grid;gap:.6rem;\">${p.features.map(f=>`<li style=\"display:flex;align-items:flex-start;gap:.55rem;font-size:.85rem;line-height:1.4;\"><span style=\"color:#4ade80;font-size:.9rem;position:relative;top:.15rem;\">✔</span><span>${f}</span></li>`).join('')}</ul></section>`:''}${(p.architecture?.components||[]).length?`<section style=\"margin:0 0 1rem;\"><h2 style=\"font-size:1rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;margin:0 0 .75rem;opacity:.9;\">${p.architecture.title}</h2><p style=\"margin:0 0 .85rem;font-size:.85rem;line-height:1.5;opacity:.9;\">${p.architecture.description||''}</p><ol style=\"margin:0;padding-left:1rem;font-size:.8rem;line-height:1.45;display:grid;gap:.4rem;\">${p.architecture.components.map(c=>`<li>${c}</li>`).join('')}</ol></section>`:''}${(p.github||p.demo)?`<footer style=\"margin:2rem 0 0;display:flex;gap:.9rem;flex-wrap:wrap;\">${p.github?`<a href=\"${p.github}\" target=\"_blank\" rel=\"noopener\" style=\"text-decoration:none;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);padding:.65rem .95rem;font-size:.7rem;letter-spacing:.06em;border-radius:8px;display:inline-flex;gap:.4rem;align-items:center;\">GitHub ↗</a>`:''}${p.demo?`<a href=\"${p.demo}\" target=\"_blank\" rel=\"noopener\" style=\"text-decoration:none;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);padding:.65rem .95rem;font-size:.7rem;letter-spacing:.06em;border-radius:8px;display:inline-flex;gap:.4rem;align-items:center;\">Live Demo ↗</a>`:''}</footer>`:''}</article>`; }
 }
 
-// Project Detail System
-class ProjectDetailManager {
-    constructor() {
-        this.init();
-        this.lastFocusedElement = null;
-        this.projectOrder = this.computeProjectOrder();
-        this.currentProjectId = null;
-        this.swipeData = null;
-        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
-        // Hash change handling
-        window.addEventListener('hashchange', () => this.handleHashChange());
-        
-        // Live region for announcements
-        const live = document.createElement('div');
-        live.className = 'sr-only';
-        live.setAttribute('role','status');
-        live.setAttribute('aria-live','polite');
-        document.body.appendChild(live);
-        this.liveRegion = live;
-    }
+/**************** Accessibility *****************/
+function initializeAccessibility(){
+  document.querySelectorAll('.netflix-card').forEach(card=>{ card.setAttribute('tabindex','0'); card.setAttribute('role','button'); const t=card.querySelector('.netflix-card-title')?.textContent?.trim()||'details'; card.setAttribute('aria-label','Open project '+t); });
+  document.querySelectorAll('.cert-item').forEach(card=>{ card.setAttribute('tabindex','0'); card.setAttribute('role','button'); const h=card.querySelector('h3')?.textContent?.trim()||'details'; card.setAttribute('aria-label','Open certification '+h); });
+}
 
-    init() {
-        this.bindEvents();
-        this.createDetailModal();
-        
-        // Check for initial hash after modal is created
-        this.handleHashChange();
-    }
-
-    bindEvents() {
-    // Bind core click listeners for cards
-        // Handle project card clicks
-        document.addEventListener('click', (e) => {
-            // Ignore synthetic click right after a handled touch
-            if (this._lastTouchOpenAt && Date.now() - this._lastTouchOpenAt < 350) {
-                return;
-            }
-            const playBtn = e.target.closest('.play-btn');
-            if (playBtn) {
-                e.preventDefault();
-                const card = playBtn.closest('.netflix-card');
-                const projectId = card ? card.dataset.project : null;
-                if (projectId && card) {
-                    // Route via hash for consistent open behavior
-                    location.hash = `project-${projectId}`;
-                    return;
-                }
-            }
+/**************** Initialization *****************/
+window.addEventListener('DOMContentLoaded',()=>{
+  document.body.classList.add('loaded');
+  initializeHeaderEffects();
+  initializeCarousels();
+  window.__projectDetailManager=new ProjectDetailManager();
+  new NetflixHoverManager();
+  initializeAccessibility();
+  console.log('[Init] Clean rebuilt script loaded.');
+  if(location.hash.startsWith('#project-')){
+    window.__projectDetailManager.onHashChange();
+  }
+});
 
             // Handle poster/card clicks (anywhere on card except buttons)
             const netflixCard = e.target.closest('.netflix-card');
@@ -470,31 +206,18 @@ class ProjectDetailManager {
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                             </svg>
-                        </button>
-                        <div class="project-modal-body"></div>
-                    </div>
-                </div>
-            </div>`;
-        
-        // Append directly to body for true popup overlay
-        document.body.appendChild(modal);
-    // Modal scaffold appended
-        
-        this.modal = modal;
-        this.bindNavigation();
-        this.bindCopyAndHelp();
-    }
+                        /*
+                            DEPRECATED FILE (script.js)
+                            --------------------------------------------------
+                            This file is no longer referenced by any page.
+                            All working logic lives in main.js.
+                            Safe to delete after you confirm everything works.
+                            Kept as a tiny stub to avoid 404s or accidental inclusion.
+                        */
+                        console.warn('[DEPRECATED] script.js is unused. Logic moved to main.js.');
+                        (function(){ /* no-op stub */ })();
 
-    createCertificationModal() {
-        // Modal for certifications section
-        const modal = document.createElement('div');
-        modal.className = 'project-modal local';
-        modal.setAttribute('aria-hidden','true');
-        modal.setAttribute('role','dialog');
-        modal.setAttribute('aria-modal','true');
-        modal.setAttribute('aria-label','Certification details');
-        modal.innerHTML = `
-            <div class="project-modal-overlay local-overlay">
+                        // End of deprecated stub.
                 <div class="project-modal-shell">
                     <div class="project-modal-content">
                         <button class="close-project-modal" aria-label="Close">
@@ -528,79 +251,15 @@ class ProjectDetailManager {
             location.hash = expectedHash;
         } else {
             // If the hash is already correct but the modal isn't open, force a re-evaluation.
-            this.handleHashChange();
-        }
-    }
+            /* DEPRECATED: This file is no longer loaded. All active logic moved to main.js. Retain temporarily for reference; safe to delete after verifying main.js. */
+            console.warn('[DEPRECATED] script.js present but not used.');
+            // Rebuilt clean script.js replacing corrupted mixed versions
+            // Intentionally left minimal; previous large legacy implementation removed to prevent lint/build errors.
+            // If needed for reference, check git history before this deprecation commit.
+            // No functional code below.
+            (()=>{})();
 
-    closeSimpleModal(){
-        if(!this._simpleModal) return;
-        this._simpleModal.classList.remove('active');
-        document.body.style.overflow='';
-        if(this.lastFocusedElement) this.lastFocusedElement.focus({preventScroll:true});
-        if(location.hash.startsWith('#project-')) history.replaceState(null,'',location.pathname+location.search);
-    }
-
-    simpleProjectHTML(project){
-        return `
-            <article class="spm-article">
-                <header class="spm-header">
-                    <h2>${project.title}</h2>
-                    <p class="spm-sub">${project.subtitle||''}</p>
-                </header>
-                ${project.image ? `<div class="spm-hero"><img src="${project.image}" alt="${project.title}"></div>` : ''}
-                <section class="spm-section"><p>${project.longDescription || project.description || ''}</p></section>
-                ${project.technologies && project.technologies.length ? `<section class="spm-section"><h3>Tech</h3><ul class="spm-tags">${project.technologies.slice(0,12).map(t=>`<li>${t.name}</li>`).join('')}</ul></section>`:''}
-                ${(project.github||project.demo)?`<section class="spm-section spm-links">${project.github?`<a href="${project.github}" target="_blank" rel="noopener" class="spm-link">GitHub ↗</a>`:''}${project.demo?`<a href="${project.demo}" target="_blank" rel="noopener" class="spm-link">Live Demo ↗</a>`:''}</section>`:''}
-            </article>`;
-    }
-
-    /* Original complex implementation (kept for reference, now unused) */
-    legacyShowProjectDetail(projectId, cardElement) {
-    // Legacy show (unused)
-        if(!this.modal){
-            // recreate legacy modal
-            this.createDetailModal();
-        }
-        const project = this.getProjectData(projectId);
-
-        // If no mapped project data, attempt fallback build from cardElement
-        if (!project) {
-            if (!cardElement){
-                // abort legacy path
-                return; // no way to build content
-            }
-            const title = cardElement.querySelector('.netflix-card-title')?.textContent?.trim() || 'Project';
-            const desc = cardElement.querySelector('.netflix-card-description')?.textContent?.trim() || '';
-            const tags = Array.from(cardElement.querySelectorAll('.netflix-card-tags .netflix-tag')).map(t=>t.textContent.trim());
-            const imgEl = cardElement.querySelector('img');
-            const image = imgEl ? imgEl.getAttribute('src') : '';
-            const fallbackProject = {
-                title,
-                subtitle: 'Project Overview',
-                image,
-                description: desc,
-                longDescription: desc,
-                metrics: [],
-                technologies: tags.map(tag => ({ name: tag, category: 'Tag' })),
-                features: [],
-                architecture: { title: 'Architecture', description: 'Auto-generated from card content.', components: [] },
-                github: null,
-                demo: null
-            };
-            // Continue rendering using fallback but do NOT set hash (no deep link) and no analytics
-            document.body.style.overflow = 'hidden';
-            document.documentElement.style.overflow = 'hidden';
-            this.lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-            this.currentCardElement = cardElement;
-            const modalBody = this.modal.querySelector('.project-modal-body');
-            modalBody.innerHTML = this.generateProjectDetailHTML(fallbackProject);
-            this.positionModalNearCard(cardElement);
-            this.currentProjectId = null;
-            this.modal.classList.add('active');
-            this.modal.setAttribute('aria-hidden','false');
-            const focusable = this.getFocusableElements();
-            if(focusable.length){ focusable[0].focus({preventScroll:true}); }
-            this.enableFocusTrap();
+            // End of file.
             this.announce(`Opened project ${title}`);
             return;
         }
@@ -979,10 +638,38 @@ class ProjectDetailManager {
             overlay.addEventListener('touchstart', (e)=>{ if(e.touches.length===1){ this.swipeData = {x:e.touches[0].clientX, t:Date.now()}; } }, {passive:true});
             overlay.addEventListener('touchend', (e)=>{ if(!this.swipeData) return; const dx = e.changedTouches[0].clientX - this.swipeData.x; const dt = Date.now()-this.swipeData.t; if(Math.abs(dx)>60 && dt<500){ this.navigate(dx<0?1:-1); } this.swipeData=null; });
         }
+        // Add a subtle keyboard hint bar once per modal creation
+        if(!this.modal.querySelector('.project-keyboard-hints')){
+            const bar = document.createElement('div');
+            bar.className = 'project-keyboard-hints';
+            bar.style.cssText = 'position:absolute; right:12px; top:12px; display:flex; gap:.4rem; font-size:.6rem; font-weight:500; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); padding:.35rem .55rem; border-radius:6px; letter-spacing:.05em;';
+            bar.innerHTML = '<span>← / →</span><span style="opacity:.7">navigate</span><span>Esc</span><span style="opacity:.7">close</span>';
+            this.modal.querySelector('.project-modal-content').appendChild(bar);
+        }
     }
     navigate(direction){
-        if(!this.currentProjectId) return; const order = this.projectOrder; const idx = order.indexOf(this.currentProjectId); if(idx===-1) return; const nextIdx = idx + direction; if(nextIdx<0 || nextIdx>=order.length) return; const nextId = order[nextIdx]; const card = document.querySelector(`.netflix-card[data-project="${nextId}"]`); this.showProjectDetail(nextId, card); }
-    updateNavButtonStates(){ const prev = this.modal.querySelector('.project-nav-btn.prev'); const next = this.modal.querySelector('.project-nav-btn.next'); if(!prev||!next) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prev.disabled = idx<=0; next.disabled = idx>=this.projectOrder.length-1; }
+        if(!this.currentProjectId) return; 
+        const order = this.projectOrder; 
+        const idx = order.indexOf(this.currentProjectId); 
+        if(idx===-1) return; 
+        const nextIdx = idx + direction; 
+        if(nextIdx<0 || nextIdx>=order.length) return; 
+        const nextId = order[nextIdx]; 
+        const card = document.querySelector(`.netflix-card[data-project="${nextId}"]`); 
+        const prevTitle = this.getProjectData(this.currentProjectId)?.title || '';
+        this.showProjectDetail(nextId, card); 
+        const newTitle = this.getProjectData(nextId)?.title || '';
+        this.announce(`Moved from ${prevTitle} to ${newTitle}`);
+    }
+    updateNavButtonStates(){ 
+        const prev = this.modal.querySelector('.project-nav-btn.prev'); 
+        const next = this.modal.querySelector('.project-nav-btn.next'); 
+        if(!prev||!next) return; 
+        const idx = this.projectOrder.indexOf(this.currentProjectId); 
+        prev.disabled = idx<=0; 
+        next.disabled = idx>=this.projectOrder.length-1; 
+        [prev,next].forEach(btn=>{ if(!btn) return; btn.style.opacity = btn.disabled ? '.35' : '1'; btn.style.pointerEvents = btn.disabled ? 'none':'auto'; });
+    }
     updateProgress(){ const prog = this.modal.querySelector('.project-progress'); if(!prog || !this.currentProjectId) return; const idx = this.projectOrder.indexOf(this.currentProjectId); prog.textContent = `${idx+1} / ${this.projectOrder.length}`; }
     preloadAdjacent(id){ const idx = this.projectOrder.indexOf(id); [-1,1].forEach(d=>{ const t = this.projectOrder[idx+d]; if(t){ const data=this.getProjectData(t); if(data && data.image){ const img=new Image(); img.src=data.image; } } }); }
     handleHashChange() { 
@@ -1024,45 +711,56 @@ class ProjectDetailManager {
     attachScrollParallax(){ const body = this.modal.querySelector('.project-modal-body'); const content = this.modal.querySelector('.project-modal-content'); if(!body||!content) return; const handler=()=>{ const y=body.scrollTop; content.classList.toggle('scrolling', y>0); content.style.setProperty('--scroll', y); }; body.removeEventListener('scroll', this._parallaxHandler||(()=>{})); this._parallaxHandler=handler; body.addEventListener('scroll', handler, {passive:true}); }
     bindCopyAndHelp(){
         const copyBtn = this.modal.querySelector('.project-copy-link');
-        if(copyBtn){
+        if(copyBtn && !copyBtn._bound){
+            copyBtn._bound = true;
             copyBtn.addEventListener('click', ()=>{
                 const url = location.origin + location.pathname + `#project-${this.currentProjectId}`;
-                navigator.clipboard.writeText(url).then(()=>{ copyBtn.textContent='✅'; setTimeout(()=>{ copyBtn.textContent='🔗'; },1200); this.announce('Link copied'); });
+                navigator.clipboard.writeText(url).then(()=>{ 
+                    copyBtn.textContent='✅'; 
+                    showToast('Link copied to clipboard');
+                    setTimeout(()=>{ copyBtn.textContent='🔗'; },1200); 
+                    this.announce('Link copied'); 
+                }).catch(()=>{ showToast('Copy failed'); });
             });
         }
+        // QR button integration
+        const navBar = this.modal.querySelector('.project-nav-bar');
+        if(navBar && !navBar.querySelector('.project-qr-btn')){
+            const qrBtn = document.createElement('button');
+            qrBtn.type='button';
+            qrBtn.className='project-qr-btn';
+            qrBtn.setAttribute('aria-label','Show QR code for this project');
+            qrBtn.textContent='QR';
+            qrBtn.style.cssText='font-size:.7rem; padding:.35rem .55rem; border-radius:6px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.08);';
+            navBar.appendChild(qrBtn);
+            qrBtn.addEventListener('click', ()=> this.showQrForCurrent());
+        }
     }
-    announce(msg){ if(this.liveRegion){ this.liveRegion.textContent=''; requestAnimationFrame(()=>{ this.liveRegion.textContent=msg; }); } }
-    initLazySections(){
-        const container = this.modal.querySelector('.project-modal-body');
-        if(!container || !('IntersectionObserver' in window)) return;
-        const selectors = '.project-section, .project-metrics, .project-tech, .project-features, .project-architecture';
-        const sections = container.querySelectorAll(selectors);
-        sections.forEach(sec => { sec.style.opacity='0'; sec.style.transform='translateY(28px)'; sec.style.transition='opacity .65s ease, transform .65s cubic-bezier(.22,.61,.36,1)'; });
-        const io = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting){
-                    entry.target.style.opacity='1';
-                    entry.target.style.transform='translateY(0)';
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { root: container, threshold: 0.18 });
-        sections.forEach(sec => io.observe(sec));
-        this._lazyIO = io;
+    showQrForCurrent(){
+        if(!this.currentProjectId) return;
+        const shareUrl = encodeURIComponent(location.origin + location.pathname + `#project-${this.currentProjectId}`);
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${shareUrl}`;
+        let overlay = document.querySelector('.qr-overlay');
+        if(!overlay){
+            overlay = document.createElement('div');
+            overlay.className='qr-overlay';
+            overlay.style.cssText='position:fixed; inset:0; background:rgba(0,0,0,.65); display:flex; align-items:center; justify-content:center; z-index:2000001;';
+            overlay.innerHTML=`<div class="qr-box" style="background:#111; padding:1.2rem 1.4rem 1.4rem; border-radius:14px; position:relative; box-shadow:0 8px 32px -8px rgba(0,0,0,.7); text-align:center; max-width:280px;">
+                <button class="qr-close" aria-label="Close" style="position:absolute; top:6px; right:6px; background:rgba(255,255,255,.12); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer;">✕</button>
+                <h3 style="margin:0 0 .75rem; font-size:.9rem; letter-spacing:.05em; font-weight:600;">Share Project</h3>
+                <img class="qr-img" src="${qrUrl}" alt="QR code" style="width:220px; height:220px; border-radius:8px; background:#000; object-fit:contain;" />
+                <p style="margin:.7rem 0 0; font-size:.65rem; line-height:1.2; color:#aaa;">Scan on your phone to open<br><span style="color:#fff;">${this.currentProjectId}</span></p>
+            </div>`;
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', (e)=>{ if(e.target===overlay) overlay.remove(); });
+            overlay.querySelector('.qr-close').addEventListener('click', ()=> overlay.remove());
+        } else {
+            overlay.querySelector('.qr-img').src = qrUrl;
+            const span = overlay.querySelector('span'); if(span) span.textContent = this.currentProjectId;
+        }
+        showToast('QR code ready');
     }
-
-    getFocusableElements(){
-        return Array.from(this.modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'))
-            .filter(el => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden'));
-    }
-
-    handleKeyDown = (e) => {
-        if(e.key === 'Tab'){
-            const focusable = this.getFocusableElements();
-            if(!focusable.length) return;
-            const first = focusable[0];
-            const last = focusable[focusable.length -1];
-            if(e.shiftKey){
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.54-7-7.93 0-.34.02-.68.05-1h2.54c-.03.32-.05.66-.05 1 0 3.31 2.69 6 6 6 .34 0 .68-.02 1-.05v2.54c-.32.03-.66.05-1 .05zm4.88-2.12l-1.42 1.42-3.54-3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.95.42-1.34.71l-3.54-3.54-1.42 1.42 3.54 3.54c-.39.29-.84.54-1.34.71v-2.54c.5-.17.95-.42 1.34-.71l3.54 3.54 1.42-1.42-3.54-3.54c.39-.29.84-.54 1.34-.71v2.54c-.5.17-.
                 if(document.activeElement === first){
                     e.preventDefault();
                     last.focus();
@@ -1572,9 +1270,9 @@ class ProjectDetailManager {
         };
     }
 
-    generateProjectDetailHTML(project) {
-        return `
-            <div class="project-detail">
+    generateProjectDetailHTML(project){
+        const parts = [
+            '<div class="project-detail">',
                 <div class="project-hero">
                     <img src="${project.image}" alt="${project.title}" class="project-hero-image">
                     <div class="project-hero-overlay">
@@ -1660,10 +1358,31 @@ class ProjectDetailManager {
                             `).join('')}
                         </div>
                     </div>
-                </div>
-            </div>
-        `;
-    }
+                     '</div>',
+                 '</div>'
+          ];
+          return parts.join('');
+        }
+}
+
+// Toast utility (moved outside class to avoid method parsing issues)
+function showToast(message, {duration=2200} = {}) {
+    try {
+        let host = document.querySelector('.toast-host');
+        if(!host){
+            host = document.createElement('div');
+            host.className = 'toast-host';
+            host.style.cssText = 'position:fixed; bottom:24px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; gap:8px; z-index:2000000; pointer-events:none;';
+            document.body.appendChild(host);
+        }
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.style.cssText = 'background:rgba(0,0,0,.8); color:#fff; padding:10px 16px; font-size:.8rem; border-radius:8px; box-shadow:0 4px 16px -4px rgba(0,0,0,.6); letter-spacing:.03em; opacity:0; transform:translateY(6px); transition:opacity .35s ease, transform .35s cubic-bezier(.22,.61,.36,1); backdrop-filter:blur(6px);';
+        toast.textContent = message;
+        host.appendChild(toast);
+        requestAnimationFrame(()=>{ toast.style.opacity='1'; toast.style.transform='translateY(0)'; });
+        setTimeout(()=>{ toast.style.opacity='0'; toast.style.transform='translateY(6px)'; setTimeout(()=>toast.remove(), 400); }, duration);
+    } catch(e){ console.warn('Toast error', e); }
 }
 
 // Initialize accessibility features for cards
@@ -1673,7 +1392,9 @@ function initializeAccessibility() {
     netflixCards.forEach(card => {
         card.setAttribute('tabindex', '0');
         card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', `Open project ${card.querySelector('.netflix-card-title')?.textContent || 'details'}`);
+        const titleEl = card.querySelector('.netflix-card-title');
+        const titleText = titleEl ? titleEl.textContent.trim() : 'details';
+        card.setAttribute('aria-label', 'Open project ' + titleText);
     });
     
     // Make certification cards focusable
@@ -1681,7 +1402,9 @@ function initializeAccessibility() {
     certCards.forEach(card => {
         card.setAttribute('tabindex', '0');
         card.setAttribute('role', 'button');
-        card.setAttribute('aria-label', `Open certification ${card.querySelector('h3')?.textContent || 'details'}`);
+        const h3 = card.querySelector('h3');
+        const text = h3 ? h3.textContent.trim() : 'details';
+        card.setAttribute('aria-label', 'Open certification ' + text);
     });
 }
 

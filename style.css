@@ -1218,6 +1218,7 @@ a:hover, a:focus {
     scroll-snap-type: x mandatory;
     padding: 0 var(--spacing-md);
     margin: 0; /* edge-to-edge feel */
+    position: relative;
   }
   .carousel-track {
     flex-wrap: nowrap;
@@ -1240,7 +1241,34 @@ a:hover, a:focus {
   .carousel-container::-webkit-scrollbar { height: 8px; }
   .carousel-container::-webkit-scrollbar-track { background: transparent; }
   .carousel-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+
+  /* Edge gradient fades to hint scrollability */
+  .carousel-container::before,
+  .carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .carousel-container::before {
+    left: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+  }
+  .carousel-container::after {
+    right: 0;
+    background: linear-gradient(-90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+  }
 }
+
+/* Progressive card height adjustments for very small widths */
+@media (max-width: 560px) { .netflix-card { height: 360px; } }
+@media (max-width: 480px) { .netflix-card { height: 330px; } }
+@media (max-width: 400px) { .netflix-card { height: 300px; } }
+
+/* Accessible focus styling for keyboard users */
+.netflix-card:focus-visible { outline: 3px solid var(--netflix-red); outline-offset: 2px; }
 
 .netflix-card:hover {
     transform: scale(1.05) translateY(-8px);
