@@ -13,5 +13,13 @@
   function initializeAccessibility(){document.querySelectorAll('.netflix-card').forEach(card=>{card.setAttribute('tabindex','0');card.setAttribute('role','button');const t=card.querySelector('.netflix-card-title')?.textContent?.trim()||'details';card.setAttribute('aria-label','Open project '+t);});document.querySelectorAll('.cert-item[data-cert]').forEach(card=>{card.setAttribute('tabindex','0');card.setAttribute('role','button');const h=card.querySelector('h3')?.textContent?.trim()||'details';card.setAttribute('aria-label','Open certification '+h);});}
   // Provide public accessor for dynamic listings (e.g., work.html grid)
   ProjectDetailManager.prototype.getAllProjects=function(){ if(!this._data) this._data=this.staticData(); return this._data; };
-  window.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');initializeHeaderEffects();initializeCarousels();window.__projectDetailManager=new ProjectDetailManager();new NetflixHoverManager();initializeAccessibility();document.addEventListener('click',e=>{const cert=e.target.closest('.cert-item[data-cert]');if(cert)openCertification(cert.getAttribute('data-cert'));});window.addEventListener('hashchange',handleHash);handleHash();console.log('[Init] main.js loaded (projects + certifications)');});
+  window.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('loaded');initializeHeaderEffects();initializeCarousels();window.__projectDetailManager=new ProjectDetailManager();new NetflixHoverManager();initializeAccessibility();
+    // Certification click delegation
+    document.addEventListener('click',e=>{const cert=e.target.closest('.cert-item[data-cert]');if(cert&&!e.defaultPrevented){openCertification(cert.getAttribute('data-cert'));}});
+    // Project card click/tap delegation (works for desktop + mobile)
+    document.addEventListener('click',e=>{const card=e.target.closest('.netflix-card[data-project]');if(!card) return; // ignore if clicking an interactive element inside
+      if(e.target.closest('a,button,svg,[data-no-open]')) return; e.preventDefault(); window.__projectDetailManager?.showProjectDetail(card.dataset.project,card);});
+    // Keyboard activation (Enter or Space) when focused on card/tile
+    document.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const active=document.activeElement; if(!active) return; const projectCard=active.closest('.netflix-card[data-project]'); const certCard=active.closest('.cert-item[data-cert]'); if(projectCard){ e.preventDefault(); window.__projectDetailManager?.showProjectDetail(projectCard.dataset.project,projectCard);} else if(certCard){ e.preventDefault(); openCertification(certCard.getAttribute('data-cert')); }});
+    window.addEventListener('hashchange',handleHash);handleHash();console.log('[Init] main.js loaded (projects + certifications + card clicks)');});
 })();
