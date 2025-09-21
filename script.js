@@ -224,32 +224,12 @@ window.addEventListener('DOMContentLoaded',()=>{
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                             </svg>
-                        </button>
-                        <div class="project-modal-body"></div>
-                    </div>
-                </div>
-            </div>`;
-        
-        // Append to certifications section
-        const certificationsSection = document.getElementById('certifications');
-        if (certificationsSection) {
-            certificationsSection.appendChild(modal);
-        } else {
-            document.body.appendChild(modal); // fallback
-        }
-        
-        this.modal = modal;
-        this.bindNavigation();
-        this.bindCopyAndHelp();
-    }
-
-    showProjectDetail(projectId, cardElement) {
-        // Always route via hash for consistent, reliable opening.
-        // This avoids direct-call complexities and leverages the robust hashchange handler.
-        const expectedHash = `project-${projectId}`;
-        if (location.hash !== `#${expectedHash}`) {
-            location.hash = expectedHash;
-        } else {
+                        /*
+                            DEPRECATED: script.js is no longer used. All functionality lives in main.js.
+                            This minimal stub avoids legacy parse errors. Safe to delete.
+                        */
+                        console.warn('[DEPRECATED] script.js unused stub loaded.');
+                        (function(){ /* no-op */ })();
             // If the hash is already correct but the modal isn't open, force a re-evaluation.
             /* DEPRECATED: This file is no longer loaded. All active logic moved to main.js. Retain temporarily for reference; safe to delete after verifying main.js. */
             console.warn('[DEPRECATED] script.js present but not used.');
