@@ -645,6 +645,225 @@ body.loaded { opacity:1; }
 .project-modal-content.scrolling .project-hero-image { transform:translateY(calc(var(--scroll,0) * .25)); }
 @media (prefers-reduced-motion: reduce) { .project-modal-content .project-hero-image, .project-modal-content.scrolling .project-hero-image { transform:none !important; } }
 
+/* Additional Netflix-style enhancements */
+
+/* Netflix-style loading skeleton for cards */
+.netflix-card.loading {
+    background: linear-gradient(90deg, var(--netflix-gray) 25%, var(--netflix-gray-light) 50%, var(--netflix-gray) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.netflix-card.loading * {
+    visibility: hidden;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Enhanced card reveal animation */
+.netflix-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealCard 0.6s ease-out forwards;
+}
+
+.netflix-card:nth-child(1) { animation-delay: 0.1s; }
+.netflix-card:nth-child(2) { animation-delay: 0.2s; }
+.netflix-card:nth-child(3) { animation-delay: 0.3s; }
+.netflix-card:nth-child(4) { animation-delay: 0.4s; }
+.netflix-card:nth-child(5) { animation-delay: 0.5s; }
+.netflix-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes revealCard {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Netflix-style card stacking effect on hover */
+.projects-grid {
+    perspective: 1000px;
+}
+
+.netflix-card:hover {
+    transform: translateY(-12px) scale(1.05) rotateX(2deg);
+    z-index: 10;
+    position: relative;
+}
+
+/* Netflix-style content fade-in on scroll */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Enhanced button interactions */
+.btn, .icon-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn::before, .icon-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn:active::before, .icon-btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Netflix-style progress indicator */
+.section-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--netflix-red), var(--netflix-red-dark));
+    z-index: 1000;
+    transition: width 0.2s ease;
+}
+
+/* Enhanced modal entrance animation */
+.project-modal.active {
+    animation: modalZoomIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes modalZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Netflix-style text reveal animation */
+.text-reveal {
+    overflow: hidden;
+}
+
+.text-reveal span {
+    display: inline-block;
+    transform: translateY(100%);
+    animation: textReveal 0.8s ease-out forwards;
+}
+
+@keyframes textReveal {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced scroll indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 8px;
+    opacity: 0;
+    animation: scrollIndicatorFade 2s ease-in-out infinite;
+}
+
+.scroll-indicator::before {
+    content: '';
+    width: 4px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+    animation: scrollDot 2s ease-in-out infinite;
+}
+
+@keyframes scrollIndicatorFade {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes scrollDot {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(16px); opacity: 0; }
+}
+
+/* Netflix-style image lazy loading effect */
+.netflix-card-image {
+    filter: blur(0px);
+    transition: filter 0.3s ease;
+}
+
+.netflix-card-image.loading {
+    filter: blur(5px);
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+}
+
+/* Enhanced focus states for better accessibility */
+.netflix-card:focus-visible {
+    outline: 3px solid var(--netflix-red);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* Netflix-style content grid auto-sizing */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* Performance optimizations for smooth animations */
+.netflix-card, .project-modal, .btn {
+    will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .netflix-card,
+    .fade-in-section,
+    .btn::before,
+    .project-modal,
+    .text-reveal span {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 /* Performance: avoid painting hidden sections until needed */
 section.section { content-visibility:auto; contain-intrinsic-size: 600px; }
 /* Base Netflix-style typography and layout */
@@ -2610,7 +2829,13 @@ body.loaded {
 }
 
 .cert-badge { width:64px; height:64px; border-radius:16px; background:rgba(255,255,255,.1); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:10px; box-shadow:0 4px 12px -4px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08); }
-.cert-badge img { width:100%; height:100%; object-fit:contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)); }
+.cert-badge img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 8px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)); 
+}
 
 .cert-name { font-size:1rem; line-height:1.25; margin:0; font-weight:600; color:#fff; letter-spacing:.3px; }
 .cert-org { margin:0; font-size:.75rem; font-weight:500; text-transform:uppercase; letter-spacing:.12em; color:rgba(255,255,255,.65); }
