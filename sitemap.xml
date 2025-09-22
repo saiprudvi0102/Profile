@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://saiprudvi0102.github.io/Profile/</loc>
-    <lastmod>2025-09-11</lastmod>
+    <loc>https://saiprudvi.me/</loc>
+    <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://saiprudvi0102.github.io/Profile/work.html</loc>
-    <lastmod>2025-09-11</lastmod>
+    <loc>https://saiprudvi.me/work.html</loc>
+    <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://saiprudvi0102.github.io/Profile/resume.html</loc>
-    <lastmod>2025-09-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://saiprudvi0102.github.io/Profile/contact.html</loc>
-    <lastmod>2025-09-11</lastmod>
+    <loc>https://saiprudvi.me/resume.html</loc>
+    <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://saiprudvi0102.github.io/Profile/dormigo-details.html</loc>
-    <lastmod>2025-09-11</lastmod>
+    <loc>https://saiprudvi.me/contact.html</loc>
+    <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://saiprudvi.me/dormigo-details.html</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
