@@ -1,0 +1,11 @@
+# Netlify redirects file
+# Force HTTPS
+http://saiprudvi.me/* https://saiprudvi.me/:splat 301!
+http://www.saiprudvi.me/* https://saiprudvi.me/:splat 301!
+https://www.saiprudvi.me/* https://saiprudvi.me/:splat 301!
+
+# Handle SPA routing (if needed)
+/api/* https://api.example.com/:splat 200
+
+# 404 fallback
+/* /index.html 200

@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta cha    <nav class="nav">
+        <a href="/" class="active">Home</a>
+        <a href="/work.html">Projects</a>
+        <a href="/resume.html">Resume</a>
+        <a href="/contact.html">Contact</a>
+    </nav>" />
 <title>Saiprudvi Ela | Software Developer (Backend • Cloud • GenAI)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="description" content="Saiprudvi Ela – Software Developer building scalable backend & cloud-native applications with Java, Python, Spring Boot, FastAPI, AWS, GCP, and GenAI (LLMs, LangChain)." />
@@ -99,28 +104,6 @@
     </div>
     <div class="scroll-indicator">Scroll to explore</div>
 </section>
-
-<script>
-// Theme toggle persistence
-(function(){
-    const STORAGE_KEY='pref-theme';
-    const root=document.documentElement;
-    const btn=document.getElementById('themeToggle');
-    if(!btn) return;
-    const apply=(mode)=>{ 
-        root.setAttribute('data-theme',mode); 
-        btn.dataset.mode=mode; 
-        btn.setAttribute('aria-label', mode === 'dark' ? 'Activate light mode' : 'Activate dark mode');
-    };
-    const saved=localStorage.getItem(STORAGE_KEY);
-    if(saved){ apply(saved); }
-    btn.addEventListener('click',()=>{
-        const next = (btn.dataset.mode==='light')? 'dark':'light';
-        apply(next);
-        localStorage.setItem(STORAGE_KEY,next);
-    });
-})();
-</script>
 
 <!-- Certifications moved below Projects -->
 
