@@ -218,7 +218,7 @@
             <p class="netflix-card-description">High-throughput Spring Boot microservices processing 120K+ daily transactions with JWT authentication, PostgreSQL optimization, and comprehensive observability.</p>
             <div class="netflix-card-tags">
               <span class="netflix-tag">☕ Java</span>
-              <span class="netflix-tag">� Spring</span>
+              <span class="netflix-tag">🌿 Spring</span>
               <span class="netflix-tag">📊 PostgreSQL</span>
             </div>
             <div class="netflix-card-footer">
@@ -321,18 +321,6 @@
 
 <footer class="site-footer"><p>&copy; <span id="year"></span> Saiprudvi Ela</p></footer>
 <!-- Legacy static modal removed: dynamic full-screen modal is injected by ProjectDetailManager -->
-<script>
-// Ensure theme toggle parity with index page
-(function(){
-  const STORAGE_KEY='pref-theme';
-  const btn=document.getElementById('themeToggle');
-  if(btn){
-    const apply=(m)=>{ document.documentElement.setAttribute('data-theme',m); btn.dataset.mode=m; };
-    const saved=localStorage.getItem(STORAGE_KEY); if(saved) apply(saved);
-    btn.addEventListener('click',()=>{ const next=btn.dataset.mode==='light'?'dark':'light'; apply(next); localStorage.setItem(STORAGE_KEY,next); });
-  }
-})();
-</script>
 <script src="main.js"></script>
 <script>
 // Add dynamic project loading for work page

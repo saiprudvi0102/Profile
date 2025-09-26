@@ -28,7 +28,7 @@
         <div><h3>⚙️ Backend & APIs</h3><p>Java, Python, Spring Boot, FastAPI, Flask, Node.js, REST, JWT, Microservices</p></div>
         <div><h3>☁️ Cloud & Infra</h3><p>AWS (Lambda, API Gateway, Cognito, S3, DynamoDB, CloudWatch), GCP (Firestore, Functions), Firebase, Docker, Kubernetes, Terraform</p></div>
         <div><h3>🧠 AI & GenAI</h3><p>LLMs, LangChain, OpenAI APIs, Prompt Engineering, TensorFlow, Transformers, NLP, Recommendation Systems</p></div>
-        <div><h3>� Data & Storage</h3><p>PostgreSQL, MySQL, MongoDB, DynamoDB, SQL Server</p></div>
+  <div><h3>🗄️ Data & Storage</h3><p>PostgreSQL, MySQL, MongoDB, DynamoDB, SQL Server</p></div>
         <div><h3>🔧 DevOps & Tooling</h3><p>CI/CD (GitHub Actions, Gradle), Git, JIRA, Monitoring (Splunk, AppDynamics, Grafana)</p></div>
         <div><h3>🧪 Quality & Practices</h3><p>Design Patterns, SDLC, Modular Architecture, Performance Optimization, Secure Development</p></div>
       </div>
@@ -58,5 +58,58 @@
 <script type="application/ld+json">{
 "@context":"https://schema.org","@type":"Person","name":"Saiprudvi Ela","jobTitle":"Software Developer","url":"https://saiprudvi.me/","description":"Software Developer specializing in backend, cloud-native, and GenAI systems (Java, Python, Spring Boot, FastAPI, AWS, GCP, LangChain)","alumniOf":{"@type":"CollegeOrUniversity","name":"Florida Institute of Technology"},"skills":["Java","Python","Spring Boot","FastAPI","AWS","GCP","LLMs","LangChain","PostgreSQL","Docker","Kubernetes"],"sameAs":["https://www.linkedin.com/in/prudvi-ela","https://github.com/saiprudvi0102"]}</script>
 <script src="main.js"></script>
+<script>
+// Hydrate Projects from resume/resume.md (simple parser for the custom list format)
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('resume/resume.md', { cache: 'no-cache' });
+    if (!res.ok) throw new Error('resume.md not found');
+    const text = await res.text();
+    const lines = text.split(/\r?\n/);
+    const projects = [];
+    let current = null;
+    for (const raw of lines) {
+      const line = raw.trim();
+      if (!line) continue;
+      if (line.startsWith('- title:')) {
+        if (current) projects.push(current);
+        current = { title: line.replace('- title:', '').trim() };
+      } else if (current && line.startsWith('timeframe:')) {
+        current.timeframe = line.replace('timeframe:', '').trim();
+      } else if (current && line.startsWith('summary:')) {
+        current.summary = line.replace('summary:', '').trim();
+      } else if (current && line.startsWith('tags:')) {
+        const match = line.match(/\[(.*)\]/);
+        current.tags = match ? match[1].split(',').map(s => s.trim()) : [];
+      } else if (current && line.startsWith('image:')) {
+        current.image = line.replace('image:', '').trim();
+      }
+    }
+    if (current) projects.push(current);
+
+    if (projects.length) {
+      const container = document.querySelector('.resume-grid');
+      if (container) {
+        // Replace the last UL under the right column Projects section
+        const headings = Array.from(container.querySelectorAll('h2'));
+        const projHeading = headings.find(h => h.textContent.trim().toLowerCase() === 'projects');
+        if (projHeading) {
+          const ul = projHeading.nextElementSibling && projHeading.nextElementSibling.matches('ul.plain')
+            ? projHeading.nextElementSibling
+            : projHeading.parentElement.querySelector('ul.plain');
+          if (ul) {
+            ul.innerHTML = projects.map(p => {
+              const tags = (p.tags || []).slice(0,3).map(t => `<span class="netflix-tag">${t}</span>`).join(' ');
+              return `<li><strong>${p.title}:</strong> ${p.summary} ${tags ? `<br>${tags}` : ''}</li>`;
+            }).join('');
+          }
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('Could not hydrate Projects from resume.md:', e.message);
+  }
+});
+</script>
 </body>
 </html>

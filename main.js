@@ -1,3 +1,83 @@
+// main.js — shared lightweight UX + accessibility + small helpers
+(function () {
+  'use strict';
+
+  // Set current year in footer
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const nav = document.getElementById('nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+  }
+
+  // Scroll to top button
+  const scrollBtn = document.getElementById('scrollToTop');
+  if (scrollBtn) {
+    const onScroll = () => {
+      if (window.scrollY > 400) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+      // header solid state
+      const header = document.querySelector('.site-header');
+      if (header) {
+        header.classList.toggle('scrolled', window.scrollY > 12);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    onScroll();
+  }
+
+  // Ensure titles preserve spaces and line breaks when emojis present
+  document.querySelectorAll('.hero-name .name, .section-title, .netflix-card-title').forEach(el => {
+    el.style.whiteSpace = 'normal';
+    el.style.wordSpacing = '0.05em';
+  });
+
+  // Make cards keyboard-activable
+  const activateCard = (card) => {
+    card.click();
+  };
+  document.querySelectorAll('.netflix-card').forEach(card => {
+    if (!card.hasAttribute('tabindex')) card.setAttribute('tabindex', '0');
+    if (!card.hasAttribute('role')) card.setAttribute('role', 'button');
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateCard(card);
+      }
+    });
+  });
+
+  // Minimal project detail manager stub to avoid errors if referenced
+  if (!window.__projectDetailManager) {
+    window.__projectDetailManager = {
+      getAllProjects: () => {
+        // Derive from DOM cards as a fallback; ids from data-project
+        const map = {};
+        document.querySelectorAll('.netflix-card').forEach(card => {
+          const id = card.getAttribute('data-project') || `p-${Math.random().toString(36).slice(2,7)}`;
+          const title = card.querySelector('.netflix-card-title')?.textContent?.trim() || 'Project';
+          const description = card.querySelector('.netflix-card-description')?.textContent?.trim() || '';
+          const image = card.querySelector('img')?.getAttribute('src') || '';
+          const technologies = Array.from(card.querySelectorAll('.netflix-tag')).map(tag => ({ name: tag.textContent.trim() }));
+          if (!map[id]) {
+            map[id] = { id, title, description, image, technologies };
+          }
+        });
+        return map;
+      }
+    };
+  }
+})();
 /* main.js - clean implementation isolating new modal system (no legacy) */
 (function(){
   function showToast(message,{duration=2200}={}){let h=document.querySelector('.toast-host');if(!h){h=document.createElement('div');h.className='toast-host';h.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:2000000;pointer-events:none;';document.body.appendChild(h);}const el=document.createElement('div');el.className='toast';el.style.cssText='background:rgba(0,0,0,.8);color:#fff;padding:10px 16px;font-size:.8rem;border-radius:8px;box-shadow:0 4px 16px -4px rgba(0,0,0,.6);letter-spacing:.03em;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s cubic-bezier(.22,.61,.36,1);backdrop-filter:blur(6px);';el.textContent=message;h.appendChild(el);requestAnimationFrame(()=>{el.style.opacity='1';el.style.transform='translateY(0)';});setTimeout(()=>{el.style.opacity='0';el.style.transform='translateY(6px)';setTimeout(()=>el.remove(),400);},duration);}  
