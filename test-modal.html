@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            background: #007acc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .test-link:hover {
+            background: #005999;
+        }
+        .instructions {
+            background: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #007acc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Modal Functionality Test Page</h1>
+    
+    <div class="instructions">
+        <h3>Testing Instructions:</h3>
+        <p>Use this page to test the modal functionality. Click the links below to test different scenarios:</p>
+        <ol>
+            <li>Test each direct link below</li>
+            <li>Verify the modal opens correctly</li>
+            <li>Check that the URL changes in the address bar</li>
+            <li>Test the Esc key to close</li>
+            <li>Test the close button</li>
+            <li>Try opening links in new tabs</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>🚀 Project Direct Links</h3>
+        <p>These links should open specific project modals:</p>
+        
+        <a href="https://saiprudvi.me/#project-mobilellm" class="test-link" target="_blank">
+            🤖 MobileLLM Project
+        </a>
+        
+        <a href="https://saiprudvi.me/#project-dormunity" class="test-link" target="_blank">
+            🏠 Dormunity Project
+        </a>
+        
+        <a href="https://saiprudvi.me/#project-pcnn-shadow" class="test-link" target="_blank">
+            👁️ PCNN Shadow Detection
+        </a>
+        
+        <a href="https://saiprudvi.me/#project-iot-fpga" class="test-link" target="_blank">
+            🔌 IoT FPGA Project
+        </a>
+    </div>
+
+    <div class="test-section">
+        <h3>🧪 Test Scenarios</h3>
+        
+        <h4>Scenario 1: Direct URL Access</h4>
+        <ol>
+            <li>Right-click any link above → "Open in new tab"</li>
+            <li>Verify modal opens automatically</li>
+            <li>Check console for any errors (F12)</li>
+        </ol>
+        
+        <h4>Scenario 2: Modal Interaction</h4>
+        <ol>
+            <li>Click any project link</li>
+            <li>Test Esc key to close</li>
+            <li>Test close button (X)</li>
+            <li>Test clicking outside modal</li>
+        </ol>
+        
+        <h4>Scenario 3: Navigation</h4>
+        <ol>
+            <li>Open a project modal</li>
+            <li>Use browser back button</li>
+            <li>Verify modal closes</li>
+            <li>Use forward button</li>
+            <li>Verify modal reopens</li>
+        </ol>
+        
+        <h4>Scenario 4: Keyboard Navigation</h4>
+        <ol>
+            <li>Tab to focus on project cards</li>
+            <li>Press Enter to open modal</li>
+            <li>Tab through modal elements</li>
+            <li>Press Esc to close</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>📱 Mobile Testing</h3>
+        <p>Test on mobile devices or using Chrome DevTools device simulation:</p>
+        <ol>
+            <li>Open DevTools (F12)</li>
+            <li>Click device toggle icon</li>
+            <li>Select mobile device</li>
+            <li>Test modal functionality</li>
+            <li>Check touch interactions</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>🐛 Console Debug</h3>
+        <p>Open browser console (F12) to see debug information:</p>
+        <ul>
+            <li>Hash change detection logs</li>
+            <li>Project data validation</li>
+            <li>Modal state changes</li>
+            <li>Error messages (if any)</li>
+        </ul>
+    </div>
+
+    <script>
+        // Add some testing utilities
+        console.log('🧪 Modal Test Page Loaded');
+        console.log('📍 Current URL:', window.location.href);
+        
+        // Test hash detection
+        window.addEventListener('hashchange', (e) => {
+            console.log('🔗 Hash changed:', {
+                old: e.oldURL,
+                new: e.newURL,
+                hash: location.hash
+            });
+        });
+        
+        // Add click logging for test links
+        document.querySelectorAll('.test-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log('🖱️ Test link clicked:', e.target.href);
+            });
+        });
+    </script>
+</body>
+</html>
