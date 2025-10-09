@@ -1,123 +1,89 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const root = document.documentElement;
-    
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    root.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-    
-    function updateThemeIcon(theme) {
-        if (themeToggle) {
-            if (theme === 'dark') {
-                root.style.setProperty('--sun-display', 'none');
-                root.style.setProperty('--moon-display', 'block');
-            } else {
-                root.style.setProperty('--sun-display', 'block');
-                root.style.setProperty('--moon-display', 'none');
-            }
-        }
-    }
-    
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            const currentTheme = root.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            root.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const primaryNav = document.querySelector('[data-primary-nav]');
+    const header = document.querySelector('.site-header');
+    let lastScrollY = window.scrollY;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    if (typeof typewriter === 'function') {
+        typewriter('[data-typewriter]', {
+            delay: 32,
+            loop: true,
+            strings: [
+                'Designing elegant interfaces.',
+                'Transforming ideas into products.',
+                'Crafting digital experiences.'
+            ]
         });
     }
-    
-    // Mobile menu toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    const nav = document.querySelector('.nav');
-    
-    if (mobileToggle && nav) {
-        mobileToggle.addEventListener('click', function() {
-            nav.classList.toggle('mobile-active');
-            mobileToggle.classList.toggle('active');
+
+    function openNav() {
+        body.classList.add('nav-open');
+        primaryNav?.setAttribute('data-state', 'open');
+        const items = primaryNav?.querySelectorAll(':scope > *');
+        items?.forEach((item, index) => {
+            item.style.setProperty('--delay', `${index * 80}ms`);
+            item.setAttribute('data-visible', 'true');
         });
     }
-    
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-            
-            // Close mobile menu if open
-            if (nav && nav.classList.contains('mobile-active')) {
-                nav.classList.remove('mobile-active');
-                mobileToggle.classList.remove('active');
-            }
-        });
+
+    function closeNav() {
+        body.classList.remove('nav-open');
+        primaryNav?.setAttribute('data-state', 'closed');
+        const items = primaryNav?.querySelectorAll(':scope > *');
+        items?.forEach(item => item.removeAttribute('data-visible'));
+    }
+
+    navToggle?.addEventListener('click', () => {
+        const isOpen = body.classList.contains('nav-open');
+        isOpen ? closeNav() : openNav();
     });
-    
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
-    
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        const currentTheme = root.getAttribute('data-theme');
-        
-        if (currentScroll > 100) {
-            if (currentTheme === 'dark') {
-                header.style.background = 'rgba(17, 24, 39, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 960 && body.classList.contains('nav-open')) {
+            closeNav();
+        }
+    });
+
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
+        const threshold = clamp(currentScrollY / 12, 0, 12);
+
+        header?.setAttribute('data-scrolled', String(currentScrollY > 12));
+        header?.style.setProperty('--offset', `${clamp(threshold, 0, 12)}px`);
+
+        if (scrollDelta > 6 && currentScrollY > 160) {
+            header?.setAttribute('data-hidden', 'true');
         } else {
-            header.style.background = '';
-            header.style.boxShadow = '';
+            header?.removeAttribute('data-hidden');
         }
-        
-        lastScroll = currentScroll;
-    });
-    
-    // Add fade-in animation on scroll
+
+        lastScrollY = currentScrollY;
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: [0, 0.2, 0.6]
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observeReveal = entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('loaded');
+                entry.target.setAttribute('data-visible', 'true');
+            } else if (entry.boundingClientRect.top > 0) {
+                entry.target.removeAttribute('data-visible');
             }
         });
-    }, observerOptions);
-    
-    // Observe all sections for animation
-    document.querySelectorAll('.section, .project-card, .skill-category, .stat').forEach(element => {
-        element.classList.add('loading');
+    };
+
+    const observer = new IntersectionObserver(observeReveal, observerOptions);
+
+    document.querySelectorAll('[data-reveal]').forEach(element => {
         observer.observe(element);
     });
-    
-    // Set current year in footer
-    const currentYear = new Date().getFullYear();
-    const yearElements = document.querySelectorAll('[data-year]');
-    yearElements.forEach(element => {
-        element.textContent = currentYear;
-    });
-    
-    // Add loading class to body initially
-    document.body.classList.add('loaded');
 });
