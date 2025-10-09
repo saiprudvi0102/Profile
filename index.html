@@ -1,1187 +1,665 @@
-<!DOCTYPE html><!DOCTYPE html>
-
-<html lang="en"><html lang="en">
-
-<head><head>
-
-    <meta charset="UTF-8" />    <meta charset="UTF-8" />
-
-    <title>Sai Prudvi Ela | Software Developer (Backend • Cloud • GenAI)</title>    <title>Sai Prudvi Ela | Software Developer (Backend • Cloud • GenAI)</title>
-
-    <meta name="viewport" content="width=device-width,initial-scale=1" />    <meta name="viewport" content="width=device-width,initial-scale=1" />
-
-    <meta name="description" content="Saiprudvi Ela – Software Developer building scalable backend & cloud-native applications with Java, Python, Spring Boot, FastAPI, AWS, GCP, and GenAI (LLMs, LangChain)." />    <meta name="description" content="Saiprudvi Ela – Software Developer building scalable backend & cloud-native applications with Java, Python, Spring Boot, FastAPI, AWS, GCP, and GenAI (LLMs, LangChain)." />
-
-    <meta name="keywords" content="Saiprudvi Ela, Software Developer, Backend Engineer, Cloud Engineer, Java, Python, Spring Boot, FastAPI, AWS, GCP, LangChain, LLM, Generative AI, Portfolio" />    <meta name="keywords" content="Saiprudvi Ela, Software Developer, Backend Engineer, Cloud Engineer, Java, Python, Spring Boot, FastAPI, AWS, GCP, LangChain, LLM, Generative AI, Portfolio" />
-
-    <meta name="author" content="Saiprudvi Ela" />    <meta name="author" content="Saiprudvi Ela" />
-
-
-
-    <!-- Open Graph / Facebook -->    <!-- Open Graph / Facebook -->
-
-    <meta property="og:type" content="website" />    <meta property="og:type" content="website" />
-
-    <meta property="og:url" content="https://saiprudvi.me/" />    <meta property="og:url" content="https://saiprudvi.me/" />
-
-    <meta property="og:title" content="Saiprudvi Ela | Software Developer" />    <meta property="og:title" content="Saiprudvi Ela | Software Developer" />
-
-    <meta property="og:description" content="Software Developer – scalable backend systems, cloud platforms (AWS/GCP), and GenAI integrations with LLM orchestration." />    <meta property="og:description" content="Software Developer – scalable backend systems, cloud platforms (AWS/GCP), and GenAI integrations with LLM orchestration." />
-
-    <meta property="og:image" content="https://saiprudvi.me/assets/all_logos.jpg" />    <meta property="og:image" content="https://saiprudvi.me/assets/all_logos.jpg" />
-
-
-
-    <!-- Twitter -->    <!-- Twitter -->
-
-    <meta property="twitter:card" content="summary_large_image" />    <meta property="twitter:card" content="summary_large_image" />
-
-    <meta property="twitter:url" content="https://saiprudvi.me/" />    <meta property="twitter:url" content="https://saiprudvi.me/" />
-
-    <meta property="twitter:title" content="Saiprudvi Ela | Software Developer" />    <meta property="twitter:title" content="Saiprudvi Ela | Software Developer" />
-
-    <meta property="twitter:description" content="Backend, cloud & GenAI engineering: Java, Python, Spring Boot, FastAPI, AWS, GCP, LangChain, LLM tooling." />    <meta property="twitter:description" content="Backend, cloud & GenAI engineering: Java, Python, Spring Boot, FastAPI, AWS, GCP, LangChain, LLM tooling." />
-
-    <meta property="twitter:image" content="https://saiprudvi.me/assets/all_logos.jpg" />    <meta property="twitter:image" content="https://saiprudvi.me/assets/all_logos.jpg" />
-
-
-
-    <!-- Favicon and App Icons -->    <!-- Favicon and App Icons -->
-
-    <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">    <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
-
-    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">    <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg">
-
-
-
-    <!-- Canonical URL -->    <!-- Canonical URL -->
-
-    <link rel="canonical" href="https://saiprudvi.me/" />    <link rel="canonical" href="https://saiprudvi.me/" />
-
-
-
-    <!-- Enhanced Fonts for Professional Typography -->    <!-- Enhanced Fonts for Professional Typography -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css" />    <link rel="stylesheet" href="style.css" />
-
-</head></head>
-
-<body><body>
-
-<!-- Professional Header --><!-- Professional Header -->
-
-<header class="header" id="main-header"><header class="header" id="main-header">
-
-    <div class="header-container">    <div class="header-container">
-
-        <a href="/" class="logo-container" aria-label="Saiprudvi Ela - Home">        <a href="/" class="logo-container" aria-label="Saiprudvi Ela - Home">
-
-            <div class="logo">SP</div>            <div class="logo">SP</div>
-
-            <span class="logo-text">Sai Prudvi</span>            <span class="logo-text">Sai Prudvi</span>
-
-        </a>        </a>
-
-                
-
-        <nav class="nav-menu" id="nav" aria-label="Main navigation">        <nav class="nav-menu" id="nav" aria-label="Main navigation">
-
-            <ul class="nav-list">            <ul class="nav-list">
-
-                <li class="nav-item">                <li class="nav-item">
-
-                    <a href="#about" class="nav-link active">                    <a href="#about" class="nav-link active">
-
-                        <span>About</span>                        <span>About</span>
-
-                        <span class="nav-indicator">●</span>                        <span class="nav-indicator">●</span>
-
-                    </a>                    </a>
-
-                </li>                </li>
-
-                <li class="nav-item">                <li class="nav-item">
-
-                    <a href="#technologies" class="nav-link">                    <a href="#technologies" class="nav-link">
-
-                        <span>Tech Stack</span>                        <span>Tech Stack</span>
-
-                        <span class="nav-indicator">●</span>                        <span class="nav-indicator">●</span>
-
-                    </a>                    </a>
-
-                </li>                </li>
-
-                <li class="nav-item">                <li class="nav-item">
-
-                    <a href="work.html" class="nav-link">                    <a href="work.html" class="nav-link">
-
-                        <span>Projects</span>                        <span>Projects</span>
-
-                        <span class="nav-indicator">●</span>                        <span class="nav-indicator">●</span>
-
-                    </a>                    </a>
-
-                </li>                </li>
-
-                <li class="nav-item">                <li class="nav-item">
-
-                    <a href="resume.html" class="nav-link">                    <a href="resume.html" class="nav-link">
-
-                        <span>Resume</span>                        <span>Resume</span>
-
-                        <span class="nav-indicator">●</span>                        <span class="nav-indicator">●</span>
-
-                    </a>                    </a>
-
-                </li>                </li>
-
-            </ul>            </ul>
-
-        </nav>        </nav>
-
-                
-
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-
-            <span></span>            <span></span>
-
-            <span></span>            <span></span>
-
-            <span></span>            <span></span>
-
-        </button>        </button>
-
-    </div>    </div>
-
-</header></header>
-
-
-
-<!-- Main Content --><!-- Main Content -->
-
-<main role="main"><main role="main">
-
-    <!-- Professional Hero Section -->    <!-- Professional Hero Section -->
-
-    <section class="hero" id="hero">    <section class="hero" id="hero">
-
-    <div class="hero-container">    <div class="hero-container">
-
-        <div class="hero-content">        <div class="hero-content">
-
-            <div class="hero-badge">            <div class="hero-badge">
-
-                <div class="status-dot"></div>                <div class="status-dot"></div>
-
-                <span>Available for opportunities</span>                <span>Available for opportunities</span>
-
-            </div>            </div>
-
-                        
-
-            <h1 class="hero-title">            <h1 class="hero-title">
-
-                Building scalable <span class="gradient-text">backend systems</span>                 Building scalable <span class="gradient-text">backend systems</span> 
-
-                with modern cloud technologies                with modern cloud technologies
-
-            </h1>            </h1>
-
-                        
-
-            <p class="hero-subtitle">            <p class="hero-subtitle">
-
-                Experienced Software Developer with 4+ years of expertise in Java, Python,                 Experienced Software Developer with 4+ years of expertise in Java, Python, 
-
-                Spring Boot, FastAPI, AWS, GCP, and GenAI integrations. Specialized in                 Spring Boot, FastAPI, AWS, GCP, and GenAI integrations. Specialized in 
-
-                high-performance microservices and LLM orchestration.                high-performance microservices and LLM orchestration.
-
-            </p>            </p>
-
-                        
-
-            <div class="hero-stats">            <div class="hero-stats">
-
-                <div class="stat-item">                <div class="stat-item">
-
-                    <span class="stat-number">4+</span>                    <span class="stat-number">4+</span>
-
-                    <span class="stat-label">Years Experience</span>                    <span class="stat-label">Years Experience</span>
-
-                </div>                </div>
-
-                <div class="stat-item">                <div class="stat-item">
-
-                    <span class="stat-number">120K+</span>                    <span class="stat-number">120K+</span>
-
-                    <span class="stat-label">Daily Transactions</span>                    <span class="stat-label">Daily Transactions</span>
-
-                </div>                </div>
-
-                <div class="stat-item">                <div class="stat-item">
-
-                    <span class="stat-number">2TB+</span>                    <span class="stat-number">2TB+</span>
-
-                    <span class="stat-label">Data Processed</span>                    <span class="stat-label">Data Processed</span>
-
-                </div>                </div>
-
-            </div>            </div>
-
-                        
-
-            <div class="hero-actions">            <div class="hero-actions">
-
-                <a href="work.html" class="cta-primary">                <a href="work.html" class="cta-primary">
-
-                    <span>View My Work</span>                    <span>View My Work</span>
-
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-
-                        <path d="M5 12h14M12 5l7 7-7 7"/>                        <path d="M5 12h14M12 5l7 7-7 7"/>
-
-                    </svg>                    </svg>
-
-                </a>                </a>
-
-                <a href="resume.html" class="cta-secondary">                <a href="resume.html" class="cta-secondary">
-
-                    <span>Download Resume</span>                    <span>Download Resume</span>
-
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-
-                    </svg>                    </svg>
-
-                </a>                </a>
-
-            </div>            </div>
-
-                        
-
-            <div class="hero-social">            <div class="hero-social">
-
-                <span>Connect with me:</span>                <span>Connect with me:</span>
-
-                <a href="https://linkedin.com/in/prudvi-ela" class="social-link" target="_blank" rel="noopener">                <a href="https://linkedin.com/in/prudvi-ela" class="social-link" target="_blank" rel="noopener">
-
-                    <span>LinkedIn</span>                    <span>LinkedIn</span>
-
-                </a>                </a>
-
-                <a href="https://github.com/saiprudvi0102" class="social-link" target="_blank" rel="noopener">                <a href="https://github.com/saiprudvi0102" class="social-link" target="_blank" rel="noopener">
-
-                    <span>GitHub</span>                    <span>GitHub</span>
-
-                </a>                </a>
-
-                <a href="mailto:saiprudviela@gmail.com" class="social-link">                <a href="mailto:saiprudviela@gmail.com" class="social-link">
-
-                    <span>Email</span>                    <span>Email</span>
-
-                </a>                </a>
-
-            </div>            </div>
-
-        </div>        </div>
-
-                
-
-        <div class="hero-visual">        <div class="hero-visual">
-
-            <div class="code-window">            <div class="code-window">
-
-                <div class="code-header">                <div class="code-header">
-
-                    <div class="code-dots">                    <div class="code-dots">
-
-                        <span class="code-dot red"></span>                        <span class="code-dot red"></span>
-
-                        <span class="code-dot yellow"></span>                        <span class="code-dot yellow"></span>
-
-                        <span class="code-dot green"></span>                        <span class="code-dot green"></span>
-
-                    </div>                    </div>
-
-                    <span class="code-title">backend-service.java</span>                    <span class="code-title">backend-service.java</span>
-
-                </div>                </div>
-
-                <div class="code-content">                <div class="code-content">
-
-                    <div class="code-line"><span class="code-comment">// High-performance backend service</span></div>                    <div class="code-line"><span class="code-comment">// High-performance backend service</span></div>
-
-                    <div class="code-line"><span class="code-keyword">@RestController</span></div>                    <div class="code-line"><span class="code-keyword">@RestController</span></div>
-
-                    <div class="code-line"><span class="code-keyword">public class</span> <span class="code-function">BackendService</span> {</div>                    <div class="code-line"><span class="code-keyword">public class</span> <span class="code-function">BackendService</span> {</div>
-
-                    <div class="code-line">  <span class="code-keyword">@Autowired</span></div>                    <div class="code-line">  <span class="code-keyword">@Autowired</span></div>
-
-                    <div class="code-line">  <span class="code-keyword">private</span> LLMOrchestrator llm;</div>                    <div class="code-line">  <span class="code-keyword">private</span> LLMOrchestrator llm;</div>
-
-                    <div class="code-line"></div>                    <div class="code-line"></div>
-
-                    <div class="code-line">  <span class="code-keyword">@PostMapping</span>(<span class="code-string">"/process"</span>)</div>                    <div class="code-line">  <span class="code-keyword">@PostMapping</span>(<span class="code-string">"/process"</span>)</div>
-
-                    <div class="code-line">  <span class="code-keyword">public</span> Response <span class="code-function">process</span>() {</div>                    <div class="code-line">  <span class="code-keyword">public</span> Response <span class="code-function">process</span>() {</div>
-
-                    <div class="code-line">    <span class="code-keyword">return</span> llm.<span class="code-function">analyze</span>();</div>                    <div class="code-line">    <span class="code-keyword">return</span> llm.<span class="code-function">analyze</span>();</div>
-
-                    <div class="code-line">  }</div>                    <div class="code-line">  }</div>
-
-                    <div class="code-line">}</div>                    <div class="code-line">}</div>
-
-                </div>                </div>
-
-            </div>            </div>
-
-        </div>        </div>
-
-    </div>    </div>
-
-</section></section>
-
-
-
-<!-- Rest of the content continues exactly as in VS Code... --><!-- Certifications moved below Projects -->
-
-<!-- For brevity, I'll include just the key sections that need to be there -->
-
-<section class="section about-section" id="about">
-
-<section class="section about-section" id="about">    <div class="section-container">
-
-    <div class="section-container">        <div class="section-header">
-
-        <div class="section-header">            <h2 class="section-title">About Me</h2>
-
-            <h2 class="section-title">About Me</h2>            <p class="section-subtitle">Building scalable solutions with modern technologies</p>
-
-            <p class="section-subtitle">Building scalable solutions with modern technologies</p>        </div>
-
-        </div>        
-
-                <div class="about-grid">
-
-        <div class="about-grid">            <div class="about-card main-card">
-
-            <div class="about-card main-card">                <div class="card-header">
-
-                <div class="card-header">                    <div class="card-icon">
-
-                    <div class="card-icon">                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-
-                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-
-                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>                        </svg>
-
-                        </svg>                    </div>
-
-                    </div>                    <h3>Professional Summary</h3>
-
-                    <h3>Professional Summary</h3>                </div>
-
-                </div>                <div class="card-content">
-
-                <div class="card-content">                    <p>Experienced Software Developer with <strong>4+ years</strong> of expertise in delivering secure, high-throughput backend services and GenAI integrations. Specialized in building cloud-native platforms with focus on performance, reliability, and maintainable engineering practices.</p>
-
-                    <p>Experienced Software Developer with <strong>4+ years</strong> of expertise in delivering secure, high-throughput backend services and GenAI integrations.</p>                </div>
-
-                </div>            </div>
-
-            </div>            
-
-        </div>            <div class="about-card">
-
-    </div>                <div class="card-header">
-
-</section>                    <div class="card-icon">
-
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-
-<section class="section alt" id="projects">                            <path d="M9 12l2 2 4-4"/>
-
-    <h2 class="section-title">Featured Projects</h2>                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-
-                                <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-
-    <div class="netflix-carousel">                            <path d="M13 12h3"/>
-
-        <div class="carousel-header">                            <path d="M8 12h.01"/>
-
-            <h3 class="carousel-title">🧠 Backend & AI Engineering</h3>                        </svg>
-
-        </div>                    </div>
-
-        <div class="carousel-container">                    <h3>Core Expertise</h3>
-
-            <div class="carousel-track" data-track="backend">                </div>
-
-                <div class="netflix-card" data-project="mobilellm">                <div class="card-content">
-
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI and machine learning" loading="lazy" class="netflix-card-image" width="320" height="180">                    <ul class="expertise-list">
-
-                    <div class="card-overlay"></div>                        <li>Backend Architecture & APIs</li>
-
-                    <div class="netflix-card-content">                        <li>GenAI & LLM Integration</li>
-
-                        <h4 class="netflix-card-title">🤖 MobileLLM-125M Fine-Tuning</h4>                        <li>Cloud-Native Development</li>
-
-                        <p class="netflix-card-description">Zero-shot reasoning system with Facebook's MobileLLM-125M on HellaSwag dataset.</p>                        <li>Microservices Design</li>
-
-                        <div class="netflix-card-tags">                    </ul>
-
-                            <span class="netflix-tag">🤖 LLM</span>                </div>
-
-                            <span class="netflix-tag">⚡ FastAPI</span>            </div>
-
-                        </div>            
-
-                    </div>            <div class="about-card">
-
-                </div>                <div class="card-header">
-
-            </div>                    <div class="card-icon">
-
-        </div>                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-
-    </div>                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-
-</section>                            <polyline points="13,2 13,9 20,9"/>
-
-                        </svg>
-
-</main>                    </div>
-
-                    <h3>Current Focus</h3>
-
-<footer class="site-footer">                </div>
-
-    <p>&copy; <span id="year"></span> Saiprudvi Ela. Built with semantic HTML, CSS animations, and light JS.</p>                <div class="card-content">
-
-</footer>                    <ul class="focus-list">
-
-                        <li>
-
-<script type="application/ld+json">                            <span class="focus-icon">🧠</span>
-
-{                            <span>Advanced LLM Orchestration</span>
-
-  "@context": "https://schema.org",                        </li>
-
-  "@type": "Person",                        <li>
-
-  "name": "Saiprudvi Ela",                            <span class="focus-icon">☁️</span>
-
-  "jobTitle": "Software Developer",                            <span>Cloud Architecture</span>
-
-  "url": "https://saiprudvi.me/"                        </li>
-
-}                        <li>
-
-</script>                            <span class="focus-icon">🔐</span>
-
-                            <span>Security Best Practices</span>
-
-<script src="main.js"></script>                        </li>
-
-<script src="script.js"></script>                        <li>
-
-</body>                            <span class="focus-icon">📊</span>
-
-</html>                            <span>Data Engineering</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tech-badges">
-            <h4 class="badges-title">Technology Stack</h4>
-            <div class="badge-grid">
-                <div class="tech-badge primary">
-                    <span class="badge-icon">☕</span>
-                    <span class="badge-text">Java</span>
-                </div>
-                <div class="tech-badge primary">
-                    <span class="badge-icon">🐍</span>
-                    <span class="badge-text">Python</span>
-                </div>
-                <div class="tech-badge secondary">
-                    <span class="badge-icon">⚙️</span>
-                    <span class="badge-text">Spring Boot</span>
-                </div>
-                <div class="tech-badge secondary">
-                    <span class="badge-icon">🧪</span>
-                    <span class="badge-text">FastAPI</span>
-                </div>
-                <div class="tech-badge tertiary">
-                    <span class="badge-icon">☁️</span>
-                    <span class="badge-text">AWS</span>
-                </div>
-                <div class="tech-badge tertiary">
-                    <span class="badge-icon">☁️</span>
-                    <span class="badge-text">GCP</span>
-                </div>
-                <div class="tech-badge special">
-                    <span class="badge-icon">🧠</span>
-                    <span class="badge-text">LangChain</span>
-                </div>
-                <div class="tech-badge special">
-                    <span class="badge-icon">🤖</span>
-                    <span class="badge-text">GenAI</span>
-                </div>
-                <div class="tech-badge">
-                    <span class="badge-icon">📦</span>
-                    <span class="badge-text">Docker</span>
-                </div>
-                <div class="tech-badge">
-                    <span class="badge-icon">☸️</span>
-                    <span class="badge-text">Kubernetes</span>
-                </div>
-                <div class="tech-badge">
-                    <span class="badge-icon">📊</span>
-                    <span class="badge-text">PostgreSQL</span>
-                </div>
-                <div class="tech-badge">
-                    <span class="badge-icon">🗄️</span>
-                    <span class="badge-text">DynamoDB</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Professional Technology Stack -->
-<section class="section technologies-section" id="technologies">
-    <div class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">Technology Stack</h2>
-            <p class="section-subtitle">Building with modern, scalable technologies</p>
-        </div>
-        
-        <div class="tech-categories">
-            <div class="tech-category-card featured">
-                <div class="category-header">
-                    <div class="category-icon backend">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                            <line x1="8" y1="21" x2="16" y2="21"/>
-                            <line x1="12" y1="17" x2="12" y2="21"/>
-                        </svg>
-                    </div>
-                    <div class="category-info">
-                        <h3>Backend & APIs</h3>
-                        <p>Scalable server-side development</p>
-                    </div>
-                </div>
-                <div class="tech-items">
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">☕</span>
-                        <span class="tech-name">Java</span>
-                        <span class="tech-level">Expert</span>
-                    </div>
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🐍</span>
-                        <span class="tech-name">Python</span>
-                        <span class="tech-level">Expert</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🍃</span>
-                        <span class="tech-name">Spring Boot</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">⚡</span>
-                        <span class="tech-name">FastAPI</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🔗</span>
-                        <span class="tech-name">REST APIs</span>
-                        <span class="tech-level">Expert</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tech-category-card">
-                <div class="category-header">
-                    <div class="category-icon cloud">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-                        </svg>
-                    </div>
-                    <div class="category-info">
-                        <h3>Cloud & Infrastructure</h3>
-                        <p>Scalable cloud solutions</p>
-                    </div>
-                </div>
-                <div class="tech-items">
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🟧</span>
-                        <span class="tech-name">AWS</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🔵</span>
-                        <span class="tech-name">GCP</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🐳</span>
-                        <span class="tech-name">Docker</span>
-                        <span class="tech-level">Expert</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">☸️</span>
-                        <span class="tech-name">Kubernetes</span>
-                        <span class="tech-level">Intermediate</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🏗️</span>
-                        <span class="tech-name">Terraform</span>
-                        <span class="tech-level">Intermediate</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tech-category-card featured">
-                <div class="category-header">
-                    <div class="category-icon ai">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.51 2.51 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 2.96-3.08A2.5 2.5 0 0 1 9.5 2Z"/>
-                            <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.51 2.51 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-2.96-3.08A2.5 2.5 0 0 0 14.5 2Z"/>
-                        </svg>
-                    </div>
-                    <div class="category-info">
-                        <h3>AI & GenAI</h3>
-                        <p>LLM integration & orchestration</p>
-                    </div>
-                </div>
-                <div class="tech-items">
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🧩</span>
-                        <span class="tech-name">LangChain</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🤖</span>
-                        <span class="tech-name">OpenAI</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🔥</span>
-                        <span class="tech-name">TensorFlow</span>
-                        <span class="tech-level">Intermediate</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🤗</span>
-                        <span class="tech-name">Transformers</span>
-                        <span class="tech-level">Intermediate</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tech-category-card">
-                <div class="category-header">
-                    <div class="category-icon data">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-                        </svg>
-                    </div>
-                    <div class="category-info">
-                        <h3>Data & Storage</h3>
-                        <p>Robust data management</p>
-                    </div>
-                </div>
-                <div class="tech-items">
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🐘</span>
-                        <span class="tech-name">PostgreSQL</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item primary">
-                        <span class="tech-emoji">🗄️</span>
-                        <span class="tech-name">DynamoDB</span>
-                        <span class="tech-level">Advanced</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🍃</span>
-                        <span class="tech-name">MongoDB</span>
-                        <span class="tech-level">Intermediate</span>
-                    </div>
-                    <div class="tech-item">
-                        <span class="tech-emoji">🏢</span>
-                        <span class="tech-name">SQL Server</span>
-                        <span class="tech-level">Intermediate</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Impact Metrics -->
-<section class="section" id="impact">
-    <h2 class="section-title">Selected Impact Metrics</h2>
-    <div class="metrics-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; margin-top:2rem;">
-        <div class="metric-card" style="background:rgba(139,92,246,.08); border:1px solid rgba(139,92,246,.2); border-radius:16px; padding:1.5rem; text-align:center;">
-            <div style="font-size:2.5rem; font-weight:800; color:#8b5cf6; margin-bottom:.5rem;">~4h</div>
-            <div style="font-size:.85rem; color:var(--text-dim);">Weekly time saved per oncologist through GenAI documentation assistant</div>
-        </div>
-        <div class="metric-card" style="background:rgba(16,185,129,.08); border:1px solid rgba(16,185,129,.2); border-radius:16px; padding:1.5rem; text-align:center;">
-            <div style="font-size:2.5rem; font-weight:800; color:#10b981; margin-bottom:.5rem;">120K+</div>
-            <div style="font-size:.85rem; color:var(--text-dim);">Daily transactions processed by telecom microservices</div>
-        </div>
-        <div class="metric-card" style="background:rgba(59,130,246,.08); border:1px solid rgba(59,130,246,.2); border-radius:16px; padding:1.5rem; text-align:center;">
-            <div style="font-size:2.5rem; font-weight:800; color:#3b82f6; margin-bottom:.5rem;">62→91%</div>
-            <div style="font-size:.85rem; color:var(--text-dim);">Unit test coverage improvement through microservice refactoring</div>
-        </div>
-        <div class="metric-card" style="background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.2); border-radius:16px; padding:1.5rem; text-align:center;">
-            <div style="font-size:2.5rem; font-weight:800; color:#f59e0b; margin-bottom:.5rem;">45%</div>
-            <div style="font-size:.85rem; color:var(--text-dim);">Reduction in deployment-related bugs over two release cycles</div>
-        </div>
-        <div class="metric-card" style="background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.2); border-radius:16px; padding:1.5rem; text-align:center;">
-            <div style="font-size:2.5rem; font-weight:800; color:#ef4444; margin-bottom:.5rem;">10s</div>
-            <div style="font-size:.85rem; color:var(--text-dim);">Processing time for 2TB+ patient notes auto-summarization</div>
-        </div>
-        <div class="metric-card" style="background:rgba(168,85,247,.08); border:1px solid rgba(168,85,247,.2); border-radius:16px; padding:1.5rem; text-align:center;">
-            <div style="font-size:2.5rem; font-weight:800; color:#a855f7; margin-bottom:.5rem;">60+h</div>
-            <div style="font-size:.85rem; color:var(--text-dim);">Monthly engineering hours saved through automation</div>
-        </div>
-    </div>
-</section>
-
-<!-- Certifications (Home - synchronized with resume & certifications page) -->
-<section class="section" id="certifications">
-    <h2 class="section-title">Professional Certifications</h2>
-    <div class="certifications-grid">
-        <!-- AWS Developer Associate -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#232F3E,#0b1220);">
-            <div class="cert-badge"><img src="assets/aws.webp" alt="AWS Logo" loading="lazy" /></div>
-            <h3 class="cert-name">AWS Certified Developer – Associate</h3>
-            <p class="cert-org">Amazon Web Services</p>
-            <div class="cert-tags"><span>Lambda</span><span>S3</span><span>API Gateway</span><span>DynamoDB</span><span>Amplify</span></div>
-        </div>
-        <!-- Intro to LLMs -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#0b1220,#111827);">
-            <div class="cert-badge"><img src="assets/googlecloud.jpg" alt="Google Cloud Logo" loading="lazy" /></div>
-            <h3 class="cert-name">Introduction to Large Language Models</h3>
-            <p class="cert-org">Google Cloud</p>
-            <div class="cert-tags"><span>LLMs</span><span>Prompting</span><span>Embeddings</span></div>
-        </div>
-        <!-- Supervised ML Regression -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#1a1f2e,#22324a);">
-            <div class="cert-badge"><img src="assets/ibm.webp" alt="IBM Logo" loading="lazy" /></div>
-            <h3 class="cert-name">Supervised Machine Learning: Regression</h3>
-            <p class="cert-org">IBM</p>
-            <div class="cert-tags"><span>Regression</span><span>Evaluation</span><span>Regularization</span></div>
-        </div>
-        <!-- Intro to Generative AI -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#1a73e8,#1557b0);">
-            <div class="cert-badge"><img src="assets/googlecloud.jpg" alt="Google Cloud Logo" loading="lazy" /></div>
-            <h3 class="cert-name">Introduction to Generative AI</h3>
-            <p class="cert-org">Google Cloud</p>
-            <div class="cert-tags"><span>Generative AI</span><span>Diffusion</span><span>Use Cases</span></div>
-        </div>
-        <!-- Broadcom Cloud and Virtualization -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#102030,#061018);">
-            <div class="cert-badge"><img src="assets/Broadcom-Logo.jpg" alt="Broadcom Logo" loading="lazy" /></div>
-            <h3 class="cert-name">Cloud and Virtualization</h3>
-            <p class="cert-org">Broadcom</p>
-            <div class="cert-tags"><span>Cloud</span><span>Virtualization</span><span>Infrastructure</span></div>
-        </div>
-        <!-- Broadcom Network Virtualization -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#102030,#061018);">
-            <div class="cert-badge"><img src="assets/Broadcom-Logo.jpg" alt="Broadcom Logo" loading="lazy" /></div>
-            <h3 class="cert-name">Network Virtualization</h3>
-            <p class="cert-org">Broadcom</p>
-            <div class="cert-tags"><span>Networking</span><span>Virtualization</span><span>SDN</span></div>
-        </div>
-        <!-- Broadcom Software Defined Storage -->
-        <div class="cert-item" style="--cert-bg:linear-gradient(135deg,#102030,#061018);">
-            <div class="cert-badge"><img src="assets/Broadcom-Logo.jpg" alt="Broadcom Logo" loading="lazy" /></div>
-            <h3 class="cert-name">Software Defined Storage</h3>
-            <p class="cert-org">Broadcom</p>
-            <div class="cert-tags"><span>Storage</span><span>SDS</span><span>Infrastructure</span></div>
-        </div>
-    </div>
-    <div class="center mt small-note">All certifications verified • Updated from resume</div>
-</section>
-
-<section class="section alt" id="projects">
-    <h2 class="section-title">Featured Projects</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Prudvi Ela | Full-Stack Developer & AI Engineer</title>
     
-    <!-- Backend & AI Engineering Carousel -->
-    <div class="netflix-carousel">
-        <div class="carousel-header">
-            <h3 class="carousel-title">🧠 Backend & AI Engineering</h3>
-            <div class="carousel-controls">
-                <button class="carousel-btn" data-carousel="backend" data-direction="prev" aria-label="Previous">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button class="carousel-btn" data-carousel="backend" data-direction="next" aria-label="Next">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-track" data-track="backend">
-                <div class="netflix-card" data-project="mobilellm">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI and machine learning" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">🤖 MobileLLM-125M Fine-Tuning</h4>
-                        <p class="netflix-card-description">Zero-shot reasoning system with Facebook's MobileLLM-125M on HellaSwag dataset. Achieved 62.8% validation accuracy & 7.91 perplexity using parameter-efficient tuning, streaming SSE responses & Docker deployment.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">� LLM</span>
-                            <span class="netflix-tag">⚡ FastAPI</span>
-                            <span class="netflix-tag">🐳 Docker</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="financial-risk">
-                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="Financial analytics and data" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">📊 GPU Financial Risk Analysis</h4>
-                        <p class="netflix-card-description">CUDA-accelerated covariance matrix & VaR computation with PyCUDA. Delivers 1.57× speedup at 1M+ day scale using adaptive grid sizing, synthetic data generation & comprehensive CPU vs GPU benchmarking.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">⚡ CUDA</span>
-                            <span class="netflix-tag">📈 Risk</span>
-                            <span class="netflix-tag">📊 Analytics</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="genai-clinical">
-                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="GenAI and LLM development" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">🧠 GenAI Clinical Assistant</h4>
-                        <p class="netflix-card-description">LangChain + OpenAI GPT-4 powered documentation assistant processing 2TB+ oncology notes in <10s. Built with FastAPI, GCP Kubernetes & Java orchestration saving ~4h weekly per oncologist.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">� LangChain</span>
-                            <span class="netflix-tag">🏥 Healthcare</span>
-                            <span class="netflix-tag">☁️ GCP</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="telecom-microservices">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" alt="Microservices architecture" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">⚙️ Telecom Microservices Platform</h4>
-                        <p class="netflix-card-description">40+ Spring Boot microservices processing 120K+ daily transactions with JWT auth, PostgreSQL optimization & 38% faster incident response using async JMS processing.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">☕ Java</span>
-                            <span class="netflix-tag">🌿 Spring</span>
-                            <span class="netflix-tag">🐘 PostgreSQL</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                Architecture
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile & Platform Development Carousel -->
-    <div class="netflix-carousel">
-        <div class="carousel-header">
-            <h3 class="carousel-title">📱 Mobile & Platform Development</h3>
-            <div class="carousel-controls">
-                <button class="carousel-btn" data-carousel="mobile" data-direction="prev" aria-label="Previous">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button class="carousel-btn" data-carousel="mobile" data-direction="next" aria-label="Next">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-track" data-track="mobile">
-                <div class="netflix-card" data-project="dormunity">
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Campus student life app" loading="lazy" class="netflix-card-image">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">🏫 DormUnity Campus Super App</h4>
-                        <p class="netflix-card-description">Multi-feature Flutter campus platform with ridesharing, accommodation management, expense sharing & social networking. Provider/BLoC architecture, Firebase suite integration, real-time sync & GitHub Actions CI/CD.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">📱 Flutter</span>
-                            <span class="netflix-tag">🔥 Firebase</span>
-                            <span class="netflix-tag">🎯 BLoC</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="stylestitch">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80" alt="StyleStitch fashion app" loading="lazy" class="netflix-card-image">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">👗 StyleStitch Fashion App</h4>
-                        <p class="netflix-card-description">Fashion-focused Android app with Kotlin, Jetpack Libraries & MVVM architecture. Integrated Razorpay payments, real-time Firebase sync, analytics. 25% reduced latency, 20% sales boost for local businesses.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">🤖 Kotlin</span>
-                            <span class="netflix-tag">🔥 Firebase</span>
-                            <span class="netflix-tag">💳 Payments</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="mobile-architecture">
-                    <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=800&q=80" alt="Mobile app development" loading="lazy" class="netflix-card-image">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">📲 Mobile Architecture Patterns</h4>
-                        <p class="netflix-card-description">Advanced mobile development patterns including Provider/BLoC state management, clean architecture, and performance optimization techniques.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">🏗️ Architecture</span>
-                            <span class="netflix-tag">⚡ Performance</span>
-                            <span class="netflix-tag">🎯 BLoC</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Systems & Research Carousel -->
-    <div class="netflix-carousel">
-        <div class="carousel-header">
-            <h3 class="carousel-title">⚡ Systems & Research</h3>
-            <div class="carousel-controls">
-                <button class="carousel-btn" data-carousel="systems" data-direction="prev" aria-label="Previous">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </button>
-                <button class="carousel-btn" data-carousel="systems" data-direction="next" aria-label="Next">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-track" data-track="systems">
-                <div class="netflix-card" data-project="pcnn-shadow">
-                    <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="Image processing and AI" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">🖼️ PCNN Shadow Removal Research</h4>
-                        <p class="netflix-card-description">Biologically-inspired Pulse Coupled Neural Network for shadow detection achieving 94.2% SDA & 0.89 IQI. Advanced dynamic linking strength & adaptive thresholding with TensorFlow + OpenCV implementation.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">🧠 PCNN</span>
-                            <span class="netflix-tag">🔥 TensorFlow</span>
-                            <span class="netflix-tag">👁️ CV</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="iot-fpga">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="FPGA and embedded systems" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">⚡ IoT FPGA Anomaly Detection</h4>
-                        <p class="netflix-card-description">Real‑time IoT anomaly detection on PYNQ Z2 with microsecond alerts. AXI DMA + BRAM pipeline, hardware ANN inference processing IoT‑23 dataset (325M+ records, 18 features) via Python ↔ VHDL control.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">💾 FPGA</span>
-                            <span class="netflix-tag">🔌 Embedded</span>
-                            <span class="netflix-tag">🧠 ML</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="performance-analytics">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data analysis and visualization" loading="lazy" class="netflix-card-image" width="320" height="180">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">📈 Performance Analytics</h4>
-                        <p class="netflix-card-description">Comprehensive benchmarking suite for GPU vs CPU performance analysis with adaptive grid sizing and synthetic data generation for stress testing.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">📊 Analytics</span>
-                            <span class="netflix-tag">⚡ Performance</span>
-                            <span class="netflix-tag">📈 Benchmarks</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="netflix-card" data-project="cloud-infrastructure">
-                    <img src="https://images.unsplash.com/photo-1509966756634-9c23dd6e6815?auto=format&fit=crop&w=800&q=80" alt="Cloud computing architecture" loading="lazy" class="netflix-card-image">
-                    <div class="card-overlay"></div>
-                    <div class="netflix-card-content">
-                        <h4 class="netflix-card-title">☁️ Cloud Infrastructure</h4>
-                        <p class="netflix-card-description">Scalable cloud infrastructure design using AWS and GCP services with Kubernetes orchestration, CI/CD pipelines, and monitoring solutions.</p>
-                        <div class="netflix-card-tags">
-                            <span class="netflix-tag">☁️ AWS</span>
-                            <span class="netflix-tag">☸️ K8s</span>
-                            <span class="netflix-tag">🔄 DevOps</span>
-                        </div>
-                        <div class="netflix-card-footer">
-                            <button class="play-btn">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                View Details
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Sai Prudvi Ela - Full-Stack Developer specializing in backend systems, cloud architecture, and AI/ML solutions. Expert in Java, Python, React, AWS, and modern web technologies.">
+    <meta name="keywords" content="Full-Stack Developer, Backend Engineer, AI Engineer, Java, Python, React, AWS, Cloud Computing, Machine Learning, Software Developer">
+    <meta name="author" content="Sai Prudvi Ela">
+    <meta name="robots" content="index, follow">
     
-    <div class="center mt" style="margin-top: var(--spacing-xxl);">
-        <a href="work.html#projects" class="btn ghost">🎬 Browse All Projects</a>
-    </div>
-</section>
-</main>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Sai Prudvi Ela | Full-Stack Developer & AI Engineer">
+    <meta property="og:description" content="Experienced developer building scalable systems with modern technologies. Specializing in backend, cloud, and AI solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saiprudvi.me">
+    <meta property="og:image" content="https://saiprudvi.me/assets/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sai Prudvi Ela | Full-Stack Developer & AI Engineer">
+    <meta name="twitter:description" content="Full-stack developer with expertise in backend systems, cloud architecture, and AI/ML solutions.">
+    <meta name="twitter:image" content="https://saiprudvi.me/assets/twitter-card.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sai Prudvi Ela",
+      "jobTitle": "Full-Stack Developer",
+      "description": "Full-Stack Developer & AI Engineer specializing in backend systems, cloud architecture, and machine learning solutions",
+      "url": "https://saiprudvi.me",
+      "sameAs": [
+        "https://linkedin.com/in/prudvi-ela",
+        "https://github.com/saiprudvi0102",
+        "https://twitter.com/saiprudvi"
+      ],
+      "knowsAbout": [
+        "Java", "Python", "JavaScript", "React", "Node.js", "AWS", "Machine Learning", "Cloud Computing"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="/" class="logo-container" aria-label="Sai Prudvi Ela - Home">
+                <div class="logo">SP</div>
+                <span class="logo-text">Sai Prudvi</span>
+            </a>
+            
+            <nav class="nav-menu" aria-label="Main navigation">
+                <ul class="nav-list" id="navList">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-nav="home">
+                            <span>Home</span>
+                            <span class="nav-indicator">●</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-nav="about">
+                            <span>About</span>
+                            <span class="nav-indicator">●</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link" data-nav="skills">
+                            <span>Skills</span>
+                            <span class="nav-indicator">●</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="work.html" class="nav-link">
+                            <span>Projects</span>
+                            <span class="nav-indicator">●</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="resume.html" class="nav-link">
+                            <span>Resume</span>
+                            <span class="nav-indicator">●</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <span>Contact</span>
+                            <span class="nav-indicator">●</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<footer class="site-footer">
-    <p>&copy; <span id="year"></span> Saiprudvi Ela. Built with semantic HTML, CSS animations, and light JS.</p>
-</footer>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero section" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <div class="status-dot"></div>
+                        <span>Available for new opportunities</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">Sai Prudvi</span><br>
+                        Full-Stack Developer & <span class="gradient-text">AI Engineer</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        I craft scalable web applications and intelligent systems using modern technologies. 
+                        Passionate about creating efficient solutions that solve real-world problems with 
+                        <strong>4+ years</strong> of professional experience.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="work.html" class="btn btn-primary btn-lg">
+                            <span>View My Work</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                        <a href="contact.html" class="btn btn-secondary btn-lg">
+                            <span>Get In Touch</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="hero-social">
+                        <span>Follow me:</span>
+                        <a href="https://linkedin.com/in/prudvi-ela" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/saiprudvi0102" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://twitter.com/saiprudvi" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                            </div>
+                            <span class="code-title">developer.js</span>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line">
+                                <span class="code-comment">// Building the future, one line at a time</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="code-keyword">const</span> <span class="code-function">developer</span> = {
+                            </div>
+                            <div class="code-line">
+                                &nbsp;&nbsp;<span class="code-string">name</span>: <span class="code-string">'Sai Prudvi Ela'</span>,
+                            </div>
+                            <div class="code-line">
+                                &nbsp;&nbsp;<span class="code-string">role</span>: <span class="code-string">'Full-Stack Developer'</span>,
+                            </div>
+                            <div class="code-line">
+                                &nbsp;&nbsp;<span class="code-string">skills</span>: [<span class="code-string">'Java'</span>, <span class="code-string">'Python'</span>, <span class="code-string">'React'</span>],
+                            </div>
+                            <div class="code-line">
+                                &nbsp;&nbsp;<span class="code-string">passion</span>: <span class="code-string">'Creating amazing experiences'</span>
+                            </div>
+                            <div class="code-line">
+                                };
+                            </div>
+                            <div class="code-line">
+                                <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Ready to build something awesome!'</span>);
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Scroll to Top Button -->
-<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-    </svg>
-</button>
+        <!-- About Section -->
+        <section class="section section-alt" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">
+                        Passionate developer with a love for creating innovative solutions and learning new technologies
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-3 about-grid">
+                    <div class="card about-card">
+                        <div class="card-content">
+                            <div class="about-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </div>
+                            <h3 class="about-title">Full-Stack Development</h3>
+                            <p class="about-description">
+                                Building end-to-end applications with modern frameworks like React, Node.js, and Spring Boot. 
+                                Focus on clean code, scalable architecture, and exceptional user experiences.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card about-card">
+                        <div class="card-content">
+                            <div class="about-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                                </svg>
+                            </div>
+                            <h3 class="about-title">AI & Machine Learning</h3>
+                            <p class="about-description">
+                                Developing intelligent systems using Python, TensorFlow, and modern ML frameworks. 
+                                Specializing in natural language processing, computer vision, and predictive analytics.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="card about-card">
+                        <div class="card-content">
+                            <div class="about-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3 class="about-title">Cloud & DevOps</h3>
+                            <p class="about-description">
+                                Architecting scalable cloud solutions on AWS and GCP. Implementing CI/CD pipelines, 
+                                containerization with Docker, and infrastructure as code for robust deployments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-details">
+                    <div class="about-text">
+                        <h3>My Journey</h3>
+                        <p>
+                            With over 4 years in software development, I've had the privilege of working on diverse projects 
+                            ranging from enterprise web applications to cutting-edge AI solutions. My passion lies in solving 
+                            complex problems with elegant, efficient code.
+                        </p>
+                        <p>
+                            I believe in continuous learning and staying updated with the latest technologies. When I'm not coding, 
+                            you'll find me exploring new frameworks, contributing to open-source projects, or sharing knowledge 
+                            with the developer community.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-number">500K+</span>
+                                <span class="highlight-label">Lines of Code Written</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-number">25+</span>
+                                <span class="highlight-label">Happy Clients</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-number">98%</span>
+                                <span class="highlight-label">Project Success Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Legacy static modal removed; dynamic full-screen modal is injected by ProjectDetailManager -->
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">
+                        A comprehensive toolkit for building modern, scalable applications
+                    </p>
+                </div>
+                
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Frontend Development</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon">⚛️</div>
+                                <span class="skill-name">React</span>
+                                <div class="skill-level" data-level="90"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🟨</div>
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-level" data-level="95"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🎨</div>
+                                <span class="skill-name">CSS3</span>
+                                <div class="skill-level" data-level="85"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📱</div>
+                                <span class="skill-name">React Native</span>
+                                <div class="skill-level" data-level="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Backend Development</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon">☕</div>
+                                <span class="skill-name">Java</span>
+                                <div class="skill-level" data-level="95"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🐍</div>
+                                <span class="skill-name">Python</span>
+                                <div class="skill-level" data-level="90"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🟢</div>
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-level" data-level="85"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🍃</div>
+                                <span class="skill-name">Spring Boot</span>
+                                <div class="skill-level" data-level="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Cloud & DevOps</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon">☁️</div>
+                                <span class="skill-name">AWS</span>
+                                <div class="skill-level" data-level="85"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🐳</div>
+                                <span class="skill-name">Docker</span>
+                                <div class="skill-level" data-level="80"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">⚙️</div>
+                                <span class="skill-name">Kubernetes</span>
+                                <div class="skill-level" data-level="75"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔧</div>
+                                <span class="skill-name">CI/CD</span>
+                                <div class="skill-level" data-level="82"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">AI & Data Science</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon">🧠</div>
+                                <span class="skill-name">Machine Learning</span>
+                                <div class="skill-level" data-level="85"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🔥</div>
+                                <span class="skill-name">TensorFlow</span>
+                                <div class="skill-level" data-level="80"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📊</div>
+                                <span class="skill-name">Data Analysis</span>
+                                <div class="skill-level" data-level="78"></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🤖</div>
+                                <span class="skill-name">NLP</span>
+                                <div class="skill-level" data-level="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- Structured Data for SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Saiprudvi Ela",
-    "jobTitle": "Software Developer",
-    "description": "Software Developer building scalable backend, cloud-native, and GenAI-enabled systems (Java, Python, AWS, GCP, LangChain)",
-  "url": "https://saiprudvi.me/",
-  "email": "saiprudviela@gmail.com",
-    "alumniOf": {"@type": "CollegeOrUniversity","name": "Florida Institute of Technology"},
-    "skills": [
-        "Java","Python","Spring Boot","FastAPI","AWS","GCP","LangChain","LLMs","PostgreSQL","DynamoDB","Kubernetes","Docker"
-    ],
-  "knowsAbout": [
-    "Android Development",
-    "Flutter Development", 
-    "AWS Cloud Services",
-    "Firebase",
-    "Mobile Architecture",
-    "Software Engineering"
-  ],
-  "sameAs": [
-    "https://www.linkedin.com/in/prudvi-ela",
-    "https://github.com/saiprudvi0102"
-  ]
-}
-</script>
+        <!-- Featured Projects Section -->
+        <section class="section section-alt" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">
+                        A showcase of my recent work and technical expertise
+                    </p>
+                </div>
+                
+                <div class="project-grid">
+                    <div class="project-card" data-project="ecommerce">
+                        <div class="project-image">
+                            🛒
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">E-Commerce Platform</h3>
+                            <p class="project-description">
+                                Full-stack e-commerce solution with React frontend, Node.js backend, and integrated payment processing. 
+                                Features real-time inventory management and advanced analytics.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">Node.js</span>
+                                <span class="project-tag">MongoDB</span>
+                                <span class="project-tag">Stripe</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/saiprudvi0102/ecommerce" class="project-link" target="_blank" rel="noopener">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    Code
+                                </a>
+                                <a href="https://demo-ecommerce.saiprudvi.me" class="project-link" target="_blank" rel="noopener">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15,3 21,3 21,9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-project="ai-chatbot">
+                        <div class="project-image">
+                            🤖
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">AI-Powered Chatbot</h3>
+                            <p class="project-description">
+                                Intelligent chatbot using natural language processing and machine learning. 
+                                Deployed on AWS with serverless architecture for scalability and cost-effectiveness.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Python</span>
+                                <span class="project-tag">TensorFlow</span>
+                                <span class="project-tag">AWS Lambda</span>
+                                <span class="project-tag">NLP</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/saiprudvi0102/ai-chatbot" class="project-link" target="_blank" rel="noopener">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    Code
+                                </a>
+                                <a href="https://chatbot.saiprudvi.me" class="project-link" target="_blank" rel="noopener">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15,3 21,3 21,9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    Try It
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card" data-project="data-dashboard">
+                        <div class="project-image">
+                            📊
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Analytics Dashboard</h3>
+                            <p class="project-description">
+                                Real-time data visualization dashboard built with React and D3.js. 
+                                Features interactive charts, real-time updates, and comprehensive data filtering capabilities.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">React</span>
+                                <span class="project-tag">D3.js</span>
+                                <span class="project-tag">WebSocket</span>
+                                <span class="project-tag">Python</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/saiprudvi0102/analytics-dashboard" class="project-link" target="_blank" rel="noopener">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                    </svg>
+                                    Code
+                                </a>
+                                <a href="https://dashboard.saiprudvi.me" class="project-link" target="_blank" rel="noopener">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15,3 21,3 21,9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg>
+                                    View Dashboard
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="work.html" class="btn btn-outline btn-lg">
+                        <span>View All Projects</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<script src="main.js"></script>
-<script src="script.js"></script>
+        <!-- CTA Section -->
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to bring your ideas to life?</h2>
+                    <p class="cta-subtitle">
+                        Let's collaborate on your next project. I'm always excited to work on challenging and innovative solutions.
+                    </p>
+                    <div class="cta-actions">
+                        <a href="contact.html" class="btn btn-primary btn-lg">
+                            <span>Start a Project</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                        <a href="resume.html" class="btn btn-secondary btn-lg">
+                            <span>Download Resume</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo">SP</div>
+                        <span>Sai Prudvi Ela</span>
+                    </div>
+                    <p class="footer-description">
+                        Full-Stack Developer & AI Engineer passionate about creating innovative solutions 
+                        and building the future of technology.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com/in/prudvi-ela" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/saiprudvi0102" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/saiprudvi" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="work.html">Projects</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="contact.html">Get in Touch</a></li>
+                            <li><a href="resume.html">Resume</a></li>
+                            <li><a href="mailto:saiprudviela@gmail.com">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear">2024</span> Sai Prudvi Ela. All rights reserved.</p>
+                <p>Built with ❤️ using modern web technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

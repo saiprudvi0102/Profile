@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | Sai Prudvi Ela – Professional Work</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Professional software development projects of Saiprudvi Ela: backend engineering, cloud-native services (Java, Python, FastAPI, Spring Boot, AWS, GCP) and GenAI integrations.">
+    <meta name="keywords" content="Saiprudvi Ela, Projects, Backend Engineer, Cloud, Java, Spring Boot, FastAPI, AWS, GCP, LangChain, LLM">
+    <link rel="canonical" href="https://saiprudvi.me/work.html" />
+    
+    <!-- Enhanced Fonts for Professional Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Professional Header -->
+<header class="header" id="main-header">
+    <div class="header-container">
+        <a href="/" class="logo-container" aria-label="Saiprudvi Ela - Home">
+            <div class="logo">SP</div>
+            <span class="logo-text">Sai Prudvi</span>
+        </a>
+        
+        <nav class="nav-menu" id="nav" aria-label="Main navigation">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">
+                        <span>Home</span>
+                        <span class="nav-indicator">●</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="work.html" class="nav-link active">
+                        <span>Projects</span>
+                        <span class="nav-indicator">●</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="resume.html" class="nav-link">
+                        <span>Resume</span>
+                        <span class="nav-indicator">●</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">
+                        <span>Contact</span>
+                        <span class="nav-indicator">●</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main role="main">
+    <!-- Professional Projects Hero -->
+    <section class="projects-hero">
+        <div class="projects-hero-container">
+            <div class="projects-hero-content">
+                <div class="hero-badge">
+                    <div class="status-dot"></div>
+                    <span>Professional Portfolio</span>
+                </div>
+                
+                <h1 class="projects-hero-title">
+                    Innovative <span class="gradient-text">projects</span> & technical excellence
+                </h1>
+                
+                <p class="projects-hero-subtitle">
+                    Explore my professional experience and key projects showcasing expertise in 
+                    backend development, cloud architecture, and GenAI integrations.
+                </p>
+            </div>
+        </div>
+    </section>
+<section class="section" id="experience">
+  <h2 class="section-title">Professional Experience</h2>
+  <div class="timeline">
+    <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-content"><h3>Tempus – Software Developer <span class="range">Oct 2024 – Present</span></h3><ul class="plain tight"><li>Developed secure high‑throughput backend services using FastAPI and integrated LLM pipelines (OpenAI GPT‑4, LangChain) enabling auto‑summarization of 2TB+ oncology notes in under 10s per request.</li><li>Built GenAI clinical documentation assistant on GCP (Kubernetes + Docker) cutting manual reporting ~4 hours per oncologist weekly.</li><li>Implemented Java orchestration layer with queue‑based job handling for AI inference ensuring reliability under high concurrency.</li><li>Delivered tokenized Spring Boot REST APIs with JWT, rate limiting & input sanitization for HIPAA‑compliant data access.</li><li>Raised unit test coverage 62% → 91% and reduced deployment bugs 45% via modular microservice refactor.</li></ul></div></div>
+    <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-content"><h3>Deloitte (Client: T‑Mobile) – Software Development Associate <span class="range">May 2020 – Aug 2023</span></h3><ul class="plain tight"><li>Designed & deployed 40+ Java/Spring Boot microservices integrating Oracle/PostgreSQL handling 120K+ daily telecom transactions.</li><li>Implemented async processing (JMS, JavaMail) enabling alert & batch workflows improving incident response by 38%.</li><li>Built internal web tools (Java APIs + React) reducing ticket resolution time by 25%.</li><li>Automated AWS S3 lifecycle & system health checks via custom Java agents saving 60+ engineering hrs/month.</li><li>Optimized Spring Data JPA queries improving DB latency by up to 30% on high‑traffic endpoints.</li></ul></div></div>
+  </div>
+</section>
+<section class="section alt" id="projects">
+  <h2 class="section-title">Complete Projects Portfolio</h2>
+  
+  <!-- Core Engineering Projects Carousel -->
+  <div class="netflix-carousel">
+    <div class="carousel-header">
+      <h3 class="carousel-title">⚡ Core Engineering Projects</h3>
+      <div class="carousel-controls">
+        <button class="carousel-btn" data-carousel="core" data-direction="prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="carousel-btn" data-carousel="core" data-direction="next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-track" data-track="core">
+  <div class="netflix-card" data-project="iot-fpga">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="IoT FPGA Anomaly Detection" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">⚡ IoT FPGA Anomaly Detection</h4>
+            <p class="netflix-card-description">Real-time microsecond network anomaly detection on PYNQ Z2 board using hardware-accelerated ANN. Features AXI DMA + BRAM pipeline, Python-VHDL integration, processing 325M+ records from IoT-23 dataset across 18 feature classes.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">💾 FPGA/PYNQ Z2</span>
+              <span class="netflix-tag">🔌 Edge Computing</span>
+              <span class="netflix-tag">🧠 Hardware ANN</span>
+              <span class="netflix-tag">⚡ AXI DMA</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Microsecond Detection
+              </button>
+            </div>
+          </div>
+        </div>
+        
+  <div class="netflix-card" data-project="mobilellm">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="MobileLLM Deployment" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🤖 MobileLLM-125M Deployment</h4>
+            <p class="netflix-card-description">Production deployment of MobileLLM-125M with multi-GPU fine-tuning and quantized inference via FastAPI streaming architecture. Achieved 62.8% validation accuracy and 7.91 perplexity on HellaSwag dataset with Docker orchestration and automatic model scaling.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🧠 LLM Deployment</span>
+              <span class="netflix-tag">🎮 Multi-GPU</span>
+              <span class="netflix-tag">⚡ FastAPI</span>
+              <span class="netflix-tag">🐳 Docker</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                62.8% Accuracy Metrics
+              </button>
+            </div>
+          </div>
+        </div>
+        
+  <div class="netflix-card" data-project="financial-risk">
+          <img src="https://images.unsplash.com/photo-1560472355-a9a6ea4a3c00?auto=format&fit=crop&w=800&q=80" alt="GPU Financial Risk Analysis" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">📈 GPU Financial Risk Analysis</h4>
+            <p class="netflix-card-description">Advanced Monte Carlo simulation with PyCUDA achieving 1.57× performance speedup. Features adaptive grid sizing, synthetic financial data generation, and comprehensive GPU benchmarking for real‑time portfolio risk assessment.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">💎 CUDA/PyCUDA</span>
+              <span class="netflix-tag">⚡ GPU Acceleration</span>
+              <span class="netflix-tag">📊 Monte Carlo</span>
+              <span class="netflix-tag">🔐 Portfolio Risk</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                1.57× Speedup Benchmark
+              </button>
+            </div>
+          </div>
+        </div>
+        
+  <div class="netflix-card" data-project="pcnn-shadow">
+          <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=800&q=80" alt="PCNN Shadow Removal" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🖼️ PCNN Shadow Removal Research</h4>
+            <p class="netflix-card-description">Biologically-inspired Pulse Coupled Neural Network for intelligent shadow segmentation achieving 94.2% Shadow Detection Accuracy (SDA) and 0.89 Image Quality Index (IQI). Features adaptive threshold decay, dynamic linking, and TensorFlow implementation for computer vision research.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🧠 PCNN Research</span>
+              <span class="netflix-tag">🔥 TensorFlow</span>
+              <span class="netflix-tag">👁️ Computer Vision</span>
+              <span class="netflix-tag">📄 Published</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                94.2% SDA Research
+              </button>
+            </div>
+          </div>
+        </div>
+        
+  <div class="netflix-card" data-project="financial-risk">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80" alt="GPU Risk Analysis" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">📊 GPU Risk Analysis</h4>
+            <p class="netflix-card-description">PyCUDA covariance + VaR engine producing up to 1.57× speedup at 1M day scale; adaptive block sizing & synthetic generator for stress tests.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">⚡ CUDA</span>
+              <span class="netflix-tag">🎮 GPU</span>
+              <span class="netflix-tag">💰 Finance</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Benchmarks
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specialized Solutions Carousel -->
+  <div class="netflix-carousel">
+    <div class="carousel-header">
+      <h3 class="carousel-title">🛠️ Specialized Solutions</h3>
+      <div class="carousel-controls">
+        <button class="carousel-btn" data-carousel="specialized" data-direction="prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+        <button class="carousel-btn" data-carousel="specialized" data-direction="next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="carousel-container">
+      <div class="carousel-track" data-track="specialized">
+  <div class="netflix-card" data-project="dormunity">
+          <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="Women Safety System" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🚨 Women Safety System</h4>
+            <p class="netflix-card-description">GPS + GSM microcontroller alerts, SMS notifications, laser-based safety feature with real-time location tracking and emergency response.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🔌 Embedded</span>
+              <span class="netflix-tag">📍 GPS</span>
+              <span class="netflix-tag">📡 GSM</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Safety Features
+              </button>
+            </div>
+          </div>
+        </div>
+        
+  <div class="netflix-card" data-project="stylestitch">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800&q=80" alt="Telecom Microservices" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">⚙️ Telecom Microservices</h4>
+            <p class="netflix-card-description">High-throughput Spring Boot microservices processing 120K+ daily transactions with JWT authentication, PostgreSQL optimization, and comprehensive observability.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">☕ Java</span>
+              <span class="netflix-tag">🌿 Spring</span>
+              <span class="netflix-tag">📊 PostgreSQL</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Architecture
+              </button>
+            </div>
+          </div>
+        </div>
+        
+  <div class="netflix-card" data-project="genai-clinical">
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80" alt="GenAI Documentation Assistant" loading="lazy" class="netflix-card-image">
+          <div class="card-overlay"></div>
+          <div class="netflix-card-content">
+            <h4 class="netflix-card-title">🧠 GenAI Documentation Assistant</h4>
+            <p class="netflix-card-description">LangChain-powered documentation assistant saving ~4h weekly per oncologist through automated patient note summarization and medical record processing.</p>
+            <div class="netflix-card-tags">
+              <span class="netflix-tag">🧩 LangChain</span>
+              <span class="netflix-tag">🏥 Healthcare</span>
+              <span class="netflix-tag">📝 NLP</span>
+            </div>
+            <div class="netflix-card-footer">
+              <button class="play-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                AI Pipeline
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dormigo-clickable" id="dormigo-showcase">
+  <h2 class="section-title">🏫 Dormigo Super App (DormUnity)</h2>
+  <div class="dormigo-container" onclick="window.location.href='dormigo-details.html'" style="cursor:pointer; transition: transform 0.3s ease; border-radius: 20px; padding: 1rem;">
+    <div class="dormigo-intro">
+      <div class="app-logo">
+        <div class="logo-circle">
+          <span>🏫</span>
+        </div>
+        <div class="app-info">
+          <h3>Dormigo - Campus Life Hub</h3>
+          <p class="app-subtitle">Your all-in-one student companion</p>
+          <div class="store-badges">
+            <a class="store-badge android" href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener">Google Play</a>
+            <span class="store-badge ios" aria-disabled="true">App Store – Coming Soon</span>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-dim);">👆 Click anywhere to explore details</p>
+        </div>
+      </div>
+      
+      <div class="dormigo-summary">
+        <p>A comprehensive Flutter-based campus super app that revolutionizes student life by integrating ridesharing, accommodation management, and social networking into one seamless platform. Built with Provider/BLoC state management, Firebase real-time sync, and modular architecture supporting 3 core modules (rideshare, accommodation, social networking) with push notifications and real-time chat capabilities.</p>
+      </div>
+    </div>
+
+    <div class="dormigo-screenshots">
+      <div class="screenshot-row-scroll">
+        <div class="screenshot-item reveal">
+          <img src="assets/ss1.png" alt="Dormigo Screenshot 1" loading="lazy">
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss2.png" alt="Dormigo Screenshot 2" loading="lazy">
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss3.png" alt="Dormigo Screenshot 3" loading="lazy">
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss4.png" alt="Dormigo Screenshot 4" loading="lazy">
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss5.png" alt="Dormigo Screenshot 5" loading="lazy">
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss6.png" alt="Dormigo Screenshot 6" loading="lazy">
+        </div>
+        <div class="screenshot-item reveal">
+          <img src="assets/ss7.png" alt="Dormigo Screenshot 7" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Screenshot Modal -->
+<div id="screenshotOverlay" class="modal-overlay">
+  <div id="screenshotModal" class="screenshot-modal">
+    <button id="screenshotClose" class="modal-close">&times;</button>
+    <img id="screenshotImage" src="" alt="Screenshot">
+    <div id="screenshotCaption" class="screenshot-caption"></div>
+  </div>
+</div>
+
+<footer class="site-footer"><p>&copy; <span id="year"></span> Saiprudvi Ela</p></footer>
+<!-- Legacy static modal removed: dynamic full-screen modal is injected by ProjectDetailManager -->
+<script src="main.js"></script>
+<script>
+// Add dynamic project loading for work page
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait a bit for the project manager to initialize
+    setTimeout(() => {
+        if (window.__projectDetailManager) {
+            console.log('Project manager found, setting up work page');
+            
+            // Find the projects section and add a dynamic grid
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                // Create a dynamic projects grid
+                const dynamicGrid = document.createElement('div');
+                dynamicGrid.id = 'dynamic-projects-grid';
+                dynamicGrid.className = 'projects-grid';
+                dynamicGrid.style.cssText = `
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                    gap: 1.5rem;
+                    padding: 2rem 0;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                `;
+                
+                // Get all projects
+                const projects = window.__projectDetailManager.getAllProjects();
+                if (projects) {
+                    dynamicGrid.innerHTML = Object.keys(projects).map(projectId => {
+                        const project = projects[projectId];
+                        return `
+                            <div class="netflix-card" data-project="${projectId}" tabindex="0" role="button" aria-label="View details for ${project.title}">
+                                <img src="${project.image}" alt="${project.title}" loading="lazy" class="netflix-card-image">
+                                <div class="card-overlay"></div>
+                                <div class="netflix-card-content">
+                                    <h4 class="netflix-card-title">${project.title}</h4>
+                                    <p class="netflix-card-description">${project.description}</p>
+                                    <div class="netflix-card-tags">
+                                        ${project.technologies.slice(0, 3).map(tech => `<span class="netflix-tag">${tech.name}</span>`).join('')}
+                                    </div>
+                                    <div class="netflix-card-footer">
+                                        <button class="play-btn">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                            View Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    // Replace the existing carousel content with our dynamic grid
+                    const existingCarousels = projectsSection.querySelectorAll('.netflix-carousel');
+                    existingCarousels.forEach(carousel => carousel.style.display = 'none');
+                    
+                    // Insert the dynamic grid
+                    projectsSection.appendChild(dynamicGrid);
+                    
+                    // Initialize accessibility
+                    if (typeof initializeAccessibility === 'function') {
+                        initializeAccessibility();
+                    }
+                    
+                    console.log('Dynamic project grid created with', Object.keys(projects).length, 'projects');
+                } else {
+                    console.error('No projects data available');
+                }
+            }
+        } else {
+            console.error('ProjectDetailManager not initialized');
+        }
+    }, 200);
+});
+</script>
+<script src="main.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
