@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Header scroll effect
+    // Header scroll effect - Netflix theme
     const header = document.querySelector('header');
     let lastScrollTop = 0;
 
@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            header.style.background = 'rgba(20, 20, 20, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.5)';
         } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.background = 'rgba(20, 20, 20, 0.95)';
             header.style.boxShadow = 'none';
         }
 
