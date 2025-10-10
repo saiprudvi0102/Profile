@@ -1,0 +1,502 @@
+/* Netflix-Style Carousel & Mobile Enhancements */
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 3rem;
+    margin: 2rem 0;
+}
+
+.netflix-carousel {
+    display: flex !important;
+    gap: 1.5rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: max-content;
+    padding: 0.5rem 0;
+}
+
+.netflix-carousel .project-card,
+.netflix-carousel .certification-card {
+    flex: 0 0 320px;
+    width: 320px;
+    scroll-snap-align: start;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 20, 0.8);
+    border: 2px solid var(--netflix-red);
+    color: var(--netflix-white);
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-arrow:hover {
+    background: var(--netflix-red);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+}
+
+.carousel-arrow-prev {
+    left: 0.5rem;
+}
+
+.carousel-arrow-next {
+    right: 0.5rem;
+}
+
+/* Loading Screen */
+.netflix-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--netflix-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.netflix-loader.fade-out {
+    opacity: 0;
+}
+
+.netflix-logo {
+    text-align: center;
+}
+
+.loading-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--netflix-red);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(229, 9, 20, 0.3);
+    border-top: 3px solid var(--netflix-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Skeleton Screens */
+.skeleton {
+    background: var(--netflix-gray) !important;
+    border: none !important;
+    animation: skeleton-pulse 1.5s ease-in-out infinite alternate;
+}
+
+.skeleton * {
+    background: transparent !important;
+    color: transparent !important;
+}
+
+.skeleton-header {
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.skeleton-content {
+    padding: 1rem 0;
+}
+
+.skeleton-line {
+    height: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+}
+
+.skeleton-line.short {
+    width: 60%;
+}
+
+@keyframes skeleton-pulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+/* Section Reveal Animations */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.section-hidden.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-in {
+    animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+.scroll-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--netflix-red), #ff6b6b);
+    width: 0%;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px var(--netflix-red);
+}
+
+/* Enhanced Mobile Touch Support */
+.touch-active {
+    transform: scale(0.98) !important;
+    opacity: 0.8 !important;
+    transition: all 0.15s ease !important;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 0 1rem;
+    }
+    
+    .netflix-carousel {
+        gap: 1rem;
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .netflix-carousel .project-card,
+    .netflix-carousel .certification-card {
+        flex: 0 0 280px;
+        width: 280px;
+    }
+    
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .carousel-arrow-prev {
+        left: 0.25rem;
+    }
+    
+    .carousel-arrow-next {
+        right: 0.25rem;
+    }
+    
+    .loading-text {
+        font-size: 2rem;
+    }
+    
+    /* Touch-friendly hover states */
+    .project-card:hover,
+    .certification-card:hover {
+        transform: none; /* Disable hover effects on mobile */
+    }
+    
+    .project-card:active,
+    .certification-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1400px) {
+    .netflix-carousel .project-card,
+    .netflix-carousel .certification-card {
+        flex: 0 0 350px;
+        width: 350px;
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .netflix-carousel .project-card,
+    .netflix-carousel .certification-card {
+        flex: 0 0 300px;
+        width: 300px;
+    }
+}
+
+/* Enhanced Parallax Effects */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(20, 20, 20, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section Transitions */
+section {
+    transition: all 0.3s ease;
+}
+
+/* Netflix-Style Focus States */
+.carousel-arrow:focus,
+.project-card:focus,
+.certification-card:focus {
+    outline: 2px solid var(--netflix-red);
+    outline-offset: 4px;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .netflix-carousel,
+    .section-hidden,
+    .animate-in,
+    .scroll-progress-fill {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .hero {
+        transform: none !important;
+    }
+}
+
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+    .skeleton-header,
+    .skeleton-line {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .carousel-arrow {
+        border-width: 3px;
+    }
+    
+    .scroll-progress-fill {
+        box-shadow: none;
+        background: var(--netflix-red);
+    }
+}
+
+/* Print styles */
+@media print {
+    .netflix-loader,
+    .carousel-arrow,
+    .scroll-progress {
+        display: none;
+    }
+    
+    .netflix-carousel {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Mobile Hamburger Menu */
+.mobile-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background: var(--netflix-white);
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+}
+
+.mobile-hamburger.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translateY(9px);
+    background: var(--netflix-red);
+}
+
+.mobile-hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-hamburger.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-9px);
+    background: var(--netflix-red);
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    .mobile-hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--netflix-black);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 80px 2rem 2rem;
+        transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1000;
+        border-left: 2px solid var(--netflix-red);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    .nav-links.mobile-open {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 0 0 1.5rem 0;
+        width: 100%;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        color: var(--netflix-white);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--netflix-red);
+        padding-left: 1rem;
+        border-bottom-color: var(--netflix-red);
+    }
+    
+    /* Prevent body scroll when menu is open */
+    body.nav-open {
+        overflow: hidden;
+    }
+    
+    /* Header adjustments for mobile */
+    header nav {
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        z-index: 1001;
+        position: relative;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .nav-links a {
+        font-size: 0.95rem;
+        margin: 0 1rem;
+    }
+}
+
+/* Enhanced touch targets for mobile */
+@media (max-width: 768px) {
+    .btn,
+    .project-link,
+    .cert-link,
+    .contact-item a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    /* Larger touch targets for carousel arrows */
+    .carousel-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
