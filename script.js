@@ -67,24 +67,25 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScrollTop = scrollTop;
     });
 
-    // Mobile menu toggle (basic implementation)
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('.nav');
+    // Mobile menu toggle (enhanced for Netflix style)
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
     
-    if (mobileMenuToggle && nav) {
-        mobileMenuToggle.addEventListener('click', function() {
-            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
-            
-            // Toggle hamburger animation
+    if (mobileToggle && navLinks) {
+        // Basic functionality - will be enhanced by Netflix script
+        mobileToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('mobile-open');
             this.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
         });
 
         // Close mobile menu when clicking on a nav link
-        navLinks.forEach(link => {
+        navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
-                    nav.style.display = 'none';
-                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('mobile-open');
+                    mobileToggle.classList.remove('active');
+                    document.body.classList.remove('nav-open');
                 }
             });
         });
@@ -92,8 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close mobile menu when resizing to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
-                nav.style.display = '';
-                mobileMenuToggle.classList.remove('active');
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+                document.body.classList.remove('nav-open');
             }
         });
     }
@@ -170,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(typeWriter, 500);
     }
 
-    // Scroll to top functionality
+    // Scroll to top functionality (Netflix styled)
     let scrollToTopBtn = document.createElement('button');
     scrollToTopBtn.innerHTML = '↑';
     scrollToTopBtn.className = 'scroll-to-top';
@@ -178,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        background: #2563eb;
+        background: #E50914;
         color: white;
         border: none;
         width: 50px;
@@ -190,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 1000;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
     `;
 
     document.body.appendChild(scrollToTopBtn);
@@ -290,27 +292,7 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Scroll to top button
-const scrollTopBtn = document.createElement('button');
-scrollTopBtn.className = 'scroll-top';
-scrollTopBtn.innerHTML = '↑';
-scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
-document.body.appendChild(scrollTopBtn);
-
-window.addEventListener('scroll', function() {
-    if (window.scrollY > 500) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
-    }
-});
-
-scrollTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
+// Duplicate scroll-to-top button removed - handled by Netflix enhancements
 
 // Animate elements on scroll
 const observerOptions = {

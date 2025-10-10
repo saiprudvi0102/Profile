@@ -1,0 +1,289 @@
+/* Netflix-Style Carousel - Fixed Version */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    margin: 20px -20px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.netflix-carousel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: visible;
+    width: fit-content;
+    padding: 10px 0;
+}
+
+.netflix-carousel .project-card {
+    flex: 0 0 auto;
+    width: 280px;
+    min-width: 280px;
+}
+
+/* Carousel Navigation Arrows */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-arrow:hover {
+    background: rgba(229, 9, 20, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow-prev {
+    left: 10px;
+}
+
+.carousel-arrow-next {
+    right: 10px;
+}
+
+.carousel-arrow:disabled,
+.carousel-arrow[style*="opacity: 0.3"] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Mobile Navigation Enhancements */
+.nav-links.mobile-open {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, 
+        rgba(20, 20, 20, 0.98) 0%,
+        rgba(229, 9, 20, 0.1) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    padding-top: 80px;
+    animation: slideInFromRight 0.3s ease-out;
+}
+
+.nav-links.mobile-open a {
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px 40px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    transform: translateX(100px);
+    opacity: 0;
+    animation: slideInNavItem 0.3s ease-out forwards;
+}
+
+.nav-links.mobile-open a:nth-child(1) { animation-delay: 0.1s; }
+.nav-links.mobile-open a:nth-child(2) { animation-delay: 0.2s; }
+.nav-links.mobile-open a:nth-child(3) { animation-delay: 0.3s; }
+.nav-links.mobile-open a:nth-child(4) { animation-delay: 0.4s; }
+.nav-links.mobile-open a:nth-child(5) { animation-delay: 0.5s; }
+
+.nav-links.mobile-open a:hover {
+    background: rgba(229, 9, 20, 0.2);
+    transform: translateX(0) translateZ(0);
+    padding-left: 60px;
+}
+
+.mobile-toggle.active {
+    background: var(--netflix-red, #E50914);
+    transform: rotate(90deg);
+}
+
+.mobile-toggle.active::before {
+    content: "✕";
+    display: block;
+    color: white;
+    font-size: 18px;
+}
+
+/* Body lock when nav is open */
+body.nav-open {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Advanced Scroll Animations */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-hidden.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-in {
+    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 9999;
+}
+
+.scroll-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #E50914, #ff6b6b);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Touch feedback */
+.touch-active {
+    transform: scale(0.98);
+    opacity: 0.8;
+    transition: all 0.15s ease;
+}
+
+/* Keyframes */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInNavItem {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .carousel-container {
+        margin: 20px -10px;
+        padding: 0 10px;
+    }
+    
+    .netflix-carousel .project-card {
+        width: 260px;
+        min-width: 260px;
+    }
+    
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .carousel-arrow-prev {
+        left: 5px;
+    }
+    
+    .carousel-arrow-next {
+        right: 5px;
+    }
+    
+    /* Mobile carousel swipe indicator */
+    .netflix-carousel::before {
+        content: "← Swipe to explore →";
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+        animation: fadeOut 3s ease-out 2s forwards;
+    }
+}
+
+@media (max-width: 480px) {
+    .netflix-carousel .project-card {
+        width: 240px;
+        min-width: 240px;
+    }
+    
+    .nav-links.mobile-open a {
+        font-size: 1.3rem;
+        padding: 18px 30px;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Enhanced project cards for carousel */
+.netflix-carousel .project-card {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.netflix-carousel .project-card:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+/* Loading state for carousel */
+.carousel-loading {
+    display: flex;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.carousel-loading .project-skeleton {
+    width: 280px;
+    height: 200px;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.1) 25%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
