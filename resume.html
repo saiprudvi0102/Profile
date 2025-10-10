@@ -3,321 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Saiprudvi Ela</title>
+    <title>Resume - Saiprudvi Ela | Software Developer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="resume-netflix-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .resume-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 120px 20px 60px;
-            background: white;
-        }
-        .resume-header {
-            text-align: center;
-            padding: 2rem 0;
-            border-bottom: 3px solid #667eea;
-            margin-bottom: 2rem;
-        }
-        .resume-header h1 {
-            font-size: 2.5rem;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-        .resume-contact {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-            color: #64748b;
-        }
-        .resume-contact a {
-            color: #667eea;
-            text-decoration: none;
-        }
-        .resume-section {
-            margin-bottom: 2.5rem;
-        }
-        .resume-section h2 {
-            color: #667eea;
-            font-size: 1.5rem;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .resume-section h3 {
-            color: #1f2937;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .resume-section h4 {
-            color: #64748b;
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-        .resume-section p, .resume-section li {
-            color: #4b5563;
-            line-height: 1.7;
-        }
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.5rem;
-        }
-        .job-title {
-            font-weight: 600;
-            color: #1f2937;
-        }
-        .job-date {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        .skill-category h4 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        .skill-category ul {
-            list-style: none;
-            padding: 0;
-        }
-        .skill-category li {
-            padding: 0.25rem 0;
-            color: #4b5563;
-        }
-        .skill-category li:before {
-            content: "▹ ";
-            color: #667eea;
-            font-weight: bold;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 2rem auto;
-            display: block;
-            width: fit-content;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Header (from main site) -->
     <header>
         <nav class="container">
-            <div class="logo"><a href="index.html">Saiprudvi Ela</a></div>
+            <div class="logo">Saiprudvi Ela</div>
             <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#certifications">Certifications</a></li>
                 <li><a href="resume.html" class="active">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <button class="mobile-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </nav>
     </header>
 
     <div class="resume-container">
+        <!-- Header Section -->
         <div class="resume-header">
-            <h1>Saiprudvi Ela</h1>
-            <div class="resume-contact">
-                <span>📧 <a href="mailto:saiprudviela@gmail.com">saiprudviela@gmail.com</a></span>
-                <span>📱 +1 (321) 367-4952</span>
-                <span>💼 <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank">LinkedIn</a></span>
-                <span>🐙 <a href="https://github.com/saiprudvi0102" target="_blank">GitHub</a></span>
+            <h1>👨‍💻 Saiprudvi Ela</h1>
+            <h2>Software Developer | GenAI & Cloud Solutions Specialist</h2>
+            <div class="contact-links">
+                <a href="mailto:saiprudviela@gmail.com" class="contact-link">📧 saiprudviela@gmail.com</a>
+                <a href="tel:+13213674952" class="contact-link">📱 +1-321-367-4952</a>
+                <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" class="contact-link">💼 LinkedIn</a>
+                <a href="https://github.com/saiprudvi0102" target="_blank" class="contact-link">🔗 GitHub</a>
             </div>
+            <a href="assets/Sai_Prudvi_Resume.pdf" download class="download-btn">
+                📥 Download PDF Resume
+            </a>
         </div>
 
-        <a href="assets/Sai_Prudvi_Resume.pdf" download="Saiprudvi_Ela_Resume.pdf" class="download-btn">
-            📥 Download PDF Resume
-        </a>
-
+        <!-- Professional Summary -->
         <div class="resume-section">
-            <h2>📝 SUMMARY</h2>
-            <p>Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud. Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions across healthcare and enterprise domains.</p>
+            <h2 class="section-title">📝 Professional Summary</h2>
+            <p class="description">
+                Experienced Software Developer with 4+ years of expertise in building scalable backend systems, 
+                cloud-native applications, and GenAI-powered tools. Proficient in Java, Python, Flask, React, and AWS. 
+                Proven track record of designing RESTful microservices, optimizing workflows, and delivering impactful 
+                solutions in healthcare, telecom, and LLM deployment domains.
+            </p>
         </div>
 
+        <!-- Experience -->
         <div class="resume-section">
-            <h2>💼 PROFESSIONAL EXPERIENCE</h2>
+            <h2 class="section-title">💼 Professional Experience</h2>
             
-            <div style="margin-bottom: 2rem;">
-                <div class="job-header">
-                    <div>
-                        <h3>Software Developer</h3>
-                        <h4>Tempus</h4>
-                    </div>
-                    <div class="job-date">Oct 2024 – Present | USA</div>
+            <div class="experience-item">
+                <h3 class="job-title">🚀 Software Developer</h3>
+                <p class="company">Tempus Labs</p>
+                <p class="date">📅 October 2024 - Present | Chicago, IL</p>
+                <div class="description">
+                    <ul>
+                        <li>Architected a FastAPI + LangChain + OpenAI pipeline on GCP, enabling oncology researchers to auto-summarize 2TB+ of unstructured patient notes in under 10 seconds per request</li>
+                        <li>Built a GenAI-enabled clinical documentation assistant deployed on GCP using Kubernetes and Docker, reducing manual reporting time by ~4 hours per oncologist weekly</li>
+                        <li>Engineered production-grade microservices with Spring Boot and Java 17, integrated with complex healthcare workflows</li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>Developed secure, high-throughput backend services using FastAPI and integrated them with LLMs via OpenAI GPT-4 and LangChain, enabling oncology researchers to auto-summarize 2TB+ of unstructured patient notes in under 10 seconds per request.</li>
-                    <li>Built a GenAI-enabled clinical documentation assistant, deployed on GCP using Kubernetes and Docker, which reduced manual reporting time by ~4 hours per oncologist weekly through prompt-engineered summarization and keyword extraction.</li>
-                    <li>Designed and implemented Java-based orchestration logic to interface with AI pipelines, providing queue-based job handling for LLM inference tasks and ensuring consistent delivery under high concurrency.</li>
-                    <li>Collaborated with data engineering teams to create tokenized RESTful APIs in Java 17 and Spring Boot, enforcing JWT authentication, rate limiting, and input sanitization for HIPAA-compliant data access.</li>
-                    <li>Led the refactoring and modularization of existing Java microservices, improving unit test coverage from 62% to 91%, reducing code complexity, and cutting deployment-related bugs by 45% over two release cycles.</li>
-                </ul>
             </div>
 
-            <div style="margin-bottom: 2rem;">
-                <div class="job-header">
-                    <div>
-                        <h3>Software Development Associate – Client: T-Mobile</h3>
-                        <h4>Deloitte</h4>
-                    </div>
-                    <div class="job-date">May 2020 – Aug 2023 | India</div>
+            <div class="experience-item">
+                <h3 class="job-title">💻 Software Development Associate – Client: T-Mobile</h3>
+                <p class="company">Deloitte</p>
+                <p class="date">📅 May 2020 - August 2023 | India</p>
+                <div class="description">
+                    <ul>
+                        <li>Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, processing 120K+ daily transactions across telecom systems</li>
+                        <li>Engineered backend modules for asynchronous processing with JMS and Java Mail API, improving incident response by 38%</li>
+                        <li>Automated cloud operations with custom Java agents, cutting manual intervention by 60+ hours/month</li>
+                        <li>Built full-stack features using ReactJS, reducing customer inquiry resolution time by 25%</li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, processing 120K+ daily transactions across telecom systems.</li>
-                    <li>Engineered backend modules for asynchronous processing with JMS and Java Mail API, enabling real-time alerts and batch notifications, improving incident response by 38%.</li>
-                    <li>Developed internal web applications with Java-based APIs, ReactJS, HTML5, and Bootstrap, reducing ticket resolution time by 25% for support teams.</li>
-                    <li>Automated cloud operations with custom Java agents, streamlining AWS S3 cleanups and system health checks, cutting manual intervention by 60+ hours/month.</li>
-                    <li>Optimized multi-table joins and transactional queries via Spring Data JPA custom finder methods, reducing database response times by 30% on high-traffic endpoints.</li>
-                </ul>
             </div>
         </div>
 
+        <!-- Education -->
         <div class="resume-section">
-            <h2>🎓 EDUCATION</h2>
-            <div class="job-header">
-                <div>
-                    <h3>Master's in Computer Engineering</h3>
-                    <h4>Florida Institute of Technology</h4>
-                </div>
-                <div class="job-date">Aug 2023 - May 2025</div>
+            <h2 class="section-title">🎓 Education</h2>
+            
+            <div class="education-item">
+                <h3 class="job-title">Master of Science in Computer Science</h3>
+                <p class="company">Florida Institute of Technology</p>
+                <p class="date">📅 August 2023 - May 2025</p>
+                <p class="description">GPA: 3.8/4.0</p>
+            </div>
+
+            <div class="education-item">
+                <h3 class="job-title">Bachelor of Technology in Computer Science & Engineering</h3>
+                <p class="company">Mahatma Gandhi Institute of Technology</p>
+                <p class="date">📅 May 2016 - May 2020</p>
+                <p class="description">GPA: 3.5/4.0</p>
             </div>
         </div>
 
+        <!-- Skills -->
         <div class="resume-section">
-            <h2>🛠️ TECHNICAL SKILLS</h2>
+            <h2 class="section-title">🛠️ Technical Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h4>Programming Languages</h4>
-                    <ul>
-                        <li>Java</li>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>SQL</li>
-                        <li>C++</li>
-                        <li>Dart, Kotlin</li>
-                        <li>HTML5, CSS</li>
-                    </ul>
+                    <h4>💻 Programming Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Kotlin</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C/C++</span>
+                    </div>
                 </div>
+                
                 <div class="skill-category">
-                    <h4>Backend & Cloud</h4>
-                    <ul>
-                        <li>Spring Boot</li>
-                        <li>FastAPI, Flask</li>
-                        <li>Node.js, Express.js</li>
-                        <li>RESTful APIs</li>
-                        <li>AWS (Lambda, S3, DynamoDB)</li>
-                        <li>Google Cloud</li>
-                        <li>Firebase</li>
-                    </ul>
+                    <h4>🌐 Web & Frameworks</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Flutter</span>
+                    </div>
                 </div>
+                
                 <div class="skill-category">
-                    <h4>Frontend & Mobile</h4>
-                    <ul>
-                        <li>React.js</li>
-                        <li>Flutter</li>
-                        <li>Android Studio</li>
-                        <li>Jetpack Components</li>
-                        <li>MVVM Architecture</li>
-                        <li>Material Design</li>
-                    </ul>
+                    <h4>☁️ Cloud & DevOps</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Jenkins</span>
+                    </div>
                 </div>
+                
                 <div class="skill-category">
-                    <h4>Databases</h4>
-                    <ul>
-                        <li>PostgreSQL</li>
-                        <li>MySQL</li>
-                        <li>MongoDB</li>
-                        <li>DynamoDB</li>
-                        <li>Firestore</li>
-                    </ul>
+                    <h4>🗄️ Databases</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Oracle</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
                 </div>
+                
                 <div class="skill-category">
-                    <h4>DevOps & Tools</h4>
-                    <ul>
-                        <li>Docker, Kubernetes</li>
-                        <li>CI/CD Pipelines</li>
-                        <li>Git, GitHub Actions</li>
-                        <li>Terraform</li>
-                        <li>Splunk, AppDynamics</li>
-                    </ul>
+                    <h4>🤖 AI/ML & GenAI</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">OpenAI GPT-4</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">LLMs</span>
+                    </div>
                 </div>
+                
                 <div class="skill-category">
-                    <h4>AI & Machine Learning</h4>
-                    <ul>
-                        <li>Large Language Models (LLMs)</li>
-                        <li>OpenAI APIs</li>
-                        <li>LangChain</li>
-                        <li>TensorFlow</li>
-                        <li>Scikit-learn</li>
-                        <li>NLP, Sentiment Analysis</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="resume-section">
-            <h2>🏆 CERTIFICATIONS</h2>
-            <ul>
-                <li><strong>AWS Certified Developer – Associate</strong> - Amazon Web Services</li>
-                <li><strong>Supervised Machine Learning: Regression</strong> - IBM</li>
-                <li><strong>Introduction to Large Language Models</strong> - Google Cloud</li>
-                <li><strong>Introduction to Generative AI</strong> - Google Cloud</li>
-                <li><strong>IT Academy: Cloud and Virtualization Concepts</strong> - Broadcom</li>
-                <li><strong>IT Academy: Network Virtualization Concepts</strong> - Broadcom</li>
-                <li><strong>IT Academy: Software Defined Storage Concepts</strong> - Broadcom</li>
-            </ul>
-        </div>
-
-        <a href="assets/Sai_Prudvi_Resume.pdf" download="Saiprudvi_Ela_Resume.pdf" class="download-btn">
-            📥 Download PDF Resume
-        </a>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <p>&copy; <span id="currentYear">2024</span> Saiprudvi Ela. All rights reserved.</p>
-                </div>
-                <div class="footer-right">
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" rel="noopener">LinkedIn</a>
-                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">GitHub</a>
-                        <a href="mailto:saiprudviela@gmail.com">Email</a>
+                    <h4>🔧 Tools & Others</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">JIRA</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">Agile</span>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <!-- Certifications -->
+        <div class="resume-section">
+            <h2 class="section-title">🏆 Certifications</h2>
+            
+            <div class="cert-item">
+                <h3 class="job-title">☁️ AWS Certified Developer – Associate</h3>
+                <p class="company">Amazon Web Services (AWS)</p>
+                <p class="description">
+                    <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" 
+                       target="_blank" class="contact-link">🔗 View Credential</a>
+                </p>
+            </div>
+
+            <div class="cert-item">
+                <h3 class="job-title">🤖 Supervised Machine Learning: Regression</h3>
+                <p class="company">IBM</p>
+                <p class="description">
+                    <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" 
+                       target="_blank" class="contact-link">🔗 View Certificate</a>
+                </p>
+            </div>
+
+            <div class="cert-item">
+                <h3 class="job-title">🧠 Introduction to Large Language Models</h3>
+                <p class="company">Google Cloud</p>
+                <p class="description">
+                    <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" 
+                       target="_blank" class="contact-link">🔗 View Certificate</a>
+                </p>
+            </div>
+
+            <div class="cert-item">
+                <h3 class="job-title">✨ Introduction to Generative AI</h3>
+                <p class="company">Google Cloud</p>
+                <p class="description">
+                    <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" 
+                       target="_blank" class="contact-link">🔗 View Certificate</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Download Button at Bottom -->
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="assets/Sai_Prudvi_Resume.pdf" download class="download-btn">
+                📥 Download PDF Resume
+            </a>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

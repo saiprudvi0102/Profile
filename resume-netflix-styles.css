@@ -1,0 +1,311 @@
+/* Netflix-Inspired Resume Page Styles */
+
+:root {
+    --netflix-red: #E50914;
+    --netflix-black: #141414;
+    --netflix-dark: #0a0a0a;
+    --netflix-gray: #2f2f2f;
+    --netflix-light-gray: #808080;
+    --netflix-white: #ffffff;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--netflix-black);
+    color: var(--netflix-white);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.resume-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--netflix-black) 0%, #1a1a1a 100%);
+}
+
+/* Header with Netflix flair */
+.resume-header {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--netflix-gray) 0%, var(--netflix-black) 100%);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(229, 9, 20, 0.2);
+}
+
+.resume-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--netflix-red), #ff4655);
+}
+
+.resume-header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--netflix-white), var(--netflix-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.resume-header h2 {
+    font-size: 1.5rem;
+    color: var(--netflix-light-gray);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--netflix-white);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    background: rgba(229, 9, 20, 0.1);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.contact-link:hover {
+    background: var(--netflix-red);
+    border-color: var(--netflix-red);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+}
+
+/* Download Button */
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem 2rem;
+    background: var(--netflix-red);
+    color: var(--netflix-white);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin: 1.5rem 0;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+.download-btn:hover {
+    background: #b20710;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5);
+}
+
+/* Section Cards */
+.resume-section {
+    background: var(--netflix-gray);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.resume-section:hover {
+    border-left-color: var(--netflix-red);
+    box-shadow: 0 8px 30px rgba(229, 9, 20, 0.2);
+    transform: translateX(5px);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--netflix-red);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 2px solid rgba(229, 9, 20, 0.3);
+}
+
+.section-title::before {
+    content: '';
+    width: 6px;
+    height: 30px;
+    background: var(--netflix-red);
+    border-radius: 3px;
+}
+
+/* Experience Items */
+.experience-item, .education-item, .cert-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 3px solid var(--netflix-red);
+    transition: all 0.3s ease;
+}
+
+.experience-item:hover, .education-item:hover, .cert-item:hover {
+    background: rgba(229, 9, 20, 0.08);
+    transform: translateX(8px);
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.15);
+}
+
+.job-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--netflix-white);
+    margin-bottom: 0.5rem;
+}
+
+.company {
+    font-size: 1rem;
+    color: var(--netflix-red);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.date {
+    font-size: 0.9rem;
+    color: var(--netflix-light-gray);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: var(--netflix-light-gray);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.description ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.description li {
+    padding: 0.4rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.description li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--netflix-red);
+    font-weight: bold;
+}
+
+/* Skills Grid - Netflix style */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.skill-category {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(229, 9, 20, 0.2);
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    background: rgba(229, 9, 20, 0.08);
+    border-color: var(--netflix-red);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.2);
+}
+
+.skill-category h4 {
+    font-size: 1.1rem;
+    color: var(--netflix-red);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-tag {
+    padding: 0.4rem 0.9rem;
+    background: rgba(229, 9, 20, 0.1);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--netflix-white);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: var(--netflix-red);
+    border-color: var(--netflix-red);
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(229, 9, 20, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .resume-header h1 {
+        font-size: 2rem;
+    }
+    
+    .resume-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .contact-links {
+        gap: 1rem;
+    }
+    
+    .resume-container {
+        padding: 1rem;
+    }
+    
+    .resume-section {
+        padding: 1.5rem;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    .download-btn {
+        display: none;
+    }
+}
