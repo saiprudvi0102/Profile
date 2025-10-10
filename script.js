@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Navigation active state management
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinkEls = document.querySelectorAll('.nav-links a');
     const sections = document.querySelectorAll('section[id]');
 
     function updateActiveNavLink() {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        navLinks.forEach(link => {
+        navLinkEls.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href').includes(current)) {
                 link.classList.add('active');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveNavLink(); // Initial call
 
     // Smooth scroll for navigation links
-    navLinks.forEach(link => {
+    navLinkEls.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Header scroll effect
-    const header = document.querySelector('.header');
+    const header = document.querySelector('header');
     let lastScrollTop = 0;
 
     window.addEventListener('scroll', function() {
@@ -69,21 +69,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile menu toggle (enhanced for Netflix style)
     const mobileToggle = document.querySelector('.mobile-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinksEl = document.querySelector('.nav-links');
     
-    if (mobileToggle && navLinks) {
+    if (mobileToggle && navLinksEl) {
         // Basic functionality - will be enhanced by Netflix script
         mobileToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('mobile-open');
+            navLinksEl.classList.toggle('mobile-open');
             this.classList.toggle('active');
             document.body.classList.toggle('nav-open');
         });
 
         // Close mobile menu when clicking on a nav link
-        navLinks.querySelectorAll('a').forEach(link => {
+        navLinksEl.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('mobile-open');
+                    navLinksEl.classList.remove('mobile-open');
                     mobileToggle.classList.remove('active');
                     document.body.classList.remove('nav-open');
                 }
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close mobile menu when resizing to desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
-                navLinks.classList.remove('mobile-open');
+                navLinksEl.classList.remove('mobile-open');
                 mobileToggle.classList.remove('active');
                 document.body.classList.remove('nav-open');
             }
@@ -217,12 +217,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add hover effect to scroll-to-top button
     scrollToTopBtn.addEventListener('mouseenter', function() {
         this.style.transform = 'scale(1.1)';
-        this.style.background = '#1d4ed8';
+        this.style.background = '#b20710';
     });
 
     scrollToTopBtn.addEventListener('mouseleave', function() {
         this.style.transform = 'scale(1)';
-        this.style.background = '#2563eb';
+        this.style.background = '#E50914';
     });
 
     // Console greeting

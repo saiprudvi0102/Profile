@@ -23,6 +23,9 @@
     min-width: 320px;
 }
 
+/* Guard against grid rules from base styles */
+.projects .netflix-carousel { display: flex !important; grid-template-columns: none !important; }
+
 /* Carousel Navigation Arrows */
 .carousel-arrow {
     position: absolute;
