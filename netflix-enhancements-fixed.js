@@ -10,13 +10,24 @@ class NetflixEnhancementsFixed {
     initCarousel() {
         // Convert project grid to horizontal carousel
         const projectsSection = document.querySelector('#projects');
-        if (!projectsSection) return;
+        if (!projectsSection) {
+            console.log('Projects section not found');
+            return;
+        }
 
         const projectsGrid = projectsSection.querySelector('.projects-grid');
-        if (!projectsGrid) return;
+        if (!projectsGrid) {
+            console.log('Projects grid not found');
+            return;
+        }
 
         // Only create carousel if not already created
-        if (projectsGrid.classList.contains('netflix-carousel')) return;
+        if (projectsGrid.classList.contains('netflix-carousel')) {
+            console.log('Carousel already initialized');
+            return;
+        }
+
+        console.log('Initializing Netflix carousel...');
 
         // Add carousel wrapper
         projectsGrid.classList.add('netflix-carousel');
@@ -273,21 +284,42 @@ class NetflixEnhancementsFixed {
         const mobileToggle = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
         
-        if (!mobileToggle || !navLinks) return;
+        if (!mobileToggle || !navLinks) {
+            console.log('Mobile navigation elements not found');
+            return;
+        }
+        
+        console.log('Setting up mobile navigation...');
+        
+        // Remove any existing event listeners by cloning the element
+        const newMobileToggle = mobileToggle.cloneNode(true);
+        mobileToggle.parentNode.replaceChild(newMobileToggle, mobileToggle);
         
         // Ensure mobile navigation works properly
-        mobileToggle.addEventListener('click', (e) => {
+        newMobileToggle.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            navLinks.classList.toggle('mobile-open');
-            mobileToggle.classList.toggle('active');
-            document.body.classList.toggle('nav-open');
+            
+            const isOpen = navLinks.classList.contains('mobile-open');
+            
+            if (isOpen) {
+                navLinks.classList.remove('mobile-open');
+                newMobileToggle.classList.remove('active');
+                document.body.classList.remove('nav-open');
+                console.log('Menu closed');
+            } else {
+                navLinks.classList.add('mobile-open');
+                newMobileToggle.classList.add('active');
+                document.body.classList.add('nav-open');
+                console.log('Menu opened');
+            }
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!mobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
+            if (!newMobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('mobile-open');
-                mobileToggle.classList.remove('active');
+                newMobileToggle.classList.remove('active');
                 document.body.classList.remove('nav-open');
             }
         });
@@ -297,7 +329,7 @@ class NetflixEnhancementsFixed {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     navLinks.classList.remove('mobile-open');
-                    mobileToggle.classList.remove('active');
+                    newMobileToggle.classList.remove('active');
                     document.body.classList.remove('nav-open');
                 }
             });
@@ -335,7 +367,18 @@ document.addEventListener('touchstart', (e) => {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing Netflix enhancements...');
     setTimeout(() => {
         new NetflixEnhancementsFixed();
-    }, 500); // Small delay to ensure other scripts have loaded
+    }, 1000); // Increased delay to ensure all scripts have loaded
+});
+
+// Fallback initialization
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        if (!document.querySelector('.netflix-carousel')) {
+            console.log('Fallback initialization...');
+            new NetflixEnhancementsFixed();
+        }
+    }, 1500);
 });

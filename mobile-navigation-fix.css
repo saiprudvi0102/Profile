@@ -1,0 +1,162 @@
+/* Mobile Navigation Fixes - Additional Styles */
+
+/* Ensure mobile toggle is visible on mobile */
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: flex !important;
+        flex-direction: column;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        gap: 4px;
+        z-index: 1001;
+        position: relative;
+    }
+    
+    .mobile-toggle span {
+        width: 25px;
+        height: 2px;
+        background: var(--netflix-white);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        display: block;
+    }
+    
+    /* Mobile toggle active state */
+    .mobile-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+        background: var(--netflix-red);
+    }
+    
+    .mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .mobile-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+        background: var(--netflix-red);
+    }
+    
+    /* Ensure nav links are hidden by default on mobile */
+    .nav-links {
+        display: none !important;
+    }
+    
+    /* Mobile navigation overlay */
+    .nav-links.mobile-open {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, 
+            rgba(20, 20, 20, 0.98) 0%,
+            rgba(229, 9, 20, 0.1) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        gap: 0;
+        animation: slideInFromRight 0.3s ease-out;
+    }
+    
+    .nav-links.mobile-open li {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        border-bottom: none;
+    }
+    
+    .nav-links.mobile-open a {
+        color: white !important;
+        font-size: 1.8rem;
+        padding: 1.5rem 2rem;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        transform: translateX(100px);
+        opacity: 0;
+        animation: slideInNavItem 0.4s ease-out forwards;
+        display: block;
+        width: 100%;
+    }
+    
+    .nav-links.mobile-open a:nth-child(1),
+    .nav-links.mobile-open li:nth-child(1) a { animation-delay: 0.1s; }
+    .nav-links.mobile-open a:nth-child(2),
+    .nav-links.mobile-open li:nth-child(2) a { animation-delay: 0.15s; }
+    .nav-links.mobile-open a:nth-child(3),
+    .nav-links.mobile-open li:nth-child(3) a { animation-delay: 0.2s; }
+    .nav-links.mobile-open a:nth-child(4),
+    .nav-links.mobile-open li:nth-child(4) a { animation-delay: 0.25s; }
+    .nav-links.mobile-open a:nth-child(5),
+    .nav-links.mobile-open li:nth-child(5) a { animation-delay: 0.3s; }
+    .nav-links.mobile-open a:nth-child(6),
+    .nav-links.mobile-open li:nth-child(6) a { animation-delay: 0.35s; }
+    .nav-links.mobile-open a:nth-child(7),
+    .nav-links.mobile-open li:nth-child(7) a { animation-delay: 0.4s; }
+    
+    .nav-links.mobile-open a:hover {
+        background: rgba(229, 9, 20, 0.2);
+        transform: translateX(0) translateZ(0);
+        padding-left: 3rem;
+        color: var(--netflix-red) !important;
+    }
+    
+    /* Body scroll lock */
+    body.nav-open {
+        overflow: hidden !important;
+        height: 100vh;
+        position: fixed;
+        width: 100%;
+    }
+    
+    /* Fix header padding for mobile */
+    header nav {
+        padding: 1rem 4%;
+    }
+    
+    .logo {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* Keyframes for animations */
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInNavItem {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Ensure carousel arrows are properly positioned */
+@media (max-width: 768px) {
+    .carousel-arrow {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 18px !important;
+    }
+    
+    .carousel-arrow-prev {
+        left: 5px !important;
+    }
+    
+    .carousel-arrow-next {
+        right: 5px !important;
+    }
+}
