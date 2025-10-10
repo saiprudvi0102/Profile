@@ -2,6 +2,7 @@
 .carousel-container {
     position: relative;
     overflow: hidden;
+<<<<<<< HEAD
     margin: 20px 0;
     padding: 0;
 }
@@ -9,11 +10,22 @@
 .netflix-carousel {
     display: flex !important;
     grid-template-columns: none !important;
+=======
+    margin: 20px -20px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+
+.netflix-carousel {
+    display: flex;
+>>>>>>> 549ce88 (:wq)
     gap: 20px;
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     overflow: visible;
     width: fit-content;
     padding: 10px 0;
+<<<<<<< HEAD
     transform: translateX(0);
 }
 
@@ -26,6 +38,16 @@
 /* Guard against grid rules from base styles */
 .projects .netflix-carousel { display: flex !important; grid-template-columns: none !important; }
 
+=======
+}
+
+.netflix-carousel .project-card {
+    flex: 0 0 auto;
+    width: 280px;
+    min-width: 280px;
+}
+
+>>>>>>> 549ce88 (:wq)
 /* Carousel Navigation Arrows */
 .carousel-arrow {
     position: absolute;
@@ -289,4 +311,8 @@ body.nav-open {
 @keyframes loading {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 549ce88 (:wq)

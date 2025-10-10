@@ -10,6 +10,7 @@ class NetflixEnhancementsFixed {
     initCarousel() {
         // Convert project grid to horizontal carousel
         const projectsSection = document.querySelector('#projects');
+<<<<<<< HEAD
         if (!projectsSection) {
             console.log('Projects section not found');
             return;
@@ -28,6 +29,15 @@ class NetflixEnhancementsFixed {
         }
 
         console.log('Initializing Netflix carousel...');
+=======
+        if (!projectsSection) return;
+
+        const projectsGrid = projectsSection.querySelector('.projects-grid');
+        if (!projectsGrid) return;
+
+        // Only create carousel if not already created
+        if (projectsGrid.classList.contains('netflix-carousel')) return;
+>>>>>>> 549ce88 (:wq)
 
         // Add carousel wrapper
         projectsGrid.classList.add('netflix-carousel');
@@ -53,6 +63,7 @@ class NetflixEnhancementsFixed {
         carouselContainer.appendChild(nextArrow);
         
         // Add scroll functionality
+<<<<<<< HEAD
     let scrollAmount = 0;
     const cardWidth = 340; // Fixed width + estimated gap
     let containerWidth = carouselContainer.clientWidth;
@@ -77,10 +88,30 @@ class NetflixEnhancementsFixed {
             scrollAmount = Math.min(maxScroll, scrollAmount + cardWidth);
             updateCarousel();
             console.log('Next arrow clicked');
+=======
+        let scrollAmount = 0;
+        const cardWidth = window.innerWidth <= 768 ? 280 : window.innerWidth <= 1024 ? 300 : 350;
+        
+        const updateCarousel = () => {
+            projectsGrid.style.transform = `translateX(-${scrollAmount}px)`;
+            this.updateArrowStates(scrollAmount, projectsGrid.scrollWidth - projectsGrid.clientWidth);
+        };
+        
+        prevArrow.addEventListener('click', () => {
+            scrollAmount = Math.max(0, scrollAmount - cardWidth * 2);
+            updateCarousel();
+        });
+        
+        nextArrow.addEventListener('click', () => {
+            const maxScroll = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+            scrollAmount = Math.min(maxScroll, scrollAmount + cardWidth * 2);
+            updateCarousel();
+>>>>>>> 549ce88 (:wq)
         });
         
         // Mouse wheel horizontal scroll
         projectsGrid.addEventListener('wheel', (e) => {
+<<<<<<< HEAD
             // Only apply when horizontal intent is clear or shift-scroll
             const horizontalIntent = Math.abs(e.deltaX) >= Math.abs(e.deltaY) || e.shiftKey;
             if (!horizontalIntent) return;
@@ -113,6 +144,19 @@ class NetflixEnhancementsFixed {
             },
             getMaxScroll: () => Math.max(0, projectsGrid.scrollWidth - containerWidth)
         });
+=======
+            // Only hijack scroll if it's more horizontal than vertical
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+            
+            e.preventDefault();
+            const maxScroll = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+            scrollAmount = Math.max(0, Math.min(maxScroll, scrollAmount + e.deltaY));
+            updateCarousel();
+        }, { passive: false });
+        
+        // Touch/Swipe support
+        this.initSwipeSupport(projectsGrid, cardWidth, () => updateCarousel());
+>>>>>>> 549ce88 (:wq)
         
         // Auto-scroll (optional)
         let autoScrollTimer;
@@ -144,17 +188,33 @@ class NetflixEnhancementsFixed {
         updateCarousel();
     }
     
+<<<<<<< HEAD
     initSwipeSupport(projectsGrid, cardWidth, callbacks) {
         let startX, startY, currentX, currentY;
         let isSwipe = false;
+=======
+    initSwipeSupport(projectsGrid, cardWidth, updateCallback) {
+        let startX, startY, currentX, currentY;
+        let isSwipe = false;
+        let initialTransform = 0;
+>>>>>>> 549ce88 (:wq)
         
         projectsGrid.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
             isSwipe = false;
             
+<<<<<<< HEAD
             projectsGrid.style.transition = 'none';
             console.log('Touch start:', startX);
+=======
+            // Get current transform value
+            const transform = projectsGrid.style.transform;
+            const match = transform.match(/translateX\((-?\d+)px\)/);
+            initialTransform = match ? parseInt(match[1]) : 0;
+            
+            projectsGrid.style.transition = 'none';
+>>>>>>> 549ce88 (:wq)
         }, { passive: true });
         
         projectsGrid.addEventListener('touchmove', (e) => {
@@ -167,15 +227,24 @@ class NetflixEnhancementsFixed {
             const diffY = startY - currentY;
             
             // Determine if it's a horizontal swipe
+<<<<<<< HEAD
             if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 15) {
+=======
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+>>>>>>> 549ce88 (:wq)
                 isSwipe = true;
                 e.preventDefault();
                 
                 // Apply swipe effect with damping
+<<<<<<< HEAD
                 const currentScroll = callbacks.getScrollAmount();
                 const newScroll = Math.max(0, currentScroll + diffX * 0.8);
                 projectsGrid.style.transform = `translateX(-${newScroll}px)`;
                 console.log('Swiping:', diffX, 'New scroll:', newScroll);
+=======
+                const newTransform = initialTransform - diffX * 0.8;
+                projectsGrid.style.transform = `translateX(${newTransform}px)`;
+>>>>>>> 549ce88 (:wq)
             }
         }, { passive: false });
         
@@ -190,9 +259,15 @@ class NetflixEnhancementsFixed {
             projectsGrid.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             
             // Determine final scroll position
+<<<<<<< HEAD
             if (Math.abs(diffX) > 100) {
                 let currentScrollAmount = callbacks.getScrollAmount();
                 const maxScroll = callbacks.getMaxScroll();
+=======
+            if (Math.abs(diffX) > 50) {
+                let currentScrollAmount = -initialTransform;
+                const maxScroll = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+>>>>>>> 549ce88 (:wq)
                 
                 if (diffX > 0) {
                     // Swipe left (next)
@@ -202,6 +277,7 @@ class NetflixEnhancementsFixed {
                     currentScrollAmount = Math.max(0, currentScrollAmount - cardWidth);
                 }
                 
+<<<<<<< HEAD
                 callbacks.setScrollAmount(currentScrollAmount);
                 console.log('Swipe completed:', diffX > 0 ? 'next' : 'previous', currentScrollAmount);
             } else {
@@ -209,6 +285,13 @@ class NetflixEnhancementsFixed {
                 const currentScroll = callbacks.getScrollAmount();
                 projectsGrid.style.transform = `translateX(-${currentScroll}px)`;
                 console.log('Swipe cancelled, snapping back to:', currentScroll);
+=======
+                projectsGrid.style.transform = `translateX(-${currentScrollAmount}px)`;
+                this.updateArrowStates(currentScrollAmount, maxScroll);
+            } else {
+                // Snap back to original position
+                projectsGrid.style.transform = `translateX(${initialTransform}px)`;
+>>>>>>> 549ce88 (:wq)
             }
             
             // Reset
@@ -311,6 +394,7 @@ class NetflixEnhancementsFixed {
         const mobileToggle = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
         
+<<<<<<< HEAD
         if (!mobileToggle || !navLinks) {
             console.log('Mobile navigation elements not found');
             return;
@@ -340,13 +424,29 @@ class NetflixEnhancementsFixed {
                 document.body.classList.add('nav-open');
                 console.log('Menu opened');
             }
+=======
+        if (!mobileToggle || !navLinks) return;
+        
+        // Ensure mobile navigation works properly
+        mobileToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('mobile-open');
+            mobileToggle.classList.toggle('active');
+            document.body.classList.toggle('nav-open');
+>>>>>>> 549ce88 (:wq)
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
+<<<<<<< HEAD
             if (!newMobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('mobile-open');
                 newMobileToggle.classList.remove('active');
+=======
+            if (!mobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.classList.remove('active');
+>>>>>>> 549ce88 (:wq)
                 document.body.classList.remove('nav-open');
             }
         });
@@ -356,7 +456,11 @@ class NetflixEnhancementsFixed {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     navLinks.classList.remove('mobile-open');
+<<<<<<< HEAD
                     newMobileToggle.classList.remove('active');
+=======
+                    mobileToggle.classList.remove('active');
+>>>>>>> 549ce88 (:wq)
                     document.body.classList.remove('nav-open');
                 }
             });
@@ -394,6 +498,7 @@ document.addEventListener('touchstart', (e) => {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+<<<<<<< HEAD
     console.log('DOM loaded, initializing Netflix enhancements...');
     setTimeout(() => {
         new NetflixEnhancementsFixed();
@@ -409,3 +514,9 @@ window.addEventListener('load', () => {
         }
     }, 1500);
 });
+=======
+    setTimeout(() => {
+        new NetflixEnhancementsFixed();
+    }, 500); // Small delay to ensure other scripts have loaded
+});
+>>>>>>> 549ce88 (:wq)

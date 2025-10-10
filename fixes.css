@@ -1,0 +1,30 @@
+/* Fixes for carousel arrows and mobile menu */
+
+/* Carousel arrow cursor fix */
+.carousel-arrow {
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.carousel-arrow:disabled {
+    cursor: not-allowed !important;
+    opacity: 0.3;
+}
+
+/* Mobile navigation hamburger icon fix */
+.mobile-toggle {
+    z-index: 1500; /* Ensure it's above other elements */
+}
+
+.nav-links.mobile-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease, visibility 0.3s;
+}
+
+body.nav-open {
+    overflow: hidden;
+}

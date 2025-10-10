@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Netflix Fixes</title>
+    <style>
+        body {
+            margin: 0;
+            background: #141414;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 200vh;
+        }
+        
+        nav {
+            background: rgba(0,0,0,0.9);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: #E50914;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+        
+        #projects {
+            margin-top: 80px;
+            padding: 2rem;
+        }
+        
+        .projects-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+        
+        .project-card {
+            min-width: 280px;
+            height: 200px;
+            background: #333;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="netflix-styles-fixed.css">
+</head>
+<body>
+    <nav>
+        <button class="mobile-toggle">☰</button>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="projects">
+        <h2>Test Projects Carousel</h2>
+        <div class="projects-grid">
+            <div class="project-card">Project 1</div>
+            <div class="project-card">Project 2</div>
+            <div class="project-card">Project 3</div>
+            <div class="project-card">Project 4</div>
+            <div class="project-card">Project 5</div>
+            <div class="project-card">Project 6</div>
+        </div>
+    </section>
+
+    <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <h1>Scroll down to test animations</h1>
+    </div>
+
+    <script src="netflix-enhancements-fixed.js"></script>
+    <script>
+        console.log('Test page loaded. Check:');
+        console.log('1. Mobile hamburger menu (on mobile/narrow screen)');
+        console.log('2. Carousel with arrows and swipe (touch devices)');
+        console.log('3. Scroll progress bar at top');
+        console.log('4. No duplicate scroll-to-top buttons');
+    </script>
+</body>
+</html>
