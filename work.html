@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Sai Prudvi Ela - Full-Stack Developer & AI Engineer</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Explore Sai Prudvi Ela's portfolio of full-stack development projects, AI/ML solutions, and innovative web applications. See code samples and live demos.">
-    <meta name="keywords" content="Portfolio, Projects, Full-Stack Development, AI Projects, React Apps, Python Applications, Web Development, Machine Learning">
-    <meta name="author" content="Sai Prudvi Ela">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Projects | Sai Prudvi Ela - Full-Stack Developer">
-    <meta property="og:description" content="Discover innovative projects and technical solutions built with modern technologies and best practices.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://saiprudvi.me/work.html">
-    <meta property="og:image" content="https://saiprudvi.me/assets/projects-og.jpg">
+                    <p class="page-subtitle">
+                        Deep-tech builds spanning LLM optimisation, GPU-accelerated analytics, FPGA edge inference, and computer vision research.
+                    </p>
+                    <div class="page-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Flagship research builds</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1.57×</span>
+                            <span class="stat-label">GPU speedup demonstrated</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">&lt;10s</span>
+                            <span class="stat-label">GenAI turnaround per request</span>
+                        </div>
+                    </div>
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
@@ -25,12 +24,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Header -->
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ai">AI &amp; LLM</button>
+                    <button class="filter-btn" data-filter="edge">Edge &amp; Hardware</button>
+                    <button class="filter-btn" data-filter="cv">Computer Vision</button>
+                    <button class="filter-btn" data-filter="finance">Finance &amp; Analytics</button>
     <header class="header" id="header">
         <div class="header-container">
             <a href="/" class="logo-container" aria-label="Sai Prudvi Ela - Home">
@@ -39,123 +37,14 @@
             </a>
             
             <nav class="nav-menu" aria-label="Main navigation">
-                <ul class="nav-list" id="navList">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">
-                            <span>Home</span>
-                            <span class="nav-indicator">●</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#about" class="nav-link">
-                            <span>About</span>
-                            <span class="nav-indicator">●</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html#skills" class="nav-link">
-                            <span>Skills</span>
-                            <span class="nav-indicator">●</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="work.html" class="nav-link active">
-                            <span>Projects</span>
-                            <span class="nav-indicator">●</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="resume.html" class="nav-link">
-                            <span>Resume</span>
-                            <span class="nav-indicator">●</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link">
-                            <span>Contact</span>
-                            <span class="nav-indicator">●</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            
-            <div class="header-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                    </svg>
-                </button>
-                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <div class="page-header-content">
-                    <h1 class="page-title">My Projects</h1>
-                    <p class="page-subtitle">
-                        A collection of my work showcasing full-stack development, AI/ML solutions, 
-                        and innovative web applications built with modern technologies.
-                    </p>
-                    <div class="page-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">25+</span>
-                            <span class="stat-label">Projects Completed</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Technologies Used</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Client Satisfaction</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Project Filters -->
-        <section class="project-filters-section">
-            <div class="container">
-                <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all">All Projects</button>
-                    <button class="filter-btn" data-filter="web">Web Applications</button>
-                    <button class="filter-btn" data-filter="ai">AI/ML</button>
-                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
-                    <button class="filter-btn" data-filter="backend">Backend Systems</button>
-                    <button class="filter-btn" data-filter="tools">Tools & Utilities</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Grid -->
-        <section class="section projects-section">
-            <div class="container">
-                <div class="projects-grid" id="projectsGrid">
                     
-                    <!-- E-Commerce Platform -->
-                    <div class="project-card" data-category="web" data-project="ecommerce">
+                    <!-- MobileLLM-125M -->
+                    <div class="project-card" data-category="ai" data-project="mobilellm">
                         <div class="project-image">
-                            <div class="project-icon">🛒</div>
+                            <div class="project-icon">🧠</div>
                             <div class="project-overlay">
                                 <div class="project-actions">
-                                    <button class="action-btn" data-action="view">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                    </button>
-                                    <a href="https://github.com/saiprudvi0102" class="action-btn" target="_blank" rel="noopener">
+                                    <a href="https://github.com/saiprudvi0102/MobileLLM125M" class="action-btn" target="_blank" rel="noopener" aria-label="Open MobileLLM125M on GitHub">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                                         </svg>
@@ -165,43 +54,33 @@
                         </div>
                         <div class="project-content">
                             <div class="project-meta">
-                                <span class="project-type">Web Application</span>
+                                <span class="project-type">AI &amp; LLM</span>
                                 <span class="project-year">2024</span>
                             </div>
-                            <h3 class="project-title">E-Commerce Platform</h3>
-                            <p class="project-description">
-                                Full-featured e-commerce solution with React frontend, Node.js backend, real-time inventory management, 
-                                integrated payment processing, and comprehensive admin dashboard.
-                            </p>
+                            <h3 class="project-title">MobileLLM-125M Zero-Shot Reasoning</h3>
+                            <p class="project-description">Fine-tuned Meta's MobileLLM-125M on HellaSwag with multi-GPU Accelerate, then quantized and containerised a FastAPI inference service that sustains &lt;120&nbsp;ms latency while holding <strong>62.8%</strong> accuracy.</p>
                             <div class="project-features">
-                                <span class="feature">Real-time Updates</span>
-                                <span class="feature">Payment Integration</span>
-                                <span class="feature">Admin Dashboard</span>
-                                <span class="feature">Responsive Design</span>
+                                <span class="feature">Quantization-aware training</span>
+                                <span class="feature">FastAPI + Docker deployment</span>
+                                <span class="feature">Zero-shot commonsense evaluation</span>
                             </div>
                             <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">Stripe</span>
-                                <span class="tech-tag">Socket.io</span>
+                                <span class="tech-tag">PyTorch</span>
+                                <span class="tech-tag">Transformers</span>
+                                <span class="tech-tag">Accelerate</span>
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">Docker</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- AI Chatbot -->
-                    <div class="project-card" data-category="ai" data-project="ai-chatbot">
+                    <!-- GPU Financial Risk Analysis -->
+                    <div class="project-card" data-category="finance" data-project="financial-risk">
                         <div class="project-image">
-                            <div class="project-icon">🤖</div>
+                            <div class="project-icon">�</div>
                             <div class="project-overlay">
                                 <div class="project-actions">
-                                    <button class="action-btn" data-action="view">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                    </button>
-                                    <a href="https://github.com/saiprudvi0102" class="action-btn" target="_blank" rel="noopener">
+                                    <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" class="action-btn" target="_blank" rel="noopener" aria-label="Open GPU Risk Analysis on GitHub">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                                         </svg>
@@ -211,43 +90,33 @@
                         </div>
                         <div class="project-content">
                             <div class="project-meta">
-                                <span class="project-type">AI/ML</span>
-                                <span class="project-year">2024</span>
+                                <span class="project-type">Finance &amp; Analytics</span>
+                                <span class="project-year">2023</span>
                             </div>
-                            <h3 class="project-title">Intelligent AI Chatbot</h3>
-                            <p class="project-description">
-                                Advanced conversational AI using natural language processing and machine learning. 
-                                Deployed on AWS with serverless architecture for optimal scalability and cost-effectiveness.
-                            </p>
+                            <h3 class="project-title">GPU-Accelerated Financial Risk Analysis</h3>
+                            <p class="project-description">Benchmarks CPU vs CUDA Monte Carlo pipelines for VaR and covariance computation, delivering a <strong>1.57×</strong> speedup on 1M-day simulations with reproducible analysis notebooks.</p>
                             <div class="project-features">
-                                <span class="feature">Natural Language Processing</span>
-                                <span class="feature">Context Awareness</span>
-                                <span class="feature">Multi-language Support</span>
-                                <span class="feature">Learning Capabilities</span>
+                                <span class="feature">CUDA kernels for covariance</span>
+                                <span class="feature">Monte Carlo VaR comparison</span>
+                                <span class="feature">Scalability profiling</span>
                             </div>
                             <div class="project-tech">
                                 <span class="tech-tag">Python</span>
-                                <span class="tech-tag">TensorFlow</span>
-                                <span class="tech-tag">AWS Lambda</span>
-                                <span class="tech-tag">NLTK</span>
-                                <span class="tech-tag">API Gateway</span>
+                                <span class="tech-tag">CUDA</span>
+                                <span class="tech-tag">PyCUDA</span>
+                                <span class="tech-tag">NumPy</span>
+                                <span class="tech-tag">Matplotlib</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Analytics Dashboard -->
-                    <div class="project-card" data-category="web" data-project="analytics-dashboard">
+                    <!-- PCNN Shadow Removal -->
+                    <div class="project-card" data-category="cv" data-project="pcnn-shadow">
                         <div class="project-image">
-                            <div class="project-icon">📊</div>
+                            <div class="project-icon">🌫️</div>
                             <div class="project-overlay">
                                 <div class="project-actions">
-                                    <button class="action-btn" data-action="view">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                            <circle cx="12" cy="12" r="3"></circle>
-                                        </svg>
-                                    </button>
-                                    <a href="https://github.com/saiprudvi0102" class="action-btn" target="_blank" rel="noopener">
+                                    <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" class="action-btn" target="_blank" rel="noopener" aria-label="Open PCNN Shadow Removal on GitHub">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                                         </svg>
@@ -257,13 +126,60 @@
                         </div>
                         <div class="project-content">
                             <div class="project-meta">
-                                <span class="project-type">Data Visualization</span>
+                                <span class="project-type">Computer Vision</span>
+                                <span class="project-year">2021</span>
+                            </div>
+                            <h3 class="project-title">PCNN Shadow Removal</h3>
+                            <p class="project-description">Dynamic Pulse Coupled Neural Network segmentation with adaptive thresholds reaches <strong>94.2%</strong> shadow detection accuracy and 0.89 IQI across challenging outdoor scenes.</p>
+                            <div class="project-features">
+                                <span class="feature">Adaptive PCNN thresholds</span>
+                                <span class="feature">Comparative benchmarking</span>
+                                <span class="feature">Detail-preserving reconstruction</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">OpenCV</span>
+                                <span class="tech-tag">NumPy</span>
+                                <span class="tech-tag">Matplotlib</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FPGA IoT Anomaly Detection -->
+                    <div class="project-card" data-category="edge" data-project="iot-anomaly">
+                        <div class="project-image">
+                            <div class="project-icon">�</div>
+                            <div class="project-overlay">
+                                <div class="project-actions">
+                                    <a href="https://github.com/saiprudvi0102/AnomalyDetection" class="action-btn" target="_blank" rel="noopener" aria-label="Open IoT Anomaly Detection on GitHub">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-meta">
+                                <span class="project-type">Edge &amp; Hardware</span>
                                 <span class="project-year">2024</span>
                             </div>
-                            <h3 class="project-title">Real-time Analytics Dashboard</h3>
-                            <p class="project-description">
-                                Interactive data visualization dashboard with real-time updates, comprehensive filtering, 
-                                and beautiful charts built with React and D3.js for business intelligence.
+                            <h3 class="project-title">FPGA IoT Anomaly Detection</h3>
+                            <p class="project-description">Implements an ANN on the PYNQ Z2 with AXI DMA streams to flag malicious IoT-23 traffic in microseconds, pairing GPU training notebooks with deployable FPGA bitstreams.</p>
+                            <div class="project-features">
+                                <span class="feature">AXI DMA hardware pipeline</span>
+                                <span class="feature">Microsecond LED alerting</span>
+                                <span class="feature">Hybrid GPU/FPGA workflow</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">FPGA</span>
+                                <span class="tech-tag">VHDL</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">PYNQ</span>
+                                <span class="tech-tag">IoT-23</span>
+                            </div>
+                        </div>
+                    </div>
                             </p>
                             <div class="project-features">
                                 <span class="feature">Real-time Data</span>
