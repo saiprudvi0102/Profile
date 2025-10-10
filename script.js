@@ -32,19 +32,25 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveNavLink);
     updateActiveNavLink(); // Initial call
 
-    // Smooth scroll for navigation links
+    // Smooth scroll for in-page navigation links; let full page links navigate
     navLinkEls.forEach(link => {
         link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href') || '';
+            // Only intercept if this is an on-page anchor (starts with '#') or points to current page with hash
+            const isHashOnly = href.startsWith('#');
+            const isSamePageHash = href.includes('#') && (href.startsWith(window.location.pathname) || href.startsWith('index.html'));
+
+            if (!(isHashOnly || isSamePageHash)) {
+                // Allow normal navigation to resume.html, contact.html, etc.
+                return;
+            }
+
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
+            const targetId = href.substring(href.indexOf('#') + 1);
             const targetSection = document.getElementById(targetId);
-            
             if (targetSection) {
                 const offsetTop = targetSection.offsetTop - 80; // Account for fixed header
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: offsetTop, behavior: 'smooth' });
             }
         });
     });
