@@ -54,22 +54,29 @@ class NetflixEnhancementsFixed {
         
         // Add scroll functionality
         let scrollAmount = 0;
-        const cardWidth = window.innerWidth <= 768 ? 280 : window.innerWidth <= 1024 ? 300 : 350;
+        const cardWidth = 340; // Fixed width + gap
+        const containerWidth = carouselContainer.clientWidth;
         
         const updateCarousel = () => {
             projectsGrid.style.transform = `translateX(-${scrollAmount}px)`;
-            this.updateArrowStates(scrollAmount, projectsGrid.scrollWidth - projectsGrid.clientWidth);
+            const maxScroll = Math.max(0, projectsGrid.scrollWidth - containerWidth);
+            this.updateArrowStates(scrollAmount, maxScroll);
+            console.log(`Carousel updated: scrollAmount=${scrollAmount}, maxScroll=${maxScroll}`);
         };
         
-        prevArrow.addEventListener('click', () => {
-            scrollAmount = Math.max(0, scrollAmount - cardWidth * 2);
+        prevArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            scrollAmount = Math.max(0, scrollAmount - cardWidth);
             updateCarousel();
+            console.log('Previous arrow clicked');
         });
         
-        nextArrow.addEventListener('click', () => {
-            const maxScroll = projectsGrid.scrollWidth - projectsGrid.clientWidth;
-            scrollAmount = Math.min(maxScroll, scrollAmount + cardWidth * 2);
+        nextArrow.addEventListener('click', (e) => {
+            e.preventDefault();
+            const maxScroll = Math.max(0, projectsGrid.scrollWidth - containerWidth);
+            scrollAmount = Math.min(maxScroll, scrollAmount + cardWidth);
             updateCarousel();
+            console.log('Next arrow clicked');
         });
         
         // Mouse wheel horizontal scroll
@@ -84,7 +91,14 @@ class NetflixEnhancementsFixed {
         }, { passive: false });
         
         // Touch/Swipe support
-        this.initSwipeSupport(projectsGrid, cardWidth, () => updateCarousel());
+        this.initSwipeSupport(projectsGrid, cardWidth, {
+            getScrollAmount: () => scrollAmount,
+            setScrollAmount: (amount) => {
+                scrollAmount = amount;
+                updateCarousel();
+            },
+            getMaxScroll: () => Math.max(0, projectsGrid.scrollWidth - containerWidth)
+        });
         
         // Auto-scroll (optional)
         let autoScrollTimer;
@@ -116,22 +130,17 @@ class NetflixEnhancementsFixed {
         updateCarousel();
     }
     
-    initSwipeSupport(projectsGrid, cardWidth, updateCallback) {
+    initSwipeSupport(projectsGrid, cardWidth, callbacks) {
         let startX, startY, currentX, currentY;
         let isSwipe = false;
-        let initialTransform = 0;
         
         projectsGrid.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
             isSwipe = false;
             
-            // Get current transform value
-            const transform = projectsGrid.style.transform;
-            const match = transform.match(/translateX\((-?\d+)px\)/);
-            initialTransform = match ? parseInt(match[1]) : 0;
-            
             projectsGrid.style.transition = 'none';
+            console.log('Touch start:', startX);
         }, { passive: true });
         
         projectsGrid.addEventListener('touchmove', (e) => {
@@ -144,13 +153,15 @@ class NetflixEnhancementsFixed {
             const diffY = startY - currentY;
             
             // Determine if it's a horizontal swipe
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 15) {
                 isSwipe = true;
                 e.preventDefault();
                 
                 // Apply swipe effect with damping
-                const newTransform = initialTransform - diffX * 0.8;
-                projectsGrid.style.transform = `translateX(${newTransform}px)`;
+                const currentScroll = callbacks.getScrollAmount();
+                const newScroll = Math.max(0, currentScroll + diffX * 0.8);
+                projectsGrid.style.transform = `translateX(-${newScroll}px)`;
+                console.log('Swiping:', diffX, 'New scroll:', newScroll);
             }
         }, { passive: false });
         
@@ -165,9 +176,9 @@ class NetflixEnhancementsFixed {
             projectsGrid.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             
             // Determine final scroll position
-            if (Math.abs(diffX) > 50) {
-                let currentScrollAmount = -initialTransform;
-                const maxScroll = projectsGrid.scrollWidth - projectsGrid.clientWidth;
+            if (Math.abs(diffX) > 80) {
+                let currentScrollAmount = callbacks.getScrollAmount();
+                const maxScroll = callbacks.getMaxScroll();
                 
                 if (diffX > 0) {
                     // Swipe left (next)
@@ -177,11 +188,13 @@ class NetflixEnhancementsFixed {
                     currentScrollAmount = Math.max(0, currentScrollAmount - cardWidth);
                 }
                 
-                projectsGrid.style.transform = `translateX(-${currentScrollAmount}px)`;
-                this.updateArrowStates(currentScrollAmount, maxScroll);
+                callbacks.setScrollAmount(currentScrollAmount);
+                console.log('Swipe completed:', diffX > 0 ? 'next' : 'previous', currentScrollAmount);
             } else {
                 // Snap back to original position
-                projectsGrid.style.transform = `translateX(${initialTransform}px)`;
+                const currentScroll = callbacks.getScrollAmount();
+                projectsGrid.style.transform = `translateX(-${currentScroll}px)`;
+                console.log('Swipe cancelled, snapping back to:', currentScroll);
             }
             
             // Reset

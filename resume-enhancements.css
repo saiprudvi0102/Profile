@@ -1,0 +1,68 @@
+/* Enhanced Skills and Certifications Styling */
+
+/* Skill tags with better icon spacing */
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--netflix-gray);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: rgba(229, 9, 20, 0.1);
+    border-color: var(--netflix-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+/* Certification items with company branding */
+.cert-item {
+    background: var(--netflix-gray);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--netflix-red);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.cert-item:hover {
+    transform: translateX(5px);
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+    border-left-color: var(--netflix-white);
+}
+
+.cert-item .company {
+    font-size: 1.1rem;
+    color: var(--netflix-red);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Enhanced mobile responsiveness for skills */
+@media (max-width: 768px) {
+    .skill-tags {
+        gap: 0.4rem;
+    }
+    
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+        gap: 0.2rem;
+    }
+    
+    .cert-item {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .cert-item .company {
+        font-size: 1rem;
+    }
+}
