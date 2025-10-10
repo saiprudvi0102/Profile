@@ -3,253 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Sai Prudvi Ela</title>
-    <meta name="description" content="Get in touch with Sai Prudvi Ela - Full-Stack Developer & AI Engineer">
+    <title>Contact - Saiprudvi Ela | Software Developer</title>
+    <meta name="description" content="Get in touch with Saiprudvi Ela - Software Developer & GenAI Specialist">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .contact-page {
-            padding: 120px 0 80px;
-        }
-        
-        .contact-hero {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .contact-info-section {
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 12px;
-        }
-        
-        .contact-form-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-        <header>
+    <header>
         <nav class="container">
-            <div class="logo"><a href="index.html">Saiprudvi Ela</a></div>
+            <div class="logo">Saiprudvi Ela</div>
             <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#certifications">Certifications</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-            <button class="mobile-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </nav>
     </header>
 
-    <!-- Contact Page Content -->
-    <section class="contact-page">
+    <!-- Contact Hero Section -->
+    <section class="hero" style="min-height: 40vh; padding-top: 120px;">
         <div class="container">
-            <div class="contact-hero">
-                <h1 class="section-title">Let's Work Together</h1>
-                <p class="section-subtitle">
-                    I'm always interested in new opportunities and exciting projects. 
-                    Let's discuss how we can collaborate!
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem;">�� Get In Touch</h1>
+                <p style="font-size: 1.2rem; color: var(--netflix-light-gray);">
+                    Let's discuss your next project or opportunity. I'm always open to new challenges and collaborations.
                 </p>
             </div>
-            
-            <div class="contact-grid">
-                <!-- Contact Information -->
-                <div class="contact-info-section">
-                    <h3 style="margin-bottom: 2rem; color: #1f2937;">Contact Information</h3>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="contact-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto;">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h2 style="font-size: 2rem; color: var(--netflix-red); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                        💼 Contact Information
+                    </h2>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
+                    <div class="contact-item" style="background: var(--netflix-gray); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid var(--netflix-red); transition: all 0.3s ease;">
+                        <div class="contact-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">📧</div>
                         <div>
-                            <h4>Email</h4>
-                            <a href="mailto:saiprudviela@gmail.com">saiprudviela@gmail.com</a>
-                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
-                                Best way to reach me for professional inquiries
-                            </p>
+                            <h4 style="color: var(--netflix-white); margin-bottom: 0.3rem; font-size: 1.1rem;">Email</h4>
+                            <a href="mailto:saiprudviela@gmail.com" style="color: var(--netflix-red); text-decoration: none; font-size: 1.05rem;">saiprudviela@gmail.com</a>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
+                    <div class="contact-item" style="background: var(--netflix-gray); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid var(--netflix-red); transition: all 0.3s ease;">
+                        <div class="contact-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
                         <div>
-                            <h4>Phone</h4>
-                            <a href="tel:+13213674952">+1 (321) 367-4952</a>
-                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
-                                Available during business hours (EST)
-                            </p>
+                            <h4 style="color: var(--netflix-white); margin-bottom: 0.3rem; font-size: 1.1rem;">Phone</h4>
+                            <a href="tel:+13213674952" style="color: var(--netflix-red); text-decoration: none; font-size: 1.05rem;">+1-321-367-4952</a>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
+                    <div class="contact-item" style="background: var(--netflix-gray); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid var(--netflix-red); transition: all 0.3s ease;">
+                        <div class="contact-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
                         <div>
-                            <h4>Location</h4>
-                            <p>Melbourne, FL</p>
-                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
-                                Open to remote work opportunities
-                            </p>
+                            <h4 style="color: var(--netflix-white); margin-bottom: 0.3rem; font-size: 1.1rem;">LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" rel="noopener" style="color: var(--netflix-red); text-decoration: none; font-size: 1.05rem;">linkedin.com/in/saiprudvi-ela</a>
                         </div>
                     </div>
                     
-                    <div class="contact-item">
-                        <div class="contact-icon">💼</div>
+                    <div class="contact-item" style="background: var(--netflix-gray); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid var(--netflix-red); transition: all 0.3s ease;">
+                        <div class="contact-icon" style="font-size: 2rem; margin-bottom: 0.5rem;">🔗</div>
                         <div>
-                            <h4>LinkedIn</h4>
-                            <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" rel="noopener">linkedin.com/in/saiprudvi-ela</a>
-                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
-                                Professional network and career updates
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">🐙</div>
-                        <div>
-                            <h4>GitHub</h4>
-                            <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">github.com/saiprudvi0102</a>
-                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
-                                Open source projects and code samples
-                            </p>
+                            <h4 style="color: var(--netflix-white); margin-bottom: 0.3rem; font-size: 1.1rem;">GitHub</h4>
+                            <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener" style="color: var(--netflix-red); text-decoration: none; font-size: 1.05rem;">github.com/saiprudvi0102</a>
                         </div>
                     </div>
 
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 8px;">
-                        <h4 style="margin-bottom: 1rem; color: #1f2937;">Quick Links</h4>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <a href="resume.html" class="btn btn-secondary" style="text-align: center;">📄 View Resume</a>
-                            <a href="assets/Sai_Prudvi_Resume.pdf" class="btn btn-secondary" style="text-align: center;" download>📥 Download Resume</a>
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(229, 9, 20, 0.1); border-radius: 10px; border: 1px solid rgba(229, 9, 20, 0.3);">
+                        <h4 style="color: var(--netflix-red); margin-bottom: 1rem; font-size: 1.1rem;">⚡ Quick Links</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 0.7rem;">
+                            <a href="resume.html" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem;">📄 Resume</a>
+                            <a href="assets/Sai_Prudvi_Resume.pdf" download class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.5rem;">📥 Download CV</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Form -->
                 <div class="contact-form-section">
-                    <h3 style="margin-bottom: 1.5rem; color: #1f2937;">Send Me a Message</h3>
+                    <h2 style="font-size: 2rem; color: var(--netflix-red); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                        ✉️ Send a Message
+                    </h2>
                     
-                    <form class="contact-form" action="mailto:saiprudviela@gmail.com" method="post" enctype="text/plain">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                    <form class="contact-form" style="background: var(--netflix-gray); padding: 2rem; border-radius: 10px;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; color: var(--netflix-white); margin-bottom: 0.5rem; font-weight: 600;">Name</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 0.8rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: var(--netflix-white); font-size: 1rem; transition: all 0.3s ease;">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; color: var(--netflix-white); margin-bottom: 0.5rem; font-weight: 600;">Email</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 0.8rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: var(--netflix-white); font-size: 1rem; transition: all 0.3s ease;">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="company">Company/Organization</label>
-                            <input type="text" id="company" name="company" placeholder="Your company (optional)">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; color: var(--netflix-white); margin-bottom: 0.5rem; font-weight: 600;">Subject</label>
+                            <input type="text" name="subject" required style="width: 100%; padding: 0.8rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: var(--netflix-white); font-size: 1rem; transition: all 0.3s ease;">
                         </div>
                         
-                        <div class="form-group">
-                            <label for="subject">Subject *</label>
-                            <select id="subject" name="subject" required>
-                                <option value="">Select a subject</option>
-                                <option value="Job Opportunity">Job Opportunity</option>
-                                <option value="Project Collaboration">Project Collaboration</option>
-                                <option value="Freelance Work">Freelance Work</option>
-                                <option value="Technical Discussion">Technical Discussion</option>
-                                <option value="General Inquiry">General Inquiry</option>
-                                <option value="Other">Other</option>
-                            </select>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; color: var(--netflix-white); margin-bottom: 0.5rem; font-weight: 600;">Message</label>
+                            <textarea name="message" rows="6" required style="width: 100%; padding: 0.8rem 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: var(--netflix-white); font-size: 1rem; resize: vertical; transition: all 0.3s ease;"></textarea>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project, opportunity, or any questions you have..."></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" required style="margin-right: 0.5rem;">
-                                I agree to be contacted regarding this inquiry
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            Send Message 📧
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                            📨 Send Message
                         </button>
-                        
-                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem; text-align: center;">
-                            I typically respond within 24-48 hours during business days.
-                        </p>
                     </form>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(229, 9, 20, 0.1); border-radius: 6px; border-left: 4px solid var(--netflix-red);">
+                        <p style="color: var(--netflix-light-gray); font-size: 0.9rem; margin: 0;">
+                            💡 <strong>Note:</strong> This is a demo contact form. For direct contact, please use email or LinkedIn above.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Additional Info -->
-            <div style="margin-top: 4rem; text-align: center; padding: 2rem; background: #f8fafc; border-radius: 12px;">
-                <h3 style="margin-bottom: 1rem;">Looking for something specific?</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                    <div>
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
-                        <h4>Job Opportunities</h4>
-                        <p style="color: #64748b; font-size: 0.9rem;">
-                            I'm open to full-time, contract, and remote positions in software development and AI engineering.
-                        </p>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
-                        <h4>Project Collaboration</h4>
-                        <p style="color: #64748b; font-size: 0.9rem;">
-                            Interested in collaborating on innovative projects, especially in AI/ML and cloud technologies.
-                        </p>
-                    </div>
-                    <div>
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎓</div>
-                        <h4>Mentoring & Learning</h4>
-                        <p style="color: #64748b; font-size: 0.9rem;">
-                            Happy to discuss technology, share knowledge, and learn from fellow developers.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <!-- Responsive adjustment -->
+            <style>
+                @media (max-width: 968px) {
+                    .contact-content {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+                }
+
+                .contact-form input:focus,
+                .contact-form textarea:focus {
+                    outline: none;
+                    border-color: var(--netflix-red) !important;
+                    background: rgba(255, 255, 255, 0.08) !important;
+                }
+
+                .contact-item:hover {
+                    transform: translateX(5px);
+                    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.2);
+                }
+            </style>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer style="background: var(--netflix-dark); padding: 2rem 0; text-align: center; border-top: 1px solid rgba(229, 9, 20, 0.2);">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <p>&copy; <span id="currentYear">2024</span> Sai Prudvi Ela. All rights reserved.</p>
-                </div>
-                <div class="footer-right">
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/prudvi-ela" target="_blank" rel="noopener">LinkedIn</a>
-                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">GitHub</a>
-                        <a href="mailto:saiprudviela@gmail.com">Email</a>
-                    </div>
-                </div>
-            </div>
+            <p style="color: var(--netflix-light-gray); margin: 0;">
+                © 2025 Saiprudvi Ela. All rights reserved.
+            </p>
         </div>
     </footer>
 
