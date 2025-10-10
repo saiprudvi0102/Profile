@@ -2,208 +2,255 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact | Sai Prudvi Ela – Get In Touch</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Contact Saiprudvi Ela - Software Developer specializing in backend engineering, cloud solutions, and GenAI integrations. Let's discuss your next project.">
-    <link rel="canonical" href="https://saiprudvi.me/contact.html" />
-    
-    <!-- Enhanced Fonts for Professional Typography -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Sai Prudvi Ela</title>
+    <meta name="description" content="Get in touch with Sai Prudvi Ela - Full-Stack Developer & AI Engineer">
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-page {
+            padding: 120px 0 80px;
+        }
+        
+        .contact-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .contact-info-section {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        
+        .contact-form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Professional Header -->
-<header class="header" id="main-header">
-    <div class="header-container">
-        <a href="/" class="logo-container" aria-label="Saiprudvi Ela - Home">
-            <div class="logo">SP</div>
-            <span class="logo-text">Sai Prudvi</span>
-        </a>
-        
-        <nav class="nav-menu" id="nav" aria-label="Main navigation">
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link">
-                        <span>Home</span>
-                        <span class="nav-indicator">●</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="work.html" class="nav-link">
-                        <span>Projects</span>
-                        <span class="nav-indicator">●</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="resume.html" class="nav-link">
-                        <span>Resume</span>
-                        <span class="nav-indicator">●</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link active">
-                        <span>Contact</span>
-                        <span class="nav-indicator">●</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">Sai Prudvi Ela</a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                    <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="index.html#contact" class="nav-link active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<!-- Main Content -->
-<main role="main">
-    <!-- Professional Contact Hero -->
-    <section class="contact-hero">
-        <div class="contact-hero-container">
-            <div class="contact-hero-content">
-                <div class="hero-badge">
-                    <div class="status-dot"></div>
-                    <span>Available for opportunities</span>
-                </div>
-                
-                <h1 class="contact-hero-title">
-                    Let's <span class="gradient-text">build</span> something amazing together
-                </h1>
-                
-                <p class="contact-hero-subtitle">
-                    Ready to discuss your next backend project, cloud architecture, or GenAI integration? 
-                    I'd love to hear about your challenges and explore how we can solve them together.
+    <!-- Contact Page Content -->
+    <section class="contact-page">
+        <div class="container">
+            <div class="contact-hero">
+                <h1 class="section-title">Let's Work Together</h1>
+                <p class="section-subtitle">
+                    I'm always interested in new opportunities and exciting projects. 
+                    Let's discuss how we can collaborate!
                 </p>
             </div>
-        </div>
-    </section>
-    <!-- Professional Contact Section -->
-    <section class="contact-section">
-        <div class="section-container">
+            
             <div class="contact-grid">
-                <div class="contact-form-container">
-                    <div class="form-header">
-                        <h2>Send me a message</h2>
-                        <p>Fill out the form below and I'll get back to you within 24 hours.</p>
+                <!-- Contact Information -->
+                <div class="contact-info-section">
+                    <h3 style="margin-bottom: 2rem; color: #1f2937;">Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:saiprudviela@gmail.com">saiprudviela@gmail.com</a>
+                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
+                                Best way to reach me for professional inquiries
+                            </p>
+                        </div>
                     </div>
                     
-                    <form class="modern-contact-form" onsubmit="contactSubmit(event)">
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <a href="tel:+13213674952">+1 (321) 367-4952</a>
+                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
+                                Available during business hours (EST)
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Melbourne, FL</p>
+                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
+                                Open to remote work opportunities
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://linkedin.com/in/prudvi-ela" target="_blank" rel="noopener">linkedin.com/in/prudvi-ela</a>
+                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
+                                Professional network and career updates
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🐙</div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">github.com/saiprudvi0102</a>
+                            <p style="font-size: 0.9rem; color: #64748b; margin-top: 0.25rem;">
+                                Open source projects and code samples
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 8px;">
+                        <h4 style="margin-bottom: 1rem; color: #1f2937;">Quick Links</h4>
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <a href="resume.html" class="btn btn-secondary" style="text-align: center;">📄 View Resume</a>
+                            <a href="assets/Sai_Prudvi_Resume.pdf" class="btn btn-secondary" style="text-align: center;" download>📥 Download Resume</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h3 style="margin-bottom: 1.5rem; color: #1f2937;">Send Me a Message</h3>
+                    
+                    <form class="contact-form" action="mailto:saiprudviela@gmail.com" method="post" enctype="text/plain">
                         <div class="form-group">
-                            <label for="name">Full Name</label>
+                            <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" required placeholder="Your full name">
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
                         </div>
                         
                         <div class="form-group">
-                            <label for="subject">Subject</label>
+                            <label for="company">Company/Organization</label>
+                            <input type="text" id="company" name="company" placeholder="Your company (optional)">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
                             <select id="subject" name="subject" required>
-                                <option value="">Select a topic</option>
-                                <option value="project">Project Collaboration</option>
-                                <option value="consulting">Consulting Opportunity</option>
-                                <option value="job">Job Opportunity</option>
-                                <option value="question">Technical Question</option>
-                                <option value="other">Other</option>
+                                <option value="">Select a subject</option>
+                                <option value="Job Opportunity">Job Opportunity</option>
+                                <option value="Project Collaboration">Project Collaboration</option>
+                                <option value="Freelance Work">Freelance Work</option>
+                                <option value="Technical Discussion">Technical Discussion</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project, requirements, or questions..."></textarea>
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project, opportunity, or any questions you have..."></textarea>
                         </div>
                         
-                        <button type="submit" class="cta-primary form-submit">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                            </svg>
-                            <span>Send Message</span>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" required style="margin-right: 0.5rem;">
+                                I agree to be contacted regarding this inquiry
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Send Message 📧
                         </button>
                         
-                        <p class="form-status" id="formStatus"></p>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem; text-align: center;">
+                            I typically respond within 24-48 hours during business days.
+                        </p>
                     </form>
                 </div>
-                
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-card-header">
-                            <h3>Let's Connect</h3>
-                            <p>Prefer direct communication? Reach out through any of these channels.</p>
-                        </div>
-                        
-                        <div class="contact-methods">
-                            <a href="mailto:saiprudviela@gmail.com" class="contact-method">
-                                <div class="method-icon email">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5v-11Zm2.5-.5a.5.5 0 0 0-.5.5v.3l7.5 4.38 7.5-4.38v-.3a.5.5 0 0 0-.5-.5h-15Zm15 3.12L12.62 13a1 1 0 0 1-1.24 0L4.5 9.12V17.5a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5V9.12Z"/>
-                                    </svg>
-                                </div>
-                                <div class="method-content">
-                                    <span class="method-label">Email</span>
-                                    <span class="method-value">saiprudviela@gmail.com</span>
-                                </div>
-                            </a>
-                            
-                            <a href="https://linkedin.com/in/prudvi-ela" target="_blank" rel="noopener" class="contact-method">
-                                <div class="method-icon linkedin">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001ZM3 9h4v12H3zM9.5 9h3.7l.3 1.7c.8-1.2 2.1-2 3.9-2 3.1 0 4.6 2 4.6 5.5V21h-4v-6.2c0-1.9-.5-2.8-1.9-2.8-1.8 0-2.6 1.3-2.6 3.5V21h-4V9Z"/>
-                                    </svg>
-                                </div>
-                                <div class="method-content">
-                                    <span class="method-label">LinkedIn</span>
-                                    <span class="method-value">Professional Network</span>
-                                </div>
-                            </a>
-                            
-                            <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener" class="contact-method">
-                                <div class="method-icon github">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.43 7.86 10.96.58.1.79-.25.79-.56 0-.28-.01-1.03-.02-2.03-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.76.41-1.27.75-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.3 1.2-3.11-.12-.3-.52-1.5.11-3.12 0 0 .97-.31 3.18 1.19a11.1 11.1 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.62.23 2.82.11 3.12.75.81 1.2 1.85 1.2 3.1 0 4.43-2.69 5.41-5.25 5.7.42.36.8 1.07.8 2.17 0 1.57-.01 2.84-.01 3.22 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div class="method-content">
-                                    <span class="method-label">GitHub</span>
-                                    <span class="method-value">Code Portfolio</span>
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <div class="availability-status">
-                            <div class="status-indicator">
-                                <div class="status-dot active"></div>
-                                <span>Available for new opportunities</span>
-                            </div>
-                            <p class="status-detail">
-                                Currently open to backend engineering, cloud architecture, 
-                                and GenAI integration projects.
-                            </p>
-                        </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div style="margin-top: 4rem; text-align: center; padding: 2rem; background: #f8fafc; border-radius: 12px;">
+                <h3 style="margin-bottom: 1rem;">Looking for something specific?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
+                        <h4>Job Opportunities</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">
+                            I'm open to full-time, contract, and remote positions in software development and AI engineering.
+                        </p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
+                        <h4>Project Collaboration</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">
+                            Interested in collaborating on innovative projects, especially in AI/ML and cloud technologies.
+                        </p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎓</div>
+                        <h4>Mentoring & Learning</h4>
+                        <p style="color: #64748b; font-size: 0.9rem;">
+                            Happy to discuss technology, share knowledge, and learn from fellow developers.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-</main>
 
-<footer class="site-footer">
-    <div class="footer-container">
-        <p>&copy; <span id="year"></span> Sai Prudvi Ela. Built with passion for clean code and scalable solutions.</p>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="work.html">Projects</a>
-            <a href="resume.html">Resume</a>
-            <a href="contact.html">Contact</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; <span id="currentYear">2024</span> Sai Prudvi Ela. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/prudvi-ela" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">GitHub</a>
+                        <a href="mailto:saiprudviela@gmail.com">Email</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</footer>
-<script src="main.js"></script>
-<script src="script.js"></script>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

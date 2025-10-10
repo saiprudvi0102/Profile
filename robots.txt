@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://saiprudvi.me/sitemap.xml
-
-# Disallow certain files
-Disallow: /assets/
-Disallow: /*.pdf$

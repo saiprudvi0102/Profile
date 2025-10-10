@@ -3,209 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | Sai Prudvi Ela - Full-Stack Developer & AI Engineer</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Download Sai Prudvi Ela's resume. 4+ years experience in full-stack development, AI/ML, cloud computing, and modern web technologies.">
-    <meta name="keywords" content="Resume, CV, Full-Stack Developer, Software Engineer, Experience, Skills, Education, Java, Python, React">
-    <meta name="author" content="Sai Prudvi Ela">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Resume | Sai Prudvi Ela - Full-Stack Developer">
-    <meta property="og:description" content="Professional resume showcasing 4+ years of software development experience and technical expertise.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://saiprudvi.me/resume.html">
-    <meta property="og:image" content="https://saiprudvi.me/assets/resume-og.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
-    
-    <!-- Fonts -->
+    <title>Resume - Sai Prudvi Ela</title>
+    <meta name="description" content="Professional resume of Sai Prudvi Ela - Full-Stack Developer & AI Engineer">
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!-- Header -->
-        <header class="header" id="header">
-            <div class="header-container">
-                <a href="/" class="logo-container" aria-label="Sai Prudvi Ela - Home">
-                    <div class="logo">SP</div>
-                    <span class="logo-text">Sai Prudvi</span>
-                </a>
-                <nav class="nav-menu" aria-label="Main navigation">
-                    <ul class="nav-list" id="navList">
-                        <li class="nav-item"><a href="index.html" class="nav-link"><span>Home</span><span class="nav-indicator">●</span></a></li>
-                        <li class="nav-item"><a href="index.html#about" class="nav-link"><span>About</span><span class="nav-indicator">●</span></a></li>
-                        <li class="nav-item"><a href="index.html#skills" class="nav-link"><span>Skills</span><span class="nav-indicator">●</span></a></li>
-                        <li class="nav-item"><a href="work.html" class="nav-link"><span>Projects</span><span class="nav-indicator">●</span></a></li>
-                        <li class="nav-item"><a href="resume.html" class="nav-link active"><span>Resume</span><span class="nav-indicator">●</span></a></li>
-                        <li class="nav-item"><a href="contact.html" class="nav-link"><span>Contact</span><span class="nav-indicator">●</span></a></li>
-                    </ul>
-                </nav>
-                <div class="header-actions">
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-                    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .resume-container {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: 0 20px;
+        }
+        
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .resume-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .resume-viewer {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .resume-iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+        
+        .resume-fallback {
+            padding: 2rem;
+            text-align: center;
+            color: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+            .resume-iframe {
+                height: 600px;
+            }
+            
+            .resume-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">Sai Prudvi Ela</a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#home" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#experience" class="nav-link">Experience</a></li>
+                    <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Resume Content -->
+    <div class="resume-container">
+        <div class="resume-header">
+            <h1 class="section-title">My Resume</h1>
+            <p class="section-subtitle">Download or view my professional resume</p>
+        </div>
+        
+        <div class="resume-actions">
+            <a href="assets/Sai_Prudvi_Resume.pdf" class="btn btn-primary" download>
+                📥 Download PDF
+            </a>
+            <a href="assets/Sai_Prudvi_Resume.pdf" class="btn btn-secondary" target="_blank">
+                🔗 Open in New Tab
+            </a>
+            <a href="index.html#contact" class="btn btn-secondary">
+                ✉️ Contact Me
+            </a>
+        </div>
+        
+        <div class="resume-viewer">
+            <iframe 
+                src="assets/Sai_Prudvi_Resume.pdf" 
+                class="resume-iframe"
+                title="Sai Prudvi Ela Resume">
+            </iframe>
+            <div class="resume-fallback">
+                <p>Unable to display PDF? <a href="assets/Sai_Prudvi_Resume.pdf" target="_blank">Click here to download</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; <span id="currentYear">2024</span> Sai Prudvi Ela. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/prudvi-ela" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">GitHub</a>
+                        <a href="mailto:saiprudviela@gmail.com">Email</a>
+                    </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </footer>
 
-        <!-- Main Content -->
-        <main>
-            <!-- Page Header -->
-            <section class="page-header resume-header">
-                <div class="container">
-                    <div class="resume-intro">
-                        <div class="resume-profile">
-                            <div class="profile-avatar"><div class="avatar-placeholder">SP</div></div>
-                            <div class="profile-info">
-                                <h1 class="profile-name">Sai Prudvi Ela</h1>
-                                <p class="profile-title">Full-Stack Developer & AI Engineer</p>
-                                <div class="profile-contact">
-                                    <span class="contact-item">📞 +1 (321) 367-4952</span>
-                                    <span class="contact-item">✉️ saiprudviela@gmail.com</span>
-                                    <span class="contact-item">🔗 linkedin.com/in/prudvi-ela</span>
-                                    <span class="contact-item">💻 github.com/saiprudvi0102</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="resume-actions">
-                            <button class="btn btn-primary btn-lg" id="downloadResume">Download PDF</button>
-                            <button class="btn btn-secondary btn-lg" id="printResume">Print</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Resume Content -->
-            <section class="section resume-content">
-                <div class="container">
-                    <div class="resume-grid">
-                        <!-- Main Column -->
-                        <div class="resume-main">
-                            <div class="resume-section">
-                                <h2 class="section-title">Professional Summary</h2>
-                                <div class="summary-content">
-                                    <p>Experienced Software Developer with <strong>4+ years</strong> delivering cloud-native services, GenAI workflows, and full-stack applications. Strong in Java, Python, React, and secure data systems on AWS/GCP.</p>
-                                    <div class="summary-highlights">
-                                        <div class="highlight"><span class="highlight-number">2TB+</span><span class="highlight-text">Clinical notes summarized</span></div>
-                                        <div class="highlight"><span class="highlight-number">91%</span><span class="highlight-text">Test coverage in refactors</span></div>
-                                        <div class="highlight"><span class="highlight-number">120K+</span><span class="highlight-text">Daily transactions supported</span></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="resume-section">
-                                <h2 class="section-title">Professional Experience</h2>
-                                <div class="timeline">
-                                    <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content">
-                                        <div class="job-header"><h3 class="job-title">Software Developer</h3><div class="job-meta"><span class="company">Tempus</span><span class="duration">Oct 2024 – Present</span><span class="location">USA (Remote)</span></div></div>
-                                        <div class="job-description">
-                                            <ul class="achievements">
-                                                <li>FastAPI + LangChain pipelines with GPT-4 summarizing <strong>2TB+</strong> notes in <10s per request.</li>
-                                                <li>Kubernetes/GCP deployment reduced clinician documentation by ~4 hrs/week.</li>
-                                                <li>Java 17 orchestration for queued LLM workloads under HIPAA controls.</li>
-                                                <li>Raised unit tests from 62% to <strong>91%</strong> across Spring Boot services.</li>
-                                            </ul>
-                                            <div class="job-technologies"><span class="tech">FastAPI</span><span class="tech">LangChain</span><span class="tech">GPT-4</span><span class="tech">Spring Boot</span><span class="tech">Kubernetes</span><span class="tech">GCP</span></div>
-                                        </div>
-                                    </div></div>
-
-                                    <div class="timeline-item"><div class="timeline-marker"></div><div class="timeline-content">
-                                        <div class="job-header"><h3 class="job-title">Software Development Associate – T-Mobile</h3><div class="job-meta"><span class="company">Deloitte</span><span class="duration">May 2020 – Aug 2023</span><span class="location">Hyderabad, India</span></div></div>
-                                        <div class="job-description">
-                                            <ul class="achievements">
-                                                <li>Built <strong>40+</strong> Spring Boot REST services handling 120K+ daily transactions.</li>
-                                                <li>Asynchronous alerting (JMS/Mail) improved incident response by 38%.</li>
-                                                <li>React + Java internal tools reduced ticket resolution by 25%.</li>
-                                                <li>AWS automation saved 60+ manual hours/month.</li>
-                                            </ul>
-                                            <div class="job-technologies"><span class="tech">Java</span><span class="tech">Spring Boot</span><span class="tech">React</span><span class="tech">PostgreSQL</span><span class="tech">Oracle</span><span class="tech">AWS</span></div>
-                                        </div>
-                                    </div></div>
-                                </div>
-                            </div>
-
-                            <div class="resume-section">
-                                <h2 class="section-title">Selected Projects</h2>
-                                <div class="projects-list">
-                                    <div class="project-item"><h3 class="project-name">MobileLLM-125M Deployment</h3><p class="project-description">Fine-tuned and quantized a 125M LLM; FastAPI + Docker service; 62.8% accuracy, 7.91 perplexity, <120 ms latency.</p><div class="project-technologies"><span class="tech">PyTorch</span><span class="tech">FastAPI</span><span class="tech">Docker</span><span class="tech">TensorRT</span><span class="tech"><a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">GitHub ↗</a></span></div></div>
-                                    <div class="project-item"><h3 class="project-name">GPU-Accelerated Financial Risk Analysis</h3><p class="project-description">PyCUDA Monte Carlo covariance/VaR at 1M-day scale with <strong>1.57×</strong> GPU speedup and reproducible notebooks.</p><div class="project-technologies"><span class="tech">CUDA</span><span class="tech">PyCUDA</span><span class="tech">NumPy</span><span class="tech"><a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">GitHub ↗</a></span></div></div>
-                                    <div class="project-item"><h3 class="project-name">PCNN Shadow Removal Research</h3><p class="project-description">Pulse-coupled neural segmentation; <strong>94.2%</strong> detection accuracy and 0.89 IQI across benchmarks.</p><div class="project-technologies"><span class="tech">TensorFlow</span><span class="tech">OpenCV</span><span class="tech">CUDA</span><span class="tech"><a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">GitHub ↗</a></span></div></div>
-                                    <div class="project-item"><h3 class="project-name">IoT Anomaly Detection on FPGA</h3><p class="project-description">PYNQ Z2 ANN with AXI DMA + BRAM streaming; microsecond LED alerts on IoT‑23 traffic.</p><div class="project-technologies"><span class="tech">FPGA</span><span class="tech">Verilog</span><span class="tech">Vitis HLS</span><span class="tech"><a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">GitHub ↗</a></span></div></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Sidebar Column -->
-                        <div class="resume-sidebar">
-                            <div class="sidebar-section"><h3 class="sidebar-title">Technical Skills</h3>
-                                <div class="skills-category"><h4 class="skill-category-name">Programming</h4><div class="skill-items">
-                                    <div class="skill-item"><span class="skill-name">Java</span><div class="skill-bar"><div class="skill-progress" data-progress="94"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-progress" data-progress="92"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">JavaScript/TypeScript</span><div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">SQL</span><div class="skill-bar"><div class="skill-progress" data-progress="86"></div></div></div>
-                                </div></div>
-                                <div class="skills-category"><h4 class="skill-category-name">Backend & Cloud</h4><div class="skill-items">
-                                    <div class="skill-item"><span class="skill-name">Spring Boot</span><div class="skill-bar"><div class="skill-progress" data-progress="92"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">FastAPI / Flask</span><div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">AWS</span><div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">Google Cloud</span><div class="skill-bar"><div class="skill-progress" data-progress="82"></div></div></div>
-                                </div></div>
-                                <div class="skills-category"><h4 class="skill-category-name">AI & Data</h4><div class="skill-items">
-                                    <div class="skill-item"><span class="skill-name">LLMs (OpenAI, HF)</span><div class="skill-bar"><div class="skill-progress" data-progress="86"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">TensorFlow / TFLite</span><div class="skill-bar"><div class="skill-progress" data-progress="83"></div></div></div>
-                                    <div class="skill-item"><span class="skill-name">LangChain</span><div class="skill-bar"><div class="skill-progress" data-progress="81"></div></div></div>
-                                </div></div>
-                            </div>
-
-                            <div class="sidebar-section"><h3 class="sidebar-title">Education</h3>
-                                <div class="education-item"><h4 class="degree">M.S. Computer Engineering</h4><p class="school">Florida Institute of Technology</p><p class="year">Aug 2023 – May 2025</p><p class="gpa">Focus: Edge AI, LLM Systems, Embedded</p></div>
-                            </div>
-
-                            <div class="sidebar-section"><h3 class="sidebar-title">Certifications</h3>
-                                <div class="certification-list">
-                                    <div class="certification-item"><h4 class="cert-name">AWS Certified Developer – Associate</h4><p class="cert-issuer">Amazon Web Services</p></div>
-                                    <div class="certification-item"><h4 class="cert-name">Introduction to Large Language Models</h4><p class="cert-issuer">Google Cloud</p></div>
-                                    <div class="certification-item"><h4 class="cert-name">Supervised ML: Regression</h4><p class="cert-issuer">IBM</p></div>
-                                    <div class="certification-item"><h4 class="cert-name">Cloud and Virtualization</h4><p class="cert-issuer">Broadcom</p></div>
-                                    <div class="certification-item"><h4 class="cert-name">Network Virtualization</h4><p class="cert-issuer">Broadcom</p></div>
-                                    <div class="certification-item"><h4 class="cert-name">Software Defined Storage</h4><p class="cert-issuer">Broadcom</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <div class="footer-logo"><div class="logo">SP</div><span>Sai Prudvi Ela</span></div>
-                        <p class="footer-description">Full-Stack Developer & AI Engineer passionate about creating innovative solutions.</p>
-                        <div class="footer-social">
-                            <a href="https://linkedin.com/in/prudvi-ela" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
-                            <a href="https://github.com/saiprudvi0102" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener">GH</a>
-                        </div>
-                    </div>
-                    <div class="footer-links">
-                        <div class="footer-column"><h4>Navigation</h4><ul><li><a href="index.html">Home</a></li><li><a href="index.html#about">About</a></li><li><a href="index.html#skills">Skills</a></li><li><a href="work.html">Projects</a></li></ul></div>
-                        <div class="footer-column"><h4>Contact</h4><ul><li><a href="contact.html">Get in Touch</a></li><li><a href="resume.html">Resume</a></li><li><a href="mailto:saiprudviela@gmail.com">Email</a></li></ul></div>
-                    </div>
-                </div>
-                <div class="footer-bottom"><p>&copy; <span id="currentYear">2025</span> Sai Prudvi Ela. All rights reserved.</p></div>
-            </div>
-        </footer>
-
-        <!-- Scripts -->
-        <script src="main.js"></script>
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+</body>
 </html>

@@ -1,0 +1,44 @@
+{
+  "name": "sai-prudvi-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio website for Sai Prudvi Ela - Full-Stack Developer & AI Engineer",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 dev-server.py",
+    "serve": "python3 -m http.server 8000",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "echo 'Ready for deployment - upload files to your hosting provider'"
+  },
+  "keywords": [
+    "portfolio",
+    "resume",
+    "full-stack",
+    "ai-engineer",
+    "web-development",
+    "responsive"
+  ],
+  "author": {
+    "name": "Sai Prudvi Ela",
+    "email": "saiprudviela@gmail.com",
+    "url": "https://linkedin.com/in/prudvi-ela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saiprudvi0102/portfolio"
+  },
+  "bugs": {
+    "url": "https://github.com/saiprudvi0102/portfolio/issues"
+  },
+  "homepage": "https://saiprudvi.me",
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6"
+  }
+}

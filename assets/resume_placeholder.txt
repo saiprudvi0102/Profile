@@ -1,0 +1,15 @@
+# You'll need to add your actual resume PDF here
+# This is a placeholder file to indicate where your resume should go
+
+Place your resume PDF file here and name it: Sai_Prudvi_Resume.pdf
+
+The resume should be:
+- In PDF format
+- Professional and up-to-date
+- Optimized for web viewing
+- Maximum file size: 5MB recommended
+
+To add your resume:
+1. Save your resume as "Sai_Prudvi_Resume.pdf"
+2. Place it in this assets folder
+3. The website will automatically link to it
