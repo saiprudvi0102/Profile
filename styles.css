@@ -585,6 +585,40 @@ section {
     margin-bottom: 1rem;
 }
 
+.project-features {
+    padding: 0 1.5rem;
+    margin: 1rem 0;
+    border-left: 3px solid var(--netflix-red);
+    padding-left: 1rem;
+}
+
+.project-features p {
+    color: var(--netflix-light-gray);
+    line-height: 1.8;
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.project-features strong {
+    color: var(--netflix-white);
+    font-weight: 600;
+}
+
+.project-status {
+    padding: 0 1.5rem;
+    margin: 1rem 0;
+    padding: 0.8rem 1.5rem;
+    background: rgba(229, 9, 20, 0.1);
+    border-radius: 8px;
+    color: var(--netflix-light-gray);
+    font-size: 0.9rem;
+}
+
+.project-status strong {
+    color: var(--netflix-red);
+    font-weight: 600;
+}
+
 .project-tech {
     padding: 0 1.5rem 1.5rem;
     display: flex;
