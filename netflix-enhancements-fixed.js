@@ -393,60 +393,29 @@ class NetflixEnhancementsFixed {
         // Use existing mobile toggle button
         const mobileToggle = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
-        
-<<<<<<< HEAD
+
         if (!mobileToggle || !navLinks) {
             console.log('Mobile navigation elements not found');
             return;
         }
-        
+
         console.log('Setting up mobile navigation...');
-        
-        // Remove any existing event listeners by cloning the element
-        const newMobileToggle = mobileToggle.cloneNode(true);
-        mobileToggle.parentNode.replaceChild(newMobileToggle, mobileToggle);
-        
-        // Ensure mobile navigation works properly
-        newMobileToggle.addEventListener('click', (e) => {
+
+        mobileToggle.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            
+
             const isOpen = navLinks.classList.contains('mobile-open');
-            
-            if (isOpen) {
-                navLinks.classList.remove('mobile-open');
-                newMobileToggle.classList.remove('active');
-                document.body.classList.remove('nav-open');
-                console.log('Menu closed');
-            } else {
-                navLinks.classList.add('mobile-open');
-                newMobileToggle.classList.add('active');
-                document.body.classList.add('nav-open');
-                console.log('Menu opened');
-            }
-=======
-        if (!mobileToggle || !navLinks) return;
-        
-        // Ensure mobile navigation works properly
-        mobileToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navLinks.classList.toggle('mobile-open');
-            mobileToggle.classList.toggle('active');
-            document.body.classList.toggle('nav-open');
->>>>>>> 549ce88 (:wq)
+            navLinks.classList.toggle('mobile-open', !isOpen);
+            mobileToggle.classList.toggle('active', !isOpen);
+            document.body.classList.toggle('nav-open', !isOpen);
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-<<<<<<< HEAD
-            if (!newMobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                navLinks.classList.remove('mobile-open');
-                newMobileToggle.classList.remove('active');
-=======
             if (!mobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
                 navLinks.classList.remove('mobile-open');
                 mobileToggle.classList.remove('active');
->>>>>>> 549ce88 (:wq)
                 document.body.classList.remove('nav-open');
             }
         });
@@ -456,11 +425,7 @@ class NetflixEnhancementsFixed {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     navLinks.classList.remove('mobile-open');
-<<<<<<< HEAD
-                    newMobileToggle.classList.remove('active');
-=======
                     mobileToggle.classList.remove('active');
->>>>>>> 549ce88 (:wq)
                     document.body.classList.remove('nav-open');
                 }
             });
@@ -498,14 +463,13 @@ document.addEventListener('touchstart', (e) => {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-<<<<<<< HEAD
     console.log('DOM loaded, initializing Netflix enhancements...');
     setTimeout(() => {
         new NetflixEnhancementsFixed();
-    }, 1000); // Increased delay to ensure all scripts have loaded
+    }, 800); // Small delay to ensure other scripts have loaded
 });
 
-// Fallback initialization
+// Fallback initialization if DOMContentLoaded missed
 window.addEventListener('load', () => {
     setTimeout(() => {
         if (!document.querySelector('.netflix-carousel')) {
@@ -514,9 +478,3 @@ window.addEventListener('load', () => {
         }
     }, 1500);
 });
-=======
-    setTimeout(() => {
-        new NetflixEnhancementsFixed();
-    }, 500); // Small delay to ensure other scripts have loaded
-});
->>>>>>> 549ce88 (:wq)
