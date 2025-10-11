@@ -170,7 +170,7 @@ header nav {
 }
 
 .hero-text h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 900;
     margin-bottom: 1rem;
     line-height: 1.1;
@@ -178,14 +178,14 @@ header nav {
 }
 
 .hero-text h2 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: var(--netflix-light-gray);
 }
 
 .hero-text p {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     line-height: 1.6;
     margin-bottom: 2rem;
     color: var(--netflix-light-gray);
@@ -208,11 +208,11 @@ header nav {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 0.9rem 1.8rem;
     border-radius: 4px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
@@ -288,7 +288,7 @@ section {
 }
 
 .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
     font-weight: 900;
     margin-bottom: 1rem;
     color: var(--netflix-white);
@@ -296,7 +296,7 @@ section {
 }
 
 .section-subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--netflix-light-gray);
     margin-bottom: 2rem;
 }
@@ -313,7 +313,7 @@ section {
 }
 
 .about-text p {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: var(--netflix-light-gray);
     margin-bottom: 2rem;
@@ -556,7 +556,7 @@ section {
 }
 
 .project-header h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--netflix-white);
     margin-bottom: 0.5rem;
@@ -583,6 +583,7 @@ section {
     color: var(--netflix-light-gray);
     line-height: 1.6;
     margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
 .project-features {
@@ -594,9 +595,9 @@ section {
 
 .project-features p {
     color: var(--netflix-light-gray);
-    line-height: 1.8;
+    line-height: 1.7;
     margin: 0.5rem 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .project-features strong {
@@ -676,14 +677,15 @@ section {
 .contact-item h4 {
     color: var(--netflix-white);
     margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .contact-item a,
 .contact-item p {
-    color: var(--netflix-light-gray);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 0.95rem;
 }
 
 .contact-item a:hover {
@@ -1640,7 +1642,7 @@ section {
 }
 
 .cert-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--netflix-white);
     margin: 0 0 0.5rem 0;
@@ -1653,7 +1655,7 @@ section {
 
 .cert-description {
     color: var(--netflix-light-gray);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin: 0 0 1rem 0;
     line-height: 1.5;
     opacity: 0.9;
