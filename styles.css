@@ -324,6 +324,18 @@ section {
     margin-top: 3rem;
 }
 
+/* Stat icon styling */
+.stat i {
+    font-size: 2rem;
+    color: var(--netflix-red);
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.stat:hover i {
+    transform: scale(1.2) rotate(5deg);
+}
+
 .stat {
     text-align: center;
     padding: 2rem;
@@ -386,6 +398,25 @@ section {
     animation: fadeInUp 0.6s ease-out;
 }
 
+/* Company header in timeline */
+.company-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(229, 9, 20, 0.1);
+    border-radius: 8px;
+    border: 2px solid var(--netflix-red);
+}
+
 .timeline-marker {
     position: absolute;
     left: -8px;
@@ -396,6 +427,14 @@ section {
     background: var(--netflix-red);
     border: 3px solid var(--netflix-black);
     box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-marker i {
+    font-size: 0.6rem;
+    color: var(--netflix-white);
 }
 
 .timeline-content {
@@ -437,7 +476,9 @@ section {
     gap: 0.5rem;
 }
 
-.tech-tags span {
+/* Tech tags with icons */
+.tech-tags span,
+.project-tech span {
     background: rgba(229, 9, 20, 0.2);
     color: var(--netflix-white);
     padding: 0.4rem 0.8rem;
@@ -445,11 +486,21 @@ section {
     font-size: 0.9rem;
     border: 1px solid var(--netflix-red);
     transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
-.tech-tags span:hover {
+.tech-tags span i,
+.project-tech span i {
+    font-size: 0.85rem;
+}
+
+.tech-tags span:hover,
+.project-tech span:hover {
     background: var(--netflix-red);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.4);
 }
 
 /* Projects Grid - Netflix Card Style */
@@ -702,6 +753,23 @@ section {
     }
 }
 
+/* Scroll reveal animations */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for cards */
+.animate-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -711,6 +779,39 @@ section {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Pulse animation for CTA buttons */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(229, 9, 20, 0);
+    }
+}
+
+.btn-primary:hover {
+    animation: pulse 1.5s infinite;
+}
+
+/* Glow effect on hover */
+.project-card:hover,
+.certification-card:hover {
+    box-shadow: 0 15px 40px rgba(229, 9, 20, 0.3),
+                0 0 30px rgba(229, 9, 20, 0.2);
+}
+
+/* Section title icons */
+.section-title i {
+    margin-right: 0.5rem;
+    color: var(--netflix-red);
+    animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 @keyframes shine {

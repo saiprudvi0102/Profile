@@ -8,24 +8,38 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-touch-fullscreen" content="yes">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Saiprudvi Ela">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Saiprudvi Ela - Software Developer | GenAI & Cloud Solutions">
+    <meta property="og:description" content="Software Developer with 4+ years of experience building scalable backend systems, GenAI-powered tools, and cloud-native applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saiprudvi0102.github.io/Profile/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Saiprudvi Ela - Software Developer">
+    <meta name="twitter:description" content="Software Developer specializing in GenAI, Java, Python, and Cloud Solutions">
+    
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
     <title>Saiprudvi Ela - Software Developer | GenAI & Cloud Solutions</title>
     <meta name="description" content="Software Developer with 4+ years of experience building scalable backend systems, GenAI-powered tools, and cloud-native applications. Specialized in Java, Python, AWS, and LLM integration.">
-    <meta name="keywords" content="Software Developer, GenAI, LLM, Java, Python, AWS, Cloud Computing, Backend Development, Machine Learning">
-    <link rel="stylesheet" href="styles.css?v=2.0">
-    <link rel="stylesheet" href="netflix-mobile-styles.css">
-
-    <!-- Ensure carousel and mobile nav styles load before scripts -->
-    <link rel="stylesheet" href="netflix-styles-fixed.css">
-    <link rel="stylesheet" href="mobile-navigation-fix.css">
-
-    <link rel="stylesheet" href="netflix-styles-fixed.css">
-    <link rel="stylesheet" href="mobile-navigation-fix.css">
-    <link rel="stylesheet" href="fixes.css">
-
+    <meta name="keywords" content="Software Developer, GenAI, LLM, Java, Python, AWS, Cloud Computing, Backend Development, Machine Learning, FastAPI, Spring Boot">
+    
+    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="netflix-mobile-styles.css?v=3.0">
+    <link rel="stylesheet" href="netflix-styles-fixed.css?v=3.0">
+    <link rel="stylesheet" href="mobile-navigation-fix.css?v=3.0">
+    <link rel="stylesheet" href="fixes.css?v=3.0">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -74,21 +88,24 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">👨‍💻 About Me</h2>
+            <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
             <div class="about-content">
                 <div class="about-text">
                     <p>Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud.</p>
                     <p>Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions across healthcare and enterprise domains.</p>
                     <div class="about-stats">
                         <div class="stat">
+                            <i class="fas fa-code"></i>
                             <h3>4+</h3>
                             <p>Years Experience</p>
                         </div>
                         <div class="stat">
+                            <i class="fas fa-project-diagram"></i>
                             <h3>10+</h3>
                             <p>Projects Completed</p>
                         </div>
                         <div class="stat">
+                            <i class="fas fa-certificate"></i>
                             <h3>7+</h3>
                             <p>Certifications</p>
                         </div>
@@ -102,51 +119,65 @@
     <section id="experience" class="experience">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">💼 Professional Experience</h2>
+                <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
                 <p class="section-subtitle">Building scalable solutions across healthcare and enterprise domains</p>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-marker"></div>
+                    <div class="timeline-marker"><i class="fas fa-building"></i></div>
                     <div class="timeline-content">
-                        <h3>Software Developer</h3>
-                        <p class="company">Tempus · Oct 2024 - Present · USA</p>
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-hospital-alt" style="font-size: 2rem; color: var(--netflix-red);"></i>
+                            </div>
+                            <div>
+                                <h3>Software Developer</h3>
+                                <p class="company"><i class="fas fa-building"></i> Tempus · Oct 2024 - Present · USA</p>
+                            </div>
+                        </div>
                         <p class="description">
                             Developing secure, high-throughput backend services using FastAPI and integrating them with LLMs via OpenAI GPT-4 and LangChain, 
                             enabling oncology researchers to auto-summarize 2TB+ of unstructured patient notes in under 10 seconds per request. 
                             Built a GenAI-enabled clinical documentation assistant deployed on GCP using Kubernetes and Docker, reducing manual reporting time by ~4 hours per oncologist weekly.
                         </p>
                         <div class="tech-tags">
-                            <span>FastAPI</span>
-                            <span>Java 17</span>
-                            <span>Spring Boot</span>
-                            <span>OpenAI GPT-4</span>
-                            <span>LangChain</span>
-                            <span>GCP</span>
-                            <span>Kubernetes</span>
-                            <span>Docker</span>
+                            <span><i class="fab fa-python"></i> FastAPI</span>
+                            <span><i class="fab fa-java"></i> Java 17</span>
+                            <span><i class="fas fa-leaf"></i> Spring Boot</span>
+                            <span><i class="fas fa-robot"></i> OpenAI GPT-4</span>
+                            <span><i class="fas fa-link"></i> LangChain</span>
+                            <span><i class="fab fa-google"></i> GCP</span>
+                            <span><i class="fas fa-dharmachakra"></i> Kubernetes</span>
+                            <span><i class="fab fa-docker"></i> Docker</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-marker"></div>
+                    <div class="timeline-marker"><i class="fas fa-building"></i></div>
                     <div class="timeline-content">
-                        <h3>Software Development Associate – Client: T-Mobile</h3>
-                        <p class="company">Deloitte · May 2020 - Aug 2023 · India</p>
+                        <div class="company-header">
+                            <div class="company-logo">
+                                <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--netflix-red);"></i>
+                            </div>
+                            <div>
+                                <h3>Software Development Associate – Client: T-Mobile</h3>
+                                <p class="company"><i class="fas fa-building"></i> Deloitte · May 2020 - Aug 2023 · India</p>
+                            </div>
+                        </div>
                         <p class="description">
                             Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, 
                             processing 120K+ daily transactions across telecom systems. Engineered backend modules for asynchronous processing with JMS and Java Mail API, 
                             improving incident response by 38%. Automated cloud operations with custom Java agents, cutting manual intervention by 60+ hours/month.
                         </p>
                         <div class="tech-tags">
-                            <span>Java 8</span>
-                            <span>Spring Boot</span>
-                            <span>PostgreSQL</span>
-                            <span>AWS</span>
-                            <span>ReactJS</span>
-                            <span>JMS</span>
-                            <span>Spring Security</span>
+                            <span><i class="fab fa-java"></i> Java 8</span>
+                            <span><i class="fas fa-leaf"></i> Spring Boot</span>
+                            <span><i class="fas fa-database"></i> PostgreSQL</span>
+                            <span><i class="fab fa-aws"></i> AWS</span>
+                            <span><i class="fab fa-react"></i> ReactJS</span>
+                            <span><i class="fas fa-envelope"></i> JMS</span>
+                            <span><i class="fas fa-shield-alt"></i> Spring Security</span>
                         </div>
                     </div>
                 </div>
@@ -156,7 +187,7 @@
     <section id="projects" class="projects">
         <div class="container">
                         <div class="section-header">
-                <h2 class="section-title">🚀 Featured Projects</h2>
+                <h2 class="section-title"><i class="fas fa-rocket"></i> Featured Projects</h2>
                 <p class="section-subtitle">Innovative solutions and impactful applications</p>
             </div>
             <div class="projects-grid">
@@ -513,17 +544,23 @@
                 </div>
                 <div class="footer-right">
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-                        <a href="mailto:saiprudviela@gmail.com" aria-label="Email">Email</a>
+                        <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="mailto:saiprudviela@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="project-modal.js"></script>
-    <script src="netflix-enhancements-fixed.js"></script>
+    <script src="script.js?v=3.0"></script>
+    <script src="project-modal.js?v=3.0"></script>
+    <script src="netflix-enhancements-fixed.js?v=3.0"></script>
 </body>
 </html>
