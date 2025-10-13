@@ -40,6 +40,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Lottie player for animated illustrations -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -75,12 +77,16 @@
                     <a href="resume.html" class="btn btn-secondary">View Resume</a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="image-placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                    </svg>
-                </div>
+            <div class="hero-image" aria-label="Animated profile illustration">
+                <lottie-player
+                    src="https://assets8.lottiefiles.com/private_files/lf30_3scd8g7j.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1;"
+                    loop
+                    autoplay
+                    aria-label="Developer profile animation"
+                ></lottie-player>
             </div>
         </div>
     </section>
@@ -90,6 +96,17 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
             <div class="about-content">
+                <div class="about-animation" style="text-align: center; margin-bottom: 2rem;">
+                    <lottie-player
+                        src="https://assets5.lottiefiles.com/packages/lf20_abqyscgx.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 200px; height: 200px; margin: 0 auto;"
+                        loop
+                        autoplay
+                        aria-label="About me animation"
+                    ></lottie-player>
+                </div>
                 <div class="about-text">
                     <p><strong>Founder & CEO of Dormunity Inc.</strong> — Building Dormigo, an AI-powered student life platform connecting 500+ students to housing, jobs, rides, and community. Leading product vision, engineering, and go-to-market strategy for a one-stop digital ecosystem that simplifies university life.</p>
                     <p>Software Developer with 4+ years of experience building scalable backend systems, cloud-native applications, and GenAI-powered tools. Skilled in Java, Python, Flutter, React, and PostgreSQL, with strong expertise in AWS and Google Cloud. Specialized in developing LLM-powered production services, microservices architecture, and full-stack mobile applications.</p>
@@ -126,6 +143,17 @@
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
                 <p class="section-subtitle">Entrepreneurship, healthcare AI, and enterprise software development</p>
+                <div style="text-align: center; margin: 2rem 0;">
+                    <lottie-player
+                        src="https://assets5.lottiefiles.com/packages/lf20_abqyscgx.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 150px; height: 150px; margin: 0 auto;"
+                        loop
+                        autoplay
+                        aria-label="Professional experience animation"
+                    ></lottie-player>
+                </div>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
@@ -225,6 +253,17 @@
                         <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-rocket"></i> Featured Projects</h2>
                 <p class="section-subtitle">Innovative solutions and impactful applications</p>
+                <div style="text-align: center; margin: 2rem 0;">
+                    <lottie-player
+                        src="https://assets5.lottiefiles.com/packages/lf20_abqyscgx.json"
+                        background="transparent"
+                        speed="1"
+                        style="width: 180px; height: 180px; margin: 0 auto;"
+                        loop
+                        autoplay
+                        aria-label="Projects animation"
+                    ></lottie-player>
+                </div>
             </div>
             <div class="projects-grid">
                 <div class="project-card">

@@ -1,3 +1,15 @@
+/* Lottie player container tweaks */
+.hero-image lottie-player,
+.lottie-inline {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+}
+
+.lottie-small {
+    max-width: 160px;
+}
 /* Netflix-Inspired Reset and Base Styles */
 * {
     margin: 0;
@@ -1478,6 +1490,7 @@ section {
     margin-bottom: 0.5rem;
     line-height: 1.4;
     display: block;
+    line-clamp: unset;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     overflow: visible;
