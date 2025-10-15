@@ -13,6 +13,7 @@ const projectData = {
             'Built REST API with FastAPI for seamless integration'
         ],
         technologies: ['PyTorch', 'FastAPI', 'Docker', 'TensorRT', 'CUDA', 'Python'],
+        image: 'assets/mobilellm-ai.svg',
         links: {
             github: 'https://github.com/saiprudvi0102/MobileLLM125M'
         }
@@ -29,6 +30,7 @@ const projectData = {
             'Validated results against industry-standard models'
         ],
         technologies: ['CUDA', 'PyCUDA', 'NumPy', 'Finance', 'Python', 'C++'],
+        image: 'assets/finance-gpu-ai.svg',
         links: {
             github: 'https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU'
         }
@@ -45,6 +47,7 @@ const projectData = {
             'Published research findings in computer vision conference'
         ],
         technologies: ['TensorFlow', 'OpenCV', 'Computer Vision', 'Neural Networks', 'Python'],
+        image: 'assets/pcnn-ai.svg',
         links: {
             github: 'https://github.com/saiprudvi0102/PCNN-Shadow-Removal'
         }
@@ -61,6 +64,7 @@ const projectData = {
             'Tested on IoT-23 dataset with 97% accuracy'
         ],
         technologies: ['FPGA', 'Verilog', 'IoT', 'Hardware', 'PYNQ-Z2', 'AXI DMA'],
+        image: 'assets/iot-fpga-ai.svg',
         links: {
             github: 'https://github.com/saiprudvi0102/AnomalyDetection'
         }
@@ -77,6 +81,7 @@ const projectData = {
             '4.5★ average user rating'
         ],
         technologies: ['Kotlin', 'Android', 'Firebase', 'MVVM', 'Jetpack Compose', 'Material Design'],
+        image: 'assets/style-stitch-ai.svg',
         links: {
             playstore: 'https://play.google.com/store/apps/details?id=com.project.BucketListTech'
         }
@@ -93,8 +98,26 @@ const projectData = {
             'Real-time chat and social features with Firebase'
         ],
         technologies: ['Flutter', 'Firebase', 'Google Maps', 'Stripe', 'Dart', 'Node.js'],
+        image: 'assets/dormigo-ai.svg',
         links: {
             playstore: 'https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp'
+        }
+    },
+    'ML Housing Price Prediction': {
+        title: 'ML Housing Price Prediction',
+        description: 'Complete MLOps pipeline analyzing US housing data (2012-2023) with automated training, serving, and monitoring.',
+        fullDetails: 'Developed a comprehensive machine learning operations (MLOps) pipeline for predicting housing prices using historical US housing data. The system includes automated data validation, model training, serving infrastructure, and monitoring capabilities.',
+        achievements: [
+            'Analyzed 10+ years of US housing data (2012-2023)',
+            'Implemented automated data validation with Great Expectations',
+            'Built scalable FastAPI serving infrastructure',
+            'Containerized deployment with Docker',
+            'Integrated MLFlow for experiment tracking and model versioning'
+        ],
+        technologies: ['Great Expectations', 'FastAPI', 'Docker', 'MLFlow', 'Python', 'Scikit-learn'],
+        image: 'assets/housing-ml-ai.svg',
+        links: {
+            github: '#'
         }
     }
 };
@@ -122,6 +145,9 @@ function showProjectDetails(projectTitle) {
         <div class="modal-content">
             <button class="modal-close" onclick="closeProjectModal()">×</button>
             <div class="modal-header">
+                <div class="modal-image">
+                    <img src="${project.image}" alt="${project.title}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
                 <h2>${project.title}</h2>
                 <p style="color: var(--netflix-light-gray); font-size: 1.1rem; margin-top: 0.5rem;">${project.description}</p>
             </div>

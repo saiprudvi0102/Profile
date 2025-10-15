@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Saiprudvi Ela">
+    <meta name="description" content="Saiprudvi Ela's technical skills and expertise in a Netflix-style interface showcasing programming languages, frameworks, and technologies.">
+    <meta name="keywords" content="Saiprudvi Ela, Skills, Programming, Technologies, Netflix, AI/ML, Cloud, Mobile Development">
+
+    <title>Saiprudvi Ela - Skills & Technologies</title>
+
+    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#E50914">
+</head>
+<body class="netflix-skills">
+    <!-- Mobile Navigation (matches profile) -->
+    <header class="mobile-header">
+        <div class="mobile-nav">
+            <div class="mobile-logo">
+                <h2>Sai Prudvi</h2>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Netflix Header -->
+    <header class="netflix-header">
+        <div class="netflix-nav">
+            <div class="netflix-logo">
+                <a href="profile.html">Saiprudvi Ela</a>
+            </div>
+            <nav class="netflix-nav-links">
+                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="skills.html" class="nav-link active">Skills</a>
+                <a href="index.html#certifications" class="nav-link">Certifications</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Skills Hero Section -->
+    <section class="skills-hero">
+        <div class="container">
+            <div class="skills-hero-content">
+                <h1 class="skills-title">Skills & Technologies</h1>
+                <p class="skills-subtitle">Explore my technical expertise across different domains</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Categories -->
+    <main class="skills-main">
+        <div class="container">
+            <!-- Programming Languages -->
+            <section class="skill-category">
+                <h2 class="category-title">Programming Languages</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="Java">
+                        <div class="skill-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <h3>Java</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Python">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3>Python</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="JavaScript">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h3>JavaScript</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="SQL">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>SQL</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="C++">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>C++</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                    <div class="skill-card" data-skill="Dart">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Dart</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Kotlin">
+                        <div class="skill-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <h3>Kotlin</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Backend & Cloud -->
+            <section class="skill-category">
+                <h2 class="category-title">Backend & Cloud</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="Spring Boot">
+                        <div class="skill-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Spring Boot</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="FastAPI">
+                        <div class="skill-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>FastAPI</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Flask">
+                        <div class="skill-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>Flask</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Node.js">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h3>Node.js</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="AWS">
+                        <div class="skill-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <h3>AWS</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Google Cloud">
+                        <div class="skill-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <h3>Google Cloud</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Firebase">
+                        <div class="skill-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Firebase</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Frontend & Mobile -->
+            <section class="skill-category">
+                <h2 class="category-title">Frontend & Mobile Development</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="React.js">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3>React.js</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Flutter">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Flutter</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Android Studio">
+                        <div class="skill-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <h3>Android Studio</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Jetpack Components">
+                        <div class="skill-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>Jetpack Components</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Material Design">
+                        <div class="skill-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Material Design</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="MVVM Architecture">
+                        <div class="skill-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h3>MVVM Architecture</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Databases -->
+            <section class="skill-category">
+                <h2 class="category-title">Databases</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="PostgreSQL">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>PostgreSQL</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="MySQL">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>MySQL</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="MongoDB">
+                        <div class="skill-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>MongoDB</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="DynamoDB">
+                        <div class="skill-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <h3>DynamoDB</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="SQL Server">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>SQL Server</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI & Machine Learning -->
+            <section class="skill-category">
+                <h2 class="category-title">AI & Machine Learning</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="Generative AI">
+                        <div class="skill-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Generative AI</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Large Language Models">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>Large Language Models</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="TensorFlow">
+                        <div class="skill-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3>TensorFlow</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="OpenAI APIs">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>OpenAI APIs</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="LangChain">
+                        <div class="skill-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>LangChain</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Hugging Face">
+                        <div class="skill-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Hugging Face</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Scikit-learn">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Scikit-learn</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DevOps & Monitoring -->
+            <section class="skill-category">
+                <h2 class="category-title">DevOps & Monitoring</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="Docker">
+                        <div class="skill-icon">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <h3>Docker</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Kubernetes">
+                        <div class="skill-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <h3>Kubernetes</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Terraform">
+                        <div class="skill-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3>Terraform</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                    <div class="skill-card" data-skill="CI/CD">
+                        <div class="skill-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>CI/CD Pipelines</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Git">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3>Git</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="GitHub Actions">
+                        <div class="skill-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub Actions</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools & Platforms -->
+            <section class="skill-category">
+                <h2 class="category-title">Tools & Platforms</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="IntelliJ">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>IntelliJ</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="VS Code">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>VS Code</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Postman">
+                        <div class="skill-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <h3>Postman</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Figma">
+                        <div class="skill-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Figma</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                    <div class="skill-card" data-skill="GitHub Copilot">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>GitHub Copilot</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Cursor">
+                        <div class="skill-icon">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <h3>Cursor</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="netflix-footer">
+        <div class="container">
+            <p>&copy; 2025 Saiprudvi Ela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=4.0"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Skills page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for skill categories
+            const skillCategories = document.querySelectorAll('.skill-category');
+            
+            skillCategories.forEach(category => {
+                // Add scroll animations
+                category.style.opacity = '0';
+                category.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    category.style.transition = 'all 0.6s ease';
+                    category.style.opacity = '1';
+                    category.style.transform = 'translateY(0)';
+                }, 100);
+            });
+
+            // Add hover effects for skill cards
+            const skillCards = document.querySelectorAll('.skill-card');
+            
+            skillCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) translateY(-5px)';
+                    this.style.boxShadow = '0 15px 40px rgba(229, 9, 20, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) translateY(0)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                });
+            });
+
+            // Add click effects for skill cards
+            skillCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const skill = this.getAttribute('data-skill');
+                    console.log(`Clicked on skill: ${skill}`);
+                    
+                    // Add a brief highlight effect
+                    this.style.background = 'linear-gradient(135deg, var(--netflix-red), #ff6b6b)';
+                    setTimeout(() => {
+                        this.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

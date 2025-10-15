@@ -1,0 +1,46 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E50914;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+  
+  <!-- GPU Card -->
+  <rect x="150" y="80" width="100" height="60" rx="10" fill="#333" stroke="#E50914" stroke-width="2"/>
+  <rect x="160" y="90" width="80" height="40" fill="#000"/>
+  
+  <!-- GPU Fans -->
+  <circle cx="170" cy="110" r="8" fill="#E50914"/>
+  <circle cx="190" cy="110" r="8" fill="#E50914"/>
+  <circle cx="210" cy="110" r="8" fill="#E50914"/>
+  
+  <!-- Financial Chart -->
+  <rect x="80" y="180" width="240" height="80" fill="#333" stroke="#E50914" stroke-width="1"/>
+  <polyline points="100,240 120,220 140,230 160,200 180,210 200,190 220,180 240,170 260,160 280,150 300,140 320,130" 
+            fill="none" stroke="#E50914" stroke-width="2"/>
+  
+  <!-- Monte Carlo Simulation -->
+  <circle cx="100" cy="100" r="3" fill="#E50914"/>
+  <circle cx="120" cy="90" r="3" fill="#E50914"/>
+  <circle cx="140" cy="110" r="3" fill="#E50914"/>
+  <circle cx="160" cy="95" r="3" fill="#E50914"/>
+  <circle cx="180" cy="105" r="3" fill="#E50914"/>
+  <circle cx="200" cy="85" r="3" fill="#E50914"/>
+  <circle cx="220" cy="115" r="3" fill="#E50914"/>
+  <circle cx="240" cy="100" r="3" fill="#E50914"/>
+  <circle cx="260" cy="90" r="3" fill="#E50914"/>
+  <circle cx="280" cy="110" r="3" fill="#E50914"/>
+  <circle cx="300" cy="95" r="3" fill="#E50914"/>
+  
+  <!-- Text -->
+  <text x="200" y="50" text-anchor="middle" fill="white" font-family="Arial" font-size="16" font-weight="bold">GPU Financial Risk</text>
+  <text x="200" y="280" text-anchor="middle" fill="#ccc" font-family="Arial" font-size="12">Monte Carlo Analysis</text>
+</svg>

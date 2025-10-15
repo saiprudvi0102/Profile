@@ -449,10 +449,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Project Modal Functionality
+    // Project Netflix-style Overlay Functionality
     const projectCards = document.querySelectorAll('.project-card');
     
     projectCards.forEach(card => {
+        // Create detailed overlay for each card
+        createProjectOverlay(card);
+        
         card.addEventListener('click', function(e) {
             // Don't open modal if clicking on links
             if (e.target.closest('.project-link')) {
@@ -470,6 +473,69 @@ document.addEventListener('DOMContentLoaded', function() {
             openProjectModal(projectTitle, projectDescription, projectTech, projectLinks);
         });
     });
+
+    function createProjectOverlay(card) {
+        const projectId = card.getAttribute('data-project');
+        const overlay = document.createElement('div');
+        overlay.className = 'project-details-overlay';
+        
+        // Get project data
+        const title = card.querySelector('h3').textContent;
+        const description = card.querySelector('p').textContent;
+        const tech = Array.from(card.querySelectorAll('.project-tech span')).map(span => span.textContent);
+        const links = Array.from(card.querySelectorAll('.project-link')).map(link => ({
+            text: link.textContent.trim(),
+            href: link.href
+        }));
+        
+        // Special content for Dormigo project
+        let specialContent = '';
+        if (projectId === 'dormigo') {
+            specialContent = `
+                <div class="startup-details">
+                    <h5 style="color: #00d4aa; margin-bottom: 1rem; font-size: 1.1rem;">🚀 Dormunity Inc. - Student Life Revolution</h5>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                        <div>
+                            <strong style="color: var(--netflix-red);">500+ Students</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">Active Users</span>
+                        </div>
+                        <div>
+                            <strong style="color: var(--netflix-red);">4 Core Features</strong><br>
+                            <span style="color: rgba(255,255,255,0.7);">Housing, Jobs, Rides, Community</span>
+                        </div>
+                    </div>
+                    <div style="background: rgba(0,212,170,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 3px solid #00d4aa;">
+                        <h6 style="color: #00d4aa; margin-bottom: 0.5rem;">Key Features:</h6>
+                        <ul style="color: rgba(255,255,255,0.8); font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li>AI-powered housing recommendations</li>
+                            <li>Verified part-time job listings</li>
+                            <li>Safe ride-sharing network</li>
+                            <li>Community events & networking</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+        
+        overlay.innerHTML = `
+            <h4>${title}</h4>
+            <p>${description}</p>
+            ${specialContent}
+            <div class="tech-preview">
+                ${tech.slice(0, 4).map(t => `<span>${t}</span>`).join('')}
+            </div>
+            <div class="action-buttons">
+                ${links.map(link => `
+                    <a href="${link.href}" target="_blank" rel="noopener" class="action-btn">
+                        <i class="${link.text.includes('GitHub') ? 'fab fa-github' : link.text.includes('Play Store') ? 'fab fa-google-play' : 'fas fa-globe'}"></i>
+                        ${link.text}
+                    </a>
+                `).join('')}
+            </div>
+        `;
+        
+        card.appendChild(overlay);
+    }
 
     function openProjectModal(title, description, tech, links) {
         // Create modal overlay

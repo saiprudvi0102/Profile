@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai Prudvi - Choose Your Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#E50914">
+    <meta name="description" content="Sai Prudvi - AI/ML Engineer, Mobile Developer, and Tech Entrepreneur">
+</head>
+<body class="netflix-landing">
+    <!-- Mobile Navigation -->
+    <header class="mobile-header">
+        <div class="mobile-nav">
+            <div class="mobile-logo">
+                <h2>Sai Prudvi</h2>
+            </div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Netflix-style Landing Page -->
+    <div class="netflix-container">
+        <!-- Netflix Logo -->
+        <div class="netflix-logo">
+            <h1>Sai Prudvi</h1>
+            <p class="netflix-subtitle">Choose Your Profile</p>
+        </div>
+
+        <!-- Profile Selection Grid -->
+        <div class="netflix-profiles">
+            <!-- About Me Profile -->
+            <div class="netflix-profile" data-section="about">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3>About Me</h3>
+            </div>
+
+            <!-- Experience Profile -->
+            <div class="netflix-profile" data-section="experience">
+                <div class="profile-avatar">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Experience</h3>
+            </div>
+
+            <!-- Projects Profile -->
+            <div class="netflix-profile" data-section="projects">
+                <div class="profile-avatar">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Projects</h3>
+            </div>
+
+            <!-- Certifications Profile -->
+            <div class="netflix-profile" data-section="certifications">
+                <div class="profile-avatar">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>Certifications</h3>
+            </div>
+
+            <!-- Skills Profile -->
+            <div class="netflix-profile" data-section="skills">
+                <div class="profile-avatar">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Skills</h3>
+            </div>
+
+            <!-- Contact Profile -->
+            <div class="netflix-profile" data-section="contact">
+                <div class="profile-avatar">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Contact</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        });
+
+        // Netflix-style profile selection
+        document.addEventListener('DOMContentLoaded', function() {
+            const profiles = document.querySelectorAll('.netflix-profile');
+            
+            profiles.forEach(profile => {
+                profile.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    
+                    // Navigate to the appropriate section
+                    switch(section) {
+                        case 'about':
+                            window.location.href = 'index.html#about';
+                            break;
+                        case 'experience':
+                            window.location.href = 'experience.html';
+                            break;
+                        case 'projects':
+                            window.location.href = 'projects.html';
+                            break;
+                        case 'certifications':
+                            window.location.href = 'certifications.html';
+                            break;
+                        case 'skills':
+                            window.location.href = 'skills.html';
+                            break;
+                        case 'contact':
+                            window.location.href = 'contact.html';
+                            break;
+                    }
+                });
+                
+                // Add hover effects
+                profile.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                profile.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

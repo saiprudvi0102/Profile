@@ -49,11 +49,13 @@
         <nav class="container">
             <div class="logo">Saiprudvi Ela</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -130,11 +132,14 @@
 
     <!-- Experience Section -->
     <section id="experience" class="experience">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
-                <p class="section-subtitle">Entrepreneurship, healthcare AI, and enterprise software development</p>
+        <!-- Netflix-style Experience Hero -->
+        <div class="experience-hero">
+            <div class="container">
+                <h2 class="experience-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
+                <p class="experience-subtitle">Entrepreneurship, healthcare AI, and enterprise software development</p>
             </div>
+        </div>
+        <div class="container">
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"><i class="fas fa-rocket"></i></div>
@@ -248,7 +253,7 @@
             <!-- Projects Grid -->
             <div class="projects-grid">
                 <!-- AI/ML Projects -->
-                <div class="project-card" data-category="ai-ml" data-project="mobilellm">
+                <div class="project-card" data-category="ai-ml" data-project="mobilellm" onclick="showProjectDetails('MobileLLM-125M Deployment')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-brain"></i>
@@ -272,7 +277,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="ai-ml" data-project="housing">
+                <div class="project-card" data-category="ai-ml" data-project="housing" onclick="showProjectDetails('ML Housing Price Prediction')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-chart-line"></i>
@@ -296,7 +301,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="ai-ml" data-project="finance">
+                <div class="project-card" data-category="ai-ml" data-project="finance" onclick="showProjectDetails('GPU-Accelerated Financial Risk Analysis')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-coins"></i>
@@ -320,7 +325,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="ai-ml" data-project="pcnn">
+                <div class="project-card" data-category="ai-ml" data-project="pcnn" onclick="showProjectDetails('PCNN Shadow Removal')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-eye"></i>
@@ -345,7 +350,7 @@
                 </div>
 
                 <!-- Mobile Apps -->
-                <div class="project-card" data-category="mobile" data-project="style">
+                <div class="project-card" data-category="mobile" data-project="style" onclick="showProjectDetails('StyleStitch Fashion App')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-mobile-alt"></i>
@@ -369,7 +374,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="mobile" data-project="dormigo">
+                <div class="project-card" data-category="mobile" data-project="dormigo" onclick="showProjectDetails('Dormigo Super App')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-university"></i>
@@ -397,7 +402,7 @@
                 </div>
 
                 <!-- Hardware/IoT -->
-                <div class="project-card" data-category="hardware" data-project="iot">
+                <div class="project-card" data-category="hardware" data-project="iot" onclick="showProjectDetails('IoT Anomaly Detection on FPGA')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-microchip"></i>

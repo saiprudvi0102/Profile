@@ -3,393 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Sai Prudvi Ela</title>
-    <meta name="description" content="Portfolio of projects by Sai Prudvi Ela - Full-Stack Developer & AI Engineer">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="fixes.css">
+    <meta name="author" content="Saiprudvi Ela">
+    <meta name="description" content="Saiprudvi Ela's innovative projects and portfolio in a Netflix-style interface showcasing mobile apps, AI/ML solutions, and technical achievements.">
+    <meta name="keywords" content="Saiprudvi Ela, Projects, MobileLLM, Dormigo, Portfolio, AI/ML, Mobile Development, Netflix">
+
+    <title>Saiprudvi Ela - Projects & Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .projects-page {
-            padding: 120px 0 80px;
-        }
-        
-        .projects-hero {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .project-categories {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .category-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid #2563eb;
-            background: transparent;
-            color: #2563eb;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .category-btn:hover,
-        .category-btn.active {
-            background: #2563eb;
-            color: white;
-        }
-        
-        .projects-expanded {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .project-detailed {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .project-detailed:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-        
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
-        
-        @media (max-width: 768px) {
-            .projects-expanded {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#E50914">
 </head>
-<body>
-    <!-- Header -->
-        <header>
-        <nav class="container">
-            <div class="logo"><a href="index.html">Saiprudvi Ela</a></div>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="projects.html" class="active">Projects</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="mobile-toggle" aria-label="Toggle navigation">
+<body class="netflix-projects">
+    <!-- Mobile Navigation (matches profile) -->
+    <header class="mobile-header">
+        <div class="mobile-nav">
+            <div class="mobile-logo">
+                <h2>Sai Prudvi</h2>
+            </div>
+            <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
+        </div>
+        <nav class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
         </nav>
     </header>
 
-    <!-- Projects Page Content -->
-    <section class="projects-page">
+    <!-- Netflix Header -->
+    <header class="netflix-header">
+        <div class="netflix-nav">
+            <div class="netflix-logo">
+                <a href="profile.html">Saiprudvi Ela</a>
+            </div>
+            <nav class="netflix-nav-links">
+                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Projects Hero Section -->
+    <section class="projects-hero">
         <div class="container">
-            <div class="projects-hero">
-                <h1 class="section-title">My Projects</h1>
-                <p class="section-subtitle">
-                    A comprehensive look at my work in AI/ML, full-stack development, and cloud technologies
-                </p>
-                <div style="text-align: center; margin: 2rem 0 3rem 0;">
-                    <lottie-player
-                        src="assets/Developer Front End.json"
-                        background="transparent"
-                        speed="1"
-                        style="width: 250px; height: 250px; margin: 0 auto;"
-                        loop
-                        autoplay
-                        aria-label="Projects showcase animation"
-                    ></lottie-player>
-                </div>
-            </div>
-            
-            <div class="project-categories">
-                <button class="category-btn active" data-category="all">All Projects</button>
-                <button class="category-btn" data-category="ai">AI/ML</button>
-                <button class="category-btn" data-category="web">Web Apps</button>
-                <button class="category-btn" data-category="mobile">Mobile</button>
-                <button class="category-btn" data-category="cloud">Cloud</button>
-            </div>
-            
-            <div class="projects-expanded">
-                <!-- AI/ML Projects -->
-                <div class="project-detailed" data-category="ai">
-                    <div class="project-image">🤖</div>
-                    <div class="project-meta">
-                        <span>AI/ML • 2024</span>
-                        <span>⭐ Featured</span>
-                    </div>
-                    <h3>MobileLLM-125M Deployment</h3>
-                    <p>Fine-tuned and quantized a 125M parameter LLM for on-device inference with FastAPI serving, 
-                    Dockerized pipelines, and multi-GPU training. Achieved 62.8% downstream accuracy and 7.91 perplexity 
-                    with &lt; 120ms response on mobile hardware.</p>
-                    
-                    <h4 style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #1f2937;">Key Achievements:</h4>
-                    <ul style="margin: 0 0 1rem 1rem; color: #4b5563; font-size: 0.9rem;">
-                        <li>62.8% downstream accuracy on mobile devices</li>
-                        <li>7.91 perplexity score</li>
-                        <li>Sub-120ms inference time</li>
-                        <li>Multi-GPU training pipeline</li>
-                    </ul>
-                    
-                    <div class="project-tech">
-                        <span>PyTorch</span>
-                        <span>FastAPI</span>
-                        <span>Docker</span>
-                        <span>TensorRT</span>
-                        <span>CUDA</span>
-                    </div>
-                    
-                    <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" class="project-link">GitHub Repository</a>
-                    </div>
-                </div>
-
-                <div class="project-detailed" data-category="ai cloud">
-                    <div class="project-image">💰</div>
-                    <div class="project-meta">
-                        <span>AI/ML • Finance • 2024</span>
-                        <span>🚀 Performance</span>
-                    </div>
-                    <h3>GPU-Accelerated Financial Risk Analysis</h3>
-                    <p>PyCUDA Monte Carlo engine for VaR and covariance estimation at one-million day scales, 
-                    leveraging GPU parallelism for a 1.57× runtime improvement over CPU baselines while maintaining numeric precision.</p>
-                    
-                    <h4 style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #1f2937;">Performance Metrics:</h4>
-                    <ul style="margin: 0 0 1rem 1rem; color: #4b5563; font-size: 0.9rem;">
-                        <li>1.57× faster than CPU implementation</li>
-                        <li>Million-day scale processing</li>
-                        <li>Maintained numeric precision</li>
-                        <li>Scalable GPU utilization</li>
-                    </ul>
-                    
-                    <div class="project-tech">
-                        <span>CUDA</span>
-                        <span>PyCUDA</span>
-                        <span>NumPy</span>
-                        <span>Finance</span>
-                        <span>Monte Carlo</span>
-                    </div>
-                    
-                    <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" class="project-link">GitHub Repository</a>
-                    </div>
-                </div>
-
-                <div class="project-detailed" data-category="ai">
-                    <div class="project-image">🖼️</div>
-                    <div class="project-meta">
-                        <span>Computer Vision • 2023</span>
-                        <span>🧠 Research</span>
-                    </div>
-                    <h3>PCNN Shadow Removal</h3>
-                    <p>Implemented biologically inspired pulse-coupled neural networks for adaptive shadow segmentation, 
-                    delivering 94.2% detection accuracy and 0.89 image quality index across benchmark datasets.</p>
-                    
-                    <h4 style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #1f2937;">Research Results:</h4>
-                    <ul style="margin: 0 0 1rem 1rem; color: #4b5563; font-size: 0.9rem;">
-                        <li>94.2% shadow detection accuracy</li>
-                        <li>0.89 image quality index</li>
-                        <li>Biologically inspired architecture</li>
-                        <li>Real-time processing capability</li>
-                    </ul>
-                    
-                    <div class="project-tech">
-                        <span>TensorFlow</span>
-                        <span>OpenCV</span>
-                        <span>Computer Vision</span>
-                        <span>Neural Networks</span>
-                        <span>Image Processing</span>
-                    </div>
-                    
-                    <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" class="project-link">GitHub Repository</a>
-                    </div>
-                </div>
-
-                <div class="project-detailed" data-category="ai cloud">
-                    <div class="project-image">🔌</div>
-                    <div class="project-meta">
-                        <span>FPGA • IoT • 2023</span>
-                        <span>⚡ Hardware</span>
-                    </div>
-                    <h3>IoT Anomaly Detection on FPGA</h3>
-                    <p>Deployed an ANN pipeline on a PYNQ-Z2 FPGA with AXI DMA and BRAM streaming to spot 
-                    IoT-23 anomalies in microseconds, driving LED alerts directly from hardware for edge deployments.</p>
-                    
-                    <h4 style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #1f2937;">Hardware Features:</h4>
-                    <ul style="margin: 0 0 1rem 1rem; color: #4b5563; font-size: 0.9rem;">
-                        <li>Microsecond anomaly detection</li>
-                        <li>AXI DMA streaming</li>
-                        <li>BRAM optimization</li>
-                        <li>Real-time LED alerts</li>
-                    </ul>
-                    
-                    <div class="project-tech">
-                        <span>FPGA</span>
-                        <span>Verilog</span>
-                        <span>PYNQ</span>
-                        <span>IoT</span>
-                        <span>Hardware</span>
-                    </div>
-                    
-                    <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" class="project-link">GitHub Repository</a>
-                    </div>
-                </div>
-
-                <div class="project-detailed" data-category="mobile">
-                    <div class="project-image">👗</div>
-                    <div class="project-meta">
-                        <span>Android • 2023</span>
-                        <span>📱 Published</span>
-                    </div>
-                    <h3>StyleStitch Fashion App</h3>
-                    <p>Android fashion app built with Kotlin, Jetpack Libraries, and MVVM architecture. 
-                    Integrated Firebase for real-time data and reduced latency by 25%. Published on Google Play Store.</p>
-                    
-                    <h4 style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #1f2937;">App Metrics:</h4>
-                    <ul style="margin: 0 0 1rem 1rem; color: #4b5563; font-size: 0.9rem;">
-                        <li>25% latency reduction</li>
-                        <li>Real-time data synchronization</li>
-                        <li>Clean MVVM architecture</li>
-                        <li>Google Play Store published</li>
-                    </ul>
-                    
-                    <div class="project-tech">
-                        <span>Kotlin</span>
-                        <span>Android</span>
-                        <span>Firebase</span>
-                        <span>MVVM</span>
-                        <span>Jetpack</span>
-                    </div>
-                    
-                    <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank" rel="noopener" class="project-link">Play Store</a>
-                    </div>
-                </div>
-
-                <div class="project-detailed" data-category="mobile web">
-                    <div class="project-image">🏠</div>
-                    <div class="project-meta">
-                        <span>Flutter • Campus • 2022</span>
-                        <span>🎓 Student Life</span>
-                    </div>
-                    <h3>Dormigo Super App</h3>
-                    <p>Campus life management app integrating ridesharing, accommodation, and social networking. 
-                    <strong>🚀 App Store launching soon!</strong> Built with Flutter and Firebase with 500+ active students and 95% user satisfaction rate.</p>
-                    
-                    <h4 style="margin: 1rem 0 0.5rem; font-size: 0.9rem; color: #1f2937;">Impact Metrics:</h4>
-                    <ul style="margin: 0 0 1rem 1rem; color: #4b5563; font-size: 0.9rem;">
-                        <li>500+ active students</li>
-                        <li>95% user satisfaction</li>
-                        <li>Multi-service integration</li>
-                        <li>Real-time GPS tracking</li>
-                    </ul>
-                    
-                    <div class="project-tech">
-                        <span>Flutter</span>
-                        <span>Firebase</span>
-                        <span>Google Maps</span>
-                        <span>Stripe</span>
-                        <span>Real-time</span>
-                    </div>
-                    
-                    <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="project-link">Play Store</a>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; padding: 2rem; background: #f8fafc; border-radius: 12px;">
-                <h3>Interested in collaborating?</h3>
-                <p style="color: #64748b; margin: 1rem 0;">
-                    I'm always open to discussing new projects and opportunities. Let's build something amazing together!
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="contact.html" class="btn btn-primary">Get In Touch</a>
-                    <a href="https://github.com/saiprudvi0102" class="btn btn-secondary" target="_blank" rel="noopener">View All Code</a>
-                </div>
+            <div class="projects-hero-content">
+                <h1 class="projects-title">Projects & Portfolio</h1>
+                <p class="projects-subtitle">Innovative solutions and impactful applications</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Projects Grid -->
+    <main class="projects-main">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <p>&copy; <span id="currentYear">2024</span> Sai Prudvi Ela. All rights reserved.</p>
+            <div class="projects-grid">
+                <!-- AI/ML Projects -->
+                <div class="project-card" data-category="ai-ml" data-project="mobilellm">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>MobileLLM-125M Deployment</h3>
+                        <p>Fine-tuned and quantized a 125M parameter LLM for on-device inference with FastAPI serving, Dockerized pipelines, and multi-GPU training.</p>
+                        <div class="project-tech">
+                            <span>PyTorch</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
+                            <span>TensorRT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-right">
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/prudvi-ela" target="_blank" rel="noopener">LinkedIn</a>
-                        <a href="https://github.com/saiprudvi0102" target="_blank" rel="noopener">GitHub</a>
-                        <a href="mailto:saiprudviela@gmail.com">Email</a>
+
+                <div class="project-card" data-category="ai-ml" data-project="housing">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="project-status">In Development</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>ML Housing Price Prediction</h3>
+                        <p>Complete MLOps pipeline analyzing US housing data (2012-2023) with automated training, serving, and monitoring.</p>
+                        <div class="project-tech">
+                            <span>Great Expectations</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
+                            <span>MLFlow</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link disabled">
+                                <i class="fas fa-code"></i> In Development
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-ml" data-project="finance">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>GPU Financial Risk Analysis</h3>
+                        <p>PyCUDA Monte Carlo engine for VaR and covariance estimation at one-million day scales with 1.57× runtime improvement.</p>
+                        <div class="project-tech">
+                            <span>CUDA</span>
+                            <span>PyCUDA</span>
+                            <span>NumPy</span>
+                            <span>Finance</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="ai-ml" data-project="pcnn">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>PCNN Shadow Removal</h3>
+                        <p>Biologically inspired pulse-coupled neural networks for adaptive shadow segmentation with 94.2% detection accuracy.</p>
+                        <div class="project-tech">
+                            <span>TensorFlow</span>
+                            <span>OpenCV</span>
+                            <span>Computer Vision</span>
+                            <span>Neural Networks</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Apps -->
+                <div class="project-card" data-category="mobile" data-project="style">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>StyleStitch Fashion App</h3>
+                        <p>Android fashion app built with Kotlin, Jetpack Libraries, and MVVM architecture. Integrated Firebase for real-time data.</p>
+                        <div class="project-tech">
+                            <span>Kotlin</span>
+                            <span>Android</span>
+                            <span>Firebase</span>
+                            <span>MVVM</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="mobile" data-project="dormigo">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="project-status">Launching Soon</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Dormigo Super App</h3>
+                        <p>AI-powered student life platform connecting 500+ students to verified housing, part-time jobs, ride-sharing, and community networking.</p>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>Firebase</span>
+                            <span>AI/ML</span>
+                            <span>Mobile</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                            <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">
+                                <i class="fas fa-globe"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hardware/IoT -->
+                <div class="project-card" data-category="hardware" data-project="iot">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>IoT Anomaly Detection on FPGA</h3>
+                        <p>Deployed an ANN pipeline on a PYNQ-Z2 FPGA with AXI DMA and BRAM streaming to spot IoT-23 anomalies in microseconds.</p>
+                        <div class="project-tech">
+                            <span>FPGA</span>
+                            <span>Verilog</span>
+                            <span>IoT</span>
+                            <span>Hardware</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </main>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="project-modal">
+        <!-- Modal content will be dynamically inserted here -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="netflix-footer">
+        <div class="container">
+            <p>&copy; 2025 Saiprudvi Ela. All rights reserved.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4.0"></script>
+    <script src="project-modal.js"></script>
     <script>
-        // Project filtering functionality
+        // Hamburger menu functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            const projects = document.querySelectorAll('.project-detailed');
-
-            categoryButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const category = this.dataset.category;
-                    
-                    // Update active button
-                    categoryButtons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter projects
-                    projects.forEach(project => {
-                        const projectCategories = project.dataset.category.split(' ');
-                        
-                        if (category === 'all' || projectCategories.includes(category)) {
-                            project.style.display = 'block';
-                            project.style.animation = 'fadeInUp 0.6s ease forwards';
-                        } else {
-                            project.style.display = 'none';
-                        }
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
                     });
+                });
+            }
+        });
+
+        // Projects page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for project categories
+            const projectCategories = document.querySelectorAll('.project-category');
+            
+            projectCategories.forEach(category => {
+                // Add scroll animations
+                category.style.opacity = '0';
+                category.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    category.style.transition = 'all 0.6s ease';
+                    category.style.opacity = '1';
+                    category.style.transform = 'translateY(0)';
+                }, 100);
+            });
+
+            // Add hover effects for project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) translateY(-5px)';
+                    this.style.boxShadow = '0 15px 40px rgba(229, 9, 20, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) translateY(0)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                });
+            });
+
+            // Add click functionality for project cards to show modal
+            projectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const projectTitle = this.querySelector('h3').textContent;
+                    showProjectDetails(projectTitle);
                 });
             });
         });
