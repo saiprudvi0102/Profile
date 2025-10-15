@@ -324,4 +324,258 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(section);
     });
+
+    // Enhanced smooth swipe functionality for certifications
+    const certificationsRow = document.querySelector('.certifications-row');
+    if (certificationsRow) {
+        let isScrolling = false;
+        let startX = 0;
+        let scrollLeft = 0;
+        let velocity = 0;
+        let lastTime = 0;
+        let lastScrollLeft = 0;
+
+        // Touch events for mobile swipe
+        certificationsRow.addEventListener('touchstart', (e) => {
+            isScrolling = true;
+            startX = e.touches[0].pageX - certificationsRow.offsetLeft;
+            scrollLeft = certificationsRow.scrollLeft;
+            lastTime = Date.now();
+            lastScrollLeft = scrollLeft;
+            certificationsRow.style.scrollBehavior = 'auto';
+        });
+
+        certificationsRow.addEventListener('touchmove', (e) => {
+            if (!isScrolling) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - certificationsRow.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            certificationsRow.scrollLeft = scrollLeft - walk;
+            
+            // Calculate velocity for momentum scrolling
+            const currentTime = Date.now();
+            const timeDiff = currentTime - lastTime;
+            if (timeDiff > 0) {
+                velocity = (certificationsRow.scrollLeft - lastScrollLeft) / timeDiff;
+                lastTime = currentTime;
+                lastScrollLeft = certificationsRow.scrollLeft;
+            }
+        });
+
+        certificationsRow.addEventListener('touchend', () => {
+            isScrolling = false;
+            certificationsRow.style.scrollBehavior = 'smooth';
+            
+            // Apply momentum scrolling
+            if (Math.abs(velocity) > 0.1) {
+                const momentum = velocity * 200; // Momentum multiplier
+                certificationsRow.scrollLeft += momentum;
+            }
+        });
+
+        // Mouse drag support for desktop
+        let isMouseDown = false;
+        let mouseStartX = 0;
+        let mouseScrollLeft = 0;
+
+        certificationsRow.addEventListener('mousedown', (e) => {
+            isMouseDown = true;
+            certificationsRow.style.cursor = 'grabbing';
+            mouseStartX = e.pageX - certificationsRow.offsetLeft;
+            mouseScrollLeft = certificationsRow.scrollLeft;
+            certificationsRow.style.scrollBehavior = 'auto';
+        });
+
+        certificationsRow.addEventListener('mouseleave', () => {
+            isMouseDown = false;
+            certificationsRow.style.cursor = 'grab';
+            certificationsRow.style.scrollBehavior = 'smooth';
+        });
+
+        certificationsRow.addEventListener('mouseup', () => {
+            isMouseDown = false;
+            certificationsRow.style.cursor = 'grab';
+            certificationsRow.style.scrollBehavior = 'smooth';
+        });
+
+        certificationsRow.addEventListener('mousemove', (e) => {
+            if (!isMouseDown) return;
+            e.preventDefault();
+            const x = e.pageX - certificationsRow.offsetLeft;
+            const walk = (x - mouseStartX) * 2;
+            certificationsRow.scrollLeft = mouseScrollLeft - walk;
+        });
+
+        // Smooth scroll to center on card hover (desktop)
+        const certificationCards = document.querySelectorAll('.certification-card');
+        certificationCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if (!isMouseDown && !isScrolling) {
+                    const cardRect = card.getBoundingClientRect();
+                    const containerRect = certificationsRow.getBoundingClientRect();
+                    const cardCenter = cardRect.left + cardRect.width / 2;
+                    const containerCenter = containerRect.left + containerRect.width / 2;
+                    const scrollAmount = cardCenter - containerCenter;
+                    
+                    certificationsRow.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add smooth scroll indicators
+        const container = document.querySelector('.certifications-row-container');
+        if (container) {
+            // Add fade effects on scroll
+            certificationsRow.addEventListener('scroll', () => {
+                const scrollLeft = certificationsRow.scrollLeft;
+                const maxScroll = certificationsRow.scrollWidth - certificationsRow.clientWidth;
+                
+                // Add fade effect to edges
+                if (scrollLeft > 0) {
+                    container.style.setProperty('--fade-left', '1');
+                } else {
+                    container.style.setProperty('--fade-left', '0');
+                }
+                
+                if (scrollLeft < maxScroll - 1) {
+                    container.style.setProperty('--fade-right', '1');
+                } else {
+                    container.style.setProperty('--fade-right', '0');
+                }
+            });
+        }
+    }
+
+    // Project Modal Functionality
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // Don't open modal if clicking on links
+            if (e.target.closest('.project-link')) {
+                return;
+            }
+            
+            const projectTitle = this.querySelector('h3').textContent;
+            const projectDescription = this.querySelector('p').textContent;
+            const projectTech = Array.from(this.querySelectorAll('.project-tech span')).map(span => span.textContent);
+            const projectLinks = Array.from(this.querySelectorAll('.project-link')).map(link => ({
+                text: link.textContent.trim(),
+                href: link.href
+            }));
+            
+            openProjectModal(projectTitle, projectDescription, projectTech, projectLinks);
+        });
+    });
+
+    function openProjectModal(title, description, tech, links) {
+        // Create modal overlay
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'modal-overlay';
+        modalOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
+
+        // Create modal content
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalContent.style.cssText = `
+            background: var(--netflix-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        `;
+
+        // Create close button
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '×';
+        closeBtn.className = 'modal-close';
+        closeBtn.style.cssText = `
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--netflix-red);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+
+        // Create modal HTML
+        modalContent.innerHTML = `
+            <h2 style="color: var(--netflix-white); margin-bottom: 1rem; font-size: 1.8rem;">${title}</h2>
+            <p style="color: var(--netflix-light-gray); margin-bottom: 1.5rem; line-height: 1.6;">${description}</p>
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--netflix-red); margin-bottom: 0.5rem; font-size: 1.1rem;">Technologies Used:</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    ${tech.map(t => `<span style="background: var(--netflix-red); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">${t}</span>`).join('')}
+                </div>
+            </div>
+            <div>
+                <h3 style="color: var(--netflix-red); margin-bottom: 0.5rem; font-size: 1.1rem;">Links:</h3>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    ${links.map(link => `<a href="${link.href}" target="_blank" rel="noopener" style="background: transparent; color: var(--netflix-red); padding: 0.5rem 1rem; border: 1px solid var(--netflix-red); border-radius: 6px; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease;">${link.text}</a>`).join('')}
+                </div>
+            </div>
+        `;
+
+        modalContent.appendChild(closeBtn);
+        modalOverlay.appendChild(modalContent);
+        document.body.appendChild(modalOverlay);
+
+        // Animate modal in
+        setTimeout(() => {
+            modalOverlay.style.opacity = '1';
+            modalContent.style.transform = 'scale(1)';
+        }, 10);
+
+        // Close modal functionality
+        function closeModal() {
+            modalOverlay.style.opacity = '0';
+            modalContent.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                document.body.removeChild(modalOverlay);
+            }, 300);
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    }
 });

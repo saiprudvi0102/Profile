@@ -79,7 +79,7 @@
             </div>
             <div class="hero-image" aria-label="Animated profile illustration">
                 <lottie-player
-                    src="https://assets8.lottiefiles.com/private_files/lf30_3scd8g7j.json"
+                    src="assets/Developer Front End.json"
                     background="transparent"
                     speed="1"
                     style="width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1;"
@@ -96,16 +96,7 @@
         <div class="container">
             <h2 class="section-title"><i class="fas fa-user-circle"></i> About Me</h2>
             <div class="about-content">
-                <div class="about-animation" style="text-align: center; margin-bottom: 2rem;">
-                    <lottie-player
-                        src="https://assets5.lottiefiles.com/packages/lf20_abqyscgx.json"
-                        background="transparent"
-                        speed="1"
-                        style="width: 200px; height: 200px; margin: 0 auto;"
-                        loop
-                        autoplay
-                        aria-label="About me animation"
-                    ></lottie-player>
+                   
                 </div>
                 <div class="about-text">
                     <p><strong>Founder & CEO of Dormunity Inc.</strong> — Building Dormigo, an AI-powered student life platform connecting 500+ students to housing, jobs, rides, and community. Leading product vision, engineering, and go-to-market strategy for a one-stop digital ecosystem that simplifies university life.</p>
@@ -143,17 +134,6 @@
             <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-briefcase"></i> Professional Experience</h2>
                 <p class="section-subtitle">Entrepreneurship, healthcare AI, and enterprise software development</p>
-                <div style="text-align: center; margin: 2rem 0;">
-                    <lottie-player
-                        src="https://assets5.lottiefiles.com/packages/lf20_abqyscgx.json"
-                        background="transparent"
-                        speed="1"
-                        style="width: 150px; height: 150px; margin: 0 auto;"
-                        loop
-                        autoplay
-                        aria-label="Professional experience animation"
-                    ></lottie-player>
-                </div>
             </div>
             <div class="timeline">
                 <div class="timeline-item">
@@ -253,165 +233,191 @@
                         <div class="section-header">
                 <h2 class="section-title"><i class="fas fa-rocket"></i> Featured Projects</h2>
                 <p class="section-subtitle">Innovative solutions and impactful applications</p>
-                <div style="text-align: center; margin: 2rem 0;">
+                <div style="text-align: center; margin: 2rem 0 3rem 0;">
                     <lottie-player
-                        src="https://assets5.lottiefiles.com/packages/lf20_abqyscgx.json"
+                        src="assets/coding-animation.json"
                         background="transparent"
                         speed="1"
-                        style="width: 180px; height: 180px; margin: 0 auto;"
+                        style="width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1;"
                         loop
                         autoplay
                         aria-label="Projects animation"
                     ></lottie-player>
                 </div>
             </div>
+            <!-- Projects Grid -->
             <div class="projects-grid">
-                <div class="project-card">
+                <!-- AI/ML Projects -->
+                <div class="project-card" data-category="ai-ml" data-project="mobilellm">
                     <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
                         <h3>MobileLLM-125M Deployment</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" class="project-link">GitHub</a>
+                        <p>Fine-tuned and quantized a 125M parameter LLM for on-device inference with FastAPI serving, Dockerized pipelines, and multi-GPU training.</p>
+                        <div class="project-tech">
+                            <span>PyTorch</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
+                            <span>TensorRT</span>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Fine-tuned and quantized a 125M parameter LLM for on-device inference with FastAPI serving, 
-                        Dockerized pipelines, and multi-GPU training. Achieved 62.8% downstream accuracy and 7.91 perplexity.
-                    </p>
-                    <div class="project-tech">
-                        <span>PyTorch</span>
-                        <span>FastAPI</span>
-                        <span>Docker</span>
-                        <span>TensorRT</span>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="ai-ml" data-project="housing">
                     <div class="project-header">
-                        <h3>ML Housing Price Prediction Pipeline</h3>
-                        <div class="project-links">
-                            <a href="#" target="_blank" rel="noopener" class="project-link">In Development</a>
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
+                        <div class="project-status">In Development</div>
                     </div>
-                    <p class="project-description">
-                        Complete MLOps pipeline analyzing US housing data (2012-2023) with automated training, serving, 
-                        and monitoring. Features data quality checks, containerized deployment, and CI/CD automation.
-                    </p>
-                    <div class="project-tech">
-                        <span>Great Expectations</span>
-                        <span>FastAPI</span>
-                        <span>Docker</span>
-                        <span>MLFlow</span>
-                        <span>AWS ECS</span>
-                        <span>GitHub Actions</span>
+                    <div class="project-content">
+                        <h3>ML Housing Price Prediction</h3>
+                        <p>Complete MLOps pipeline analyzing US housing data (2012-2023) with automated training, serving, and monitoring.</p>
+                        <div class="project-tech">
+                            <span>Great Expectations</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
+                            <span>MLFlow</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link disabled">
+                                <i class="fas fa-code"></i> In Development
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="ai-ml" data-project="finance">
                     <div class="project-header">
-                        <h3>GPU-Accelerated Financial Risk Analysis</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" class="project-link">GitHub</a>
+                        <div class="project-icon">
+                            <i class="fas fa-coins"></i>
                         </div>
+                        <div class="project-status">Live</div>
                     </div>
-                    <p class="project-description">
-                        PyCUDA Monte Carlo engine for VaR and covariance estimation at one-million day scales, 
-                        leveraging GPU parallelism for a 1.57× runtime improvement over CPU baselines.
-                    </p>
-                    <div class="project-tech">
-                        <span>CUDA</span>
-                        <span>PyCUDA</span>
-                        <span>NumPy</span>
-                        <span>Finance</span>
+                    <div class="project-content">
+                        <h3>GPU Financial Risk Analysis</h3>
+                        <p>PyCUDA Monte Carlo engine for VaR and covariance estimation at one-million day scales with 1.57× runtime improvement.</p>
+                        <div class="project-tech">
+                            <span>CUDA</span>
+                            <span>PyCUDA</span>
+                            <span>NumPy</span>
+                            <span>Finance</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="ai-ml" data-project="pcnn">
                     <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="project-status">Live</div>
+                    </div>
+                    <div class="project-content">
                         <h3>PCNN Shadow Removal</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" class="project-link">GitHub</a>
+                        <p>Biologically inspired pulse-coupled neural networks for adaptive shadow segmentation with 94.2% detection accuracy.</p>
+                        <div class="project-tech">
+                            <span>TensorFlow</span>
+                            <span>OpenCV</span>
+                            <span>Computer Vision</span>
+                            <span>Neural Networks</span>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Implemented biologically inspired pulse-coupled neural networks for adaptive shadow segmentation, 
-                        delivering 94.2% detection accuracy and 0.89 image quality index.
-                    </p>
-                    <div class="project-tech">
-                        <span>TensorFlow</span>
-                        <span>OpenCV</span>
-                        <span>Computer Vision</span>
-                        <span>Neural Networks</span>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <!-- Mobile Apps -->
+                <div class="project-card" data-category="mobile" data-project="style">
                     <div class="project-header">
-                        <h3>IoT Anomaly Detection on FPGA</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" class="project-link">GitHub</a>
+                        <div class="project-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
+                        <div class="project-status">Live</div>
                     </div>
-                    <p class="project-description">
-                        Deployed an ANN pipeline on a PYNQ-Z2 FPGA with AXI DMA and BRAM streaming to spot 
-                        IoT-23 anomalies in microseconds, driving LED alerts directly from hardware.
-                    </p>
-                    <div class="project-tech">
-                        <span>FPGA</span>
-                        <span>Verilog</span>
-                        <span>IoT</span>
-                        <span>Hardware</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
+                    <div class="project-content">
                         <h3>StyleStitch Fashion App</h3>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank" rel="noopener" class="project-link">Play Store</a>
+                        <p>Android fashion app built with Kotlin, Jetpack Libraries, and MVVM architecture. Integrated Firebase for real-time data.</p>
+                        <div class="project-tech">
+                            <span>Kotlin</span>
+                            <span>Android</span>
+                            <span>Firebase</span>
+                            <span>MVVM</span>
                         </div>
-                    </div>
-                    <p class="project-description">
-                        Android fashion app built with Kotlin, Jetpack Libraries, and MVVM architecture. 
-                        Integrated Firebase for real-time data and reduced latency by 25%.
-                    </p>
-                    <div class="project-tech">
-                        <span>Kotlin</span>
-                        <span>Android</span>
-                        <span>Firebase</span>
-                        <span>MVVM</span>
+                        <div class="project-links">
+                            <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card" data-category="mobile" data-project="dormigo">
                     <div class="project-header">
-                        <h3>🏠 Dormigo Super App — Dormunity Inc.</h3>
+                        <div class="project-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="project-status">Launching Soon</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Dormigo Super App</h3>
+                        <p>AI-powered student life platform connecting 500+ students to verified housing, part-time jobs, ride-sharing, and community networking.</p>
+                        <div class="project-tech">
+                            <span>Flutter</span>
+                            <span>Firebase</span>
+                            <span>AI/ML</span>
+                            <span>Mobile</span>
+                        </div>
                         <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="project-link">Play Store</a>
-                            <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">Website</a>
+                            <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-google-play"></i> Play Store
+                            </a>
+                            <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">
+                                <i class="fas fa-globe"></i> Website
+                            </a>
                         </div>
                     </div>
-                    <p class="project-description">
-                        <strong>AI-powered student life platform</strong> connecting 500+ students to verified housing, part-time jobs, ride-sharing, and community networking. 
-                        Built as a one-stop ecosystem eliminating fake listings and expensive intermediaries through intelligent algorithms and verified listings.
-                    </p>
-                    <div class="project-features">
-                        <p><strong>🏠 Housing Finder:</strong> Verified on-campus & nearby accommodations with budget/distance filtering</p>
-                        <p><strong>💼 Job Hub:</strong> AI job-matching with curated on-campus opportunities and application tracking</p>
-                        <p><strong>🚗 Ride Connect:</strong> Request/offer rides between campus and cities with trusted student drivers</p>
-                        <p><strong>💬 Community:</strong> Connect with classmates, join groups, and direct messaging</p>
-                        <p><strong>🤖 AI Assistant "Dormy":</strong> Real-time help using OpenAI/Anthropic APIs for housing, jobs, and campus life</p>
+                </div>
+
+                <!-- Hardware/IoT -->
+                <div class="project-card" data-category="hardware" data-project="iot">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="project-status">Live</div>
                     </div>
-                    <p class="project-status">
-                        <strong>Status:</strong> Beta on Google Play Store | iOS App Store launch in progress | Web app testing
-                    </p>
-                    <div class="project-tech">
-                        <span><i class="fas fa-mobile-alt"></i> Flutter</span>
-                        <span><i class="fab fa-google"></i> Firebase</span>
-                        <span><i class="fas fa-robot"></i> OpenAI GPT-4</span>
-                        <span><i class="fas fa-map-marked-alt"></i> Google Maps</span>
-                        <span><i class="fab fa-stripe"></i> Stripe</span>
-                        <span><i class="fab fa-react"></i> React</span>
-                        <span><i class="fab fa-node-js"></i> Node.js</span>
+                    <div class="project-content">
+                        <h3>IoT Anomaly Detection on FPGA</h3>
+                        <p>Deployed an ANN pipeline on a PYNQ-Z2 FPGA with AXI DMA and BRAM streaming to spot IoT-23 anomalies in microseconds.</p>
+                        <div class="project-tech">
+                            <span>FPGA</span>
+                            <span>Verilog</span>
+                            <span>IoT</span>
+                            <span>Hardware</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" class="project-link">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -427,129 +433,66 @@
             </div>
             <div class="certifications-grid">
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/aws.webp" alt="AWS logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">AWS</div>
+                    <div class="cert-icon">
+                        <img src="assets/aws.webp" alt="AWS logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Certified Developer – Associate</h3>
-                    <p class="cert-description">Amazon Web Services Training and Certification</p>
-                    <div class="cert-tags">
-                        <span>Cloud Computing</span>
-                        <span>Developer</span>
-                    </div>
-                    <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" target="_blank" rel="noopener" class="cert-link">
-                        View Credential →
-                    </a>
+                    <h3>AWS</h3>
+                    <p>Certified Developer – Associate</p>
+                    <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
                 </div>
 
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/ibm.webp" alt="IBM logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">IBM</div>
+                    <div class="cert-icon">
+                        <img src="assets/ibm.webp" alt="IBM logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Supervised ML: Regression</h3>
-                    <p class="cert-description">Machine Learning fundamentals and regression analysis</p>
-                    <div class="cert-tags">
-                        <span>Machine Learning</span>
-                        <span>Data Science</span>
-                    </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" target="_blank" rel="noopener" class="cert-link">
-                        View Certificate →
-                    </a>
+                    <h3>IBM</h3>
+                    <p>Supervised ML: Regression</p>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" target="_blank" rel="noopener" class="cert-link">View Certificate →</a>
                 </div>
 
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">Google Cloud</div>
+                    <div class="cert-icon">
+                        <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Large Language Models</h3>
-                    <p class="cert-description">Introduction to LLM architecture and applications</p>
-                    <div class="cert-tags">
-                        <span>LLM</span>
-                        <span>Generative AI</span>
-                    </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" target="_blank" rel="noopener" class="cert-link">
-                        View Certificate →
-                    </a>
+                    <h3>Google Cloud</h3>
+                    <p>Large Language Models</p>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" target="_blank" rel="noopener" class="cert-link">View Certificate →</a>
                 </div>
 
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">Google Cloud</div>
+                    <div class="cert-icon">
+                        <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Generative AI Intro</h3>
-                    <p class="cert-description">Foundation concepts in generative artificial intelligence</p>
-                    <div class="cert-tags">
-                        <span>Generative AI</span>
-                        <span>Cloud</span>
-                    </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" target="_blank" rel="noopener" class="cert-link">
-                        View Certificate →
-                    </a>
+                    <h3>Google Cloud</h3>
+                    <p>Generative AI Intro</p>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" target="_blank" rel="noopener" class="cert-link">View Certificate →</a>
                 </div>
 
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">Broadcom</div>
+                    <div class="cert-icon">
+                        <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Cloud Virtualization</h3>
-                    <p class="cert-description">IT Academy: Cloud and virtualization concepts</p>
-                    <div class="cert-tags">
-                        <span>Cloud</span>
-                        <span>Virtualization</span>
-                    </div>
-                    <a href="https://www.credly.com/badges/a2330e5f-75c6-42c3-9c51-2bc7cce9def7/public_url" target="_blank" rel="noopener" class="cert-link">
-                        View Credential →
-                    </a>
+                    <h3>Broadcom</h3>
+                    <p>Cloud Virtualization</p>
+                    <a href="https://www.credly.com/badges/a2330e5f-75c6-42c3-9c51-2bc7cce9def7/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
                 </div>
 
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">Broadcom</div>
+                    <div class="cert-icon">
+                        <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Network Virtualization</h3>
-                    <p class="cert-description">IT Academy: Network virtualization concepts</p>
-                    <div class="cert-tags">
-                        <span>Network</span>
-                        <span>Infrastructure</span>
-                    </div>
-                    <a href="https://www.credly.com/badges/d72a3377-71d3-40ca-8c22-d8a5ff0a9c46/public_url" target="_blank" rel="noopener" class="cert-link">
-                        View Credential →
-                    </a>
+                    <h3>Broadcom</h3>
+                    <p>Network Virtualization</p>
+                    <a href="https://www.credly.com/badges/d72a3377-71d3-40ca-8c22-d8a5ff0a9c46/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
                 </div>
 
                 <div class="certification-card">
-                    <div class="cert-header">
-                        <div class="cert-icon">
-                            <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
-                        </div>
-                        <div class="cert-provider">Broadcom</div>
+                    <div class="cert-icon">
+                        <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
                     </div>
-                    <h3 class="cert-title">Software Defined Storage</h3>
-                    <p class="cert-description">IT Academy: Software defined storage concepts</p>
-                    <div class="cert-tags">
-                        <span>Storage</span>
-                        <span>Software Defined</span>
-                    </div>
-                    <a href="https://www.credly.com/badges/f700c4ea-69db-4308-8adf-5925646169e1/public_url" target="_blank" rel="noopener" class="cert-link">
-                        View Credential →
-                    </a>
+                    <h3>Broadcom</h3>
+                    <p>Software Defined Storage</p>
+                    <a href="https://www.credly.com/badges/f700c4ea-69db-4308-8adf-5925646169e1/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
                 </div>
             </div>
         </div>
