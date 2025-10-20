@@ -4778,3 +4778,47 @@ section {
     display: block;
     background: transparent !important;
 }
+
+/* Modal gallery for screenshots */
+.modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+}
+.modal-gallery-item {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.modal-gallery-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+.modal-gallery-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Optional: project card thumbnails strip */
+.project-gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+}
+.project-gallery-thumbs img {
+    width: 100%;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 6px;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+.project-gallery-thumbs img:hover {
+    opacity: 1;
+}

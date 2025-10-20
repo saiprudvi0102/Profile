@@ -99,6 +99,19 @@ const projectData = {
         ],
         technologies: ['Flutter', 'Firebase', 'Google Maps', 'Stripe', 'Dart', 'Node.js'],
         image: 'assets/dormigo-ai.svg',
+        gallery: [
+            'assets/ss1.png',
+            'assets/ss2.png',
+            'assets/ss3.png',
+            'assets/ss4.png',
+            'assets/ss5.png',
+            'assets/ss6.png',
+            'assets/ss7.png',
+            'assets/ss8.png',
+            'assets/ss9.png',
+            'assets/ss10.png',
+            'assets/ss11.png'
+        ],
         links: {
             playstore: 'https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp'
         }
@@ -152,6 +165,18 @@ function showProjectDetails(projectTitle) {
                 <p style="color: var(--netflix-light-gray); font-size: 1.1rem; margin-top: 0.5rem;">${project.description}</p>
             </div>
             <div class="modal-body">
+                ${Array.isArray(project.gallery) && project.gallery.length ? `
+                <div class="modal-section">
+                    <h3>📱 Screenshots</h3>
+                    <div class="modal-gallery">
+                        ${project.gallery.map(src => `
+                            <a href="${src}" target="_blank" class="modal-gallery-item" title="Open full size">
+                                <img src="${src}" alt="${project.title} screenshot" loading="lazy">
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
                 <div class="modal-section">
                     <h3>📋 Project Overview</h3>
                     <p>${project.fullDetails}</p>
