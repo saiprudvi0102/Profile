@@ -176,6 +176,39 @@ header nav {
     align-items: center;
 }
 
+
+/* Lottie helpers */
+.lottie-hero {
+    max-width: 460px;
+    width: 100%;
+    height: auto;
+}
+
+.lottie-badge {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+.lottie-icon {
+    width: 36px;
+    height: 36px;
+}
+
+.about-icon-fallback {
+    display: none;
+    margin-right: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-icon-fallback { display: inline-block !important; }
+}
+
+/* Reduced-motion: prefer static placeholder, hide autoplaying animations */
+@media (prefers-reduced-motion: reduce) {
+    lottie-player { display: none !important; }
+    .image-placeholder { display: flex !important; }
+}
 .hero-text {
     text-align: left;
     animation: fadeInLeft 1s ease-out;

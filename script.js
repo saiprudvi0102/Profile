@@ -234,6 +234,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Console greeting
     console.log('%c👋 Hello there! Welcome to my portfolio website.', 'color: #2563eb; font-size: 16px; font-weight: bold;');
     console.log('%cIf you\'re looking at this, you might be interested in my work. Feel free to reach out!', 'color: #64748b; font-size: 14px;');
+
+    // Lottie performance: pause when offscreen
+    const lotties = document.querySelectorAll('lottie-player');
+    if (lotties.length) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            const lottieObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const player = entry.target;
+                    if (typeof player?.pause === 'function' && typeof player?.play === 'function') {
+                        if (entry.isIntersecting) {
+                            player.play();
+                        } else {
+                            player.pause();
+                        }
+                    }
+                });
+            }, { threshold: 0.1 });
+            lotties.forEach(p => lottieObserver.observe(p));
+        }
+    }
 });
 
 // Keyboard navigation support
