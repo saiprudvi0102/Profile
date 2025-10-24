@@ -86,16 +86,33 @@ const projectData = {
             playstore: 'https://play.google.com/store/apps/details?id=com.project.BucketListTech'
         }
     },
-    'Dormigo Super App': {
-        title: 'Dormigo Super App',
-        description: 'Campus life management app integrating ridesharing, accommodation, and social networking.',
-        fullDetails: 'Created a comprehensive super app for university students that combines multiple essential campus services into one seamless platform. The app integrates ridesharing, accommodation finding, social networking, and campus resources.',
+    'Dormunity Website': {
+        title: 'Dormunity Website',
+        description: 'Corporate website for Dormunity Inc. showcasing our mission to empower campus communities.',
+        fullDetails: 'Developed the official Dormunity website (dormunity.app) to showcase our mission of empowering campus communities through innovative student life solutions. The website serves as the central hub for information about Dormigo and our vision for transforming university experiences.',
         achievements: [
-            '500+ active students using the platform',
-            '95% user satisfaction rating',
-            'Integrated Google Maps for ridesharing',
-            'Stripe payment gateway implementation',
-            'Real-time chat and social features with Firebase'
+            'Responsive design optimized for all devices',
+            'Modern web development best practices',
+            'SEO-optimized for better discoverability',
+            'Integration with app store links and downloads',
+            'Clean, professional design reflecting brand identity'
+        ],
+        technologies: ['React', 'Next.js', 'CSS3', 'JavaScript', 'Vercel', 'Web Development'],
+        image: 'assets/dormigo-ai.svg',
+        links: {
+            website: 'https://dormunity.app'
+        }
+    },
+    'Dormigo – Empowering Campus Life': {
+        title: 'Dormigo – Empowering Campus Life',
+        description: 'Dormigo is a super app for students, built to simplify and enhance everyday campus living.',
+        fullDetails: 'Dormigo is a super app for students, built to simplify and enhance everyday campus living. From finding jobs and housing to sharing rides and connecting with peers, Dormigo brings everything students need into one unified platform. We\'re on a mission to empower campus communities by helping students connect, collaborate, and thrive — both on and off campus. Available on both Android and iOS platforms.',
+        achievements: [
+            'Launched on both Google Play Store and iOS App Store',
+            'Unified platform for housing, jobs, rides, and community',
+            'Cross-platform mobile app built with Flutter',
+            'Real-time features for student collaboration',
+            'Mission-driven approach to empower campus communities'
         ],
         technologies: ['Flutter', 'Firebase', 'Google Maps', 'Stripe', 'Dart', 'Node.js'],
         image: 'assets/dormigo-ai.svg',
@@ -113,7 +130,9 @@ const projectData = {
             'assets/ss11.png'
         ],
         links: {
-            playstore: 'https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp'
+            playstore: 'https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp',
+            appstore: 'https://apps.apple.com/us/app/dormigo-superapp/id6754192331',
+            website: 'https://dormunity.app'
         }
     },
     'ML Housing Price Prediction': {
@@ -150,7 +169,18 @@ function showProjectDetails(projectTitle) {
     const modal = document.getElementById('projectModal') || createModal();
     
     const linksHTML = Object.entries(project.links).map(([type, url]) => {
-        const label = type === 'github' ? '🔗 View on GitHub' : '📱 View on Play Store';
+        let label;
+        if (type === 'github') {
+            label = '🔗 View on GitHub';
+        } else if (type === 'playstore') {
+            label = '📱 Android App';
+        } else if (type === 'appstore') {
+            label = '🍎 iOS App';
+        } else if (type === 'website') {
+            label = '🌐 Visit Website';
+        } else {
+            label = '📱 View on Play Store';
+        }
         return `<a href="${url}" target="_blank" rel="noopener" class="modal-link-btn">${label}</a>`;
     }).join('');
 
