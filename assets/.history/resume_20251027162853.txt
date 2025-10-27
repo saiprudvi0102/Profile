@@ -1,0 +1,63 @@
+saiprudvi ela
++1 (321) 367-4952 | saiprudviela@gmail.com | LinkedIn | GitHub | Portfolio
+PROFESSIONAL SUMMARY
+Innovative Full-Stack Developer with over 5 years of experience building scalable mobile and web applications. Skilled in Flutter, Java, Android Studio, Spring Boot, AWS, GCP, and Firebase, with a strong focus on AI-powered solutions, cross-platform app development, and cloud-based infrastructure. Currently leading the development of Dormigo SuperApp, a student-focused platform and seeking opportunities to contribute technical expertise, drive product innovation, and deliver measurable impact in fast-paced startup environments.
+ 
+EDUCATION
+Florida Institute of Technology	August 2023 - May 2025
+Master's, Computer Engineering	
+
+CERTIFICATIONS
+•	AWS Certified Developer - Associate
+•	Introduction to Large Language Models
+•	Supervised Machine Learning
+•	Introduction to Generative AI
+ 
+PROFESSIONAL EXPERIENCE
+DormUnity Inc	Melbourne, FL, USA
+Application Developer	October 2024 - Present
+•	Built and deployed Flutter-based cross-platform apps (iOS, Android, and Web) for a unified experience.
+•	Set up and managed Google Cloud Platform (GCP) backend infrastructure with Firebase, Firestore, and Cloud Functions.
+•	Integrated Sign in with Apple, Google Authentication, and secure Firestore access rules.
+•	Currently developing ridesharing and job automation features powered by AI and API integrations.
+•	Designed an intuitive UI/UX that simplifies searching, listing, and connecting within campus communities.
+ 
+Sigma Software Solutions	Hyderabad, TG, India
+Android Developer	December 2021 - August 2023
+•	Led the end-to-end development of Android mobile applications using Java and Android Studio, following the MVVM architecture for clean and maintainable code.
+•	Designed and implemented cloud-based backends on AWS (EC2, S3, Lambda, API Gateway) to support real-time data synchronization and secure operations.
+•	Integrated AWS Cognito for authentication, improving security and session management.
+•	Built and connected RESTful APIs for smooth communication between mobile and server components.
+•	Optimized app performance, reducing crash rates and improving load times by 25%
+ 
+Oregono Technologies	Hyderabad, TG, India
+Android Developer	January 2020 - November 2021
+•	Learned and applied core Android development concepts using Java, XML, and Android Studio, building interactive and responsive mobile UIs.
+•	Developed REST APIs and backend services with Spring Boot, connecting Android apps to secure and efficient cloud-based data sources.
+•	Integrated AWS services such as S3, EC2, and API Gateway for storage, hosting, and API management.
+ 
+PROJECTS & OUTSIDE EXPERIENCE
+Dormigo SuperApp – Simplifying Campus Life 	
+	
+•	Dormigo is a student-focused SuperApp designed to make campus life easier, safer, and more connected. It combines multiple essential services in a single platform, helping students find housing, connect for rides, and discover jobs and internships — all tailored to their college experience.
+ 
+Enhanced Anomaly Detection in IoT Using FPGA 	
+	
+•	This project implements a real-time anomaly detection system for IoT networks using FPGA hardware acceleration.
+ 
+MobileLLM: Fine-Tuning and Evaluation for Zero-Shot Reasoning Tasks 	
+	
+•	Implementation of fine-tuning Facebook's MobileLLM-125M model for zero-shot reasoning tasks using the HellaSwag dataset.
+ 
+Enhancing Financial Risk Analysis through GPU-Accelerated Computing 	
+	
+•	This project demonstrates the application of GPU computing to accelerate financial risk analysis, particularly focusing on the computation of covariance matrices for large financial datasets.
+ 
+SKILLS
+Programming Languages: Java, Python, JavaScript, SQL, C++, Dart, Kotlin, HTML5, CSS
+Backend & Cloud: Spring Boot, FastAPI, Flask, Node.js, Express.js, PEGA, RESTful APIs, JWT Authentication,, AWS (Amplify, Lambda, API Gateway, Cognito, S3, DynamoDB, SNS, CloudWatch), Google Cloud (Firestore, Functions, App Distribution)
+Frontend & Mobile Development: React.js, Flutter, Android Studio, Jetpack Components, XML UI, Room Database, MVVM Architecture
+Databases: PostgreSQL, MySQL, SQL Server, MongoDB, DynamoDB
+Tools & Platforms: IntelliJ, VS Code, Postman, Figma, Wireframing, Prototyping, GitHub Copilot, Cursor
+AI & Machine Learning: Generative AI, Large Language Models (LLMs), Prompt Engineering, OpenAI APIs, LangChain, Hugging Face Transformers, TensorFlow, TensorFlow Lite, Scikit-learn,NLP (NER, Text Summarization, Sentiment Analysis), Recommendation Systems, Model Deployment, Data Analysis & Visualization
+ 
