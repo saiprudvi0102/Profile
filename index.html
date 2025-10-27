@@ -249,241 +249,65 @@
     </section>    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-                        <div class="section-header">
-                <h2 class="section-title"><i class="fas fa-rocket"></i> Featured Projects
-                    <span class="lottie-badge" aria-hidden="true">
-                        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_1pxqjqps.json" background="transparent" speed="1" loop autoplay style="width:40px;height:40px;"></lottie-player>
-                    </span>
-                </h2>
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-rocket"></i> Featured Projects</h2>
                 <p class="section-subtitle">Innovative solutions and impactful applications</p>
-                <div style="text-align: center; margin: 2rem 0 3rem 0;">
-                    <lottie-player
-                        src="assets/coding-animation.json"
-                        background="transparent"
-                        speed="1"
-                        style="width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1;"
-                        loop
-                        autoplay
-                        aria-label="Projects animation"
-                    ></lottie-player>
-                </div>
             </div>
-            <!-- Projects Grid -->
-            <div class="projects-grid">
-                <!-- AI/ML Projects -->
-                <div class="project-card" data-category="ai-ml" data-project="mobilellm" onclick="showProjectDetails('MobileLLM-125M Deployment')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="project-status">Live</div>
+            <!-- Netflix-style Projects Grid -->
+            <div class="netflix-profiles" style="max-width: 1400px; margin: 3rem auto;">
+                <!-- Dormigo SuperApp -->
+                <a href="projects.html#dormigo" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-university"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>MobileLLM-125M Deployment</h3>
-                        <p>Fine-tuned and quantized a 125M parameter LLM for on-device inference with FastAPI serving, Dockerized pipelines, and multi-GPU training.</p>
-                        <div class="project-tech">
-                            <span>PyTorch</span>
-                            <span>FastAPI</span>
-                            <span>Docker</span>
-                            <span>TensorRT</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>Dormigo SuperApp</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">AI-powered student life platform</p>
+                </a>
 
-                <div class="project-card" data-category="ai-ml" data-project="housing" onclick="showProjectDetails('ML Housing Price Prediction')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="project-status">In Development</div>
+                <!-- MobileLLM -->
+                <a href="projects.html#mobilellm" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>ML Housing Price Prediction</h3>
-                        <p>Complete MLOps pipeline analyzing US housing data (2012-2023) with automated training, serving, and monitoring.</p>
-                        <div class="project-tech">
-                            <span>Great Expectations</span>
-                            <span>FastAPI</span>
-                            <span>Docker</span>
-                            <span>MLFlow</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link disabled">
-                                <i class="fas fa-code"></i> In Development
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>MobileLLM</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">On-device LLM deployment</p>
+                </a>
 
-                <div class="project-card" data-category="ai-ml" data-project="finance" onclick="showProjectDetails('GPU-Accelerated Financial Risk Analysis')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <div class="project-status">Live</div>
+                <!-- GPU Financial Analysis -->
+                <a href="projects.html#finance" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                        <i class="fas fa-coins"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>GPU Financial Risk Analysis</h3>
-                        <p>PyCUDA Monte Carlo engine for VaR and covariance estimation at one-million day scales with 1.57× runtime improvement.</p>
-                        <div class="project-tech">
-                            <span>CUDA</span>
-                            <span>PyCUDA</span>
-                            <span>NumPy</span>
-                            <span>Finance</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>GPU Financial Analysis</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">CUDA-accelerated risk modeling</p>
+                </a>
 
-                <div class="project-card" data-category="ai-ml" data-project="pcnn" onclick="showProjectDetails('PCNN Shadow Removal')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <div class="project-status">Live</div>
+                <!-- IoT FPGA -->
+                <a href="projects.html#iot" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                        <i class="fas fa-microchip"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>PCNN Shadow Removal</h3>
-                        <p>Biologically inspired pulse-coupled neural networks for adaptive shadow segmentation with 94.2% detection accuracy.</p>
-                        <div class="project-tech">
-                            <span>TensorFlow</span>
-                            <span>OpenCV</span>
-                            <span>Computer Vision</span>
-                            <span>Neural Networks</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>IoT Anomaly Detection</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">FPGA hardware acceleration</p>
+                </a>
 
-                <!-- Mobile Apps -->
-                <div class="project-card" data-category="mobile" data-project="style" onclick="showProjectDetails('StyleStitch Fashion App')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="project-status">Live</div>
+                <!-- StyleStitch -->
+                <a href="projects.html#style" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
+                        <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>StyleStitch Fashion App</h3>
-                        <p>Android fashion app built with Kotlin, Jetpack Libraries, and MVVM architecture. Integrated Firebase for real-time data.</p>
-                        <div class="project-tech">
-                            <span>Kotlin</span>
-                            <span>Android</span>
-                            <span>Firebase</span>
-                            <span>MVVM</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-google-play"></i> Play Store
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>StyleStitch App</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Android fashion marketplace</p>
+                </a>
 
-                <div class="project-card" data-category="mobile" data-project="dormigo" onclick="showProjectDetails('Dormigo – Empowering Campus Life')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <div class="project-status">Launching Soon</div>
+                <!-- View All Projects -->
+                <a href="projects.html" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #E50914 0%, #B20710 100%);">
+                        <i class="fas fa-arrow-right"></i>
                     </div>
-                    <div class="project-content">
-                        <h3>Dormigo – Empowering Campus Life</h3>
-                        <p>Dormigo is a super app for students, built to simplify and enhance everyday campus living. From finding jobs and housing to sharing rides and connecting with peers, Dormigo brings everything students need into one unified platform.</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Firebase</span>
-                            <span>AI/ML</span>
-                            <span>Mobile</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-google-play"></i> Android
-                            </a>
-                            <a href="https://apps.apple.com/us/app/dormigo-superapp/id6754192331" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-apple"></i> iOS
-                            </a>
-                            <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">
-                                <i class="fas fa-globe"></i> Website
-                            </a>
-                        </div>
-                        <div class="project-gallery-thumbs" aria-hidden="true">
-                            <img src="assets/ss1.png" alt="Dormigo screenshot 1" loading="lazy">
-                            <img src="assets/ss2.png" alt="Dormigo screenshot 2" loading="lazy">
-                            <img src="assets/ss3.png" alt="Dormigo screenshot 3" loading="lazy">
-                            <img src="assets/ss4.png" alt="Dormigo screenshot 4" loading="lazy">
-                            <img src="assets/ss5.png" alt="Dormigo screenshot 5" loading="lazy">
-                            <img src="assets/ss6.png" alt="Dormigo screenshot 6" loading="lazy">
-                            <img src="assets/ss7.png" alt="Dormigo screenshot 7" loading="lazy">
-                            <img src="assets/ss8.png" alt="Dormigo screenshot 8" loading="lazy">
-                            <img src="assets/ss9.png" alt="Dormigo screenshot 9" loading="lazy">
-                            <img src="assets/ss10.png" alt="Dormigo screenshot 10" loading="lazy">
-                            <img src="assets/ss11.png" alt="Dormigo screenshot 11" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Development -->
-                <div class="project-card" data-category="web" data-project="dormunity" onclick="showProjectDetails('Dormunity Website')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="project-status">Live</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Dormunity Website</h3>
-                        <p>Corporate website for Dormunity Inc. showcasing our mission to empower campus communities through innovative student life solutions.</p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Next.js</span>
-                            <span>CSS3</span>
-                            <span>Web Development</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">
-                                <i class="fas fa-globe"></i> Visit Website
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hardware/IoT -->
-                <div class="project-card" data-category="hardware" data-project="iot" onclick="showProjectDetails('IoT Anomaly Detection on FPGA')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <div class="project-status">Live</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>IoT Anomaly Detection on FPGA</h3>
-                        <p>Deployed an ANN pipeline on a PYNQ-Z2 FPGA with AXI DMA and BRAM streaming to spot IoT-23 anomalies in microseconds.</p>
-                        <div class="project-tech">
-                            <span>FPGA</span>
-                            <span>Verilog</span>
-                            <span>IoT</span>
-                            <span>Hardware</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                    <h3>View All Projects</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Explore complete portfolio</p>
+                </a>
             </div>
         </div>
     </section>
