@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Saiprudvi Ela">
+    <meta name="description" content="Saiprudvi Ela's professional experience and career journey in a Netflix-style interface showcasing software development roles and achievements.">
+    <meta name="keywords" content="Saiprudvi Ela, Experience, Software Developer, Tempus, Deloitte, T-Mobile, Career, Professional">
+
+    <title>Saiprudvi Ela - Professional Experience</title>
+
+    <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#E50914">
+</head>
+<body class="netflix-experience">
+    <!-- Netflix Header -->
+    <header class="netflix-header">
+        <div class="netflix-nav">
+            <div class="netflix-logo">
+                <a href="profile.html">Saiprudvi Ela</a>
+            </div>
+            <nav class="netflix-nav-links">
+                <a href="profile.html" class="nav-link">Profile</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="experience.html" class="nav-link active">Experience</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="certifications.html" class="nav-link">Certifications</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <nav class="mobile-menu" id="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Experience Hero Section -->
+    <section class="experience-hero">
+        <div class="container">
+            <div class="experience-hero-content">
+                <h1 class="experience-title">Professional Experience</h1>
+                <p class="experience-subtitle">Mobile application development, cloud infrastructure, and AI-powered solutions</p>
+                <div class="hero-actions">
+                    <button class="btn-hero btn-play"><i class="fas fa-play"></i> Play</button>
+                    <a href="#experience-list" class="btn-hero btn-info"><i class="fas fa-info-circle"></i> More Info</a>
+                    <button class="btn-hero btn-sound" id="exp-sound-toggle" aria-label="Toggle sound"><i class="fas fa-volume-up"></i></button>
+                </div>
+                <div class="sound-visualizer" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <main class="experience-main">
+        <div class="container">
+            <!-- Current Role -->
+            <section class="exp-category">
+                <h2 class="category-title">Current Position</h2>
+                <div class="experience-row">
+                    <div class="exp-card current" data-exp="DormUnity">
+                        <div class="exp-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="exp-content">
+                            <h3>Application Developer</h3>
+                            <div class="exp-company">DormUnity Inc.</div>
+                            <div class="exp-duration">Oct 2024 – Present</div>
+                            <div class="exp-location">Melbourne, FL, USA</div>
+                            <div class="exp-status">Current</div>
+                        </div>
+                        <div class="exp-achievements">
+                            <div class="achievement">• Built Flutter-based cross-platform apps (iOS, Android, Web)</div>
+                            <div class="achievement">• Managed GCP backend with Firebase, Firestore, Cloud Functions</div>
+                            <div class="achievement">• Integrated Sign in with Apple & Google Authentication</div>
+                            <div class="achievement">• Developing AI-powered ridesharing and job automation</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Previous Roles -->
+            <section class="exp-category">
+                <h2 class="category-title">Previous Experience</h2>
+                <div class="experience-row">
+                    <div class="exp-card" data-exp="Sigma">
+                        <div class="exp-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="exp-content">
+                            <h3>Android Developer</h3>
+                            <div class="exp-company">Sigma Software Solutions</div>
+                            <div class="exp-duration">Dec 2021 – Aug 2023</div>
+                            <div class="exp-location">Hyderabad, TG, India</div>
+                            <div class="exp-status">Completed</div>
+                        </div>
+                        <div class="exp-achievements">
+                            <div class="achievement">• Led end-to-end Android app development with MVVM architecture</div>
+                            <div class="achievement">• Designed cloud backends on AWS (EC2, S3, Lambda, API Gateway)</div>
+                            <div class="achievement">• Integrated AWS Cognito for improved security</div>
+                            <div class="achievement">• Optimized performance, reducing crash rates by 25%</div>
+                        </div>
+                    </div>
+
+                    <div class="exp-card" data-exp="Oregono">
+                        <div class="exp-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="exp-content">
+                            <h3>Android Developer</h3>
+                            <div class="exp-company">Oregono Technologies</div>
+                            <div class="exp-duration">Jan 2020 – Nov 2021</div>
+                            <div class="exp-location">Hyderabad, TG, India</div>
+                            <div class="exp-status">Completed</div>
+                        </div>
+                        <div class="exp-achievements">
+                            <div class="achievement">• Built Android apps using Java, XML, and Android Studio</div>
+                            <div class="achievement">• Developed REST APIs with Spring Boot</div>
+                            <div class="achievement">• Integrated AWS services (S3, EC2, API Gateway)</div>
+                            <div class="achievement">• Collaborated with cross-functional teams</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Achievements -->
+            <section class="exp-category">
+                <h2 class="category-title">Key Achievements</h2>
+                <div class="achievements-row">
+                    <div class="achievement-card" data-achievement="Performance">
+                        <div class="achievement-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>Performance Optimization</h3>
+                        <div class="achievement-desc">25% improvement in app load times</div>
+                    </div>
+                    <div class="achievement-card" data-achievement="CrossPlatform">
+                        <div class="achievement-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Cross-Platform Development</h3>
+                        <div class="achievement-desc">Unified experience across iOS, Android & Web</div>
+                    </div>
+                    <div class="achievement-card" data-achievement="Cloud">
+                        <div class="achievement-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud Infrastructure</h3>
+                        <div class="achievement-desc">Real-time data sync with Firebase & Firestore</div>
+                    </div>
+                    <div class="achievement-card" data-achievement="Innovation">
+                        <div class="achievement-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <div class="achievement-desc">AI-powered features for student life platform</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technologies Used -->
+            <section class="exp-category">
+                <h2 class="category-title">Technologies & Tools</h2>
+                <div class="tech-row">
+                    <div class="tech-card" data-tech="Mobile">
+                        <div class="tech-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Development</h3>
+                        <div class="tech-stack">Flutter, Android Studio, Java, Dart, Kotlin</div>
+                    </div>
+                    <div class="tech-card" data-tech="Backend">
+                        <div class="tech-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Backend</h3>
+                        <div class="tech-stack">Spring Boot, Node.js, REST APIs, MVVM</div>
+                    </div>
+                    <div class="tech-card" data-tech="Cloud">
+                        <div class="tech-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud & Database</h3>
+                        <div class="tech-stack">AWS, GCP, Firebase, Firestore</div>
+                    </div>
+                    <div class="tech-card" data-tech="AI">
+                        <div class="tech-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>AI/ML</h3>
+                        <div class="tech-stack">OpenAI APIs, AI Integrations, TensorFlow</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="netflix-footer">
+        <div class="container">
+            <p>&copy; 2025 Saiprudvi Ela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=4.0"></script>
+    <script>
+        // Hamburger menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking on a link
+                const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // Experience page specific functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling for exp categories
+            const expCategories = document.querySelectorAll('.exp-category');
+            
+            expCategories.forEach(category => {
+                // Add scroll animations
+                category.style.opacity = '0';
+                category.style.transform = 'translateY(50px)';
+                
+                setTimeout(() => {
+                    category.style.transition = 'all 0.6s ease';
+                    category.style.opacity = '1';
+                    category.style.transform = 'translateY(0)';
+                }, 100);
+            });
+
+            // Add hover effects for exp cards
+            const expCards = document.querySelectorAll('.exp-card, .achievement-card, .tech-card');
+            
+            expCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) translateY(-5px)';
+                    this.style.boxShadow = '0 15px 40px rgba(229, 9, 20, 0.3)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) translateY(0)';
+                    this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                });
+            });
+
+            // Add click effects for exp cards
+            expCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const exp = this.getAttribute('data-exp') || this.getAttribute('data-achievement') || this.getAttribute('data-tech');
+                    console.log(`Clicked on: ${exp}`);
+                    
+                    // Add a brief highlight effect
+                    this.style.background = 'linear-gradient(135deg, var(--netflix-red), #ff6b6b)';
+                    setTimeout(() => {
+                        this.style.background = 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

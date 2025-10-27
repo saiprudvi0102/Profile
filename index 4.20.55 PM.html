@@ -40,9 +40,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-
+<<<<<<< HEAD
+    
+    <!-- Lottie Web Component -->
+    <script defer src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+=======
     <!-- Lottie player for animated illustrations -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+>>>>>>> 65434e73b40a0115e3fbfe50c24c73571b175fa2
 </head>
 <body>
     <!-- Header -->
@@ -80,7 +85,18 @@
                     <a href="resume.html" class="btn btn-secondary">View Resume</a>
                 </div>
             </div>
+<<<<<<< HEAD
+            <div class="hero-image">
+                <!-- Lottie hero animation (replace src with your preferred animation if desired) -->
+                <lottie-player class="lottie-hero" src="https://assets9.lottiefiles.com/packages/lf20_khzniaya.json" background="transparent" speed="1" loop autoplay aria-label="Developer animation" style="max-width: 460px; width: 100%; height: auto;"></lottie-player>
 
+                <!-- Fallback static SVG if animations are disabled -->
+                <div class="image-placeholder" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                </div>
+=======
             <div class="hero-image" aria-label="Animated profile illustration">
                 <lottie-player
                     src="assets/Developer Front End.json"
@@ -91,7 +107,7 @@
                     autoplay
                     aria-label="Developer profile animation"
                 ></lottie-player>
-
+>>>>>>> 65434e73b40a0115e3fbfe50c24c73571b175fa2
             </div>
         </div>
     </section>
@@ -392,7 +408,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="mobile" data-project="dormigo" onclick="showProjectDetails('Dormigo – Empowering Campus Life')">
+                <div class="project-card" data-category="mobile" data-project="dormigo" onclick="showProjectDetails('Dormigo Super App')">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-university"></i>
@@ -400,8 +416,8 @@
                         <div class="project-status">Launching Soon</div>
                     </div>
                     <div class="project-content">
-                        <h3>Dormigo – Empowering Campus Life</h3>
-                        <p>Dormigo is a super app for students, built to simplify and enhance everyday campus living. From finding jobs and housing to sharing rides and connecting with peers, Dormigo brings everything students need into one unified platform.</p>
+                        <h3>Dormigo Super App</h3>
+                        <p>AI-powered student life platform connecting 500+ students to verified housing, part-time jobs, ride-sharing, and community networking.</p>
                         <div class="project-tech">
                             <span>Flutter</span>
                             <span>Firebase</span>
@@ -410,51 +426,10 @@
                         </div>
                         <div class="project-links">
                             <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-google-play"></i> Android
-                            </a>
-                            <a href="https://apps.apple.com/us/app/dormigo-superapp/id6754192331" target="_blank" rel="noopener" class="project-link">
-                                <i class="fab fa-apple"></i> iOS
+                                <i class="fab fa-google-play"></i> Play Store
                             </a>
                             <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">
                                 <i class="fas fa-globe"></i> Website
-                            </a>
-                        </div>
-                        <div class="project-gallery-thumbs" aria-hidden="true">
-                            <img src="assets/ss1.png" alt="Dormigo screenshot 1" loading="lazy">
-                            <img src="assets/ss2.png" alt="Dormigo screenshot 2" loading="lazy">
-                            <img src="assets/ss3.png" alt="Dormigo screenshot 3" loading="lazy">
-                            <img src="assets/ss4.png" alt="Dormigo screenshot 4" loading="lazy">
-                            <img src="assets/ss5.png" alt="Dormigo screenshot 5" loading="lazy">
-                            <img src="assets/ss6.png" alt="Dormigo screenshot 6" loading="lazy">
-                            <img src="assets/ss7.png" alt="Dormigo screenshot 7" loading="lazy">
-                            <img src="assets/ss8.png" alt="Dormigo screenshot 8" loading="lazy">
-                            <img src="assets/ss9.png" alt="Dormigo screenshot 9" loading="lazy">
-                            <img src="assets/ss10.png" alt="Dormigo screenshot 10" loading="lazy">
-                            <img src="assets/ss11.png" alt="Dormigo screenshot 11" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Development -->
-                <div class="project-card" data-category="web" data-project="dormunity" onclick="showProjectDetails('Dormunity Website')">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="project-status">Live</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Dormunity Website</h3>
-                        <p>Corporate website for Dormunity Inc. showcasing our mission to empower campus communities through innovative student life solutions.</p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Next.js</span>
-                            <span>CSS3</span>
-                            <span>Web Development</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://dormunity.app" target="_blank" rel="noopener" class="project-link">
-                                <i class="fas fa-globe"></i> Visit Website
                             </a>
                         </div>
                     </div>
