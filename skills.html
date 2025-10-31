@@ -10,6 +10,8 @@
     <title>Saiprudvi Ela - Skills & Technologies</title>
 
     <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,53 +85,74 @@
             <section class="skill-category">
                 <h2 class="category-title">Programming Languages</h2>
                 <div class="skills-row">
-                    <div class="skill-card" data-skill="Java">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="Java">
                         <div class="skill-icon">
                             <i class="fab fa-java"></i>
                         </div>
                         <h3>Java</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="95"></div>
+                        </div>
                         <div class="skill-level">Expert</div>
                     </div>
-                    <div class="skill-card" data-skill="Python">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="Python">
                         <div class="skill-icon">
                             <i class="fab fa-python"></i>
                         </div>
                         <h3>Python</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="95"></div>
+                        </div>
                         <div class="skill-level">Expert</div>
                     </div>
-                    <div class="skill-card" data-skill="JavaScript">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="JavaScript">
                         <div class="skill-icon">
                             <i class="fab fa-js-square"></i>
                         </div>
                         <h3>JavaScript</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="85"></div>
+                        </div>
                         <div class="skill-level">Advanced</div>
                     </div>
-                    <div class="skill-card" data-skill="SQL">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="SQL">
                         <div class="skill-icon">
                             <i class="fas fa-database"></i>
                         </div>
                         <h3>SQL</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="95"></div>
+                        </div>
                         <div class="skill-level">Expert</div>
                     </div>
-                    <div class="skill-card" data-skill="C++">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="C++">
                         <div class="skill-icon">
                             <i class="fas fa-code"></i>
                         </div>
                         <h3>C++</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="70"></div>
+                        </div>
                         <div class="skill-level">Intermediate</div>
                     </div>
-                    <div class="skill-card" data-skill="Dart">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="Dart">
                         <div class="skill-icon">
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <h3>Dart</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="85"></div>
+                        </div>
                         <div class="skill-level">Advanced</div>
                     </div>
-                    <div class="skill-card" data-skill="Kotlin">
+                    <div class="skill-card skill-card-enhanced fade-in-up" data-skill="Kotlin">
                         <div class="skill-icon">
                             <i class="fab fa-android"></i>
                         </div>
                         <h3>Kotlin</h3>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" data-progress="85"></div>
+                        </div>
                         <div class="skill-level">Advanced</div>
                     </div>
                 </div>
@@ -166,6 +189,13 @@
                         </div>
                         <h3>Node.js</h3>
                         <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="PEGA">
+                        <div class="skill-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>PEGA</h3>
+                        <div class="skill-level">Intermediate</div>
                     </div>
                     <div class="skill-card" data-skill="AWS">
                         <div class="skill-icon">
@@ -325,7 +355,7 @@
                         <div class="skill-icon">
                             <i class="fas fa-heart"></i>
                         </div>
-                        <h3>Hugging Face</h3>
+                        <h3>Hugging Face Transformers</h3>
                         <div class="skill-level">Advanced</div>
                     </div>
                     <div class="skill-card" data-skill="Scikit-learn">
@@ -333,6 +363,20 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h3>Scikit-learn</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="NLP">
+                        <div class="skill-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>NLP</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Recommendation Systems">
+                        <div class="skill-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Recommendation Systems</h3>
                         <div class="skill-level">Advanced</div>
                     </div>
                 </div>
@@ -384,6 +428,34 @@
                         <h3>GitHub Actions</h3>
                         <div class="skill-level">Advanced</div>
                     </div>
+                    <div class="skill-card" data-skill="JIRA">
+                        <div class="skill-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3>JIRA</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="Splunk">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Splunk</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                    <div class="skill-card" data-skill="AppDynamics">
+                        <div class="skill-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>AppDynamics</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                    <div class="skill-card" data-skill="Grafana">
+                        <div class="skill-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <h3>Grafana</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
                 </div>
             </section>
 
@@ -433,6 +505,62 @@
                         <h3>Cursor</h3>
                         <div class="skill-level">Advanced</div>
                     </div>
+                    <div class="skill-card" data-skill="Prototyping">
+                        <div class="skill-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h3>Prototyping</h3>
+                        <div class="skill-level">Intermediate</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methodologies & Core Competencies -->
+            <section class="skill-category">
+                <h2 class="category-title">Methodologies & Core Competencies</h2>
+                <div class="skills-row">
+                    <div class="skill-card" data-skill="Agile/Scrum">
+                        <div class="skill-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Agile/Scrum</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="SDLC">
+                        <div class="skill-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3>SDLC</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Design Patterns">
+                        <div class="skill-icon">
+                            <i class="fas fa-puzzle-piece"></i>
+                        </div>
+                        <h3>Design Patterns</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="HIPAA Compliance">
+                        <div class="skill-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>HIPAA Compliance</h3>
+                        <div class="skill-level">Advanced</div>
+                    </div>
+                    <div class="skill-card" data-skill="OOP">
+                        <div class="skill-icon">
+                            <i class="fas fa-object-group"></i>
+                        </div>
+                        <h3>OOP</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
+                    <div class="skill-card" data-skill="Performance Optimization">
+                        <div class="skill-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Performance Optimization</h3>
+                        <div class="skill-level">Expert</div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -446,6 +574,20 @@
     </footer>
 
     <script src="script.js?v=4.0"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="enhanced-interactions.js?v=4.0"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100
+                });
+            }
+        });
+    </script>
     <script>
         // Hamburger menu functionality
         document.addEventListener('DOMContentLoaded', function() {

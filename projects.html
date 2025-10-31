@@ -10,6 +10,8 @@
     <title>Saiprudvi Ela - Projects & Portfolio</title>
 
     <link rel="stylesheet" href="styles.css?v=4.0">
+    <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,8 +83,8 @@
         <div class="container">
             
             <!-- Mobile Apps Section -->
-            <section class="project-category" id="mobile-apps">
-                <h2 class="category-title" style="font-size: 2rem; margin: 3rem 0 2rem; color: #E50914; display: flex; align-items: center; gap: 1rem;">
+            <section class="project-category fade-in-up" id="mobile-apps">
+                <h2 class="category-title fade-in-up" style="font-size: 2rem; margin: 3rem 0 2rem; color: #E50914; display: flex; align-items: center; gap: 1rem;">
                     <i class="fas fa-mobile-alt"></i> Mobile Applications
                 </h2>
                 <div class="netflix-profiles" style="max-width: 1400px; margin: 2rem auto;">
@@ -227,7 +229,21 @@
     </footer>
 
     <script src="script.js?v=4.0"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="enhanced-interactions.js?v=4.0"></script>
     <script src="project-modal.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true,
+                    offset: 100
+                });
+            }
+        });
+    </script>
     <script>
         // Hamburger menu functionality
         document.addEventListener('DOMContentLoaded', function() {
