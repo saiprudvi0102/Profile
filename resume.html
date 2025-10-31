@@ -2,313 +2,549 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#E50914">
     <title>Resume - Saiprudvi Ela | Software Developer</title>
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mobile-navigation-fix.css">
-    <link rel="stylesheet" href="resume-netflix-styles.css">
-    <link rel="stylesheet" href="mobile-navigation-fix.css">
-    <link rel="stylesheet" href="fixes.css">
+    <link rel="stylesheet" href="resume-mobile-styles.css?v=5.0">
+    <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
-    <!-- Header (from main site) -->
-    <header>
-        <nav class="container">
-            <div class="logo">Saiprudvi Ela</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#certifications">Certifications</a></li>
-                <li><a href="resume.html" class="active">Resume</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <button class="mobile-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
+    <!-- Sticky Header -->
+    <div class="sticky-header">
+        <div class="sticky-header-title">Resume</div>
+        <a href="assets/Sai_Prudvi_Resume.pdf" download class="download-icon-btn" aria-label="Download PDF Resume">
+            <i class="fas fa-download"></i>
+        </a>
+    </div>
 
-    <div class="resume-container">
-        <!-- Header Section -->
-        <div class="resume-header">
-            <h1>👨‍💻 Saiprudvi Ela</h1>
-            <h2>Software Developer | Backend & GenAI Solutions</h2>
-            <div class="contact-links">
-                <a href="mailto:saiprudviela@gmail.com" class="contact-link">📧 saiprudviela@gmail.com</a>
-                <a href="tel:+13213674952" class="contact-link">📱 +1 (321) 367-4952</a>
-                <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" class="contact-link">💼 LinkedIn</a>
-                <a href="https://github.com/saiprudvi0102" target="_blank" class="contact-link">🔗 GitHub</a>
-                <a href="https://saiprudvi0102.github.io/Profile/" target="_blank" class="contact-link">🌐 Portfolio</a>
+    <!-- Mobile Resume Container -->
+    <div class="mobile-resume">
+        <div class="resume-content-wrapper">
+            <!-- Header Card -->
+            <div class="resume-header-card fade-in-mobile">
+                <div class="resume-header-content">
+                    <h1 class="resume-name">Saiprudvi Ela</h1>
+                    <p class="resume-title">Software Developer | Backend & GenAI Solutions</p>
+                    
+                    <!-- Quick Contact Actions -->
+                    <div class="contact-actions">
+                        <a href="mailto:saiprudviela@gmail.com" class="contact-action-btn">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                        <a href="tel:+13213674952" class="contact-action-btn">
+                            <i class="fas fa-phone"></i>
+                            <span>Call</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/saiprudvi-ela" target="_blank" class="contact-action-btn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/saiprudvi0102" target="_blank" class="contact-action-btn">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Download Button -->
+                    <a href="assets/Sai_Prudvi_Resume.pdf" download class="download-btn-mobile">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Download PDF Resume</span>
+                    </a>
+                </div>
             </div>
-            <a href="assets/Sai_Prudvi_Resume.pdf" download class="download-btn">
-                📥 Download PDF Resume
-            </a>
-        </div>
 
-        <!-- Professional Summary -->
-        <div class="resume-section">
-            <h2 class="section-title">📝 Professional Summary</h2>
-            <p class="description">
-                Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. 
-                Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud. 
-                Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. 
-                Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions 
-                across healthcare and enterprise domains.
-            </p>
-        </div>
+            <!-- Professional Summary -->
+            <div class="resume-card fade-in-mobile">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h2 class="section-title">Professional Summary</h2>
+                </div>
+                <p class="summary-text">
+                    Experienced Software Developer with <strong>4+ years</strong> of success building scalable backend systems and cloud-native applications. 
+                    Skilled in <strong>Java, Python, Flask, React</strong>, and <strong>PostgreSQL</strong>, with strong experience in <strong>AWS</strong> and <strong>Google Cloud</strong>. 
+                    Specialized in developing <strong class="highlight-badge">GenAI-powered tools</strong>, integrating <strong class="highlight-badge">LLMs</strong> into production services, and optimizing performance. 
+                    Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions 
+                    across <strong>healthcare</strong> and enterprise domains.
+                </p>
+            </div>
 
-        <!-- Experience -->
-        <div class="resume-section">
-            <h2 class="section-title">💼 Professional Experience</h2>
-            
-            <div class="experience-item">
-                <h3 class="job-title">🚀 Software Developer</h3>
-                <p class="company">Tempus</p>
-                <p class="date">📅 October 2024 - Present | USA</p>
-                <div class="description">
-                    <ul>
-                        <li>Developed secure, high-throughput backend services using FastAPI and integrated them with LLMs via OpenAI GPT-4 and LangChain, enabling oncology researchers to auto-summarize 2TB+ of unstructured patient notes in under 10 seconds per request</li>
-                        <li>Built a GenAI-enabled clinical documentation assistant, deployed on GCP using Kubernetes and Docker, which reduced manual reporting time by ~4 hours per oncologist weekly through prompt-engineered summarization and keyword extraction</li>
-                        <li>Designed and implemented Java-based orchestration logic to interface with AI pipelines, providing queue-based job handling for LLM inference tasks and ensuring consistent delivery under high concurrency</li>
-                        <li>Collaborated with data engineering teams to create tokenized RESTful APIs in Java 17 and Spring Boot, enforcing JWT authentication, rate limiting, and input sanitization for HIPAA-compliant data access</li>
-                        <li>Led the refactoring and modularization of existing Java microservices, improving unit test coverage from 62% to 91%, reducing code complexity, and cutting deployment-related bugs by 45% over two release cycles</li>
+            <!-- Professional Experience -->
+            <div class="resume-card fade-in-mobile">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h2 class="section-title">Professional Experience</h2>
+                </div>
+
+                <!-- Tempus Experience -->
+                <div class="experience-card-mobile">
+                    <div class="experience-header">
+                        <h3 class="job-title-mobile">
+                            <i class="fas fa-rocket" style="color: #E50914;"></i>
+                            Software Developer
+                        </h3>
+                        <div class="company-info">
+                            <span class="company-name">Tempus</span>
+                            <div class="date-location">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>October 2024 - Present</span>
+                                <i class="fas fa-map-marker-alt" style="margin-left: 0.75rem;"></i>
+                                <span>USA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Developed secure, high-throughput backend services using <strong>FastAPI</strong> and integrated them with LLMs via <strong>OpenAI GPT-4</strong> and <strong>LangChain</strong>, enabling oncology researchers to auto-summarize <strong>2TB+</strong> of unstructured patient notes in <strong>under 10 seconds</strong> per request.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Built a GenAI-enabled clinical documentation assistant, deployed on <strong>GCP</strong> using <strong>Kubernetes</strong> and <strong>Docker</strong>, which reduced manual reporting time by <strong>~4 hours per oncologist weekly</strong> through prompt-engineered summarization and keyword extraction.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Designed and implemented Java-based orchestration logic to interface with AI pipelines, providing queue-based job handling for LLM inference tasks and ensuring consistent delivery under high concurrency.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Collaborated with data engineering teams to create tokenized RESTful APIs in <strong>Java 17</strong> and <strong>Spring Boot</strong>, enforcing JWT authentication, rate limiting, and input sanitization for <strong>HIPAA-compliant</strong> data access.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Led the refactoring and modularization of existing Java microservices, improving unit test coverage from <strong>62% to 91%</strong>, reducing code complexity, and cutting deployment-related bugs by <strong>45%</strong> over two release cycles.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Deloitte Experience -->
+                <div class="experience-card-mobile">
+                    <div class="experience-header">
+                        <h3 class="job-title-mobile">
+                            <i class="fas fa-network-wired" style="color: #E50914;"></i>
+                            Software Development Associate
+                            <span class="highlight-badge">Client: T-Mobile</span>
+                        </h3>
+                        <div class="company-info">
+                            <span class="company-name">Deloitte</span>
+                            <div class="date-location">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>May 2020 - August 2023</span>
+                                <i class="fas fa-map-marker-alt" style="margin-left: 0.75rem;"></i>
+                                <span>India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="achievement-list">
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Designed and deployed <strong>40+ RESTful microservices</strong> using <strong>Java 8, Spring Boot</strong>, and <strong>Spring Security</strong>, integrated with Oracle/PostgreSQL, processing <strong>120K+ daily transactions</strong> across telecom systems.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Engineered backend modules for asynchronous processing with <strong>JMS</strong> and <strong>Java Mail API</strong>, enabling real-time alerts and batch notifications, improving incident response by <strong>38%</strong>.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Developed internal web applications with Java-based APIs, <strong>ReactJS, HTML5</strong>, and <strong>Bootstrap</strong>, reducing ticket resolution time by <strong>25%</strong> for support teams.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Automated cloud operations with custom Java agents, streamlining <strong>AWS S3</strong> cleanups and system health checks, cutting manual intervention by <strong>60+ hours/month</strong>.
+                            </span>
+                        </li>
+                        <li class="achievement-item">
+                            <span class="achievement-text">
+                                Optimized multi-table joins and transactional queries via <strong>Spring Data JPA</strong> custom finder methods, reducing database response times by <strong>30%</strong> on high-traffic endpoints.
+                            </span>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="experience-item">
-                <h3 class="job-title">💼 Software Development Associate – Client: T-Mobile</h3>
-                <p class="company">Deloitte</p>
-                <p class="date">📅 May 2020 - August 2023 | India</p>
-                <div class="description">
-                    <ul>
-                        <li>Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, processing 120K+ daily transactions across telecom systems</li>
-                        <li>Engineered backend modules for asynchronous processing with JMS and Java Mail API, enabling real-time alerts and batch notifications, improving incident response by 38%</li>
-                        <li>Developed internal web applications with Java-based APIs, ReactJS, HTML5, and Bootstrap, reducing ticket resolution time by 25% for support teams</li>
-                        <li>Automated cloud operations with custom Java agents, streamlining AWS S3 cleanups and system health checks, cutting manual intervention by 60+ hours/month</li>
-                        <li>Optimized multi-table joins and transactional queries via Spring Data JPA custom finder methods, reducing database response times by 30% on high-traffic endpoints</li>
-                    </ul>
+            <!-- Education -->
+            <div class="resume-card fade-in-mobile">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2 class="section-title">Education</h2>
+                </div>
+                <div class="education-card-mobile">
+                    <h3 class="degree-title">Master's, Computer Engineering</h3>
+                    <p class="school-name">Florida Institute of Technology</p>
+                    <div class="date-location">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>August 2023 - May 2025</span>
+                    </div>
+                    <p class="achievement-text" style="margin-top: 0.75rem;">
+                        Focus: Computer Engineering and Advanced Software Development
+                    </p>
                 </div>
             </div>
-        </div>
 
-        <!-- Education -->
-        <div class="resume-section">
-            <h2 class="section-title">🎓 Education</h2>
-            
-            <div class="education-item">
-                <h3 class="job-title">Master's, Computer Engineering</h3>
-                <p class="company">Florida Institute of Technology</p>
-                <p class="date">📅 August 2023 - May 2025</p>
-                <p class="description">Focus: Computer Engineering and Advanced Software Development</p>
-            </div>
-        </div>
+            <!-- Technical Skills -->
+            <div class="resume-card fade-in-mobile">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h2 class="section-title">Technical Skills</h2>
+                </div>
+                <div class="skills-grid-mobile">
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-laptop-code" style="color: #E50914;"></i>
+                            Programming Languages
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">☕ Java</span>
+                            <span class="skill-tag-mobile">🐍 Python</span>
+                            <span class="skill-tag-mobile">📜 JavaScript</span>
+                            <span class="skill-tag-mobile">💾 SQL</span>
+                            <span class="skill-tag-mobile">⚡ C++</span>
+                            <span class="skill-tag-mobile">🎯 Dart</span>
+                            <span class="skill-tag-mobile">🤖 Kotlin</span>
+                            <span class="skill-tag-mobile">🌐 HTML5</span>
+                            <span class="skill-tag-mobile">🎨 CSS</span>
+                        </div>
+                    </div>
 
-        <!-- Skills -->
-        <div class="resume-section">
-            <h2 class="section-title">🛠️ Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>💻 Programming Languages</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">☕ Java</span>
-                        <span class="skill-tag">🐍 Python</span>
-                        <span class="skill-tag">📜 JavaScript</span>
-                        <span class="skill-tag">💾 SQL</span>
-                        <span class="skill-tag">⚡ C++</span>
-                        <span class="skill-tag">🎯 Dart</span>
-                        <span class="skill-tag">🤖 Kotlin</span>
-                        <span class="skill-tag">🌐 HTML5</span>
-                        <span class="skill-tag">🎨 CSS</span>
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-server" style="color: #E50914;"></i>
+                            Backend & Cloud
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">🌱 Spring Boot</span>
+                            <span class="skill-tag-mobile">🚀 FastAPI</span>
+                            <span class="skill-tag-mobile">🌶️ Flask</span>
+                            <span class="skill-tag-mobile">🟢 Node.js</span>
+                            <span class="skill-tag-mobile">⚡ Express.js</span>
+                            <span class="skill-tag-mobile">🔧 PEGA</span>
+                            <span class="skill-tag-mobile">🔌 REST APIs</span>
+                            <span class="skill-tag-mobile">🔐 JWT Auth</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h4>🌐 Backend & Cloud</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">🌱 Spring Boot</span>
-                        <span class="skill-tag">🚀 FastAPI</span>
-                        <span class="skill-tag">🌶️ Flask</span>
-                        <span class="skill-tag">🟢 Node.js</span>
-                        <span class="skill-tag">⚡ Express.js</span>
-                        <span class="skill-tag">🔧 PEGA</span>
-                        <span class="skill-tag">🔌 REST APIs</span>
-                        <span class="skill-tag">🔐 JWT Auth</span>
-                    </div>
-                </div>
 
-                <div class="skill-category">
-                    <h4>☁️ Cloud Platforms</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">🟠 AWS Amplify</span>
-                        <span class="skill-tag">⚡ Lambda</span>
-                        <span class="skill-tag">🌐 API Gateway</span>
-                        <span class="skill-tag">🔐 AWS Cognito</span>
-                        <span class="skill-tag">📦 S3</span>
-                        <span class="skill-tag">📊 DynamoDB</span>
-                        <span class="skill-tag">🔵 GCP</span>
-                        <span class="skill-tag">🔥 Firebase</span>
-                        <span class="skill-tag">📱 Firestore</span>
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-cloud" style="color: #E50914;"></i>
+                            Cloud Platforms
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">🟠 AWS Amplify</span>
+                            <span class="skill-tag-mobile">⚡ Lambda</span>
+                            <span class="skill-tag-mobile">🌐 API Gateway</span>
+                            <span class="skill-tag-mobile">🔐 AWS Cognito</span>
+                            <span class="skill-tag-mobile">📦 S3</span>
+                            <span class="skill-tag-mobile">📊 DynamoDB</span>
+                            <span class="skill-tag-mobile">🔵 GCP</span>
+                            <span class="skill-tag-mobile">🔥 Firebase</span>
+                            <span class="skill-tag-mobile">📱 Firestore</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h4>📱 Frontend & Mobile</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">⚛️ React.js</span>
-                        <span class="skill-tag">🦋 Flutter</span>
-                        <span class="skill-tag">🤖 Android Studio</span>
-                        <span class="skill-tag">🧩 Jetpack Components</span>
-                        <span class="skill-tag">📐 XML UI</span>
-                        <span class="skill-tag">🗄️ Room Database</span>
-                        <span class="skill-tag">🏗️ MVVM Architecture</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h4>🗄️ Databases</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">🐘 PostgreSQL</span>
-                        <span class="skill-tag">🐬 MySQL</span>
-                        <span class="skill-tag">🏢 SQL Server</span>
-                        <span class="skill-tag">🍃 MongoDB</span>
-                        <span class="skill-tag">⚡ DynamoDB</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h4>🔧 Tools & Platforms</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">💡 IntelliJ</span>
-                        <span class="skill-tag">📝 VS Code</span>
-                        <span class="skill-tag">📮 Postman</span>
-                        <span class="skill-tag">🎨 Figma</span>
-                        <span class="skill-tag">📋 Wireframing</span>
-                        <span class="skill-tag">🎯 Prototyping</span>
-                        <span class="skill-tag">🤖 GitHub Copilot</span>
-                        <span class="skill-tag">✨ Cursor</span>
-                    </div>
-                </div>
 
-                <div class="skill-category">
-                    <h4>⚙️ DevOps & Monitoring</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">🐳 Docker</span>
-                        <span class="skill-tag">☸️ Kubernetes</span>
-                        <span class="skill-tag">🏗️ Terraform</span>
-                        <span class="skill-tag">🔄 CI/CD (GitHub Actions, Gradle)</span>
-                        <span class="skill-tag">📊 Git</span>
-                        <span class="skill-tag">📋 JIRA</span>
-                        <span class="skill-tag">📈 Splunk</span>
-                        <span class="skill-tag">📊 AppDynamics</span>
-                        <span class="skill-tag">📉 Grafana</span>
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-mobile-alt" style="color: #E50914;"></i>
+                            Frontend & Mobile
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">⚛️ React.js</span>
+                            <span class="skill-tag-mobile">🦋 Flutter</span>
+                            <span class="skill-tag-mobile">🤖 Android Studio</span>
+                            <span class="skill-tag-mobile">🧩 Jetpack Components</span>
+                            <span class="skill-tag-mobile">📐 XML UI</span>
+                            <span class="skill-tag-mobile">🗄️ Room Database</span>
+                            <span class="skill-tag-mobile">🏗️ MVVM Architecture</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-database" style="color: #E50914;"></i>
+                            Databases
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">🐘 PostgreSQL</span>
+                            <span class="skill-tag-mobile">🐬 MySQL</span>
+                            <span class="skill-tag-mobile">🏢 SQL Server</span>
+                            <span class="skill-tag-mobile">🍃 MongoDB</span>
+                            <span class="skill-tag-mobile">⚡ DynamoDB</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-tools" style="color: #E50914;"></i>
+                            Tools & Platforms
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">💡 IntelliJ</span>
+                            <span class="skill-tag-mobile">📝 VS Code</span>
+                            <span class="skill-tag-mobile">📮 Postman</span>
+                            <span class="skill-tag-mobile">🎨 Figma</span>
+                            <span class="skill-tag-mobile">📋 Wireframing</span>
+                            <span class="skill-tag-mobile">🎯 Prototyping</span>
+                            <span class="skill-tag-mobile">🤖 GitHub Copilot</span>
+                            <span class="skill-tag-mobile">✨ Cursor</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-cogs" style="color: #E50914;"></i>
+                            DevOps & Monitoring
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">🐳 Docker</span>
+                            <span class="skill-tag-mobile">☸️ Kubernetes</span>
+                            <span class="skill-tag-mobile">🏗️ Terraform</span>
+                            <span class="skill-tag-mobile">🔄 CI/CD</span>
+                            <span class="skill-tag-mobile">📊 Git</span>
+                            <span class="skill-tag-mobile">📋 JIRA</span>
+                            <span class="skill-tag-mobile">📈 Splunk</span>
+                            <span class="skill-tag-mobile">📊 AppDynamics</span>
+                            <span class="skill-tag-mobile">📉 Grafana</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-robot" style="color: #E50914;"></i>
+                            AI & Machine Learning
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">🧠 Generative AI</span>
+                            <span class="skill-tag-mobile">💬 LLMs</span>
+                            <span class="skill-tag-mobile">📝 Prompt Engineering</span>
+                            <span class="skill-tag-mobile">🔗 OpenAI APIs</span>
+                            <span class="skill-tag-mobile">⛓️ LangChain</span>
+                            <span class="skill-tag-mobile">🤗 Hugging Face</span>
+                            <span class="skill-tag-mobile">📊 TensorFlow</span>
+                            <span class="skill-tag-mobile">📱 TensorFlow Lite</span>
+                            <span class="skill-tag-mobile">📈 Scikit-learn</span>
+                            <span class="skill-tag-mobile">🔍 NLP</span>
+                            <span class="skill-tag-mobile">⭐ Recommendation Systems</span>
+                            <span class="skill-tag-mobile">🚀 Model Deployment</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category-card">
+                        <div class="skill-category-header">
+                            <i class="fas fa-project-diagram" style="color: #E50914;"></i>
+                            Methodologies
+                        </div>
+                        <div class="skill-tags-mobile">
+                            <span class="skill-tag-mobile">🔄 Agile/Scrum</span>
+                            <span class="skill-tag-mobile">📊 SDLC</span>
+                            <span class="skill-tag-mobile">🎨 Design Patterns</span>
+                            <span class="skill-tag-mobile">🏥 HIPAA Compliance</span>
+                            <span class="skill-tag-mobile">🔧 OOP</span>
+                            <span class="skill-tag-mobile">🐛 Debugging</span>
+                            <span class="skill-tag-mobile">⚡ Performance Optimization</span>
+                            <span class="skill-tag-mobile">🧩 Problem Solving</span>
+                            <span class="skill-tag-mobile">👥 Team Collaboration</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="skill-category">
-                    <h4>🎯 Methodologies & Core Competencies</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">🔄 Agile/Scrum</span>
-                        <span class="skill-tag">📊 SDLC</span>
-                        <span class="skill-tag">🎨 Design Patterns</span>
-                        <span class="skill-tag">🏥 HIPAA Compliance</span>
-                        <span class="skill-tag">🔧 OOP</span>
-                        <span class="skill-tag">🐛 Debugging</span>
-                        <span class="skill-tag">⚡ Performance Optimization</span>
-                        <span class="skill-tag">🧩 Problem Solving</span>
-                        <span class="skill-tag">👥 Team Collaboration</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h4>🤖 AI & Machine Learning</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">🧠 Generative AI</span>
-                        <span class="skill-tag">💬 LLMs</span>
-                        <span class="skill-tag">📝 Prompt Engineering</span>
-                        <span class="skill-tag">🔗 OpenAI APIs</span>
-                        <span class="skill-tag">⛓️ LangChain</span>
-                        <span class="skill-tag">🤗 Hugging Face Transformers</span>
-                        <span class="skill-tag">📊 TensorFlow</span>
-                        <span class="skill-tag">📱 TensorFlow Lite</span>
-                        <span class="skill-tag">📈 Scikit-learn</span>
-                        <span class="skill-tag">🔍 NLP (NER, Summarization, Sentiment Analysis)</span>
-                        <span class="skill-tag">⭐ Recommendation Systems</span>
-                        <span class="skill-tag">🚀 Model Deployment</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Certifications -->
-        <div class="resume-section">
-            <h2 class="section-title">🏆 Certifications</h2>
-            
-            <div class="cert-item">
-                <h3 class="job-title">☁️ AWS Certified Developer – Associate</h3>
-                <p class="company">
-                    <img src="assets/aws.webp" alt="AWS logo" style="width:22px;height:22px;border-radius:3px;vertical-align:middle;"> 
-                    Amazon Web Services (AWS)
-                </p>
-                <p class="description">
-                    <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" 
-                       target="_blank" class="contact-link">🔗 View Credential</a>
-                </p>
-            </div>
-
-            <div class="cert-item">
-                <h3 class="job-title">🧠 Introduction to Large Language Models</h3>
-                <p class="company">
-                    <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:22px;height:22px;border-radius:3px;vertical-align:middle;"> 
-                    Google Cloud
-                </p>
-                <p class="description">
-                    <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" 
-                       target="_blank" class="contact-link">🔗 View Certificate</a>
-                </p>
             </div>
 
-            <div class="cert-item">
-                <h3 class="job-title">🤖 Supervised Machine Learning</h3>
-                <p class="company">
-                    <img src="assets/ibm.webp" alt="IBM logo" style="width:22px;height:22px;border-radius:3px;vertical-align:middle;"> 
-                    IBM
-                </p>
-                <p class="description">
-                    <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" 
-                       target="_blank" class="contact-link">🔗 View Certificate</a>
-                </p>
+            <!-- Certifications -->
+            <div class="resume-card fade-in-mobile">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h2 class="section-title">Certifications</h2>
+                </div>
+                <div class="cert-grid-mobile">
+                    <div class="cert-card-mobile">
+                        <div class="cert-header-mobile">
+                            <div class="cert-icon-mobile">
+                                <img src="assets/aws.webp" alt="AWS logo">
+                            </div>
+                            <div class="cert-info-mobile">
+                                <h3 class="cert-name-mobile">AWS Certified Developer – Associate</h3>
+                                <p class="cert-org-mobile">Amazon Web Services</p>
+                            </div>
+                        </div>
+                        <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" 
+                           target="_blank" 
+                           class="cert-link-mobile">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Credential
+                        </a>
+                    </div>
+
+                    <div class="cert-card-mobile">
+                        <div class="cert-header-mobile">
+                            <div class="cert-icon-mobile">
+                                <img src="assets/googlecloud.jpg" alt="Google Cloud logo">
+                            </div>
+                            <div class="cert-info-mobile">
+                                <h3 class="cert-name-mobile">Introduction to Large Language Models</h3>
+                                <p class="cert-org-mobile">Google Cloud</p>
+                            </div>
+                        </div>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" 
+                           target="_blank" 
+                           class="cert-link-mobile">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Certificate
+                        </a>
+                    </div>
+
+                    <div class="cert-card-mobile">
+                        <div class="cert-header-mobile">
+                            <div class="cert-icon-mobile">
+                                <img src="assets/ibm.webp" alt="IBM logo">
+                            </div>
+                            <div class="cert-info-mobile">
+                                <h3 class="cert-name-mobile">Supervised Machine Learning</h3>
+                                <p class="cert-org-mobile">IBM</p>
+                            </div>
+                        </div>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" 
+                           target="_blank" 
+                           class="cert-link-mobile">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Certificate
+                        </a>
+                    </div>
+
+                    <div class="cert-card-mobile">
+                        <div class="cert-header-mobile">
+                            <div class="cert-icon-mobile">
+                                <img src="assets/googlecloud.jpg" alt="Google Cloud logo">
+                            </div>
+                            <div class="cert-info-mobile">
+                                <h3 class="cert-name-mobile">Introduction to Generative AI</h3>
+                                <p class="cert-org-mobile">Google Cloud</p>
+                            </div>
+                        </div>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" 
+                           target="_blank" 
+                           class="cert-link-mobile">
+                            <i class="fas fa-external-link-alt"></i>
+                            View Certificate
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="cert-item">
-                <h3 class="job-title">✨ Introduction to Generative AI</h3>
-                <p class="company">
-                    <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:22px;height:22px;border-radius:3px;vertical-align:middle;"> 
-                    Google Cloud
-                </p>
-                <p class="description">
-                    <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" 
-                       target="_blank" class="contact-link">🔗 View Certificate</a>
-                </p>
-            </div>
-        </div>
-
-        <!-- Download Button at Bottom -->
-        <div style="text-align: center; margin: 3rem 0;">
-            <a href="assets/Sai_Prudvi_Resume.pdf" download class="download-btn">
-                📥 Download PDF Resume
-            </a>
+            <!-- Bottom Spacing -->
+            <div style="height: 2rem;"></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="netflix-enhancements-fixed.js"></script>
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-resume-nav">
+        <a href="index.html" class="nav-item-mobile">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="profile.html" class="nav-item-mobile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <a href="experience.html" class="nav-item-mobile">
+            <i class="fas fa-briefcase"></i>
+            <span>Experience</span>
+        </a>
+        <a href="projects.html" class="nav-item-mobile">
+            <i class="fas fa-rocket"></i>
+            <span>Projects</span>
+        </a>
+        <a href="resume.html" class="nav-item-mobile active">
+            <i class="fas fa-file-alt"></i>
+            <span>Resume</span>
+        </a>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="enhanced-interactions.js?v=4.0"></script>
+    <script>
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 600,
+                    easing: 'ease-out',
+                    once: true,
+                    offset: 50
+                });
+            }
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-mobile').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Handle reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.fade-in-mobile').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
+    </script>
 </body>
 </html>
