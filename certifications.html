@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="styles.css?v=4.0">
     <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link rel="stylesheet" href="mobile-app-enhancements.css?v=1.0">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,11 +37,12 @@
         <nav class="mobile-menu" id="mobile-menu">
             <ul class="mobile-nav-links">
                 <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
                 <li><a href="skills.html">Skills</a></li>
                 <li><a href="experience.html">Experience</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="resume.html">Resume</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -49,9 +51,10 @@
     <header class="netflix-header">
         <div class="netflix-nav">
             <div class="netflix-logo">
-                <a href="profile.html">Saiprudvi Ela</a>
+                <a href="index.html">Saiprudvi Ela</a>
             </div>
             <nav class="netflix-nav-links">
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="profile.html" class="nav-link">Profile</a>
                 <a href="index.html#about" class="nav-link">About</a>
                 <a href="experience.html" class="nav-link">Experience</a>
@@ -81,70 +84,74 @@
     <!-- Certifications Categories -->
     <main class="certifications-main">
         <div class="container">
-            <!-- Certifications Grid -->
-            <div class="certifications-grid">
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/aws.webp" alt="AWS logo" style="width:40px;height:40px;border-radius:6px;">
+            <div class="section-header">
+                <h2 class="section-title">🏆 Certifications</h2>
+                <p class="section-subtitle">Professional credentials and continuous learning</p>
+            </div>
+            <!-- Netflix-style Certifications Grid -->
+            <div class="netflix-profiles" style="max-width: 1400px; margin: 3rem auto;">
+                <!-- AWS -->
+                <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #FF9900 0%, #FF6600 100%);">
+                        <i class="fab fa-aws"></i>
                     </div>
-                    <h3>AWS</h3>
-                    <p>Certified Developer – Associate</p>
-                    <a href="https://www.credly.com/badges/9f508323-4550-47a7-b10c-766b2a3acd96/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
-                </div>
+                    <h3>AWS Developer</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Certified Developer – Associate</p>
+                </a>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/ibm.webp" alt="IBM logo" style="width:40px;height:40px;border-radius:6px;">
+                <!-- Google Cloud LLM -->
+                <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);">
+                        <i class="fab fa-google"></i>
                     </div>
-                    <h3>IBM</h3>
-                    <p>Supervised ML: Regression</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" target="_blank" rel="noopener" class="cert-link">View Certificate →</a>
-                </div>
+                    <h3>Large Language Models</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Google Cloud Platform</p>
+                </a>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:40px;height:40px;border-radius:6px;">
+                <!-- IBM ML -->
+                <a href="https://www.coursera.org/account/accomplishments/verify/HXM6U5576NHJ" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #0F62FE 0%, #002D9C 100%);">
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <h3>Google Cloud</h3>
-                    <p>Large Language Models</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/356LGE6ZQ9AY" target="_blank" rel="noopener" class="cert-link">View Certificate →</a>
-                </div>
+                    <h3>Supervised ML</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">IBM Machine Learning</p>
+                </a>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/googlecloud.jpg" alt="Google Cloud logo" style="width:40px;height:40px;border-radius:6px;">
+                <!-- Google Cloud GenAI -->
+                <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #34A853 0%, #FBBC04 100%);">
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h3>Google Cloud</h3>
-                    <p>Generative AI Intro</p>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/QCWV29YTMBF3" target="_blank" rel="noopener" class="cert-link">View Certificate →</a>
-                </div>
+                    <h3>Generative AI</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Google Cloud Introduction</p>
+                </a>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
+                <!-- Broadcom Cloud -->
+                <a href="https://www.credly.com/badges/a2330e5f-75c6-42c3-9c51-2bc7cce9def7/public_url" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #00A8E1 0%, #0077BE 100%);">
+                        <i class="fas fa-cloud"></i>
                     </div>
-                    <h3>Broadcom</h3>
-                    <p>Cloud Virtualization</p>
-                    <a href="https://www.credly.com/badges/a2330e5f-75c6-42c3-9c51-2bc7cce9def7/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
-                </div>
+                    <h3>Cloud Virtualization</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Broadcom Certified</p>
+                </a>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
+                <!-- Broadcom Network -->
+                <a href="https://www.credly.com/badges/d72a3377-71d3-40ca-8c22-d8a5ff0a9c46/public_url" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #00B4A0 0%, #008575 100%);">
+                        <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3>Broadcom</h3>
-                    <p>Network Virtualization</p>
-                    <a href="https://www.credly.com/badges/d72a3377-71d3-40ca-8c22-d8a5ff0a9c46/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
-                </div>
+                    <h3>Network Virtualization</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Broadcom Certified</p>
+                </a>
 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <img src="assets/Broadcom-Logo.jpg" alt="Broadcom logo" style="width:40px;height:40px;border-radius:6px;">
+                <!-- Broadcom Storage -->
+                <a href="https://www.credly.com/badges/f700c4ea-69db-4308-8adf-5925646169e1/public_url" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="profile-avatar" style="background: linear-gradient(135deg, #7C4DFF 0%, #5E35B1 100%);">
+                        <i class="fas fa-database"></i>
                     </div>
-                    <h3>Broadcom</h3>
-                    <p>Software Defined Storage</p>
-                    <a href="https://www.credly.com/badges/f700c4ea-69db-4308-8adf-5925646169e1/public_url" target="_blank" rel="noopener" class="cert-link">View Credential →</a>
-                </div>
+                    <h3>Software Defined Storage</h3>
+                    <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Broadcom Certified</p>
+                </a>
             </div>
         </div>
     </main>
@@ -159,6 +166,7 @@
     <script src="script.js?v=4.0"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="enhanced-interactions.js?v=4.0"></script>
+    <script src="mobile-app.js?v=1.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof AOS !== 'undefined') {

@@ -52,9 +52,9 @@ function addBottomNavigation() {
                 <i class="fas fa-rocket"></i>
                 <span>Projects</span>
             </a>
-            <a href="resume.html" class="mobile-nav-item ${currentPage === 'resume' ? 'active' : ''}">
-                <i class="fas fa-file-alt"></i>
-                <span>Resume</span>
+            <a href="certifications.html" class="mobile-nav-item ${currentPage === 'certifications' ? 'active' : ''}">
+                <i class="fas fa-certificate"></i>
+                <span>Certifications</span>
             </a>
         </nav>
     `;
@@ -80,9 +80,8 @@ function getCurrentPage() {
     if (page.includes('profile')) return 'profile';
     if (page.includes('experience')) return 'experience';
     if (page.includes('projects')) return 'projects';
-    if (page.includes('resume')) return 'resume';
-    if (page.includes('skills')) return 'skills';
     if (page.includes('certifications')) return 'certifications';
+    if (page.includes('skills')) return 'skills';
     if (page.includes('contact')) return 'contact';
     
     return 'index';
