@@ -1,14 +1,16 @@
 {
-    "name": "Saiprudvi Ela - Portfolio",
-    "short_name": "Saiprudvi Portfolio",
-    "description": "Software Developer with 4+ years of experience in GenAI, Cloud Solutions, and Backend Development",
+    "name": "Saiprudvi Ela - Android Developer",
+    "short_name": "Sai Portfolio",
+    "description": "Android Developer with 4 years of experience building production-grade mobile applications using Kotlin, Java, and Flutter",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#141414",
+    "background_color": "#0d1117",
     "theme_color": "#E50914",
     "orientation": "portrait-primary",
     "categories": ["business", "productivity", "utilities"],
     "lang": "en-US",
+    "scope": "/",
+    "prefer_related_applications": false,
     "icons": [
         {
             "src": "assets/icon-192.png",
