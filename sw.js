@@ -1,13 +1,12 @@
 // Service Worker for PWA functionality
 
-const CACHE_NAME = 'saiprudvi-portfolio-v1';
+const CACHE_NAME = 'saiprudvi-portfolio-v2';
 const urlsToCache = [
     '/',
     '/index.html',
     '/profile.html',
     '/experience.html',
     '/projects.html',
-    '/resume.html',
     '/skills.html',
     '/certifications.html',
     '/contact.html',
