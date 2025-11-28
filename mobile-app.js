@@ -36,23 +36,23 @@ function addBottomNavigation() {
     const currentPage = getCurrentPage();
     const navHTML = `
         <nav class="mobile-bottom-nav">
-            <a href="index.html" class="mobile-nav-item ${currentPage === 'index' ? 'active' : ''}">
+            <a href="#home" class="mobile-nav-item ${currentPage === 'index' ? 'active' : ''}">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
-            <a href="profile.html" class="mobile-nav-item ${currentPage === 'profile' ? 'active' : ''}">
+            <a href="#about" class="mobile-nav-item ${currentPage === 'profile' ? 'active' : ''}">
                 <i class="fas fa-user"></i>
                 <span>Profile</span>
             </a>
-            <a href="experience.html" class="mobile-nav-item ${currentPage === 'experience' ? 'active' : ''}">
+            <a href="#experience" class="mobile-nav-item ${currentPage === 'experience' ? 'active' : ''}">
                 <i class="fas fa-briefcase"></i>
                 <span>Experience</span>
             </a>
-            <a href="projects.html" class="mobile-nav-item ${currentPage === 'projects' ? 'active' : ''}">
+            <a href="#projects" class="mobile-nav-item ${currentPage === 'projects' ? 'active' : ''}">
                 <i class="fas fa-rocket"></i>
                 <span>Projects</span>
             </a>
-            <a href="certifications.html" class="mobile-nav-item ${currentPage === 'certifications' ? 'active' : ''}">
+            <a href="#certifications" class="mobile-nav-item ${currentPage === 'certifications' ? 'active' : ''}">
                 <i class="fas fa-certificate"></i>
                 <span>Certifications</span>
             </a>
@@ -64,6 +64,13 @@ function addBottomNavigation() {
     // Add active state on click
     document.querySelectorAll('.mobile-nav-item').forEach(item => {
         item.addEventListener('click', function(e) {
+            // Remove active class from all items
+            document.querySelectorAll('.mobile-nav-item').forEach(navItem => {
+                navItem.classList.remove('active');
+            });
+            // Add active class to clicked item
+            this.classList.add('active');
+
             // Add haptic feedback
             if (navigator.vibrate) {
                 navigator.vibrate(10);

@@ -3230,7 +3230,11 @@ section {
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
-        overflow: hidden;
+        overflow: hidden !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
     
     .netflix-profile h3 {
@@ -3268,7 +3272,11 @@ section {
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
-        overflow: hidden;
+        overflow: hidden !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
     }
     
     .netflix-profile h3 {
