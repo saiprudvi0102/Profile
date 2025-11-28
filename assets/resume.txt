@@ -1,15 +1,26 @@
+Saiprudvi Ela
++1 (321) 367-4952 | saiprudviela@gmail.com  | LinkedIn | GitHub | Portfolio
+
 SUMMARY
 Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud. Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions across healthcare and enterprise domains.
 
 SKILLS
 •	Programming Languages: Java, Python, JavaScript, SQL, C++, Dart, Kotlin, HTML5, CSS
 •	Backend & Cloud: Spring Boot, FastAPI, Flask, Node.js, Express.js, PEGA, RESTful APIs, JWT Authentication, Firebase (Auth, Firestore, Realtime DB, Messaging, Cloud Storage), AWS (Amplify, Lambda, API Gateway, Cognito, S3, DynamoDB, SNS, CloudWatch), Google Cloud (Firestore, Functions, App Distribution)
-•	Frontend & Mobile Development: React.js, Flutter, Android Studio, Jetpack Components, XML UI, Room Database, Component-Based Architecture, Responsive Design, Provider/Bloc, MVVM Architecture, Material Design
+•	Frontend & Mobile Development: React.js, Flutter, Angular, Android Studio, Jetpack Components, XML UI, Room Database, Component-Based Architecture, Responsive Design, Provider/Bloc, MVVM Architecture, Material Design
 •	Databases: PostgreSQL, MySQL, SQL Server, MongoDB, DynamoDB
 •	DevOps & Monitoring: Docker, Kubernetes, Terraform, CI/CD Pipelines (GitHub Actions, Gradle), Git, JIRA, Splunk, AppDynamics, Grafana, Crash Reporting
 •	AI & Machine Learning: Generative AI, Large Language Models (LLMs), Prompt Engineering, OpenAI APIs, LangChain, Hugging Face Transformers, TensorFlow, TensorFlow Lite, Scikit-learn, NLP (NER, Text Summarization, Sentiment Analysis), Recommendation Systems, Model Deployment, Data Analysis & Visualization
 •	Tools & Platforms: IntelliJ, VS Code, Postman, Figma, Wireframing, Prototyping, GitHub Copilot, Cursor
 •	Methodologies & Core Competencies: Agile/Scrum, SDLC, Design Patterns, HIPAA Compliance, OOP, Debugging, Performance Optimization, Problem Solving, Team Collaboration, Time Management
+
+CERTIFICATIONS
+ 
+•	AWS Certified Developer – Associate 
+•	Introduction to Large Language Models 
+•	Supervised Machine Learning: Regression 
+•	Introduction to Generative AI
+ 
 
 PROFESSIONAL EXPERIENCE
 Software Developer | Tempus 	Oct 2024 – Present | USA
@@ -23,15 +34,14 @@ Software Development Associate – Client: T-Mobile | Deloitte 	May 2020 – Aug
 •	Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, processing 120K+ daily transactions across telecom systems.
 •	Engineered backend modules for asynchronous processing with JMS and Java Mail API, enabling real-time alerts and batch notifications, improving incident response by 38%.
 •	Developed internal web applications with Java-based APIs, ReactJS, HTML5, and Bootstrap, reducing ticket resolution time by 25% for support teams.
-•	Automated cloud operations with custom Java agents, streamlining AWS S3 cleanups and system health checks, cutting manual intervention by 60+ hours/month.
-•	Optimized multi-table joins and transactional queries via Spring Data JPA custom finder methods, reducing database response times by 30% on high-traffic endpoints.
+•	Automated cloud operations with custom Java agents, streamlining AWS S3 cleanups and system health checks, cutting
+manual intervention by 60+ hours/month.
 
 EDUCATION
 Florida Institute of Technology 	Aug 2023 - May 2025
 Master's, Computer Engineering
-
-CERTIFICATIONS
-•	AWS Certified Developer – Associate 
-•	Introduction to Large Language Models 
-•	Supervised Machine Learning: Regression 
-•	Introduction to Generative AI
+Coursework: High-Performance Computing (HPC), Machine Learning, FPGA Design, Discrete Mathematics, Computer Networks, Computer Architecture
+PROJECTS
+•	Mobile application- Dormigo SuperApp – Simplifying Campus Life Available on Play store & App store.
+•	GPU-Accelerated Financial Risk Analysis- CUDA-powered GPU computing to accelerate financial risk analysis, particularly focusing on the computation of covariance matrices for large financial datasets
+•	Facebook's MobileLLM-125M - How to adapt lightweight language models for edge devices while maintaining reasonable performance on complex reasoning tasks

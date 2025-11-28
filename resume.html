@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#E50914">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-touch-fullscreen" content="yes">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Saiprudvi Ela">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Resume - Saiprudvi Ela | C++ Software Developer">
+    <meta property="og:description" content="Professional resume of Saiprudvi Ela - Software Developer with expertise in C++ low-latency systems, multi-threading, real-time processing, and high-performance architectures.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saiprudvi0102.github.io/Profile/resume.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Resume - Saiprudvi Ela">
+    <meta name="twitter:description" content="C++ Software Developer specializing in low-latency systems and real-time processing">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <title>Resume - Saiprudvi Ela | C++ Software Developer</title>
+    <meta name="description" content="Professional resume showcasing expertise in C++11/14/17, multi-threading, Linux optimization, real-time systems, and high-performance computing.">
+    <meta name="keywords" content="Resume, C++ Developer, Low Latency, Multi-threading, Real-time Systems, Linux, High Performance, Software Engineer">
+    
+    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="netflix-mobile-styles.css?v=3.0">
+    <link rel="stylesheet" href="netflix-styles-fixed.css?v=3.0">
+    <link rel="stylesheet" href="mobile-navigation-fix.css?v=3.0">
+    <link rel="stylesheet" href="fixes.css?v=3.0">
+    <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link rel="stylesheet" href="mobile-app-enhancements.css?v=1.0">
+    
+    <!-- Animation Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Lottie player for animated illustrations -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+
+    <style>
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #0D0D0D;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #E50914, #8B0000);
+            border-radius: 15px;
+        }
+
+        .resume-header h1 {
+            font-size: 3rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 900;
+        }
+
+        .resume-header .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #E50914;
+        }
+
+        .resume-section h2 {
+            color: #E50914;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-bottom: 2px solid #E50914;
+            padding-bottom: 0.5rem;
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 3px solid #E50914;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+
+        .company {
+            font-size: 1.1rem;
+            color: #E50914;
+            font-weight: 600;
+        }
+
+        .date-location {
+            font-size: 0.95rem;
+            color: #999;
+            text-align: right;
+        }
+
+        .experience-item ul {
+            margin: 1rem 0 0 1rem;
+            padding: 0;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.8rem;
+            list-style-type: none;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .experience-item li:before {
+            content: "▶";
+            color: #E50914;
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid #E50914;
+        }
+
+        .skill-category h3 {
+            color: #E50914;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #E50914, #8B0000);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .certifications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .certification-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid #E50914;
+            text-align: center;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid #E50914;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .degree {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .university {
+            color: #E50914;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                padding: 1rem;
+            }
+            
+            .resume-header h1 {
+                font-size: 2rem;
+            }
+            
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .date-location {
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+            
+            .education-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-text">Saiprudvi Ela</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="experience.html" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="skills.html" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="certifications.html" class="nav-link">Certifications</a>
+                </li>
+                <li class="nav-item">
+                    <a href="resume.html" class="nav-link active">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="resume-container">
+        <!-- Header -->
+        <header class="resume-header" data-aos="fade-up">
+            <h1>Saiprudvi Ela</h1>
+            <div class="contact-info">
+                +1 (321) 367-4952 | saiprudviela@gmail.com | 
+                <a href="https://linkedin.com/in/saiprudviela" style="color: #fff;">LinkedIn</a> | 
+                <a href="https://github.com/saiprudvi0102" style="color: #fff;">GitHub</a> | 
+                <a href="https://saiprudvi0102.github.io/Profile/" style="color: #fff;">Portfolio</a>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section class="resume-section" data-aos="fade-up" data-aos-delay="100">
+            <h2>Professional Summary</h2>
+            <p>Experienced Software Developer with 4+ years specializing in high-performance C++ systems, low-latency architectures, and real-time data processing. Expert in C++11/14/17, multi-threading, lock-free programming, and Linux optimization using tools like perf, Valgrind, and gprof. Proficient in socket programming (TCP/UDP, WebSockets, ZeroMQ), database systems (PostgreSQL, MongoDB, Redis), and cloud platforms (AWS, Azure) with containerization and CI/CD pipelines. Proven track record in building scalable backend systems, optimizing performance-critical applications, and delivering reliable solutions for finance and enterprise domains.</p>
+        </section>
+
+        <!-- Skills -->
+        <section class="resume-section" data-aos="fade-up" data-aos-delay="200">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Low-Latency & Performance</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++11/14/17</span>
+                        <span class="skill-tag">Multi-threading</span>
+                        <span class="skill-tag">Lock-free Programming</span>
+                        <span class="skill-tag">Performance Profiling</span>
+                        <span class="skill-tag">Memory Optimization</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Networking & APIs</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TCP/UDP Sockets</span>
+                        <span class="skill-tag">WebSockets</span>
+                        <span class="skill-tag">ZeroMQ</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">gRPC</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Linux & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux Optimization</span>
+                        <span class="skill-tag">Perf</span>
+                        <span class="skill-tag">Valgrind</span>
+                        <span class="skill-tag">gprof</span>
+                        <span class="skill-tag">GDB</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">SQL Optimization</span>
+                        <span class="skill-tag">Database Design</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Messaging & Pipelines</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RabbitMQ</span>
+                        <span class="skill-tag">Apache Kafka</span>
+                        <span class="skill-tag">Message Queues</span>
+                        <span class="skill-tag">Event Streaming</span>
+                        <span class="skill-tag">Data Pipelines</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Security & Compliance</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Secure Coding</span>
+                        <span class="skill-tag">Encryption</span>
+                        <span class="skill-tag">Authentication</span>
+                        <span class="skill-tag">HIPAA Compliance</span>
+                        <span class="skill-tag">Data Privacy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="resume-section" data-aos="fade-up" data-aos-delay="300">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="job-title">Software Developer</h3>
+                        <div class="company">BNY Mellon</div>
+                    </div>
+                    <div class="date-location">Jan 2025 – Present<br>USA</div>
+                </div>
+                <ul>
+                    <li>Developing high-frequency trading systems using C++17, focusing on ultra-low latency execution with microsecond-level response times</li>
+                    <li>Implementing lock-free data structures and memory pools to minimize allocation overhead in real-time trading algorithms</li>
+                    <li>Optimizing TCP socket programming for market data feeds, achieving 300K–400K messages per minute processing capacity</li>
+                    <li>Utilizing Linux perf, Valgrind, and custom profiling to identify bottlenecks and optimize critical path performance by 40%</li>
+                    <li>Building resilient multi-threaded architectures for risk management systems handling 5–10 MB/s data throughput</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3 class="job-title">Software Developer</h3>
+                        <div class="company">KPMG</div>
+                    </div>
+                    <div class="date-location">Aug 2020 – Dec 2023<br>India</div>
+                </div>
+                <ul>
+                    <li>Architected and developed enterprise-grade C++ applications for financial data processing, handling real-time transaction streams with PostgreSQL and MongoDB backends</li>
+                    <li>Implemented high-performance socket-based communication using TCP/UDP and ZeroMQ for distributed system integration</li>
+                    <li>Designed multi-threaded processing pipelines with careful thread synchronization and lock-free algorithms to maximize throughput</li>
+                    <li>Optimized database query performance and implemented connection pooling, reducing response times by 35% under high load</li>
+                    <li>Deployed applications on AWS and Azure using Docker containers and Kubernetes orchestration, implementing CI/CD pipelines with automated testing</li>
+                    <li>Collaborated with cross-functional teams to deliver scalable solutions for enterprise clients, ensuring code quality through rigorous testing and code reviews</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="resume-section" data-aos="fade-up" data-aos-delay="400">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div>
+                        <div class="degree">Master of Science in Computer Engineering</div>
+                        <div class="university">Florida Institute of Technology</div>
+                    </div>
+                    <div class="date-location">Aug 2023 - May 2025</div>
+                </div>
+                <p><strong>Relevant Coursework:</strong> Advanced Algorithms, High-Performance Computing, Distributed Systems, Computer Architecture, Software Engineering</p>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="resume-section" data-aos="fade-up" data-aos-delay="500">
+            <h2>Certifications</h2>
+            <div class="certifications-list">
+                <div class="certification-item">
+                    <strong>AWS Certified Developer – Associate</strong>
+                </div>
+                <div class="certification-item">
+                    <strong>Introduction to Large Language Models</strong>
+                </div>
+                <div class="certification-item">
+                    <strong>Supervised Machine Learning: Regression</strong>
+                </div>
+                <div class="certification-item">
+                    <strong>Introduction to Generative AI</strong>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="enhanced-interactions.js"></script>
+    <script src="mobile-nav-enhancement.js"></script>
+    <script src="mobile-app.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            delay: 100,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+
+        // Mobile navigation enhancement
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navbar = document.getElementById('navbar');
+        const body = document.body;
+
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('show');
+                navToggle.classList.toggle('active');
+                body.classList.toggle('nav-open');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('show');
+                    navToggle.classList.remove('active');
+                    body.classList.remove('nav-open');
+                });
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navbar.contains(e.target) && navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    navToggle.classList.remove('active');
+                    body.classList.remove('nav-open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -2,53 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#E50914">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-touch-fullscreen" content="yes">
+    
+    <!-- SEO Meta Tags -->
     <meta name="author" content="Saiprudvi Ela">
-    <meta name="description" content="Saiprudvi Ela's technical skills and expertise in a Netflix-style interface showcasing programming languages, frameworks, and technologies.">
-    <meta name="keywords" content="Saiprudvi Ela, Skills, Programming, Technologies, Netflix, AI/ML, Cloud, Mobile Development">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Technical Skills - Saiprudvi Ela | C++ Software Developer">
+    <meta property="og:description" content="Comprehensive technical skills in C++ development, low-latency systems, multi-threading, Linux optimization, networking, databases, and cloud technologies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://saiprudvi0102.github.io/Profile/skills.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Technical Skills - Saiprudvi Ela">
+    <meta name="twitter:description" content="Expert skills in C++, low-latency systems, real-time processing, and high-performance computing">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <title>Technical Skills - Saiprudvi Ela | C++ Software Developer</title>
+    <meta name="description" content="Comprehensive technical expertise in C++11/14/17, multi-threading, lock-free programming, Linux optimization, socket programming, databases, and cloud platforms.">
+    <meta name="keywords" content="C++ Skills, Low Latency, Multi-threading, Linux Optimization, Socket Programming, ZeroMQ, PostgreSQL, MongoDB, AWS, Azure, Performance Tuning">
 
-    <title>Saiprudvi Ela - Skills & Technologies</title>
-
-    <link rel="stylesheet" href="styles.css?v=4.0">
+    
+    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="netflix-mobile-styles.css?v=3.0">
+    <link rel="stylesheet" href="netflix-styles-fixed.css?v=3.0">
+    <link rel="stylesheet" href="mobile-navigation-fix.css?v=3.0">
+    <link rel="stylesheet" href="fixes.css?v=3.0">
     <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link rel="stylesheet" href="mobile-app-enhancements.css?v=1.0">
+    
+    <!-- Animation Libraries -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#E50914">
-</head>
-<body class="netflix-skills">
-    <!-- Mobile Navigation (matches profile) -->
-    <header class="mobile-header">
-        <div class="mobile-nav">
-            <div class="mobile-logo">
-                <h2>Sai Prudvi</h2>
-            </div>
-            <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-        <nav class="mobile-menu" id="mobile-menu">
-            <ul class="mobile-nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="experience.html">Experience</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="certifications.html">Certifications</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Netflix Header -->
-    <header class="netflix-header">
-        <div class="netflix-nav">
+    <!-- Lottie player for animated illustrations -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" defer></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-text">Saiprudvi Ela</span>
+                </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="experience.html" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="skills.html" class="nav-link active">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="certifications.html" class="nav-link">Certifications</a>
+                </li>
+                <li class="nav-item">
+                    <a href="resume.html" class="nav-link">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1>Technical Skills & Expertise</h1>
+                <p class="hero-description">
+                    Comprehensive technical expertise spanning high-performance C++ development, low-latency systems, 
+                    real-time processing, and scalable backend architectures across multiple domains.
+                </p>
+            </div>
+            
+            <!-- Enhanced Lottie Animation -->
+            <div class="hero-animation" data-aos="fade-left" data-aos-delay="300">
+                <div class="lottie-container">
+                    <lottie-player 
+                        src="assets/Developer Front End.lottie" 
+                        background="transparent" 
+                        speed="1" 
+                        loop 
+                        autoplay
+                        class="hero-lottie">
+                    </lottie-player>
+                </div>
+            </div>
+        </div>
+    </section>
             <div class="netflix-logo">
                 <a href="profile.html">Saiprudvi Ela</a>
             </div>
