@@ -702,35 +702,47 @@ section {
 
 .contact-item {
     display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    padding: 1.5rem;
-    background: var(--netflix-gray);
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 8px;
     transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .contact-item:hover {
-    transform: translateX(10px);
-    background: linear-gradient(135deg, var(--netflix-gray) 0%, rgba(229, 9, 20, 0.1) 100%);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .contact-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(229, 9, 20, 0.1);
+    border-radius: 50%;
 }
 
 .contact-item h4 {
-    color: var(--netflix-white);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
+    color: var(--netflix-light-gray);
+    margin-bottom: 0.2rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .contact-item a,
 .contact-item p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--netflix-white);
     text-decoration: none;
     transition: color 0.3s ease;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .contact-item a:hover {
@@ -739,9 +751,8 @@ section {
 
 /* Contact Form */
 .contact-form {
-    background: var(--netflix-gray);
-    padding: 2rem;
-    border-radius: 8px;
+    background: transparent;
+    padding: 0;
 }
 
 .form-group {
@@ -751,17 +762,19 @@ section {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--netflix-white);
-    font-weight: 600;
+    color: var(--netflix-light-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
-    background: var(--netflix-black);
-    border: 2px solid var(--netflix-gray);
-    border-radius: 4px;
+    padding: 0.8rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--netflix-gray);
+    border-radius: 0;
     color: var(--netflix-white);
     font-family: inherit;
     font-size: 1rem;
@@ -772,7 +785,8 @@ section {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--netflix-red);
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
+    background: transparent;
+    box-shadow: none;
 }
 
 .form-group textarea {
@@ -4827,6 +4841,74 @@ section {
     grid-template-columns: repeat(5, 1fr);
     gap: 6px;
     margin-top: 10px;
+}
+
+/* Mobile Font Size Reductions & UI Cleanup */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 2rem !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    .certifications-title, 
+    .experience-title, 
+    .projects-title,
+    .section-title {
+        font-size: 2rem !important;
+    }
+    
+    .certifications-subtitle, 
+    .experience-subtitle, 
+    .projects-subtitle,
+    .section-subtitle {
+        font-size: 1rem !important;
+    }
+    
+    .project-content h3,
+    .exp-content h3,
+    .achievement-card h3, 
+    .tech-card h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    /* Reduce padding on mobile for cleaner look */
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    .hero {
+        padding-top: 4rem;
+        min-height: auto;
+    }
+    
+    .contact-content {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.75rem !important;
+    }
+    
+    .hero-text h2 {
+        font-size: 1rem !important;
+    }
+    
+    .certifications-title, 
+    .experience-title, 
+    .projects-title,
+    .section-title {
+        font-size: 1.75rem !important;
+    }
+    
+    .project-content h3,
+    .exp-content h3 {
+        font-size: 1rem !important;
+    }
 }
 .project-gallery-thumbs img {
     width: 100%;
