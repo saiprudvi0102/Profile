@@ -3097,32 +3097,12 @@ section {
 }
 
 .netflix-profiles {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2rem;
-    overflow-x: auto;
     padding: 1rem 0;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     max-width: 100%;
     margin: 0 auto;
-}
-
-.netflix-profiles::-webkit-scrollbar {
-    height: 8px;
-}
-
-.netflix-profiles::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-.netflix-profiles::-webkit-scrollbar-thumb {
-    background: var(--netflix-red);
-    border-radius: 4px;
-}
-
-.netflix-profiles::-webkit-scrollbar-thumb:hover {
-    background: #b20710;
 }
 
 .netflix-profile {
@@ -3137,13 +3117,11 @@ section {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     min-height: 200px;
-    width: 280px;
-    flex-shrink: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    scroll-snap-align: start;
 }
 
 .netflix-profile::before {
@@ -3232,12 +3210,13 @@ section {
     .netflix-profiles {
         gap: 1rem;
         padding: 0.5rem 0;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
     
     .netflix-profile {
         padding: 1rem;
         min-height: 140px;
-        width: 180px;
+        width: 100%;
     }
     
     .netflix-profile .profile-avatar {
@@ -3274,12 +3253,13 @@ section {
     .netflix-profiles {
         gap: 0.8rem;
         padding: 0.25rem 0;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .netflix-profile {
         padding: 0.8rem;
         min-height: 120px;
-        width: 150px;
+        width: 100%;
     }
     
     .netflix-profile .profile-avatar {
