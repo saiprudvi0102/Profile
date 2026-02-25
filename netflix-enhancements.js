@@ -277,7 +277,7 @@ class NetflixLoading {
         loader.className = 'netflix-loader';
         loader.innerHTML = `
             <div class="netflix-logo">
-                <div class="loading-text">Saiprudvi Ela</div>
+                <div class="loading-text">Prudhvi</div>
                 <div class="loading-spinner"></div>
             </div>
         `;

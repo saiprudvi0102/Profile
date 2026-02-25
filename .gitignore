@@ -42,6 +42,8 @@ tmp/
 temp/
 .tmp/
 .temp/
+.history/
+assets/.history/
 
 # Cache
 .cache/

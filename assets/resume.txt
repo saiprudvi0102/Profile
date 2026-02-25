@@ -1,5 +1,5 @@
-Saiprudvi Ela
-+1 (321) 367-4952 | saiprudviela@gmail.com  | LinkedIn | GitHub | Portfolio
+Prudhvi
++1 (321) 367-4952 | Prudhvi010200@gmail.com  | LinkedIn | GitHub | Portfolio
 
 SUMMARY
 Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud. Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions across healthcare and enterprise domains.
