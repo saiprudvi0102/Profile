@@ -702,47 +702,50 @@ section {
 
 .contact-item {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     align-items: center;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    background: var(--netflix-gray);
     border-radius: 8px;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
 }
 
 .contact-item:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    background: linear-gradient(135deg, var(--netflix-gray) 0%, rgba(229, 9, 20, 0.1) 100%);
 }
 
 .contact-icon {
-    font-size: 1.5rem;
-    width: 40px;
-    height: 40px;
-    display: flex;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(229, 9, 20, 0.1);
-    border-radius: 50%;
+    flex-shrink: 0;
+    font-size: 1.35rem;
+    line-height: 1;
+    color: var(--netflix-white);
+    background: linear-gradient(135deg, var(--netflix-red), #ff6b6b);
+    box-shadow: 0 6px 18px rgba(229, 9, 20, 0.28);
+}
+
+.contact-icon i {
+    line-height: 1;
 }
 
 .contact-item h4 {
-    color: var(--netflix-light-gray);
-    margin-bottom: 0.2rem;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--netflix-white);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
 .contact-item a,
 .contact-item p {
-    color: var(--netflix-white);
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     transition: color 0.3s ease;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .contact-item a:hover {
@@ -751,8 +754,9 @@ section {
 
 /* Contact Form */
 .contact-form {
-    background: transparent;
-    padding: 0;
+    background: var(--netflix-gray);
+    padding: 2rem;
+    border-radius: 8px;
 }
 
 .form-group {
@@ -762,19 +766,17 @@ section {
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--netflix-light-gray);
-    font-size: 0.9rem;
-    font-weight: 500;
+    color: var(--netflix-white);
+    font-weight: 600;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 0.8rem 0;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--netflix-gray);
-    border-radius: 0;
+    padding: 1rem;
+    background: var(--netflix-black);
+    border: 2px solid var(--netflix-gray);
+    border-radius: 4px;
     color: var(--netflix-white);
     font-family: inherit;
     font-size: 1rem;
@@ -785,8 +787,7 @@ section {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--netflix-red);
-    background: transparent;
-    box-shadow: none;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.2);
 }
 
 .form-group textarea {
@@ -823,6 +824,16 @@ section {
     text-decoration: none;
     transition: all 0.3s ease;
     font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.social-links a i {
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-links a:hover {
@@ -3097,12 +3108,32 @@ section {
 }
 
 .netflix-profiles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
     gap: 2rem;
+    overflow-x: auto;
     padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     max-width: 100%;
     margin: 0 auto;
+}
+
+.netflix-profiles::-webkit-scrollbar {
+    height: 8px;
+}
+
+.netflix-profiles::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.netflix-profiles::-webkit-scrollbar-thumb {
+    background: var(--netflix-red);
+    border-radius: 4px;
+}
+
+.netflix-profiles::-webkit-scrollbar-thumb:hover {
+    background: #b20710;
 }
 
 .netflix-profile {
@@ -3117,11 +3148,13 @@ section {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(20px);
     min-height: 200px;
-    width: 100%;
+    width: 280px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    scroll-snap-align: start;
 }
 
 .netflix-profile::before {
@@ -3155,7 +3188,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: white;
     margin-bottom: 1.5rem;
     transition: all 0.3s ease;
@@ -3166,9 +3199,10 @@ section {
 }
 
 .netflix-profile .profile-avatar i {
-    max-width: 100%;
-    max-height: 100%;
     line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .netflix-profile:hover .profile-avatar {
@@ -3210,24 +3244,18 @@ section {
     .netflix-profiles {
         gap: 1rem;
         padding: 0.5rem 0;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
     
     .netflix-profile {
         padding: 1rem;
         min-height: 140px;
-        width: 100%;
+        width: 180px;
     }
     
     .netflix-profile .profile-avatar {
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
-        overflow: hidden !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
     }
     
     .netflix-profile h3 {
@@ -3253,24 +3281,18 @@ section {
     .netflix-profiles {
         gap: 0.8rem;
         padding: 0.25rem 0;
-        grid-template-columns: repeat(2, 1fr);
     }
     
     .netflix-profile {
         padding: 0.8rem;
         min-height: 120px;
-        width: 100%;
+        width: 150px;
     }
     
     .netflix-profile .profile-avatar {
         width: 40px;
         height: 40px;
         font-size: 1.2rem;
-        overflow: hidden !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
     }
     
     .netflix-profile h3 {
@@ -3560,6 +3582,13 @@ section {
     position: relative;
     z-index: 2;
     box-shadow: 0 6px 20px rgba(229, 9, 20, 0.3);
+}
+
+.skill-icon i {
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .skill-card:hover .skill-icon {
@@ -4822,74 +4851,6 @@ section {
     gap: 6px;
     margin-top: 10px;
 }
-
-/* Mobile Font Size Reductions & UI Cleanup */
-@media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 2rem !important;
-    }
-    
-    .hero-text h2 {
-        font-size: 1.2rem !important;
-    }
-    
-    .certifications-title, 
-    .experience-title, 
-    .projects-title,
-    .section-title {
-        font-size: 2rem !important;
-    }
-    
-    .certifications-subtitle, 
-    .experience-subtitle, 
-    .projects-subtitle,
-    .section-subtitle {
-        font-size: 1rem !important;
-    }
-    
-    .project-content h3,
-    .exp-content h3,
-    .achievement-card h3, 
-    .tech-card h3 {
-        font-size: 1.1rem !important;
-    }
-    
-    /* Reduce padding on mobile for cleaner look */
-    .container {
-        padding: 0 1.5rem;
-    }
-    
-    .hero {
-        padding-top: 4rem;
-        min-height: auto;
-    }
-    
-    .contact-content {
-        gap: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-text h1 {
-        font-size: 1.75rem !important;
-    }
-    
-    .hero-text h2 {
-        font-size: 1rem !important;
-    }
-    
-    .certifications-title, 
-    .experience-title, 
-    .projects-title,
-    .section-title {
-        font-size: 1.75rem !important;
-    }
-    
-    .project-content h3,
-    .exp-content h3 {
-        font-size: 1rem !important;
-    }
-}
 .project-gallery-thumbs img {
     width: 100%;
     height: 54px;
@@ -4900,4 +4861,176 @@ section {
 }
 .project-gallery-thumbs img:hover {
     opacity: 1;
+}
+
+/* Unified Netflix UI fixes for section pages */
+.netflix-experience,
+.netflix-skills,
+.netflix-projects,
+.netflix-certifications {
+    padding-top: 72px;
+}
+
+.netflix-experience .mobile-header,
+.netflix-skills .mobile-header,
+.netflix-projects .mobile-header,
+.netflix-certifications .mobile-header {
+    display: none !important;
+}
+
+.netflix-experience .experience-hero,
+.netflix-skills .skills-hero,
+.netflix-projects .projects-hero,
+.netflix-certifications .certifications-hero {
+    padding-top: 3.5rem;
+}
+
+.netflix-experience .netflix-profiles,
+.netflix-projects .netflix-profiles,
+.netflix-certifications .netflix-profiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    overflow: visible;
+    padding: 0;
+    max-width: 100%;
+}
+
+.netflix-experience .netflix-profile,
+.netflix-projects .netflix-profile,
+.netflix-certifications .netflix-profile {
+    width: auto;
+    min-height: 210px;
+    padding: 1.4rem;
+    justify-content: flex-start;
+}
+
+.netflix-experience .netflix-profile p,
+.netflix-projects .netflix-profile p,
+.netflix-certifications .netflix-profile p {
+    position: relative;
+    z-index: 2;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.netflix-skills .skills-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    overflow: visible;
+    padding: 0;
+}
+
+.netflix-skills .skill-card {
+    min-width: 0;
+}
+
+.netflix-skills .skill-card h3 {
+    line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+    .netflix-experience .netflix-header,
+    .netflix-skills .netflix-header,
+    .netflix-projects .netflix-header,
+    .netflix-certifications .netflix-header {
+        display: block !important;
+    }
+
+    .netflix-experience,
+    .netflix-skills,
+    .netflix-projects,
+    .netflix-certifications {
+        padding-top: 64px;
+    }
+
+    .netflix-experience .experience-title,
+    .netflix-skills .skills-title,
+    .netflix-projects .projects-title,
+    .netflix-certifications .certifications-title {
+        font-size: 2.3rem;
+        letter-spacing: 0.5px;
+    }
+
+    .netflix-experience .netflix-profiles,
+    .netflix-projects .netflix-profiles,
+    .netflix-certifications .netflix-profiles,
+    .netflix-skills .skills-row {
+        grid-template-columns: 1fr;
+    }
+
+    .netflix-experience .netflix-profile,
+    .netflix-projects .netflix-profile,
+    .netflix-certifications .netflix-profile {
+        min-height: 180px;
+    }
+}
+
+/* Final typography rhythm polish */
+.netflix-experience .experience-title,
+.netflix-skills .skills-title,
+.netflix-projects .projects-title,
+.netflix-certifications .certifications-title {
+    font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.65rem;
+}
+
+.netflix-experience .experience-subtitle,
+.netflix-skills .skills-subtitle,
+.netflix-projects .projects-subtitle,
+.netflix-certifications .certifications-subtitle {
+    font-size: clamp(1rem, 2vw, 1.22rem);
+    line-height: 1.5;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.netflix-experience .category-title,
+.netflix-skills .category-title,
+.netflix-projects .category-title,
+.netflix-certifications .category-title {
+    font-size: clamp(1.35rem, 2.6vw, 2rem) !important;
+    line-height: 1.25;
+    margin-bottom: 1.25rem !important;
+}
+
+.netflix-experience .netflix-profile h3,
+.netflix-projects .netflix-profile h3,
+.netflix-certifications .netflix-profile h3,
+.netflix-skills .skill-card h3 {
+    font-size: clamp(1rem, 1.55vw, 1.15rem);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+}
+
+.netflix-skills .skill-level {
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+}
+
+.netflix-experience .experience-main,
+.netflix-skills .skills-main,
+.netflix-projects .projects-main,
+.netflix-certifications .certifications-main {
+    padding-top: 2.25rem;
+}
+
+@media (max-width: 480px) {
+    .netflix-experience .experience-title,
+    .netflix-skills .skills-title,
+    .netflix-projects .projects-title,
+    .netflix-certifications .certifications-title {
+        margin-bottom: 0.5rem;
+    }
+
+    .netflix-experience .experience-subtitle,
+    .netflix-skills .skills-subtitle,
+    .netflix-projects .projects-subtitle,
+    .netflix-certifications .certifications-subtitle {
+        font-size: 0.96rem;
+    }
 }

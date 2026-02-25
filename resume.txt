@@ -1,0 +1,86 @@
+Sai Prudvi Ela
+Gmail.com 
+Linkedin   GitHub   Portfolio                                                                                                                             
+
+ 
+ 
+Professional Summary
+•	Generative AI and Machine Learning Engineer with 5 years of professional experience spanning software engineering, data engineering, and applied artificial intelligence across diverse enterprise domains.
+•	Strong hands-on experience building production-grade chatbots and question-answering systems using Large Language Models (LLMs), embeddings, vector databases, and Retrieval-Augmented Generation (RAG) architectures.
+•	Hands-on expertise with LLM orchestration frameworks such as LangChain and LlamaIndex, integrated with vector databases (FAISS, Pinecone) for optimized semantic search and context retrieval.
+•	Deep experience processing complex unstructured data, including proprietary documents, PDFs, and industry-specific documentation, translating them into actionable, structured knowledge bases.
+•	Experienced in implementing LLM evaluation metrics, safety guardrails, and advanced prompt engineering techniques to reduce hallucinations and ensure high accuracy for business-critical applications.
+•	Proficient in designing, training, and evaluating predictive machine learning models (classification, regression, text processing) utilizing frameworks like Scikit-learn, TensorFlow, and PyTorch.
+•	Skilled in Exploratory Data Analysis (EDA) and developing robust ETL/ELT pipelines to ingest, clean, and process large-scale, heterogeneous datasets for downstream analytics and ML workloads.
+•	Extensive experience building RESTful APIs and secure microservices using Python (FastAPI, Flask) and Java (Spring Boot) to expose machine learning models and backend services to end-users.
+•	Highly proficient in core programming languages including Python, Java, SQL, and JavaScript, enabling a full-stack understanding from database schema design up to UI integration.
+•	Deep cloud background utilizing the AWS ecosystem (S3, EC2, Lambda, API Gateway, RDS, IAM, CloudWatch) to deploy, monitor, and scale machine learning systems securely in production.
+•	Solid practical experience with MLOps and DevOps practices, including containerization (Docker), CI/CD workflows, and tracking model drift utilizing tools like MLflow to manage the machine learning lifecycle.
+•	Dedicated to software quality assurance through Test-Driven Development (TDD), writing comprehensive unit and integration tests (PyTest, JUnit, Mockito), and conducting rigorous API testing using Postman and Swagger/OpenAPI.
+ 
+Technical Skills
+Programming	Python, Java, JavaScript, TypeScript, SQL, Bash
+AI / ML	LLMs (GPT, LLaMA, open-source), Embeddings, RAG, Transformers, Scikit-learn, TensorFlow, PyTorch, NLP, Text Classification, Clustering
+Generative AI	Prompt Engineering, Retrieval-Augmented Generation, Vector Databases (Pinecone, ChromaDB, FAISS), Knowledge Base Construction, LLM Evaluation & Guardrails
+LLM Frameworks	LangChain, LlamaIndex, Hugging Face Transformers, OpenAI API
+Data & Analytics	Pandas, NumPy, Matplotlib, Data Cleaning, Feature Engineering, EDA, ETL/ELT Pipelines
+Cloud & DevOps	AWS (S3, EC2, Lambda, API Gateway, SageMaker, RDS, IAM, CloudWatch), Google Cloud Platform (BigQuery, Cloud Storage, Cloud Run, Cloud Functions, Docker, CI/CD (GitHub Actions), Git.
+Web & Backend	Java (Core, Collections, Multithreading), Spring/Spring Boot, FastAPI, Flask, REST APIs, MVC, HTML5, CSS3, React/Angular
+Databases	MySQL, PostgreSQL, SQL Server, MongoDB, Redis, Vector DBs, Schema Design, Query Optimization
+Tools & Practices	Linux, JIRA, Agile/Scrum, JUnit, PyTest, Postman, Swagger/OpenAPI, Code Review, Version Control
+ Professional Experience
+
+Generative AI / ML Engineer                                                                                                                    May 2024 – Present
+Client: Caris Life Sciences 
+Texas, USA                                                                                                                    
+•	Designed and implemented an LLM-based medical chatbot using RAG, embeddings, and vector search to answer oncology and clinical workflow questions.
+•	Built Python services integrating LLMs, LangChain-style orchestration, and vector databases to deliver grounded, context-aware responses.
+•	Developed ingestion pipelines to parse, clean, chunk, and index medical PDFs, textbooks, and research papers into a unified knowledge base.
+•	Deployed chatbot, retrieval, and ingestion services on AWS (S3, EC2, Lambda, API Gateway, RDS, IAM, CloudWatch) for secure, scalable operation.
+•	Tuned prompts, context windows, and retrieval strategies to improve answer relevance and reduce hallucinations for medical use cases.
+•	Implemented guardrails and safety layers (content filtering, answer templates, escalation rules) appropriate for clinical and healthcare workflows.
+•	Exposed chatbot and retrieval capabilities via REST APIs and integrated them into internal web applications and clinician-facing tools.
+•	Collaborated with clinicians, data scientists, and product managers to define intents, entities, and domain coverage for oncology and precision medicine.
+•	Monitored system performance, logs, and error rates, and iterated on architecture and code for reliability, latency, and cost optimization.
+•	Documented system architecture, data flows, prompt patterns, and runbooks to support maintenance, audits, and onboarding of new engineers.
+Data & ML Engineer                                                                                                                      March 2022 – August 2023
+Company: Profound Infotech Pvt. Ltd. 
+Hyderabad, India                                                                                                  
+•	Built Python-based ETL/ELT pipelines to ingest, validate, transform, and load data from relational databases, CSV files, and REST APIs.
+•	Designed and implemented ML models for classification, regression, and basic NLP using Scikit-learn, TensorFlow, and PyTorch.
+•	Performed data cleaning and feature engineering, including handling missing values, encoding categorical features, and creating derived variables.
+•	Exposed trained models as RESTful APIs using FastAPI or Flask, enabling integration with dashboards and internal applications.
+•	Worked with SQL (MySQL/PostgreSQL/SQL Server) to design tables, write complex queries, and optimize performance for analytics workloads.
+•	Deployed data and ML components on AWS services such as S3, Lambda, RDS, and Step Functions as part of production pipelines.
+•	Implemented basic model monitoring and validation checks (accuracy, precision/recall, drift indicators) for productionized models.
+•	Collaborated with business and analytics teams to translate KPIs and requirements into data schemas, reports, and ML solutions.
+•	Used Git, code reviews, and Agile/Scrum processes to manage changes, track work, and ensure quality and maintainability.
+•	Created technical documentation for data pipelines, models, and APIs to support reuse and handover across projects and clients.
+Associate Software Engineer                                                                                                September 2020 – February 2022
+Company: Cybage Software Pvt. Ltd. 
+Hyderabad, India 
+•	Developed backend features for Java / Spring or Spring Boot web applications, including business logic and API endpoints.
+•	Implemented RESTful services and integrated them with front-end applications using JSON-based request/response patterns.
+•	Wrote and optimized SQL queries, joins, and stored procedures for transactional features, search, and reporting.
+•	Collaborated with front-end developers on HTML, CSS, and JavaScript integration, ensuring APIs met UI and UX requirements.
+•	Participated in design, implementation, and maintenance of application modules following MVC and clean-code principles.
+•	Added unit and integration tests using JUnit and Mockito to improve stability and support continuous integration.
+•	Investigated and fixed bugs across the stack, working with QA and senior engineers to resolve production issues.
+•	Used Git for version control, contributed to pull requests, and followed branching strategies in an agile team environment.
+•	Assisted in performance tuning by profiling slow endpoints and refactoring code and queries for better response times.
+•	Maintained technical documentation for modules, APIs, and configurations to support team knowledge sharing and onboarding.
+ 
+Education
+Master of Science – Computer Engineering                                                                                    
+Florida Institute of Technology, Melbourne, FL, USA. 
+                                                                                          
+Bachelor of Engineering – Computer Science Engineering                                                              
+Teegala Krishna Reddy Engineering College
+ 
+Certifications
+ 
+•	AWS Certified Developer – Associate
+•	Introduction to Large Language Models -Google
+•	Supervised Machine Learning: Regression - IBM
+•	Introduction to Generative AI- Google 
+

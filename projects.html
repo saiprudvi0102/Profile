@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Saiprudvi Ela">
-    <meta name="description" content="Saiprudvi Ela's projects and portfolio showcasing backend systems, GenAI solutions, cloud-native applications, and technical achievements.">
-    <meta name="keywords" content="Saiprudvi Ela, Projects, Software Developer, GenAI, LLMs, Backend Systems, Cloud Applications, FastAPI, Spring Boot">
+    <meta name="description" content="Saiprudvi Ela's projects and portfolio showcasing GenAI systems, machine learning pipelines, and backend/cloud engineering work.">
+    <meta name="keywords" content="Saiprudvi Ela, Projects, Generative AI, LLMs, RAG, Machine Learning, ETL, FastAPI, Spring Boot, AWS">
 
     <title>Saiprudvi Ela - Projects & Portfolio</title>
 
@@ -27,13 +27,13 @@
             <div class="mobile-logo">
                 <h2>Sai Prudvi</h2>
             </div>
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger-mobile">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
-        <nav class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-menu" id="mobile-menu-alt">
             <ul class="mobile-nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="profile.html">Profile</a></li>
@@ -74,7 +74,7 @@
         <div class="container">
             <div class="projects-hero-content">
                 <h1 class="projects-title">Projects & Portfolio</h1>
-                <p class="projects-subtitle">Backend systems, GenAI solutions, and cloud-native applications</p>
+                <p class="projects-subtitle">Generative AI systems, ML pipelines, and backend architecture</p>
             </div>
         </div>
     </section>
@@ -83,134 +83,118 @@
     <main class="projects-main">
         <div class="container">
             
-            <!-- Mobile Apps Section -->
-            <section class="project-category fade-in-up" id="mobile-apps">
+            <section class="project-category fade-in-up" id="medical-chatbot">
                 <h2 class="category-title fade-in-up" style="font-size: 2rem; margin: 3rem 0 2rem; color: #E50914; display: flex; align-items: center; gap: 1rem;">
-                    <i class="fas fa-mobile-alt"></i> Mobile Applications
+                    <i class="fas fa-heartbeat"></i> Healthcare GenAI Systems
                 </h2>
                 <div class="netflix-profiles" style="max-width: 1400px; margin: 2rem auto;">
-                    <!-- Dormigo SuperApp -->
-                    <a href="https://play.google.com/store/apps/details?id=com.anonymous.studentnetworkapp" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;" id="dormigo">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;" id="medical-chatbot-card">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-university"></i>
+                            <i class="fas fa-comment-medical"></i>
                         </div>
-                        <h3>Dormigo SuperApp</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">AI-powered student life platform</p>
-                    </a>
+                        <h3>Medical RAG Chatbot</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">LLM-powered oncology and clinical workflow Q&A</p>
+                    </div>
 
-                    <!-- iOS Version -->
-                    <a href="https://apps.apple.com/us/app/dormigo-superapp/id6754192331" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fab fa-apple"></i>
+                            <i class="fas fa-file-medical"></i>
                         </div>
-                        <h3>Dormigo iOS</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Available on App Store</p>
-                    </a>
+                        <h3>Knowledge Base Ingestion</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Parse, chunk, and index medical PDFs and research docs</p>
+                    </div>
 
-                    <!-- Dormigo Website -->
-                    <a href="https://dormunity.app" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>Dormigo Web</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Visit website</p>
-                    </a>
+                        <h3>Guardrails & Safety Layer</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Content filtering, templates, and escalation rules</p>
+                    </div>
 
-                    <!-- StyleStitch Fashion App -->
-                    <a href="https://play.google.com/store/apps/details?id=com.project.BucketListTech" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;" id="style">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;" id="style">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
-                            <i class="fas fa-mobile-alt"></i>
+                            <i class="fab fa-aws"></i>
                         </div>
-                        <h3>StyleStitch App</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Android fashion marketplace</p>
-                    </a>
+                        <h3>AWS Deployment Architecture</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">S3, EC2, Lambda, API Gateway, RDS, IAM, CloudWatch</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- AI/ML Projects Section -->
             <section class="project-category" id="ai-ml">
                 <h2 class="category-title" style="font-size: 2rem; margin: 3rem 0 2rem; color: #E50914; display: flex; align-items: center; gap: 1rem;">
-                    <i class="fas fa-brain"></i> AI & Machine Learning
+                    <i class="fas fa-brain"></i> Data & ML Engineering
                 </h2>
                 <div class="netflix-profiles" style="max-width: 1400px; margin: 2rem auto;">
-                    <!-- MobileLLM -->
-                    <a href="https://github.com/saiprudvi0102/MobileLLM125M" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;" id="mobilellm">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;" id="mobilellm">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                            <i class="fas fa-brain"></i>
+                            <i class="fas fa-project-diagram"></i>
                         </div>
-                        <h3>MobileLLM</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">On-device LLM deployment</p>
-                    </a>
+                        <h3>ETL / ELT Pipelines</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Data ingestion from SQL databases, CSV, and APIs</p>
+                    </div>
 
-                    <!-- Housing Price Prediction -->
-                    <div class="netflix-profile" style="text-decoration: none; cursor: default; opacity: 0.7;">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3>Housing ML</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">MLOps pipeline (In Dev)</p>
+                        <h3>Predictive ML Models</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Classification, regression, and text processing</p>
                     </div>
 
-                    <!-- GPU Financial Analysis -->
-                    <a href="https://github.com/saiprudvi0102/Finance-Risk-Analysis-GPU" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;" id="finance">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;" id="finance">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
-                            <i class="fas fa-coins"></i>
+                            <i class="fas fa-code"></i>
                         </div>
-                        <h3>GPU Finance</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">CUDA risk analysis</p>
-                    </a>
+                        <h3>Model APIs</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">FastAPI/Flask deployment for ML inference</p>
+                    </div>
 
-                    <!-- PCNN Shadow Removal -->
-                    <a href="https://github.com/saiprudvi0102/PCNN-Shadow-Removal" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                            <i class="fas fa-eye"></i>
+                            <i class="fas fa-cloud"></i>
                         </div>
-                        <h3>PCNN Vision</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Shadow removal AI</p>
-                    </a>
+                        <h3>Cloud ML Workloads</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">AWS-based production data and model pipelines</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- Web Development Section -->
             <section class="project-category" id="web">
                 <h2 class="category-title" style="font-size: 2rem; margin: 3rem 0 2rem; color: #E50914; display: flex; align-items: center; gap: 1rem;">
-                    <i class="fas fa-globe"></i> Web Development
+                    <i class="fas fa-server"></i> Backend Engineering
                 </h2>
                 <div class="netflix-profiles" style="max-width: 1400px; margin: 2rem auto;">
-                    <!-- Dormunity Website -->
-                    <a href="https://dormunity.app" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                            <i class="fas fa-globe"></i>
+                            <i class="fas fa-leaf"></i>
                         </div>
-                        <h3>Dormunity Website</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Corporate website</p>
-                    </a>
+                        <h3>Spring Boot Services</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Business logic, REST endpoints, and SQL integration</p>
+                    </div>
 
-                    <!-- Portfolio Website -->
-                    <a href="https://saiprudvi0102.github.io/Profile/" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #E50914 0%, #B20710 100%);">
-                            <i class="fas fa-user-circle"></i>
+                            <i class="fas fa-bolt"></i>
                         </div>
-                        <h3>Portfolio</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Personal portfolio site</p>
-                    </a>
+                        <h3>FastAPI Microservices</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Secure APIs and backend model integration</p>
+                    </div>
                 </div>
             </section>
-
-            <!-- Hardware/IoT Section -->
-            <section class="project-category" id="hardware">
+            <section class="project-category" id="iot">
                 <h2 class="category-title" style="font-size: 2rem; margin: 3rem 0 2rem; color: #E50914; display: flex; align-items: center; gap: 1rem;">
-                    <i class="fas fa-microchip"></i> Hardware & IoT
+                    <i class="fas fa-clipboard-check"></i> Engineering Practices
                 </h2>
                 <div class="netflix-profiles" style="max-width: 1400px; margin: 2rem auto;">
-                    <!-- IoT Anomaly Detection -->
-                    <a href="https://github.com/saiprudvi0102/AnomalyDetection" target="_blank" rel="noopener" class="netflix-profile" style="text-decoration: none;" id="iot">
+                    <div class="netflix-profile" style="text-decoration: none; cursor: default;">
                         <div class="profile-avatar" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                            <i class="fas fa-microchip"></i>
+                            <i class="fas fa-vial"></i>
                         </div>
-                        <h3>IoT FPGA</h3>
-                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">Hardware acceleration</p>
-                    </a>
+                        <h3>Quality & Testing</h3>
+                        <p style="font-size: 0.9rem; color: #9aa4b1; margin-top: 0.5rem;">PyTest, JUnit, Mockito, and API validation</p>
+                    </div>
                 </div>
             </section>
 
