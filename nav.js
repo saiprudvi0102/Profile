@@ -34,17 +34,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scroll Header Effect
+    // Scroll Header Effect (Desktop Only)
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.style.padding = '0.5rem 0';
-            nav.style.backgroundColor = 'var(--bg-secondary)';
-            nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+        if (window.innerWidth > 991) {
+            if (window.scrollY > 50) {
+                nav.style.padding = '0.5rem 0';
+                nav.style.backgroundColor = 'var(--bg-secondary)';
+                nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.padding = '0';
+                nav.style.backgroundColor = 'var(--bg-glass)';
+                nav.style.boxShadow = 'none';
+            }
         } else {
-            nav.style.padding = '0';
-            nav.style.backgroundColor = 'var(--bg-glass)';
-            nav.style.boxShadow = 'none';
+            // Reset on mobile
+            nav.style.padding = '';
+            nav.style.backgroundColor = '';
+            nav.style.boxShadow = '';
         }
     });
 
