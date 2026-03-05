@@ -503,6 +503,14 @@ h1 {
         padding: 80px 0;
     }
 
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
     .card-grid {
         grid-template-columns: 1fr;
     }
