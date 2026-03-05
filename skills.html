@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Prudhvi">
-    <meta name="description" content="Prudhvi's technical skills in Generative AI, machine learning, backend engineering, data systems, and cloud platforms.">
-    <meta name="keywords" content="Prudhvi, Skills, Generative AI, LLMs, RAG, LangChain, LlamaIndex, Python, Java, AWS, ML Engineering">
+    <meta name="description"
+        content="Prudhvi's technical skills in Generative AI, machine learning, backend engineering, data systems, and cloud platforms.">
+    <meta name="keywords"
+        content="Prudhvi, Skills, Generative AI, LLMs, RAG, LangChain, LlamaIndex, Python, Java, AWS, ML Engineering">
 
     <title>Prudhvi - Skills & Technologies</title>
 
     <link rel="stylesheet" href="styles.css?v=4.0">
     <link rel="stylesheet" href="enhanced-animations.css?v=4.0">
+    <link rel="stylesheet" href="modern-ui.css?v=1.0">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#E50914">
 </head>
+
 <body class="netflix-skills">
     <!-- Mobile Navigation (matches profile) -->
     <header class="mobile-header">
@@ -340,20 +346,20 @@
     </script>
     <script>
         // Hamburger menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobile-menu');
-            
+
             if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', function() {
+                hamburger.addEventListener('click', function () {
                     hamburger.classList.toggle('active');
                     mobileMenu.classList.toggle('active');
                 });
-                
+
                 // Close menu when clicking on a link
                 const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
                 mobileLinks.forEach(link => {
-                    link.addEventListener('click', function() {
+                    link.addEventListener('click', function () {
                         hamburger.classList.remove('active');
                         mobileMenu.classList.remove('active');
                     });
@@ -362,15 +368,15 @@
         });
 
         // Skills page specific functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Add smooth scrolling for skill categories
             const skillCategories = document.querySelectorAll('.skill-category');
-            
+
             skillCategories.forEach(category => {
                 // Add scroll animations
                 category.style.opacity = '0';
                 category.style.transform = 'translateY(50px)';
-                
+
                 setTimeout(() => {
                     category.style.transition = 'all 0.6s ease';
                     category.style.opacity = '1';
@@ -380,14 +386,14 @@
 
             // Add hover effects for skill cards
             const skillCards = document.querySelectorAll('.skill-card');
-            
+
             skillCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
+                card.addEventListener('mouseenter', function () {
                     this.style.transform = 'scale(1.05) translateY(-5px)';
                     this.style.boxShadow = '0 15px 40px rgba(229, 9, 20, 0.3)';
                 });
-                
-                card.addEventListener('mouseleave', function() {
+
+                card.addEventListener('mouseleave', function () {
                     this.style.transform = 'scale(1) translateY(0)';
                     this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
                 });
@@ -395,10 +401,10 @@
 
             // Add click effects for skill cards
             skillCards.forEach(card => {
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     const skill = this.getAttribute('data-skill');
                     console.log(`Clicked on skill: ${skill}`);
-                    
+
                     // Add a brief highlight effect
                     this.style.background = 'linear-gradient(135deg, var(--netflix-red), #ff6b6b)';
                     setTimeout(() => {
@@ -409,4 +415,5 @@
         });
     </script>
 </body>
+
 </html>

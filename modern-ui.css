@@ -1,0 +1,741 @@
+/* ================================================================
+   PROFESSIONAL UI — Portfolio Website
+   Clean, enterprise-grade dark theme with controlled layout
+   ================================================================ */
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg-base: #0f1117;
+  --bg-surface: #161b27;
+  --bg-card: #1c2233;
+  --bg-elevated: #202840;
+  --accent: #2563eb;
+  /* Professional blue */
+  --accent-light: #60a5fa;
+  --accent-dim: rgba(37, 99, 235, 0.12);
+  --accent-border: rgba(37, 99, 235, 0.3);
+  --teal: #0d9488;
+  --teal-dim: rgba(13, 148, 136, 0.15);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(37, 99, 235, 0.4);
+  --text-primary: #e8eaf6;
+  --text-secondary: #94a3b8;
+  --text-muted: #4b5980;
+  --gradient-accent: linear-gradient(135deg, #1d4ed8 0%, #0d9488 100%);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Global ─────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base) !important;
+  color: var(--text-primary) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remove aurora blobs — not professional */
+body::before,
+body::after {
+  display: none !important;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d3a5a;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+header {
+  background: rgba(15, 17, 23, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 1px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+header.scrolled {
+  background: rgba(15, 17, 23, 0.96) !important;
+}
+
+/* Logo — clean professional blue */
+.logo,
+.netflix-logo a {
+  background: var(--gradient-accent) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  transition: opacity var(--transition);
+  letter-spacing: -1px;
+}
+
+.logo:hover,
+.netflix-logo a:hover {
+  opacity: 0.85;
+  filter: none;
+}
+
+/* Nav links */
+.nav-links a,
+.netflix-nav-links a {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  transition: all var(--transition);
+}
+
+.nav-links a:hover,
+.netflix-nav-links a:hover,
+.nav-links a.active,
+.netflix-nav-links a.active {
+  color: var(--text-primary) !important;
+  background: var(--accent-dim) !important;
+}
+
+.nav-links a::after,
+.netflix-nav-links a.nav-link::after {
+  display: none !important;
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(to right, var(--bg-base) 45%, rgba(15, 17, 23, 0.8) 100%) !important;
+  min-height: 85vh !important;
+}
+
+.hero::before {
+  background: linear-gradient(to top, var(--bg-base) 0%, transparent 55%, var(--bg-base) 100%) !important;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+  letter-spacing: -2.5px !important;
+  line-height: 1.08 !important;
+}
+
+/* Name highlight — clean blue gradient, no animation */
+.highlight {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none !important;
+  animation: none !important;
+}
+
+.hero-text h2 {
+  font-size: clamp(1rem, 2vw, 1.5rem) !important;
+  color: var(--text-secondary) !important;
+  font-weight: 500 !important;
+}
+
+.hero-text p {
+  color: var(--text-secondary) !important;
+  line-height: 1.75 !important;
+}
+
+/* CTA Buttons */
+.btn-primary,
+.btn.btn-primary {
+  background: var(--accent) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 0.85rem 1.8rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3) !important;
+  transition: all var(--transition) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn.btn-primary:hover {
+  background: #1d4ed8 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.45) !important;
+}
+
+.btn-secondary,
+.btn.btn-secondary {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  transition: all var(--transition) !important;
+}
+
+.btn-secondary:hover,
+.btn.btn-secondary:hover {
+  background: var(--accent-dim) !important;
+  border-color: var(--accent-border) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Typography ─────────────────────────────────────────────── */
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2.2rem) !important;
+  letter-spacing: -1px !important;
+  color: var(--text-primary) !important;
+}
+
+.category-title {
+  color: var(--text-primary) !important;
+  font-size: 1.35rem !important;
+  letter-spacing: -0.5px !important;
+  border-left: 3px solid var(--accent) !important;
+  border-image: none !important;
+  padding-left: 1rem;
+}
+
+/* ── Cards — base glass ─────────────────────────────────────── */
+.netflix-profile {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  backdrop-filter: none !important;
+  transition: all var(--transition) !important;
+  padding: 1.4rem 1.1rem !important;
+  position: relative !important;
+  overflow: visible !important;
+  /* allow NEW badges to show */
+}
+
+.netflix-profile:hover {
+  background: var(--bg-elevated) !important;
+  border-color: var(--border-hover) !important;
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-4px) !important;
+}
+
+/* Profile avatar icon container */
+.profile-avatar {
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform var(--transition) !important;
+  width: 58px !important;
+  height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  flex-shrink: 0 !important;
+}
+
+.netflix-profile:hover .profile-avatar {
+  transform: scale(1.06) !important;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25) !important;
+}
+
+.netflix-profile h3 {
+  color: var(--text-primary) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  margin-top: 0.8rem !important;
+}
+
+.netflix-profile p {
+  color: var(--text-secondary) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+}
+
+/* ── ICON OVERFLOW FIX ──────────────────────────────────────── */
+/*
+ * The certifications section uses an absolutely positioned badge
+ * (e.g. the red "aws" oval) that floats on top of the icon.
+ * We contain these inside their parent card safely.
+ */
+
+/* Wrap cert/profile inner icon containers properly */
+.netflix-profiles {
+  position: relative !important;
+}
+
+/* Certification icon + badge wrapper */
+.cert-badge-wrapper,
+.profile-icon-wrap {
+  position: relative !important;
+  display: inline-block !important;
+}
+
+/* The floating provider badge (aws, google etc) that overlaps */
+/* These are absolutely positioned children inside the profile avatar's parent */
+.netflix-profile>a>div:not(.profile-avatar),
+.profile-avatar+span,
+.profile-avatar~span {
+  position: relative !important;
+}
+
+/* Target specific Lottie-style badges and cert overlays that float */
+/* In the certifications section the provider icon is a child of the card */
+.netflix-profile span[style*="position: absolute"],
+.netflix-profile>span[style*="absolute"] {
+  /* Allow NEW badge to stay, but keep it within card bounds */
+  z-index: 2 !important;
+  position: absolute !important;
+}
+
+/* Fix: experience/certifications floating red icon badges */
+/* These red circular icons come from the mobile-app JS and float over cards */
+.netflix-profile .profile-avatar i {
+  font-size: 1.6rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: static !important;
+}
+
+/* ── Tech Tags ──────────────────────────────────────────────── */
+.tech-tags span,
+.tech-tag {
+  background: rgba(37, 99, 235, 0.1) !important;
+  border: 1px solid rgba(37, 99, 235, 0.25) !important;
+  color: var(--accent-light) !important;
+  border-radius: 6px !important;
+  padding: 0.3rem 0.75rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  transition: all var(--transition) !important;
+}
+
+.tech-tags span:hover,
+.tech-tag:hover {
+  background: rgba(37, 99, 235, 0.2) !important;
+  border-color: rgba(37, 99, 235, 0.5) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ── Stats Cards ────────────────────────────────────────────── */
+.stat {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  transition: all var(--transition) !important;
+}
+
+.stat:hover {
+  background: var(--bg-elevated) !important;
+  border-color: var(--border-hover) !important;
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-6px) !important;
+}
+
+.stat h3,
+.stat .stat-number {
+  background: var(--gradient-accent) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 2.6rem !important;
+}
+
+.stat i {
+  color: var(--accent-light) !important;
+}
+
+.stat p {
+  color: var(--text-secondary) !important;
+}
+
+.stat:hover p {
+  color: var(--text-primary) !important;
+}
+
+/* ── Timeline ───────────────────────────────────────────────── */
+.timeline::before {
+  background: var(--accent) !important;
+  width: 2px !important;
+}
+
+.timeline-content {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  transition: all var(--transition) !important;
+}
+
+.timeline-content:hover {
+  transform: translateX(6px) !important;
+  background: var(--bg-elevated) !important;
+  border-color: var(--border-hover) !important;
+  box-shadow: var(--shadow-hover) !important;
+}
+
+.timeline-marker {
+  background: var(--accent) !important;
+  border-color: var(--bg-base) !important;
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.5) !important;
+  width: 22px !important;
+  height: 22px !important;
+  left: -10px !important;
+}
+
+.company-logo {
+  background: var(--accent-dim) !important;
+  border-color: var(--accent-border) !important;
+  border-radius: 10px !important;
+}
+
+.company {
+  color: var(--accent-light) !important;
+}
+
+.description {
+  color: var(--text-secondary) !important;
+}
+
+/* ── Highlight Cards ────────────────────────────────────────── */
+.highlight-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  transition: all var(--transition) !important;
+}
+
+.highlight-card:hover {
+  border-color: var(--border-hover) !important;
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-4px) !important;
+}
+
+.highlight-number {
+  background: var(--gradient-accent) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+}
+
+/* ── Contact ────────────────────────────────────────────────── */
+.contact-item {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  transition: all var(--transition) !important;
+}
+
+.contact-item:hover {
+  border-color: var(--border-hover) !important;
+  background: var(--bg-elevated) !important;
+  transform: translateX(4px) !important;
+}
+
+.contact-icon {
+  background: var(--accent) !important;
+  border-radius: 10px !important;
+}
+
+.contact-form {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+
+.form-group input,
+.form-group textarea {
+  background: var(--bg-base) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+  transition: all var(--transition) !important;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+  outline: none !important;
+}
+
+/* ── Projects page ──────────────────────────────────────────── */
+.projects-hero {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.07) 0%, rgba(13, 148, 136, 0.05) 100%) !important;
+  border-bottom: 1px solid var(--border);
+  padding: 5rem 0 3rem !important;
+}
+
+.projects-title {
+  background: var(--gradient-accent) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: clamp(2rem, 4vw, 2.8rem) !important;
+  letter-spacing: -2px !important;
+}
+
+.projects-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+/* Featured project card */
+#clinical-trial-agent>div {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(13, 148, 136, 0.06) 100%) !important;
+  border: 1px solid rgba(37, 99, 235, 0.3) !important;
+  transition: all var(--transition) !important;
+  animation: none !important;
+  backdrop-filter: none !important;
+}
+
+#clinical-trial-agent>div:hover {
+  border-color: rgba(37, 99, 235, 0.55) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* ── Experience Hero ────────────────────────────────────────── */
+.experience-hero {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(13, 148, 136, 0.06) 50%, transparent 100%) !important;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Inner page navbar ──────────────────────────────────────── */
+.netflix-header {
+  background: rgba(15, 17, 23, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* ── Sections background ────────────────────────────────────── */
+.tech-highlights {
+  background: rgba(37, 99, 235, 0.04) !important;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.certifications {
+  background: var(--bg-surface) !important;
+}
+
+.footer,
+.netflix-footer {
+  background: var(--bg-surface) !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+.social-links a {
+  color: var(--text-secondary) !important;
+}
+
+.social-links a:hover {
+  color: var(--accent-light) !important;
+}
+
+/* ── Latest Achievement Badge ──────────────────────────────── */
+.latest-badge {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem !important;
+  display: inline-block;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* ── Page animation ─────────────────────────────────────────── */
+@keyframes fadeUpPro {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up,
+.project-category,
+.timeline-item,
+.highlight-card {
+  animation: fadeUpPro 0.5s ease-out both;
+}
+
+.project-category:nth-child(1) {
+  animation-delay: 0.0s;
+}
+
+.project-category:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.project-category:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.project-category:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.project-category:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.timeline-item:nth-child(1) {
+  animation-delay: 0.0s;
+}
+
+.timeline-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.timeline-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: rgba(37, 99, 235, 0.3);
+  color: var(--text-primary);
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .netflix-profile {
+    border-radius: 10px !important;
+  }
+
+  .projects-title {
+    font-size: 1.8rem !important;
+  }
+}
+
+/* ── Floating Action Button — hide red fb, redesign scroll-top ── */
+
+/* Hide the .fab floating GitHub shortcut button — not needed on a portfolio */
+.fab {
+  display: none !important;
+}
+
+/* Scroll-to-top button — clean and minimal */
+.scroll-to-top,
+.scroll-top,
+button.scroll-top,
+[class*="scroll-to-top"] {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 8px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-secondary) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  font-size: 0.9rem !important;
+  transition: all var(--transition) !important;
+}
+
+.scroll-to-top:hover,
+.scroll-top:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* GitHub fixed button (if JS creates it) */
+a[href*="github"][style*="fixed"],
+a[href*="github"][style*="position: fixed"],
+a.github-fab,
+.github-fab {
+  display: none !important;
+}
+
+/* ── Category Title — override inline red styles ─────────────── */
+/* experience.html uses inline `color: #E50914` — reset to professional blue */
+.exp-category h2.category-title,
+.category-title,
+h2[class*="category"] {
+  color: var(--text-primary) !important;
+  -webkit-text-fill-color: var(--text-primary) !important;
+}
+
+.exp-category h2.category-title i,
+.category-title i {
+  color: var(--accent-light) !important;
+}
+
+/* ── netflix-profiles grid fix — ensure consistent card sizing ── */
+.netflix-profiles {
+  align-items: stretch !important;
+}
+
+.netflix-profile {
+  height: auto !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Profile avatar — ensure icon stays centered and contained */
+.profile-avatar {
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+}
+
+.profile-avatar>i {
+  position: static !important;
+  margin: 0 !important;
+  font-size: 1.6rem !important;
+  color: #fff !important;
+  pointer-events: none !important;
+}
+
+/* ── Remove Netflix hero "Play/More Info" buttons on experience page ─ */
+/* These are remnants of the Netflix hero section — not appropriate for a pro portfolio */
+.experience-hero .btn-hero.btn-play,
+.experience-hero .btn-hero.btn-info,
+.experience-hero .btn-hero.btn-sound,
+.experience-hero .sound-visualizer {
+  display: none !important;
+}
+
+.experience-hero .hero-actions {
+  display: none !important;
+}
+
+/* ── Horizontal scrollbar — professional thin ──────────────── */
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 4px;
+}
+
+/* The red scrollbar in project grids comes from the .netflix-profiles scroller */
+.netflix-profiles::-webkit-scrollbar-thumb {
+  background: var(--accent) !important;
+}
+
+.netflix-profiles::-webkit-scrollbar-track {
+  background: var(--bg-surface) !important;
+}

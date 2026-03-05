@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prudhvi - Portfolio Navigation</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="modern-ui.css?v=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#E50914">
-    <meta name="description" content="Prudhvi - Generative AI and Machine Learning Engineer specializing in LLMs, RAG systems, backend APIs, and cloud-native applications.">
+    <meta name="description"
+        content="Prudhvi - Generative AI and Machine Learning Engineer specializing in LLMs, RAG systems, backend APIs, and cloud-native applications.">
 </head>
+
 <body class="netflix-landing">
     <!-- Mobile Navigation -->
     <header class="mobile-header">
@@ -100,19 +104,19 @@
     <script src="script.js"></script>
     <script>
         // Hamburger menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const hamburger = document.getElementById('hamburger');
             const mobileMenu = document.getElementById('mobile-menu');
-            
-            hamburger.addEventListener('click', function() {
+
+            hamburger.addEventListener('click', function () {
                 hamburger.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
             });
-            
+
             // Close menu when clicking on a link
             const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
             mobileLinks.forEach(link => {
-                link.addEventListener('click', function() {
+                link.addEventListener('click', function () {
                     hamburger.classList.remove('active');
                     mobileMenu.classList.remove('active');
                 });
@@ -120,15 +124,15 @@
         });
 
         // Netflix-style profile selection
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const profiles = document.querySelectorAll('.netflix-profile');
-            
+
             profiles.forEach(profile => {
-                profile.addEventListener('click', function() {
+                profile.addEventListener('click', function () {
                     const section = this.getAttribute('data-section');
-                    
+
                     // Navigate to the appropriate section
-                    switch(section) {
+                    switch (section) {
                         case 'about':
                             window.location.href = 'index.html#about';
                             break;
@@ -149,18 +153,19 @@
                             break;
                     }
                 });
-                
+
                 // Add hover effects
-                profile.addEventListener('mouseenter', function() {
+                profile.addEventListener('mouseenter', function () {
                     this.style.transform = 'scale(1.1)';
                     this.style.transition = 'transform 0.3s ease';
                 });
-                
-                profile.addEventListener('mouseleave', function() {
+
+                profile.addEventListener('mouseleave', function () {
                     this.style.transform = 'scale(1)';
                 });
             });
         });
     </script>
 </body>
+
 </html>
