@@ -549,8 +549,13 @@ h1 {
     }
 
     .nav-icon {
-        display: block;
+        display: inline-block !important;
+        font-weight: 900 !important;
+        font-style: normal !important;
+        font-variant: normal !important;
+        text-rendering: auto !important;
         font-size: 1.25rem;
+        margin-bottom: 0.25rem;
     }
 
     .nav-links span {
