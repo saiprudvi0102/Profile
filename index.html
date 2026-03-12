@@ -45,15 +45,54 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <!-- Aurora Background -->
+        <canvas id="aurora-canvas"></canvas>
         <div class="container">
             <div class="hero-content" data-aos="fade-up">
                 <span class="badge">Available for Innovation</span>
-                <h1>Engineering the Future of <span>Generative AI</span></h1>
+                <h1 class="typing-text-html" data-html="Engineering the Future of <span>Generative AI</span>"></h1>
                 <p>I build production-grade LLM applications, RAG architectures, and scalable machine learning systems
                     that turn complex data into actionable intelligence.</p>
                 <div class="cta-group">
                     <a href="#projects" class="btn btn-primary">Explore Work</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>About Me</h2>
+            </div>
+            
+            <div class="about-grid">
+                <!-- Visual Hover Reveal Column -->
+                <div class="about-image-column" data-aos="fade-right">
+                    <div class="hover-reveal-container">
+                        <!-- Bottom Image: B&W or Low Opacity Base -->
+                        <img src="assets/profile.png" alt="Prudhvi Full Profile" class="reveal-base-img" />
+                        <!-- Top Image: Full Color, Masked by Blob -->
+                        <img src="assets/profile.png" alt="Prudhvi Full Profile Color" class="reveal-color-img" />
+                        <div class="social-icons-reveal">
+                            <a href="https://linkedin.com/in/saiprudhvi-ela" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/saiprudvi0102" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="mailto:Prudhvi010200@gmail.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text / Typing Animation Column -->
+                <div class="about-text-column" data-aos="fade-left">
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-primary);">Hello, I'm Prudhvi</h3>
+                    <p class="typing-text" style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
+                        I am an impassioned Generative AI and Machine Learning Engineer specializing in transforming complex data into robust, scalable, and actionable architectures. My journey is deeply rooted in optimizing intelligent systems, fine-tuning Large Language Models, and deploying reliable, production-grade backends that bridge the gap between advanced research and practical applications. 
+                    </p>
+                    <p class="typing-text" style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
+                        Whether it's accelerating clinical trials organically or building extremely fast retrieval edge-cases, I am dedicated to engineering the future of intelligent agents with precision.
+                    </p>
                 </div>
             </div>
         </div>
@@ -170,6 +209,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -266,19 +306,27 @@
                 <p>Academic foundation in Computer Engineering and Science.</p>
             </div>
 
-            <div class="card-grid">
-                <div class="card" data-aos="fade-up">
-                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>Master of Science</h3>
-                    <p style="font-weight: 600; color: var(--text-primary);">Computer Engineering</p>
-                    <p>Florida Institute of Technology, Melbourne, FL, USA</p>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="exp-item"
+                    style="padding-bottom: 3rem; border-left: 2px solid var(--accent-primary); padding-left: 2rem; position: relative;"
+                    data-aos="fade-left">
+                    <div
+                        style="position: absolute; left: -9px; top: 0; width: 16px; height: 16px; background: var(--accent-primary); border-radius: 50%; box-shadow: 0 0 10px var(--accent-glow);">
+                    </div>
+                    <span style="color: var(--accent-primary); font-weight: 700; font-size: 0.9rem;"><i class="fas fa-graduation-cap" style="margin-right: 5px;"></i> Master's Degree</span>
+                    <h3 style="margin: 0.5rem 0; font-size: 1.5rem;">Master of Science in Computer Engineering</h3>
+                    <h4 style="color: var(--text-secondary); margin-bottom: 0.5rem;">Florida Institute of Technology, Melbourne, FL, USA</h4>
                 </div>
 
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-icon"><i class="fas fa-university"></i></div>
-                    <h3>Bachelor of Engineering</h3>
-                    <p style="font-weight: 600; color: var(--text-primary);">Computer Science Engineering</p>
-                    <p>Teegala Krishna Reddy Engineering College</p>
+                <div class="exp-item"
+                    style="padding-bottom: 3rem; border-left: 2px solid var(--border-color); padding-left: 2rem; position: relative;"
+                    data-aos="fade-left" data-aos-delay="100">
+                    <div
+                        style="position: absolute; left: -9px; top: 0; width: 16px; height: 16px; background: var(--text-muted); border-radius: 50%;">
+                    </div>
+                    <span style="color: var(--text-muted); font-weight: 700; font-size: 0.9rem;"><i class="fas fa-university" style="margin-right: 5px;"></i> Bachelor's Degree</span>
+                    <h3 style="margin: 0.5rem 0; font-size: 1.5rem;">Bachelor of Engineering in Computer Science Engineering</h3>
+                    <h4 style="color: var(--text-secondary); margin-bottom: 0.5rem;">Teegala Krishna Reddy Engineering College</h4>
                 </div>
             </div>
         </div>
@@ -365,6 +413,8 @@
     </script>
     <script src="theme-toggle.js"></script>
     <script src="nav.js"></script>
+    <script src="aurora-bg.js"></script>
+    <script src="animations.js"></script>
 </body>
 
 </html>

@@ -207,12 +207,20 @@ nav {
     align-items: center;
     position: relative;
     padding-top: var(--nav-height);
-    background-image: url('professional_hero_bg_1772658399265.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: var(--bg-primary); /* Fallback */
     /* Parallax effect */
     overflow: hidden;
+}
+
+#aurora-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.8;
 }
 
 .hero::after {
@@ -220,6 +228,13 @@ nav {
     position: absolute;
     inset: 0;
     background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), var(--bg-primary));
+    z-index: 0; /* Keep it over the image but we want aurora visible */
+}
+
+/* On top of aurora canvas */
+.hero::after {
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), var(--bg-primary));
+    pointer-events: none;
 }
 
 [data-theme="light"] .hero::after {
@@ -250,6 +265,13 @@ h1 {
     line-height: 1.1;
     margin-bottom: 2rem;
     letter-spacing: -2px;
+}
+
+h1 span, h1.typing-text-html span {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero p {
@@ -425,6 +447,121 @@ h1 {
     font-size: 0.95rem;
     flex-grow: 1;
     margin-bottom: 2rem;
+}
+
+/* --- About Section (Profile & Animations) --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* 1. Text Blur Animation */
+.section-header h2 span {
+    display: inline-block;
+}
+
+.char-blur-hidden {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+}
+
+.char-blur-in {
+    animation: textBlurIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: calc(var(--char-index) * 30ms);
+}
+
+@keyframes textBlurIn {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0);
+    }
+}
+
+/* 2. Typing Animation */
+.typing-text::after {
+    content: '|';
+    animation: blink 1s step-start infinite;
+    color: var(--accent-primary);
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* 3. Hover Reveal Effect */
+.hover-reveal-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1; /* Square box, or let the image dictate */
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    /* initial blob coordinates before mousemove kicks in */
+    --x: 50%;
+    --y: 50%;
+    --blob-size: 0px; 
+    box-shadow: var(--card-shadow);
+}
+
+.hover-reveal-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+}
+
+.reveal-base-img {
+    filter: grayscale(100%) opacity(0.5);
+    z-index: 1;
+}
+
+.reveal-color-img {
+    z-index: 2;
+    -webkit-mask-image: radial-gradient(circle at var(--x) var(--y), black, black calc(var(--blob-size) * 0.8), transparent var(--blob-size));
+    mask-image: radial-gradient(circle at var(--x) var(--y), black, black calc(var(--blob-size) * 0.8), transparent var(--blob-size));
+    transition: -webkit-mask-image 0.1s ease, mask-image 0.1s ease;
+}
+
+/* Social icons overlay acting as invert */
+.social-icons-reveal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3;
+    display: flex;
+    gap: 15px;
+    mix-blend-mode: difference;
+    color: white; 
+}
+
+.social-icons-reveal a {
+    color: inherit;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons-reveal a:hover {
+    transform: translateY(-4px);
 }
 
 /* --- Skills Section --- */
