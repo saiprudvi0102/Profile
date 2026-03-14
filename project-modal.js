@@ -151,6 +151,39 @@ const projectData = {
         links: {
             github: '#'
         }
+    },
+    'AI-Powered Resume Tailor': {
+        title: 'AI-Powered Resume Tailor',
+        description: 'A SaaS backend and automation suite that dynamically tailors resumes to job descriptions using Google Gemini models.',
+        fullDetails: 'A two-model AI automation engine built to deeply analyze job descriptions, intelligently extract skills, dynamically tailor user resumes based on the extracted requirements, and render high-fidelity ATS-friendly A4 PDFs using headless Chromium. It also features a built-in candidate-job fit scorer and personalized cover letter generator.',
+        achievements: [
+            'Engineered a comprehensive AI Resume Tailoring application executing dual-model Vertex AI workflows',
+            'Built an automated PDF generation pipeline using Playwright (milliseconds to render)',
+            'Designed robust fallback and auto-repair algorithms in TypeScript exceeding 50% keyword match threshold',
+            'Devised a deterministic stitching technique isolating static work history from tailored sections',
+            'Implemented an end-to-end recruitment suite API for resume tailoring and job-fit scoring'
+        ],
+        technologies: ['Python', 'FastAPI', 'Gemini AI', 'Playwright', 'TypeScript'],
+        image: 'img_resume_tailor_ai.png',
+        links: {
+            github: 'https://github.com/saiprudvi0102'
+        }
+    },
+    'Multi-Agent Trip Planner': {
+        title: 'Multi-Agent Trip Planner',
+        description: 'A custom, lightweight multi-agent framework orchestrating parallel and sequential AI agents for trip planning from scratch.',
+        fullDetails: 'A custom, lightweight, fully-functional multi-agent framework built from scratch in Python. The system orchestrates multiple AI agents capable of executing tasks in both parallel and sequential patterns to solve a complex goal: planning an optimal, affordable day trip.',
+        achievements: [
+            'Built a Custom Orchestrator entirely from scratch without heavyweight frameworks',
+            'Implemented Parallel Task Execution for faster processing and agent concurrency',
+            'Designed Sequential Task Execution handling strict dependency graphs',
+            'Integrated Google Search Grounding to reliably provide real-time agent context without hallucinations'
+        ],
+        technologies: ['Python', 'Agents', 'Google GenAI SDK', 'Concurrent processing'],
+        image: 'img_multi_agent_trip_ai.png',
+        links: {
+            github: 'https://github.com/saiprudvi0102/Multi-agents'
+        }
     }
 };
 
