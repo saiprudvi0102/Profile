@@ -69,21 +69,20 @@ const projectData = {
             github: 'https://github.com/saiprudvi0102/AnomalyDetection'
         }
     },
-    'StyleStitch Fashion App': {
-        title: 'StyleStitch Fashion App',
-        description: 'Android fashion app built with Kotlin, Jetpack Libraries, and MVVM architecture.',
-        fullDetails: 'Developed a comprehensive fashion and style management application for Android using modern development practices. The app helps users organize their wardrobe, create outfit combinations, and discover new fashion trends.',
+    'Embroidery Design Mobile App': {
+        title: 'Embroidery Design Mobile App',
+        description: 'Android app for a business owner to manage, showcase, and sell embroidery designs with cloud-backed operations.',
+        fullDetails: 'Designed and developed a mobile application for an independent client using Java and Kotlin in Android Studio. The app was built to help a business owner manage product catalogs, showcase embroidery designs, upload images, and track orders through a cloud-backed backend.',
         achievements: [
-            'Reduced latency by 25% with optimized Firebase integration',
-            'Implemented MVVM architecture for maintainable code',
-            'Built responsive UI with Jetpack Compose',
-            '10,000+ downloads on Play Store',
-            '4.5★ average user rating'
+            'Delivered the full engagement from requirements gathering through production deployment',
+            'Integrated REST APIs for catalog management, image upload, and order tracking',
+            'Built native Android workflows in Java and Kotlin using Android Studio',
+            'Created a business-facing mobile storefront for showcasing and selling designs',
+            'Handled UI/UX design, testing, and release support end to end'
         ],
-        technologies: ['Kotlin', 'Android', 'Firebase', 'MVVM', 'Jetpack Compose', 'Material Design'],
-        image: 'assets/style-stitch-ai.svg',
+        technologies: ['Android Studio', 'Java', 'Kotlin', 'REST APIs', 'Cloud Infrastructure', 'UI/UX'],
+        image: 'assets/embroidery-design-app.svg',
         links: {
-            playstore: 'https://play.google.com/store/apps/details?id=com.project.BucketListTech'
         }
     },
     'Dormunity Website': {
@@ -104,18 +103,18 @@ const projectData = {
         }
     },
     'Dormigo – Empowering Campus Life': {
-        title: 'Dormigo – Empowering Campus Life',
-        description: 'Dormigo is a super app for students, built to simplify and enhance everyday campus living.',
-        fullDetails: 'Dormigo is a super app for students, built to simplify and enhance everyday campus living. From finding jobs and housing to sharing rides and connecting with peers, Dormigo brings everything students need into one unified platform. We\'re on a mission to empower campus communities by helping students connect, collaborate, and thrive — both on and off campus. Available on both Android and iOS platforms.',
+        title: 'Dormigo SuperApp – Simplifying Campus Life',
+        description: 'A student-focused super app that brings housing, rides, and career discovery into one secure campus platform.',
+        fullDetails: 'Dormigo is a student-focused SuperApp designed to make campus life easier, safer, and more connected. It combines verified housing, peer ride-sharing, and jobs and internships in a single platform tailored to the college experience. Secure sign-in, student-oriented trust features, and cross-platform delivery across iOS, Android, and web help students connect, collaborate, and thrive throughout campus life.',
         achievements: [
-            'Launched on both Google Play Store and iOS App Store',
-            'Unified platform for housing, jobs, rides, and community',
-            'Cross-platform mobile app built with Flutter',
-            'Real-time features for student collaboration',
-            'Mission-driven approach to empower campus communities'
+            'Unified housing, rides, and jobs into one student-focused platform',
+            'Built verified marketplace flows for safer campus transactions',
+            'Delivered cross-platform access across iOS, Android, and web',
+            'Enabled secure authentication with email and social sign-in',
+            'Planned AI-powered resume matching and application automation features'
         ],
-        technologies: ['Flutter', 'Firebase', 'Google Maps', 'Stripe', 'Dart', 'Node.js'],
-        image: 'assets/dormigo-ai.svg',
+        technologies: ['Flutter', 'Firebase', 'Google Cloud', 'Dart', 'iOS', 'Android', 'Web'],
+        image: 'assets/dormigo-campus-ai.svg',
         gallery: [
             'assets/ss1.png',
             'assets/ss2.png',
@@ -152,21 +151,22 @@ const projectData = {
             github: '#'
         }
     },
-    'AI-Powered Resume Tailor': {
-        title: 'AI-Powered Resume Tailor',
-        description: 'A SaaS backend and automation suite that dynamically tailors resumes to job descriptions using Google Gemini models.',
-        fullDetails: 'A two-model AI automation engine built to deeply analyze job descriptions, intelligently extract skills, dynamically tailor user resumes based on the extracted requirements, and render high-fidelity ATS-friendly A4 PDFs using headless Chromium. It also features a built-in candidate-job fit scorer and personalized cover letter generator.',
+    'ApplyandConnect': {
+        title: 'ApplyandConnect',
+        description: 'An AI-powered job search platform that combines Gemini-based resume tailoring, recruiter outreach, job understanding, and extension-assisted application workflows.',
+        fullDetails: 'ApplyandConnect is an AI-powered job search operating system that brings together job discovery, LLM-based resume tailoring, recruiter outreach, Gmail pipeline sync, and browser-assisted application workflows in one platform. The core AI layer uses centralized server-side Gemini actions for job-description parsing, ATS-focused resume optimization, cover-letter generation, recruiter email drafting, contact discovery, and job-email classification. To improve reliability, the resume pipeline limits LLM rewriting to high-value dynamic sections while deterministically preserving static content. The platform also includes shipped extension AI flows for profile tailoring, application-package generation, cover-letter support, autofill, and application sync, while broader agentic orchestration for job shortlisting, outreach preparation, and LinkedIn workflows is actively being expanded.',
         achievements: [
-            'Engineered a comprehensive AI Resume Tailoring application executing dual-model Vertex AI workflows',
-            'Built an automated PDF generation pipeline using Playwright (milliseconds to render)',
-            'Designed robust fallback and auto-repair algorithms in TypeScript exceeding 50% keyword match threshold',
-            'Devised a deterministic stitching technique isolating static work history from tailored sections',
-            'Implemented an end-to-end recruitment suite API for resume tailoring and job-fit scoring'
+            'Built centralized Gemini-powered AI actions for JD parsing, resume tailoring, cover letters, recruiter email drafting, contact discovery, and job-email classification',
+            'Implemented a safer resume-tailoring pipeline that rewrites only dynamic sections while deterministically preserving static resume content',
+            'Shipped extension-based AI workflows for direct profile tailoring, application-package generation, autofill support, cover-letter generation, and application sync',
+            'Added AI model routing and token and cost tracking across Gemini model tiers for scalable usage controls and analytics readiness',
+            'Working on agentic orchestration for job shortlisting, outreach preparation, and LinkedIn workflows with a broader multi-agent roadmap',
+            'Supporting active company adoption with 10+ users on the platform and expansion planned based on workflow performance and hiring outcomes'
         ],
-        technologies: ['Python', 'FastAPI', 'Gemini AI', 'Playwright', 'TypeScript'],
-        image: 'img_resume_tailor_ai.png',
+        technologies: ['Gemini', 'LLMs', 'AI Agents', 'Extension AI', 'Gmail Sync', 'Model Routing'],
+        image: 'assets/applyandconnect-ai.svg',
         links: {
-            github: 'https://github.com/saiprudvi0102'
+            website: 'https://applyandconnect.com'
         }
     },
     'Multi-Agent Trip Planner': {

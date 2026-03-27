@@ -1,0 +1,87 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="168" y1="86" x2="1449" y2="864" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="0.5" stop-color="#123C5A"/>
+      <stop offset="1" stop-color="#0B1120"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="537" y1="177" x2="1074" y2="743" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#16263D"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="506" y1="176" x2="1102" y2="753" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="cardA" x1="276" y1="258" x2="620" y2="533" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#FB7185"/>
+    </linearGradient>
+    <linearGradient id="cardB" x1="1007" y1="250" x2="1334" y2="494" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+  <g filter="url(#blur)" opacity="0.45">
+    <circle cx="261" cy="180" r="150" fill="#38BDF8"/>
+    <circle cx="1340" cy="202" r="165" fill="#14B8A6"/>
+    <circle cx="1271" cy="757" r="181" fill="#F59E0B"/>
+  </g>
+
+  <rect x="74" y="71" width="1452" height="758" rx="36" stroke="rgba(255,255,255,0.08)"/>
+
+  <text x="150" y="190" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="800">Dormigo</text>
+  <text x="150" y="246" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">Student housing, rides, and opportunities in one verified campus app</text>
+
+  <rect x="542" y="143" width="517" height="624" rx="42" fill="#020617" stroke="url(#accent)" stroke-width="4"/>
+  <rect x="572" y="177" width="456" height="558" rx="32" fill="url(#phone)"/>
+  <rect x="608" y="214" width="384" height="94" rx="26" fill="#10233B"/>
+  <circle cx="658" cy="261" r="24" fill="#14B8A6"/>
+  <path d="M648 261L657 270L676 249" stroke="#E6FFFA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="704" y="252" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Verified Listings</text>
+  <text x="704" y="287" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="500">Rooms, rides, jobs, and trusted campus connections</text>
+
+  <rect x="608" y="337" width="175" height="154" rx="24" fill="#132C48"/>
+  <path d="M650 428V383L696 350L742 383V428" stroke="#7DD3FC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M680 427V394H711V427" stroke="#7DD3FC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="643" y="468" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Housing</text>
+
+  <rect x="810" y="337" width="182" height="154" rx="24" fill="#163640"/>
+  <path d="M849 425C849 395 873 371 903 371C933 371 957 395 957 425" stroke="#6EE7B7" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="884" cy="425" r="14" fill="#6EE7B7"/>
+  <circle cx="923" cy="425" r="14" fill="#6EE7B7"/>
+  <text x="849" y="468" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700">Rides</text>
+
+  <rect x="608" y="519" width="384" height="172" rx="28" fill="#10233B"/>
+  <text x="642" y="568" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Campus Career Feed</text>
+  <rect x="642" y="592" width="316" height="12" rx="6" fill="#475569"/>
+  <rect x="642" y="623" width="246" height="12" rx="6" fill="#334155"/>
+  <rect x="642" y="654" width="284" height="12" rx="6" fill="#334155"/>
+  <circle cx="936" cy="623" r="18" fill="#38BDF8"/>
+  <path d="M929 623L935 629L946 616" stroke="#E0F2FE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="211" y="271" width="278" height="221" rx="30" fill="#0F172A" stroke="url(#cardA)" stroke-width="3"/>
+  <text x="248" y="331" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Housing Match</text>
+  <text x="248" y="373" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">Browse verified apartments, roommates,</text>
+  <text x="248" y="404" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">and direct owner listings near campus.</text>
+  <rect x="248" y="434" width="145" height="12" rx="6" fill="#F59E0B"/>
+  <rect x="248" y="460" width="181" height="12" rx="6" fill="#FB7185"/>
+
+  <rect x="1107" y="260" width="294" height="210" rx="30" fill="#0F172A" stroke="url(#cardB)" stroke-width="3"/>
+  <text x="1142" y="319" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Secure Access</text>
+  <text x="1142" y="361" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">Email and social sign-in with</text>
+  <text x="1142" y="392" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">student-first trust signals.</text>
+  <path d="M1151 428H1236" stroke="#34D399" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1253 428H1318" stroke="#2DD4BF" stroke-width="12" stroke-linecap="round"/>
+
+  <text x="149" y="768" fill="#38BDF8" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Flutter</text>
+  <circle cx="253" cy="759" r="4" fill="#475569"/>
+  <text x="271" y="768" fill="#14B8A6" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Firebase</text>
+  <circle cx="402" cy="759" r="4" fill="#475569"/>
+  <text x="420" y="768" fill="#F59E0B" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Google Cloud</text>
+</svg>

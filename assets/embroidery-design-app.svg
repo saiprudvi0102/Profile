@@ -1,0 +1,81 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="130" y1="68" x2="1460" y2="853" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F1235"/>
+      <stop offset="0.55" stop-color="#4A1D54"/>
+      <stop offset="1" stop-color="#130B21"/>
+    </linearGradient>
+    <linearGradient id="threadA" x1="250" y1="273" x2="612" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB7185"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="threadB" x1="1012" y1="226" x2="1321" y2="529" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="492" y1="146" x2="1112" y2="777" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#141324"/>
+      <stop offset="1" stop-color="#2C1739"/>
+    </linearGradient>
+    <filter id="glow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="58"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+  <g filter="url(#glow)" opacity="0.48">
+    <circle cx="280" cy="209" r="150" fill="#FB7185"/>
+    <circle cx="1302" cy="212" r="150" fill="#60A5FA"/>
+    <circle cx="1165" cy="752" r="180" fill="#F59E0B"/>
+  </g>
+
+  <text x="151" y="183" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="800">Embroidery Design App</text>
+  <text x="151" y="238" fill="#C4B5FD" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500">Android commerce app for catalog management, custom design showcases, and order tracking</text>
+
+  <rect x="527" y="128" width="547" height="650" rx="44" fill="#090611" stroke="#F472B6" stroke-width="4"/>
+  <rect x="561" y="163" width="479" height="580" rx="34" fill="url(#screen)"/>
+
+  <rect x="604" y="212" width="392" height="84" rx="24" fill="#351843"/>
+  <text x="639" y="264" fill="#FDF2F8" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Design Showcase</text>
+
+  <rect x="604" y="329" width="180" height="170" rx="28" fill="#47205D"/>
+  <path d="M650 434C650 384 692 350 730 350C768 350 812 381 812 432" stroke="#F9A8D4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M681 445C681 413 706 387 740 387C774 387 799 412 799 445" stroke="#FDE68A" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="740" cy="366" r="10" fill="#F9A8D4"/>
+  <text x="635" y="478" fill="#FDF2F8" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Pattern Library</text>
+
+  <rect x="816" y="329" width="180" height="170" rx="28" fill="#2E224E"/>
+  <path d="M860 399C884 387 901 374 914 349" stroke="#93C5FD" stroke-width="12" stroke-linecap="round"/>
+  <path d="M863 391L920 448" stroke="#C4B5FD" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="858" cy="398" r="18" fill="#F59E0B"/>
+  <circle cx="920" cy="448" r="18" fill="#F472B6"/>
+  <text x="850" y="478" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="700">Image Uploads</text>
+
+  <rect x="604" y="534" width="392" height="164" rx="28" fill="#27173A"/>
+  <text x="637" y="583" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Orders and Inventory</text>
+  <rect x="640" y="607" width="308" height="12" rx="6" fill="#F472B6"/>
+  <rect x="640" y="636" width="262" height="12" rx="6" fill="#A78BFA"/>
+  <rect x="640" y="665" width="206" height="12" rx="6" fill="#60A5FA"/>
+  <rect x="891" y="624" width="72" height="30" rx="15" fill="#F59E0B"/>
+  <text x="913" y="645" fill="#FFF7ED" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800">LIVE</text>
+
+  <rect x="200" y="300" width="265" height="235" rx="30" fill="#140D22" stroke="url(#threadA)" stroke-width="3"/>
+  <text x="235" y="359" fill="#FFF1F2" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Client Commerce</text>
+  <text x="235" y="402" fill="#E9D5FF" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">Manage product catalogs, showcase</text>
+  <text x="235" y="433" fill="#E9D5FF" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">designs, and handle order flow.</text>
+  <path d="M238 474C292 452 342 453 404 481" stroke="#FB7185" stroke-width="10" stroke-linecap="round"/>
+  <path d="M239 499C296 525 338 526 406 496" stroke="#F59E0B" stroke-width="10" stroke-linecap="round"/>
+
+  <rect x="1123" y="255" width="278" height="238" rx="30" fill="#140D22" stroke="url(#threadB)" stroke-width="3"/>
+  <text x="1158" y="314" fill="#EFF6FF" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Android Native</text>
+  <text x="1158" y="357" fill="#C4B5FD" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">Java and Kotlin app delivery with</text>
+  <text x="1158" y="388" fill="#C4B5FD" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="500">REST APIs and cloud deployment.</text>
+  <rect x="1158" y="424" width="91" height="12" rx="6" fill="#60A5FA"/>
+  <rect x="1263" y="424" width="85" height="12" rx="6" fill="#A78BFA"/>
+
+  <text x="151" y="769" fill="#FB7185" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Android Studio</text>
+  <circle cx="336" cy="759" r="4" fill="#6D28D9"/>
+  <text x="355" y="769" fill="#F59E0B" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Java/Kotlin</text>
+  <circle cx="502" cy="759" r="4" fill="#6D28D9"/>
+  <text x="521" y="769" fill="#60A5FA" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">REST APIs</text>
+</svg>
