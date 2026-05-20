@@ -1,47 +1,75 @@
 Prudhvi
-+1 (321) 367-4952 | Prudhvi010200@gmail.com  | LinkedIn | GitHub | Portfolio
+Prudhvi010200@gmail.com | 321-367-4952
+LinkedIn | GitHub
 
-SUMMARY
-Experienced Software Developer with 4+ years of success building scalable backend systems and cloud-native applications. Skilled in Java, Python, Flask, React, and PostgreSQL, with strong experience in AWS and Google Cloud. Specialized in developing GenAI-powered tools, integrating LLMs into production services, and optimizing performance. Adept at creating secure, maintainable software and collaborating in Agile teams to deliver reliable, real-world solutions across healthcare and enterprise domains.
+PROFESSIONAL SUMMARY
+• AI/ML Engineer with 8 years of experience in machine learning engineering, data engineering, and applied artificial intelligence owning end-to-end design, development, and delivery of production-grade AI/ML and Generative AI solutions across modern and legacy enterprise environments.
+• Proven ability to drive full model lifecycle training, evaluation, fine-tuning, and production deployment making practical tradeoffs across performance, cost, and reliability on both cloud-native and legacy technology stacks.
+• Hands-on expertise architecting LLM applications using RAG, embeddings, and vector databases, with deep experience in LangChain, LangGraph, LlamaIndex, CrewAI, and MCP for retrieval, context management, and agentic workflow orchestration.
+• Experienced establishing technical direction, standards, and best practices mentoring junior engineers, defining experimentation frameworks, and driving quality across the full AI/ML development lifecycle.
+• Deep experience designing and deploying Agentic AI systems multi-agent pipelines with autonomous task delegation, tool use, prompt management, and human-in-the-loop validation using LangGraph and ReAct-style reasoning loops for multi-step problem solving.
+• Proficient in PyTorch for fine-tuning (LoRA, QLoRA), alongside TensorFlow and Scikit-learn for designing, training, and evaluating predictive machine learning models with a strong focus on operational impact.
+• Skilled in developing robust ETL/ELT pipelines and Exploratory Data Analysis (EDA) to ingest, clean, and process large-scale datasets designing experiments with clear hypotheses, baselines, and measurable success criteria.
+• Strong background in Java and Spring Boot for backend development combined with Python (FastAPI, Flask) for ML model serving enabling a full-stack engineering mindset from legacy system integration through modern AI/ML pipeline design.
+• Extensive experience building RESTful APIs and secure microservices using Python and Java exposing ML models and LLM capabilities to end-users and driving adoption of AI engineering best practices across cross-functional teams.
+• Deep cloud experience on AWS, GCP, and Azure deploying and scaling AI/ML systems securely in production.
+• Solid MLOps experience Docker containerization, CI/CD workflows, model drift tracking with MLflow managing the full machine learning lifecycle from development to production.
+• Strong communication skills translating complex technical findings into clear guidance for engineers and non-technical stakeholders supported by TDD, PyTest, JUnit, and comprehensive technical documentation.
 
-SKILLS
-•	Programming Languages: Java, Python, JavaScript, SQL, C++, Dart, Kotlin, HTML5, CSS
-•	Backend & Cloud: Spring Boot, FastAPI, Flask, Node.js, Express.js, PEGA, RESTful APIs, JWT Authentication, Firebase (Auth, Firestore, Realtime DB, Messaging, Cloud Storage), AWS (Amplify, Lambda, API Gateway, Cognito, S3, DynamoDB, SNS, CloudWatch), Google Cloud (Firestore, Functions, App Distribution)
-•	Frontend & Mobile Development: React.js, Flutter, Angular, Android Studio, Jetpack Components, XML UI, Room Database, Component-Based Architecture, Responsive Design, Provider/Bloc, MVVM Architecture, Material Design
-•	Databases: PostgreSQL, MySQL, SQL Server, MongoDB, DynamoDB
-•	DevOps & Monitoring: Docker, Kubernetes, Terraform, CI/CD Pipelines (GitHub Actions, Gradle), Git, JIRA, Splunk, AppDynamics, Grafana, Crash Reporting
-•	AI & Machine Learning: Generative AI, Large Language Models (LLMs), Prompt Engineering, OpenAI APIs, LangChain, Hugging Face Transformers, TensorFlow, TensorFlow Lite, Scikit-learn, NLP (NER, Text Summarization, Sentiment Analysis), Recommendation Systems, Model Deployment, Data Analysis & Visualization
-•	Tools & Platforms: IntelliJ, VS Code, Postman, Figma, Wireframing, Prototyping, GitHub Copilot, Cursor
-•	Methodologies & Core Competencies: Agile/Scrum, SDLC, Design Patterns, HIPAA Compliance, OOP, Debugging, Performance Optimization, Problem Solving, Team Collaboration, Time Management
-
-CERTIFICATIONS
- 
-•	AWS Certified Developer – Associate 
-•	Introduction to Large Language Models 
-•	Supervised Machine Learning: Regression 
-•	Introduction to Generative AI
- 
+TECHNICAL SKILLS
+Programming: Python, JavaScript, TypeScript, SQL, Bash
+AI / ML: LLMs (GPT, LLaMA, Claude, Gemini, Open-Source), RAG, Embeddings, Transformers, Scikit-learn, TensorFlow, PyTorch, Fine-Tuning (LoRA, QLoRA), Model Evaluation, NLP, Hallucination Reduction
+Generative AI: Prompt Engineering, Agentic AI Systems, Multi-Agent Orchestration, Human-in-the-Loop Workflows, Vector Databases (Pinecone, ChromaDB, FAISS, Qdrant), LLM Evaluation (RAGAS), Responsible AI, Clinical AI Evaluation
+LLM Frameworks & Agentic Tools: LangChain, LangGraph, LlamaIndex, CrewAI, AutoGen, MCP, Hugging Face Transformers, OpenAI API, AWS Bedrock, Vertex AI, Ollama, LangSmith, LangFuse
+Data & Analytics: Pandas, NumPy, Matplotlib, ETL/ELT Pipelines, Apache Spark, Databricks, Delta Lake, Apache Airflow, GCP Dataflow, BigQuery, AWS Redshift, Feature Engineering, Data Validation
+Cloud & DevOps: AWS (S3, EC2, Lambda, SageMaker, Bedrock, Step Functions, DynamoDB, RDS, ECS, CloudWatch), GCP (Vertex AI, Cloud Run, Cloud Functions, BigQuery, GCS, Pub/Sub, GKE, Dataflow), Azure (Azure OpenAI, Azure ML), Docker, Kubernetes, GitHub Actions, Jenkins, Terraform, MLflow, MLOps
+Web & Backend: FastAPI, Flask, REST APIs, Swagger/OpenAPI
+Databases: PostgreSQL, MySQL, SQL Server, MongoDB, Redis, Vector DBs (Pinecone, FAISS, ChromaDB, Qdrant), AWS RDS, AWS Redshift, Query Optimization, Schema Design
+Tools & Practices: Git, Linux, JIRA, Agile/Scrum, PyTest, Postman, Weights & Biases, RAGAS, LangSmith, LangFuse, Technical Documentation
 
 PROFESSIONAL EXPERIENCE
-Software Developer | Tempus 	Oct 2024 – Present | USA
-•	Developed secure, high-throughput backend services using FastAPI and integrated them with LLMs via OpenAI GPT-4 and LangChain, enabling oncology researchers to auto-summarize 2TB+ of unstructured patient notes in under 10 seconds per request.
-•	Built a GenAI-enabled clinical documentation assistant, deployed on GCP using Kubernetes and Docker, which reduced manual reporting time by ~4 hours per oncologist weekly through prompt-engineered summarization and keyword extraction.
-•	Designed and implemented Java-based orchestration logic to interface with AI pipelines, providing queue-based job handling for LLM inference tasks and ensuring consistent delivery under high concurrency.
-•	Collaborated with data engineering teams to create tokenized RESTful APIs in Java 17 and Spring Boot, enforcing JWT authentication, rate limiting, and input sanitization for HIPAA-compliant data access.
-•	Led the refactoring and modularization of existing Java microservices, improving unit test coverage from 62% to 91%, reducing code complexity, and cutting deployment-related bugs by 45% over two release cycles.
+Generative AI / ML Engineer | Caris Life Sciences | May 2024 – Present | Texas, USA
+• Designed and built production-grade Generative AI applications and agentic AI systems for oncology and precision medicine workflows on Google Cloud Platform using Vertex AI for model deployment, inference pipeline management, clinical AI evaluation, and Cloud Run for scalable containerized service delivery supporting 35 plus cancer-focused clinical programs.
+• Implemented clinical LLM inference pipelines and REST APIs using FastAPI and Flask on GCP Cloud Run and Cloud Functions, serving oncology knowledge retrieval, treatment evidence summarization, and clinical decision support services.
+• Built multi-agent AI systems for clinical Q&A using LangGraph, CrewAI, AutoGen, and MCP on Vertex AI, enabling oncology agents to decompose complex clinical queries, retrieve molecular evidence, validate source credibility, and synthesize grounded treatment recommendations with human-in-the-loop clinical oversight.
+• Implemented large-scale RAG pipelines using Vertex AI Search and vector databases (Pinecone, ChromaDB, FAISS) with hybrid retrieval and grounding strategies, indexing oncology research papers, clinical trial data, molecular profiles, and treatment guidelines.
+• Optimized clinical AI service latency and throughput by tuning context windows, retrieval chunk sizes, hybrid search strategies, and Gemini model routing across Vertex AI model tiers.
+• Performed prompt tuning and clinical response evaluation using RAGAS across oncology golden datasets, regression test suites, and scoring rubrics on GCP.
+• Implemented comprehensive agent observability for clinical AI pipelines using LangSmith and LangFuse on GCP, covering structured logging, agent trace monitoring, latency breakdowns, token/cost tracking, and drift alerts.
+• Built GCP Dataflow and BigQuery data ingestion pipelines to parse, chunk, and index unstructured oncology documents including molecular reports, pathology notes, and clinical trial records into unified vector knowledge bases.
+• Deployed and maintained clinical AI services on GCP using GitHub Actions CI/CD, Docker containerization, and Kubernetes on GKE.
+• Collaborated with oncologists, data scientists, AI leads, and product managers on clinical AI solution design, sprint planning, feature delivery, documentation, and healthcare data governance.
 
-Software Development Associate – Client: T-Mobile | Deloitte 	May 2020 – Aug 2023 | India
-•	Designed and deployed 40+ RESTful microservices using Java 8, Spring Boot, and Spring Security, integrated with Oracle/PostgreSQL, processing 120K+ daily transactions across telecom systems.
-•	Engineered backend modules for asynchronous processing with JMS and Java Mail API, enabling real-time alerts and batch notifications, improving incident response by 38%.
-•	Developed internal web applications with Java-based APIs, ReactJS, HTML5, and Bootstrap, reducing ticket resolution time by 25% for support teams.
-•	Automated cloud operations with custom Java agents, streamlining AWS S3 cleanups and system health checks, cutting
-manual intervention by 60+ hours/month.
+Data & ML Engineer | Profound Medical | March 2021 – August 2023 | Hyderabad, India
+• Built and maintained ML pipelines on AWS SageMaker to classify treatment outcomes and predict procedure success using Scikit-learn, TensorFlow, and PyTorch, deploying trained models as REST APIs on AWS Lambda and API Gateway.
+• Developed Python-based ETL pipelines on AWS (S3, Lambda, Step Functions, RDS) to collect, validate, and process patient treatment records, device telemetry, and clinical outcome data into structured stores used for model training and analytics.
+• Explored and prepared large patient datasets from MRI-guided ultrasound procedures, handling missing clinical values, encoding categorical variables, engineering outcome features, and applying dimensionality reduction.
+• Trained and evaluated models for treatment outcome classification, procedure success prediction, and patient risk scoring using precision, recall, F1-score, ROC-AUC, and cross-validation.
+• Applied Scikit-learn and Hugging Face Transformers to extract structured clinical signals from radiology reports, procedural notes, and patient records.
+• Designed and optimized SQL queries, views, and stored procedures across PostgreSQL, MySQL, and SQL Server on AWS RDS.
+• Set up model monitoring on AWS CloudWatch and SageMaker to track accuracy trends, precision/recall shifts, and data drift over time.
+• Maintained data models on AWS Redshift for clinical BI and treatment analytics.
+• Containerized ML model serving components with Docker and deployed on AWS ECS, using Jenkins and Git-based CI/CD.
+• Partnered with biomedical engineers, clinical specialists, and product managers to translate treatment workflow requirements into data and ML tasks.
+
+Associate Software Engineer | Cybage Software | Sep 2017 – February 2021 | Hyderabad, India
+• Developed Python scripts and ETL workflows to extract, clean, and transform data from relational databases, flat files, and REST APIs across healthcare, retail, and fintech client projects.
+• Analyzed structured datasets using Pandas, NumPy, and Matplotlib to identify trends, flag anomalies, and produce visualizations.
+• Designed and optimized SQL queries, joins, and stored procedures across MySQL and PostgreSQL to support reporting and dashboards.
+• Built and maintained ETL workflows that moved and transformed data between source systems and reporting databases while resolving data quality issues.
+• Developed Flask REST API endpoints to expose processed data and lookup services to internal tools and client dashboards.
+• Implemented Python-based data validation scripts to catch missing records, duplicate entries, and formatting inconsistencies.
+• Deployed Python data services to AWS EC2 and S3 using Git-based workflows.
+• Worked in Agile sprints, took ownership of assigned tickets, and collaborated closely with teammates.
+• Documented pipelines, SQL logic, API endpoints, and data flows clearly for teammates and new joiners.
+• Contributed to code reviews and built stronger habits around code quality, testing, and reliable delivery.
 
 EDUCATION
-Florida Institute of Technology 	Aug 2023 - May 2025
-Master's, Computer Engineering
-Coursework: High-Performance Computing (HPC), Machine Learning, FPGA Design, Discrete Mathematics, Computer Networks, Computer Architecture
-PROJECTS
-•	Mobile application- Dormigo SuperApp – Simplifying Campus Life Available on Play store & App store.
-•	GPU-Accelerated Financial Risk Analysis- CUDA-powered GPU computing to accelerate financial risk analysis, particularly focusing on the computation of covariance matrices for large financial datasets
-•	Facebook's MobileLLM-125M - How to adapt lightweight language models for edge devices while maintaining reasonable performance on complex reasoning tasks
+Master of Science – Computer Engineering | Florida Institute of Technology, Melbourne, FL, USA
+Bachelor of Engineering – Computer Science Engineering | Teegala Krishna Reddy Engineering College
+
+CERTIFICATIONS
+• AWS Certified Developer – Associate
+• Introduction to Large Language Models - Google
+• Supervised Machine Learning: Regression - IBM
+• Introduction to Generative AI - Google
